@@ -1,12 +1,16 @@
-﻿using System;
+﻿using CarDealer.Data;
+using System;
 
 namespace CarDealer.ConsoleApplication
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var db = new CarDealerDbContext();
+
+            db.Database.EnsureDeleted();
+            db.Database.EnsureCreated();
         }
     }
 }

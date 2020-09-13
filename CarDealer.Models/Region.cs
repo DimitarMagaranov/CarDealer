@@ -1,9 +1,9 @@
-﻿namespace CarDealer.Models
-{
-    public class Region
-    {
-        public int Id { get; set; }
+﻿using System.ComponentModel.DataAnnotations;
 
-        public string Name { get; set; }
+namespace CarDealer.Models
+{
+    public enum Region
+    {
+        
     }
 }

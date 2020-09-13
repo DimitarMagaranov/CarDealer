@@ -1,20 +1,16 @@
 ﻿namespace CarDealer.Models
 {
     using System;
-
+    using System.Collections;
+    using System.Collections.Generic;
     using CarDealer.Models.CarModels;
 
     public class Car
     {
         public int Id { get; set; }
 
-        public User User { get; set; }
-
         public int MakeId { get; set; }
-        public Make Make { get; set; }
-
-        public int ModelId { get; set; }
-        public Model Model { get; set; }
+        public virtual Make Make { get; set; }
 
         public Category Category { get; set; }
 
