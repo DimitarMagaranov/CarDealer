@@ -1,4 +1,5 @@
-﻿using CarDealer.Data;
+﻿
+using CarDealer.Data;
 using System;
 
 namespace CarDealer.ConsoleApplication
