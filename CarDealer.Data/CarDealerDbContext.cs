@@ -29,7 +29,7 @@ namespace CarDealer.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Server=DESKTOP-GPNJISJ\SQLEXPRESS;Database=CarDealer;Integrated Security=true;");
+                optionsBuilder.UseSqlServer(@"Server=DESKTOP-C92LTDN\SQLEXPRESS;Database=CarDealer;Integrated Security=true;");
             }
         }
 
