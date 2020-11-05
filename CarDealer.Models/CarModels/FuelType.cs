@@ -1,10 +1,19 @@
-﻿namespace CarDealer.Models.CarModels
+﻿using System.Collections;
+using System.Collections.Generic;
+
+namespace CarDealer.Models.CarModels
 {
-    public enum FuelType
+    public class FuelType
     {
-        Diesel = 1,
-        Petrol = 2,
-        Electric = 3,
-        Hybrid = 4
+        public FuelType()
+        {
+            this.Cars = new HashSet<Car>();
+        }
+
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public virtual ICollection<Car> Cars { get; set; }
     }
 }

@@ -2,9 +2,9 @@
 
 namespace CarDealer.Models.CarModels
 {
-    public class Gearbox
+    public class Category
     {
-        public Gearbox()
+        public Category()
         {
             this.Cars = new HashSet<Car>();
         }

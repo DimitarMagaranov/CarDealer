@@ -1,0 +1,35 @@
+﻿[
+  {
+    "Name": "Van"
+  },
+  {
+    "Name": "Jeep"
+  },
+  {
+    "Name": "Convertible"
+  },
+  {
+    "Name": "StationWagon"
+  },
+  {
+    "Name": "Estate"
+  },
+  {
+    "Name": "Saloon"
+  },
+  {
+    "Name": "Coupe"
+  },
+  {
+    "Name": "Minivan"
+  },
+  {
+    "Name": "Pickup"
+  },
+  {
+    "Name": "StretchLimousine"
+  },
+  {
+    "Name": "HatchBack"
+  }
+]

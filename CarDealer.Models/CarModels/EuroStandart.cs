@@ -1,12 +1,19 @@
-﻿namespace CarDealer.Models.CarModels
+﻿using System.Collections;
+using System.Collections.Generic;
+
+namespace CarDealer.Models.CarModels
 {
-    public enum EuroStandart
+    public class EuroStandart
     {
-        One = 1,
-        Two = 2,
-        Three = 3,
-        Four = 4,
-        Five = 5,
-        Six = 6
+        public EuroStandart()
+        {
+            this.Cars = new HashSet<Car>();
+        }
+
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public virtual ICollection<Car> Cars { get; set; }
     }
 }

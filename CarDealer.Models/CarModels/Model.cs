@@ -10,6 +10,6 @@ namespace CarDealer.Models.CarModels
         public string Name { get; set; }
 
         public int MakeId { get; set; }
-        public Make Make { get; set; }
+        public virtual Make Make { get; set; }
     }
 }
