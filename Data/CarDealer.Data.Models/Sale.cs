@@ -1,7 +1,7 @@
 ﻿namespace CarDealer.Data.Models
 {
     using System;
-    using System.ComponentModel.DataAnnotations.Schema;
+
     using CarDealer.Data.Models.SaleModels;
 
     public class Sale

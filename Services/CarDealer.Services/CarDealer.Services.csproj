@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
@@ -16,6 +17,12 @@
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.205" PrivateAssets="all">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\CarDealer.Data.Models\CarDealer.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Data\CarDealer.Data\CarDealer.Data.csproj" />
+    <ProjectReference Include="..\..\Web\CarDealer.Web.ViewModels\CarDealer.Web.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

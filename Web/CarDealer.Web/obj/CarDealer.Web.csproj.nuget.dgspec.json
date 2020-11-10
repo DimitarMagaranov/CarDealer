@@ -534,15 +534,25 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netstandard2.1"
+          "netcoreapp3.1"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netstandard2.1": {
-            "projectReferences": {}
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj": {
+                "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj"
+              },
+              "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data\\CarDealer.Data.csproj": {
+                "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data\\CarDealer.Data.csproj"
+              },
+              "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Web\\CarDealer.Web.ViewModels\\CarDealer.Web.ViewModels.csproj": {
+                "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Web\\CarDealer.Web.ViewModels\\CarDealer.Web.ViewModels.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -552,7 +562,7 @@
         }
       },
       "frameworks": {
-        "netstandard2.1": {
+        "netcoreapp3.1": {
           "dependencies": {
             "StyleCop.Analyzers": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers",
@@ -572,7 +582,7 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "NETStandard.Library": {
+            "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },

@@ -3491,7 +3491,12 @@
       },
       "CarDealer.Services/1.0.0": {
         "type": "project",
-        "framework": ".NETStandard,Version=v2.1",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "CarDealer.Data": "1.0.0",
+          "CarDealer.Data.Models": "1.0.0",
+          "CarDealer.Web.ViewModels": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/CarDealer.Services.dll": {}
         },

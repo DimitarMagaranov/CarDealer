@@ -1,6 +1,8 @@
 ﻿namespace CarDealer.Web.ViewModels.InputModels.Sales
 {
-    public class SearchFormInputModel
+    using CarDealer.Data.Models.CarModels;
+
+    public class SearchSaleFormInputModel
     {
         public string Category { get; set; }
 
@@ -8,25 +10,25 @@
 
         public string Model { get; set; }
 
-        public string State { get; set; }
+        public State? State { get; set; }
 
-        public string ManufactureYearFrom { get; set; }
+        public int? ManufactureYearFrom { get; set; }
 
-        public string ManufactureYearTo { get; set; }
+        public int? ManufactureYearTo { get; set; }
 
-        public string PriceFrom { get; set; }
+        public decimal? PriceFrom { get; set; }
 
-        public string PriceTo { get; set; }
+        public decimal? PriceTo { get; set; }
 
         public string FuelType { get; set; }
 
         public string Gearbox { get; set; }
 
-        public string EngineSizeFrom { get; set; }
+        public int? EngineSizeFrom { get; set; }
 
-        public string EngineSizeTo { get; set; }
+        public int? EngineSizeTo { get; set; }
 
-        public string MileageTo { get; set; }
+        public int? MileageTo { get; set; }
 
         public string Color { get; set; }
 
