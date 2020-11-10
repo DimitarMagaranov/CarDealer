@@ -8,6 +8,7 @@
     using CarDealer.Data.Models;
     using CarDealer.Data.Repositories;
     using CarDealer.Data.Seeding;
+    using CarDealer.Services;
     using CarDealer.Services.Data;
     using CarDealer.Services.Mapping;
     using CarDealer.Services.Messaging;
@@ -64,6 +65,9 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
+
+            //services.AddTransient<ICarsService, CarsService>();
+            //services.AddTransient<ISalesService, SalesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

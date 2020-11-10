@@ -38,3 +38,4 @@ C:\Users\Dimitar\Desktop\CarDealer\Data\CarDealer.Data\obj\Debug\netcoreapp3.1\C
 C:\Users\Dimitar\Desktop\CarDealer\Data\CarDealer.Data\obj\Debug\netcoreapp3.1\CarDealer.Data.dll
 C:\Users\Dimitar\Desktop\CarDealer\Data\CarDealer.Data\obj\Debug\netcoreapp3.1\CarDealer.Data.pdb
 C:\Users\Dimitar\Desktop\CarDealer\Data\CarDealer.Data\obj\Debug\netcoreapp3.1\CarDealer.Data.genruntimeconfig.cache
+C:\Users\Dimitar\Desktop\CarDealer\Data\CarDealer.Data\bin\Debug\netcoreapp3.1\Seeding\JsonFiles\CarMakesJsonImporterFile.json
