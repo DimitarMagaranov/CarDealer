@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CaQ4g565Oqp1Hm5wvc09sPiNDpVqBlz+9/5i4x98FHNfpwPAY4LYLsMJGxWIQx/pDZQEVmFS4LV/liUZQRo8/g==",
+  "dgSpecHash": "30PsQYVnUY2FCtXyHp7DqOqs69heMt3rDVKHpE/OBnoAgF54iG0ctrqP7Y+fGdqhaa32NGWyOV3RAlOwJt4+3Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj",
+  "projectFilePath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dimitar\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.9\\microsoft.aspnetcore.cryptography.internal.3.1.9.nupkg.sha512",
     "C:\\Users\\Dimitar\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.9\\microsoft.aspnetcore.cryptography.keyderivation.3.1.9.nupkg.sha512",

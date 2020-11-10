@@ -66,11 +66,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\CarDealer.Common\\CarDealer.Common.csproj",
+      "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\CarDealer.Common\\CarDealer.Common.csproj",
       "projectName": "CarDealer.Common",
-      "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\CarDealer.Common\\CarDealer.Common.csproj",
+      "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\CarDealer.Common\\CarDealer.Common.csproj",
       "packagesPath": "C:\\Users\\Dimitar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\CarDealer.Common\\obj\\",
+      "outputPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\CarDealer.Common\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"

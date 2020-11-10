@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2Bf/OpKfeyXyAKiPyx2p5SZn/wjWSo1WAwvaXvMtlp5VK3XSxiMb9Z57xY24QImmuUEIMho3/ZfjbWE/2kDvfw==",
+  "dgSpecHash": "ab94/neRMiKzmFwjq7K/GtB96C5i79mMzxpFOQwj2Gk/2SicHN+z/XHKtvajf770C14a5dd9iVnuNA532KKD/w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Tests\\CarDealer.Services.Data.Tests\\CarDealer.Services.Data.Tests.csproj",
+  "projectFilePath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Tests\\CarDealer.Services.Data.Tests\\CarDealer.Services.Data.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dimitar\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Dimitar\\.nuget\\packages\\castle.core\\4.4.0\\castle.core.4.4.0.nupkg.sha512",

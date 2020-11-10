@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8HoqWauITJYw3ADjK8rxmig5W0XhDy+rIBxc5lQdOWY/rE1a8iO7PNKTothk5j0GCBNwDachTZY37HwhzJTg4A==",
+  "dgSpecHash": "tK5LAPJHF/DwywCxZnlt+DcBqqXfHkLou+cSlr/yfiWBDI8yc1Ekn2kauNuX6YBNXOidAeaWV9P2uQRvAeIvvw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Web\\CarDealer.Web.ViewModels\\CarDealer.Web.ViewModels.csproj",
+  "projectFilePath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Web\\CarDealer.Web.ViewModels\\CarDealer.Web.ViewModels.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dimitar\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Dimitar\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.9\\microsoft.aspnetcore.cryptography.internal.3.1.9.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj": {}
+    "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj": {
+    "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj",
+        "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj",
         "projectName": "CarDealer.Data.Common",
-        "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj",
+        "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj",
         "packagesPath": "C:\\Users\\Dimitar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Common\\obj\\",
+        "outputPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"

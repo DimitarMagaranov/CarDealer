@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MRd6lHimagFksDrwPO2BTiBeL395pxnWziTbpLEUpelg0uaMZ8LvlyhOjVOJN/pjz8nghomtCsOoSIsoOLBFVg==",
+  "dgSpecHash": "PONbO0bWNciJjqJ3YfAuwRZTxKuW893R7P91uBirt69jwm3VP1ewDhz7VVH9Vfbm8bvCqIzaQX1ruyE8elPIcg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Web\\CarDealer.Web.Infrastructure\\CarDealer.Web.Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Web\\CarDealer.Web.Infrastructure\\CarDealer.Web.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dimitar\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.205\\stylecop.analyzers.1.2.0-beta.205.nupkg.sha512",
     "C:\\Users\\Dimitar\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.205\\stylecop.analyzers.unstable.1.2.0.205.nupkg.sha512"

@@ -9592,11 +9592,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Web\\CarDealer.Web\\CarDealer.Web.csproj",
+      "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Web\\CarDealer.Web\\CarDealer.Web.csproj",
       "projectName": "CarDealer.Web",
-      "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Web\\CarDealer.Web\\CarDealer.Web.csproj",
+      "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Web\\CarDealer.Web\\CarDealer.Web.csproj",
       "packagesPath": "C:\\Users\\Dimitar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Web\\CarDealer.Web\\obj\\",
+      "outputPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Web\\CarDealer.Web\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -9616,32 +9616,32 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\CarDealer.Common\\CarDealer.Common.csproj": {
-              "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\CarDealer.Common\\CarDealer.Common.csproj"
+            "C:\\Users\\Dimitar\\Desktop\\CarDealer\\CarDealer.Common\\CarDealer.Common.csproj": {
+              "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\CarDealer.Common\\CarDealer.Common.csproj"
             },
-            "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj": {
-              "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj"
+            "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj": {
+              "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj"
             },
-            "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data\\CarDealer.Data.csproj": {
-              "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data\\CarDealer.Data.csproj"
+            "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data\\CarDealer.Data.csproj": {
+              "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data\\CarDealer.Data.csproj"
             },
-            "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Data\\CarDealer.Services.Data.csproj": {
-              "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Data\\CarDealer.Services.Data.csproj"
+            "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Data\\CarDealer.Services.Data.csproj": {
+              "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Data\\CarDealer.Services.Data.csproj"
             },
-            "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Mapping\\CarDealer.Services.Mapping.csproj": {
-              "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Mapping\\CarDealer.Services.Mapping.csproj"
+            "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Mapping\\CarDealer.Services.Mapping.csproj": {
+              "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Mapping\\CarDealer.Services.Mapping.csproj"
             },
-            "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Messaging\\CarDealer.Services.Messaging.csproj": {
-              "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Messaging\\CarDealer.Services.Messaging.csproj"
+            "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Messaging\\CarDealer.Services.Messaging.csproj": {
+              "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Messaging\\CarDealer.Services.Messaging.csproj"
             },
-            "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services\\CarDealer.Services.csproj": {
-              "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services\\CarDealer.Services.csproj"
+            "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services\\CarDealer.Services.csproj": {
+              "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services\\CarDealer.Services.csproj"
             },
-            "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Web\\CarDealer.Web.Infrastructure\\CarDealer.Web.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Web\\CarDealer.Web.Infrastructure\\CarDealer.Web.Infrastructure.csproj"
+            "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Web\\CarDealer.Web.Infrastructure\\CarDealer.Web.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Web\\CarDealer.Web.Infrastructure\\CarDealer.Web.Infrastructure.csproj"
             },
-            "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Web\\CarDealer.Web.ViewModels\\CarDealer.Web.ViewModels.csproj": {
-              "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Web\\CarDealer.Web.ViewModels\\CarDealer.Web.ViewModels.csproj"
+            "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Web\\CarDealer.Web.ViewModels\\CarDealer.Web.ViewModels.csproj": {
+              "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Web\\CarDealer.Web.ViewModels\\CarDealer.Web.ViewModels.csproj"
             }
           }
         }

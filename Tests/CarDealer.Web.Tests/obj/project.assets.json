@@ -10875,11 +10875,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Tests\\CarDealer.Web.Tests\\CarDealer.Web.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Tests\\CarDealer.Web.Tests\\CarDealer.Web.Tests.csproj",
       "projectName": "CarDealer.Web.Tests",
-      "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Tests\\CarDealer.Web.Tests\\CarDealer.Web.Tests.csproj",
+      "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Tests\\CarDealer.Web.Tests\\CarDealer.Web.Tests.csproj",
       "packagesPath": "C:\\Users\\Dimitar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Tests\\CarDealer.Web.Tests\\obj\\",
+      "outputPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Tests\\CarDealer.Web.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -10899,8 +10899,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Web\\CarDealer.Web\\CarDealer.Web.csproj": {
-              "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Web\\CarDealer.Web\\CarDealer.Web.csproj"
+            "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Web\\CarDealer.Web\\CarDealer.Web.csproj": {
+              "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Web\\CarDealer.Web\\CarDealer.Web.csproj"
             }
           }
         }

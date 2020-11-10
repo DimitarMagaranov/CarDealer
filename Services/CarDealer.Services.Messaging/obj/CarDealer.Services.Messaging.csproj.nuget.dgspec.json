@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Messaging\\CarDealer.Services.Messaging.csproj": {}
+    "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Messaging\\CarDealer.Services.Messaging.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Messaging\\CarDealer.Services.Messaging.csproj": {
+    "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Messaging\\CarDealer.Services.Messaging.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Messaging\\CarDealer.Services.Messaging.csproj",
+        "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Messaging\\CarDealer.Services.Messaging.csproj",
         "projectName": "CarDealer.Services.Messaging",
-        "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Messaging\\CarDealer.Services.Messaging.csproj",
+        "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Messaging\\CarDealer.Services.Messaging.csproj",
         "packagesPath": "C:\\Users\\Dimitar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Messaging\\obj\\",
+        "outputPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Messaging\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"

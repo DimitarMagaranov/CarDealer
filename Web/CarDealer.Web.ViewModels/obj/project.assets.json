@@ -1324,11 +1324,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Web\\CarDealer.Web.ViewModels\\CarDealer.Web.ViewModels.csproj",
+      "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Web\\CarDealer.Web.ViewModels\\CarDealer.Web.ViewModels.csproj",
       "projectName": "CarDealer.Web.ViewModels",
-      "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Web\\CarDealer.Web.ViewModels\\CarDealer.Web.ViewModels.csproj",
+      "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Web\\CarDealer.Web.ViewModels\\CarDealer.Web.ViewModels.csproj",
       "packagesPath": "C:\\Users\\Dimitar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Web\\CarDealer.Web.ViewModels\\obj\\",
+      "outputPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Web\\CarDealer.Web.ViewModels\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -1348,11 +1348,11 @@
       "frameworks": {
         "netstandard2.1": {
           "projectReferences": {
-            "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj": {
-              "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj"
+            "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj": {
+              "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj"
             },
-            "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Mapping\\CarDealer.Services.Mapping.csproj": {
-              "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Mapping\\CarDealer.Services.Mapping.csproj"
+            "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Mapping\\CarDealer.Services.Mapping.csproj": {
+              "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Mapping\\CarDealer.Services.Mapping.csproj"
             }
           }
         }

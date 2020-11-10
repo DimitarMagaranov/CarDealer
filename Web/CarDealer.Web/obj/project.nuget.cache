@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "N0RbjZTGle3OLjb8PewwdGQg6R1hVOxeFLZCJYZ6OgKIVQ1eVwMrVTot9jvPHNMhsFiFyhMEmetI+Ne2s0lsZQ==",
+  "dgSpecHash": "FNU2Fej6sVmdXq/9v80WEyAmxEx4VGLRdqlqz3I5WOvwvYZ0oVI0ZvGY0cnm0ozhs4YyzXlDuHPeSFulSQLTzA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Web\\CarDealer.Web\\CarDealer.Web.csproj",
+  "projectFilePath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Web\\CarDealer.Web\\CarDealer.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dimitar\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Dimitar\\.nuget\\packages\\buildbundlerminifier\\3.2.449\\buildbundlerminifier.3.2.449.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Web\\CarDealer.Web.Infrastructure\\CarDealer.Web.Infrastructure.csproj": {}
+    "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Web\\CarDealer.Web.Infrastructure\\CarDealer.Web.Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Web\\CarDealer.Web.Infrastructure\\CarDealer.Web.Infrastructure.csproj": {
+    "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Web\\CarDealer.Web.Infrastructure\\CarDealer.Web.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Web\\CarDealer.Web.Infrastructure\\CarDealer.Web.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Web\\CarDealer.Web.Infrastructure\\CarDealer.Web.Infrastructure.csproj",
         "projectName": "CarDealer.Web.Infrastructure",
-        "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Web\\CarDealer.Web.Infrastructure\\CarDealer.Web.Infrastructure.csproj",
+        "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Web\\CarDealer.Web.Infrastructure\\CarDealer.Web.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\Dimitar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Web\\CarDealer.Web.Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Web\\CarDealer.Web.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"

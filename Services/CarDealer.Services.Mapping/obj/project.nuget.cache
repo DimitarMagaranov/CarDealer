@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "s2jcV0pw+rMwczu9Q/OKDP4KaWiB7EojLcUXCD7x/DsrJQ7vt3a8q2sBBYXrgcphd20Amb9QuEioNZCnGfS8kw==",
+  "dgSpecHash": "QOYL63C6YZptdW2quiXzPMSZyxq0YbuiwpzXJmxQPvUBzeDicysIqY7KYzGKHZavzgXN5kfKN7DoUHVybIFcLQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Mapping\\CarDealer.Services.Mapping.csproj",
+  "projectFilePath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Mapping\\CarDealer.Services.Mapping.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dimitar\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Dimitar\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

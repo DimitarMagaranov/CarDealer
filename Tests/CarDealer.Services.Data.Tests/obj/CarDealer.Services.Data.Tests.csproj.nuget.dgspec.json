@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Tests\\CarDealer.Services.Data.Tests\\CarDealer.Services.Data.Tests.csproj": {}
+    "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Tests\\CarDealer.Services.Data.Tests\\CarDealer.Services.Data.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\CarDealer.Common\\CarDealer.Common.csproj": {
+    "C:\\Users\\Dimitar\\Desktop\\CarDealer\\CarDealer.Common\\CarDealer.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\CarDealer.Common\\CarDealer.Common.csproj",
+        "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\CarDealer.Common\\CarDealer.Common.csproj",
         "projectName": "CarDealer.Common",
-        "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\CarDealer.Common\\CarDealer.Common.csproj",
+        "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\CarDealer.Common\\CarDealer.Common.csproj",
         "packagesPath": "C:\\Users\\Dimitar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\CarDealer.Common\\obj\\",
+        "outputPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\CarDealer.Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -68,14 +68,14 @@
         }
       }
     },
-    "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj": {
+    "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj",
+        "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj",
         "projectName": "CarDealer.Data.Common",
-        "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj",
+        "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj",
         "packagesPath": "C:\\Users\\Dimitar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Common\\obj\\",
+        "outputPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -136,14 +136,14 @@
         }
       }
     },
-    "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj": {
+    "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj",
+        "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj",
         "projectName": "CarDealer.Data.Models",
-        "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj",
+        "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj",
         "packagesPath": "C:\\Users\\Dimitar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Models\\obj\\",
+        "outputPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -163,8 +163,8 @@
         "frameworks": {
           "netstandard2.1": {
             "projectReferences": {
-              "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj": {
-                "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj"
+              "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj": {
+                "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj"
               }
             }
           }
@@ -208,14 +208,14 @@
         }
       }
     },
-    "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data\\CarDealer.Data.csproj": {
+    "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data\\CarDealer.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data\\CarDealer.Data.csproj",
+        "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data\\CarDealer.Data.csproj",
         "projectName": "CarDealer.Data",
-        "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data\\CarDealer.Data.csproj",
+        "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data\\CarDealer.Data.csproj",
         "packagesPath": "C:\\Users\\Dimitar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data\\obj\\",
+        "outputPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -235,14 +235,14 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\CarDealer.Common\\CarDealer.Common.csproj": {
-                "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\CarDealer.Common\\CarDealer.Common.csproj"
+              "C:\\Users\\Dimitar\\Desktop\\CarDealer\\CarDealer.Common\\CarDealer.Common.csproj": {
+                "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\CarDealer.Common\\CarDealer.Common.csproj"
               },
-              "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj": {
-                "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj"
+              "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj": {
+                "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj"
               },
-              "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj": {
-                "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj"
+              "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj": {
+                "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj"
               }
             }
           }
@@ -306,14 +306,14 @@
         }
       }
     },
-    "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Data\\CarDealer.Services.Data.csproj": {
+    "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Data\\CarDealer.Services.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Data\\CarDealer.Services.Data.csproj",
+        "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Data\\CarDealer.Services.Data.csproj",
         "projectName": "CarDealer.Services.Data",
-        "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Data\\CarDealer.Services.Data.csproj",
+        "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Data\\CarDealer.Services.Data.csproj",
         "packagesPath": "C:\\Users\\Dimitar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Data\\obj\\",
+        "outputPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -333,14 +333,14 @@
         "frameworks": {
           "netstandard2.1": {
             "projectReferences": {
-              "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj": {
-                "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj"
+              "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj": {
+                "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj"
               },
-              "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj": {
-                "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj"
+              "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj": {
+                "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj"
               },
-              "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Mapping\\CarDealer.Services.Mapping.csproj": {
-                "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Mapping\\CarDealer.Services.Mapping.csproj"
+              "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Mapping\\CarDealer.Services.Mapping.csproj": {
+                "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Mapping\\CarDealer.Services.Mapping.csproj"
               }
             }
           }
@@ -380,14 +380,14 @@
         }
       }
     },
-    "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Mapping\\CarDealer.Services.Mapping.csproj": {
+    "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Mapping\\CarDealer.Services.Mapping.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Mapping\\CarDealer.Services.Mapping.csproj",
+        "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Mapping\\CarDealer.Services.Mapping.csproj",
         "projectName": "CarDealer.Services.Mapping",
-        "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Mapping\\CarDealer.Services.Mapping.csproj",
+        "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Mapping\\CarDealer.Services.Mapping.csproj",
         "packagesPath": "C:\\Users\\Dimitar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Mapping\\obj\\",
+        "outputPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Mapping\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -448,14 +448,14 @@
         }
       }
     },
-    "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Tests\\CarDealer.Services.Data.Tests\\CarDealer.Services.Data.Tests.csproj": {
+    "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Tests\\CarDealer.Services.Data.Tests\\CarDealer.Services.Data.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Tests\\CarDealer.Services.Data.Tests\\CarDealer.Services.Data.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Tests\\CarDealer.Services.Data.Tests\\CarDealer.Services.Data.Tests.csproj",
         "projectName": "CarDealer.Services.Data.Tests",
-        "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Tests\\CarDealer.Services.Data.Tests\\CarDealer.Services.Data.Tests.csproj",
+        "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Tests\\CarDealer.Services.Data.Tests\\CarDealer.Services.Data.Tests.csproj",
         "packagesPath": "C:\\Users\\Dimitar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Tests\\CarDealer.Services.Data.Tests\\obj\\",
+        "outputPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Tests\\CarDealer.Services.Data.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -475,11 +475,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data\\CarDealer.Data.csproj": {
-                "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data\\CarDealer.Data.csproj"
+              "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data\\CarDealer.Data.csproj": {
+                "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data\\CarDealer.Data.csproj"
               },
-              "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Data\\CarDealer.Services.Data.csproj": {
-                "projectPath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Data\\CarDealer.Services.Data.csproj"
+              "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Data\\CarDealer.Services.Data.csproj": {
+                "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Data\\CarDealer.Services.Data.csproj"
               }
             }
           }

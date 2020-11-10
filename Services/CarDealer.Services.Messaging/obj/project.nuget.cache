@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "e7+yrqTJbtiM5WeORaLVzfig82HugXlHurZzESQF/tRPBf9yU7jHSkirRbNuqrneT2L6FN2xybO/+aROlMr49Q==",
+  "dgSpecHash": "ND+xbSMGwWbJ8g5DwAybXgiH6QjrC0c5iGtntrt2gi3/K2hu0OogPzHAuZ80CnIdouX1eA/UuiQbNt4x4ZgyqA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services.Messaging\\CarDealer.Services.Messaging.csproj",
+  "projectFilePath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Messaging\\CarDealer.Services.Messaging.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dimitar\\.nuget\\packages\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",
     "C:\\Users\\Dimitar\\.nuget\\packages\\microsoft.netcore.platforms\\1.0.1\\microsoft.netcore.platforms.1.0.1.nupkg.sha512",

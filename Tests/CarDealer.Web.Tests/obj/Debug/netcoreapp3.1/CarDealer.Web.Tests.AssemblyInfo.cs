@@ -12,8 +12,8 @@ using System;
 using System.Reflection;
 
 [assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap4")]
-[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("CarDealer.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Data\\CarDealer.Data", "CarDealer.Data.csproj", "0")]
-[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("CarDealer.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Web\\CarDealer.Web", "CarDealer.Web.csproj", "0")]
+[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("CarDealer.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data", "CarDealer.Data.csproj", "0")]
+[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("CarDealer.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Web\\CarDealer.Web", "CarDealer.Web.csproj", "0")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("CarDealer.Web.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
