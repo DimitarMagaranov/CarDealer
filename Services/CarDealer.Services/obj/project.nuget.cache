@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "mI0z9nAkw5SY8u6nl2Dugu9jvjPekZOHhkBmYT2or0kQS8M8aTAD1/7yTggD5Qv7wcxe98U5AdEtm52X3GFENQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Dimitar\\Desktop\\Projects\\CarDealerNikiTemplate\\Services\\CarDealer.Services\\CarDealer.Services.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Dimitar\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.205\\stylecop.analyzers.1.2.0-beta.205.nupkg.sha512",
+    "C:\\Users\\Dimitar\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.205\\stylecop.analyzers.unstable.1.2.0.205.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,16 @@
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Web\CarDealer.Web.ViewModels\bin\Debug\netstandard2.1\CarDealer.Web.ViewModels.deps.json
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Web\CarDealer.Web.ViewModels\bin\Debug\netstandard2.1\CarDealer.Web.ViewModels.dll
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Web\CarDealer.Web.ViewModels\bin\Debug\netstandard2.1\CarDealer.Web.ViewModels.pdb
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Web\CarDealer.Web.ViewModels\bin\Debug\netstandard2.1\CarDealer.Data.Common.dll
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Web\CarDealer.Web.ViewModels\bin\Debug\netstandard2.1\CarDealer.Data.Models.dll
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Web\CarDealer.Web.ViewModels\bin\Debug\netstandard2.1\CarDealer.Services.Mapping.dll
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Web\CarDealer.Web.ViewModels\bin\Debug\netstandard2.1\CarDealer.Data.Models.pdb
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Web\CarDealer.Web.ViewModels\bin\Debug\netstandard2.1\CarDealer.Services.Mapping.pdb
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Web\CarDealer.Web.ViewModels\bin\Debug\netstandard2.1\CarDealer.Data.Common.pdb
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Web\CarDealer.Web.ViewModels\obj\Debug\netstandard2.1\CarDealer.Web.ViewModels.csprojAssemblyReference.cache
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Web\CarDealer.Web.ViewModels\obj\Debug\netstandard2.1\CarDealer.Web.ViewModels.AssemblyInfoInputs.cache
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Web\CarDealer.Web.ViewModels\obj\Debug\netstandard2.1\CarDealer.Web.ViewModels.AssemblyInfo.cs
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Web\CarDealer.Web.ViewModels\obj\Debug\netstandard2.1\CarDealer.Web.ViewModels.csproj.CoreCompileInputs.cache
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Web\CarDealer.Web.ViewModels\obj\Debug\netstandard2.1\CarDealer.Web.ViewModels.csproj.CopyComplete
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Web\CarDealer.Web.ViewModels\obj\Debug\netstandard2.1\CarDealer.Web.ViewModels.dll
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Web\CarDealer.Web.ViewModels\obj\Debug\netstandard2.1\CarDealer.Web.ViewModels.pdb

@@ -1,0 +1,8 @@
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Web\CarDealer.Web.Infrastructure\bin\Debug\netstandard2.1\CarDealer.Web.Infrastructure.deps.json
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Web\CarDealer.Web.Infrastructure\bin\Debug\netstandard2.1\CarDealer.Web.Infrastructure.dll
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Web\CarDealer.Web.Infrastructure\bin\Debug\netstandard2.1\CarDealer.Web.Infrastructure.pdb
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Web\CarDealer.Web.Infrastructure\obj\Debug\netstandard2.1\CarDealer.Web.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Web\CarDealer.Web.Infrastructure\obj\Debug\netstandard2.1\CarDealer.Web.Infrastructure.AssemblyInfo.cs
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Web\CarDealer.Web.Infrastructure\obj\Debug\netstandard2.1\CarDealer.Web.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Web\CarDealer.Web.Infrastructure\obj\Debug\netstandard2.1\CarDealer.Web.Infrastructure.dll
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Web\CarDealer.Web.Infrastructure\obj\Debug\netstandard2.1\CarDealer.Web.Infrastructure.pdb

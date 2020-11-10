@@ -1,0 +1,9 @@
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Services\CarDealer.Services\bin\Debug\netstandard2.1\CarDealer.Services.deps.json
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Services\CarDealer.Services\bin\Debug\netstandard2.1\CarDealer.Services.dll
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Services\CarDealer.Services\bin\Debug\netstandard2.1\CarDealer.Services.pdb
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Services\CarDealer.Services\obj\Debug\netstandard2.1\CarDealer.Services.csprojAssemblyReference.cache
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Services\CarDealer.Services\obj\Debug\netstandard2.1\CarDealer.Services.AssemblyInfoInputs.cache
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Services\CarDealer.Services\obj\Debug\netstandard2.1\CarDealer.Services.AssemblyInfo.cs
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Services\CarDealer.Services\obj\Debug\netstandard2.1\CarDealer.Services.csproj.CoreCompileInputs.cache
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Services\CarDealer.Services\obj\Debug\netstandard2.1\CarDealer.Services.dll
+C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Services\CarDealer.Services\obj\Debug\netstandard2.1\CarDealer.Services.pdb
