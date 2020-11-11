@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace CarDealer.Data.Migrations
+﻿namespace CarDealer.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class CreateTableImages : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,7 +18,7 @@ namespace CarDealer.Data.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     SaleId = table.Column<int>(nullable: false),
-                    Extension = table.Column<string>(nullable: true)
+                    Extension = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {

@@ -40,4 +40,8 @@
     <ProjectReference Include="..\CarDealer.Web.Infrastructure\CarDealer.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\CarDealer.Web.ViewModels\CarDealer.Web.ViewModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Administration\Views\Dashboard\" />
+  </ItemGroup>
 </Project>

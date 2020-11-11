@@ -894,13 +894,11 @@ C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\Car
 C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\CarDealer.Web.TagHelpers.input.cache
 C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\CarDealer.Web.TagHelpers.output.cache
 C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\CarDealer.Web.RazorCoreGenerate.cache
-C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Administration\Views\Dashboard\Index.cshtml.g.cs
 C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Administration\Views\_ViewImports.cshtml.g.cs
 C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Administration\Views\_ViewStart.cshtml.g.cs
 C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
 C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
-C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\Razor\Views\Settings\Index.cshtml.g.cs
 C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CookieConsentPartial.cshtml.g.cs
 C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
