@@ -4,14 +4,16 @@ using CarDealer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CarDealer.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201111074656_CarAndSaleHaveInheritedBaseDeletableModel")]
+    partial class CarAndSaleHaveInheritedBaseDeletableModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -370,38 +372,6 @@ namespace CarDealer.Data.Migrations
                     b.ToTable("Sales");
                 });
 
-            modelBuilder.Entity("CarDealer.Data.Models.SaleModels.Image", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Extension")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("SaleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.HasIndex("SaleId");
-
-                    b.ToTable("Images");
-                });
-
             modelBuilder.Entity("CarDealer.Data.Models.SaleModels.Region", b =>
                 {
                     b.Property<int>("Id")
@@ -618,15 +588,6 @@ namespace CarDealer.Data.Migrations
                     b.HasOne("CarDealer.Data.Models.ApplicationUser", "User")
                         .WithMany("Sales")
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("CarDealer.Data.Models.SaleModels.Image", b =>
-                {
-                    b.HasOne("CarDealer.Data.Models.Sale", "Sale")
-                        .WithMany("Images")
-                        .HasForeignKey("SaleId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
