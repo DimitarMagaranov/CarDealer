@@ -4,13 +4,11 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using CarDealer.Data;
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models;
     using CarDealer.Data.Models.SaleModels;
     using CarDealer.Services.Data.Models;
     using CarDealer.Web.ViewModels.InputModels.Sales;
-    using CarDealer.Web.ViewModels.Sales;
 
     public class SalesService : ISalesService
     {
@@ -27,7 +25,6 @@
         {
             var saleToAdd = new Sale
             {
-                CreatedOn = input.CreatedOn,
                 DaysValid = (DaysValid)Enum.Parse(typeof(DaysValid), input.DaysValid),
                 Price = input.Price,
                 RegionId = input.RegionId,

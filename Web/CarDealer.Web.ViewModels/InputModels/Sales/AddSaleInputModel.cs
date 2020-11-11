@@ -1,13 +1,11 @@
 ﻿namespace CarDealer.Web.ViewModels.InputModels.Sales
 {
-    using System;
+    using System.Collections.Generic;
 
     using CarDealer.Web.ViewModels.InputModels.Cars;
 
     public class AddSaleInputModel
     {
-        public DateTime CreatedOn => DateTime.UtcNow;
-
         public string DaysValid { get; set; }
 
         public AddCarInputModel Car { get; set; }
@@ -19,5 +17,7 @@
         public string UserId { get; set; }
 
         public string Description { get; set; }
+
+        public IEnumerable<KeyValuePair<string, string>> RegionsItems { get; set; }
     }
 }

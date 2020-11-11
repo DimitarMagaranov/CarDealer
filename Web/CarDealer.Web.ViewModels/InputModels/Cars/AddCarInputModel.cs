@@ -1,6 +1,7 @@
 ﻿namespace CarDealer.Web.ViewModels.InputModels.Cars
 {
     using System;
+    using System.Collections.Generic;
 
     public class AddCarInputModel
     {
@@ -25,5 +26,17 @@
         public int Mileage { get; set; }
 
         public DateTime ManufactureDate { get; set; }
+
+        public IEnumerable<KeyValuePair<string, string>> CategoriesItems { get; set; }
+
+        public IEnumerable<KeyValuePair<string, string>> MakesItems { get; set; }
+
+        public IEnumerable<KeyValuePair<string, string>> FuelTypeItems { get; set; }
+
+        public IEnumerable<KeyValuePair<string, string>> EuroStandartItems { get; set; }
+
+        public IEnumerable<KeyValuePair<string, string>> GearboxesItems { get; set; }
+
+        public IEnumerable<KeyValuePair<string, string>> ColorstItems { get; set; }
     }
 }

@@ -67,6 +67,13 @@
             services.AddTransient<IGetCountsService, GetCountsService>();
             services.AddTransient<ICarsService, CarsService>();
             services.AddTransient<ISalesService, SalesService>();
+            services.AddTransient<ICategoriesService, CategoriesService>();
+            services.AddTransient<IMakesService, MakesService>();
+            services.AddTransient<IFuelTypesService, FuelTypesService>();
+            services.AddTransient<IEuroStandartsService, EuroStandartsService>();
+            services.AddTransient<IGearboxesService, GearboxesService>();
+            services.AddTransient<IColorsService, ColorsService>();
+            services.AddTransient<IRegionsService, RegionsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
