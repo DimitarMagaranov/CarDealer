@@ -1,4 +1,4 @@
-﻿namespace CarDealer.Services
+﻿namespace CarDealer.Services.Data
 {
     using System;
     using System.Collections.Generic;

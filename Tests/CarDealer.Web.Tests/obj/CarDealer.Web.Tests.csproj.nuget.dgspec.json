@@ -324,14 +324,14 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netstandard2.1"
+          "netcoreapp3.1"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netstandard2.1": {
+          "netcoreapp3.1": {
             "projectReferences": {
               "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj": {
                 "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj"
@@ -339,8 +339,14 @@
               "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj": {
                 "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data.Models\\CarDealer.Data.Models.csproj"
               },
+              "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data\\CarDealer.Data.csproj": {
+                "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Data\\CarDealer.Data\\CarDealer.Data.csproj"
+              },
               "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Mapping\\CarDealer.Services.Mapping.csproj": {
                 "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Mapping\\CarDealer.Services.Mapping.csproj"
+              },
+              "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Web\\CarDealer.Web.ViewModels\\CarDealer.Web.ViewModels.csproj": {
+                "projectPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Web\\CarDealer.Web.ViewModels\\CarDealer.Web.ViewModels.csproj"
               }
             }
           }
@@ -352,7 +358,7 @@
         }
       },
       "frameworks": {
-        "netstandard2.1": {
+        "netcoreapp3.1": {
           "dependencies": {
             "StyleCop.Analyzers": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers",
@@ -372,7 +378,7 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "NETStandard.Library": {
+            "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
