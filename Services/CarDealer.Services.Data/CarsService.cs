@@ -5,18 +5,19 @@
     using System.Linq;
 
     using CarDealer.Data;
+    using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models;
     using CarDealer.Data.Models.CarModels;
-    using CarDealer.Web.ViewModels.Cars;
+    using CarDealer.Services.Data.Models;
     using CarDealer.Web.ViewModels.InputModels.Cars;
 
     public class CarsService : ICarsService
     {
-        private readonly ApplicationDbContext db;
+        private readonly IDeletableEntityRepository<Car> carsRepository;
 
-        public CarsService(ApplicationDbContext db)
+        public CarsService(IDeletableEntityRepository<Car> carsRepository)
         {
-            this.db = db;
+            this.carsRepository = carsRepository;
         }
 
         public Car CreateCar(AddCarInputModel input)
@@ -36,27 +37,27 @@
                 ManufactureDate = input.ManufactureDate,
             };
 
-            this.db.Cars.Add(carToAdd);
+            this.carsRepository.AddAsync(carToAdd);
 
-            this.db.SaveChanges();
+            this.carsRepository.SaveChangesAsync();
 
             return carToAdd;
         }
 
         public void RemoveCarById(int carId)
         {
-            var carToDelete = this.db.Cars.FirstOrDefault(x => x.Id == carId);
+            var carToDelete = this.carsRepository.All().FirstOrDefault(x => x.Id == carId);
 
-            this.db.Cars.Remove(carToDelete);
+            this.carsRepository.Delete(carToDelete);
 
-            this.db.SaveChanges();
+            this.carsRepository.SaveChangesAsync();
         }
 
-        public CarViewModel GetCarById(int id)
+        public CarDto GetCarById(int id)
         {
-            var car = this.db.Cars.FirstOrDefault(x => x.Id == id);
+            var car = this.carsRepository.All().FirstOrDefault(x => x.Id == id);
 
-            var carViewModel = new CarViewModel
+            var data = new CarDto
             {
                 Id = car.Id,
                 Make = car.Make.Name,
@@ -72,75 +73,75 @@
                 Mileage = car.Mileage,
             };
 
-            return carViewModel;
+            return data;
         }
 
-        public IEnumerable<CarViewModel> GetAllCarsWithoutSorting()
+        public IEnumerable<CarDto> GetAllCarsWithoutSorting()
         {
-            var cars = new List<CarViewModel>();
+            var carDtos = new List<CarDto>();
 
-            foreach (var car in this.db.Cars)
+            foreach (var car in this.carsRepository.All())
             {
-                var carViewModel = this.GetCarById(car.Id);
+                var carDto = this.GetCarById(car.Id);
 
-                cars.Add(carViewModel);
+                carDtos.Add(carDto);
             }
 
-            return cars;
+            return carDtos;
         }
 
-        public void AddCategory(string name)
-        {
-            var categoryEntity = new Category { Name = name };
+        //public void AddCategory(string name)
+        //{
+        //    var categoryEntity = new Category { Name = name };
 
-            this.db.Categories.Add(categoryEntity);
+        //    this.db.Categories.Add(categoryEntity);
 
-            this.db.SaveChanges();
-        }
+        //    this.db.SaveChanges();
+        //}
 
-        public void AddColor(string name)
-        {
-            var colorEntity = new Color { Name = name };
+        //public void AddColor(string name)
+        //{
+        //    var colorEntity = new Color { Name = name };
 
-            this.db.Colors.Add(colorEntity);
+        //    this.db.Colors.Add(colorEntity);
 
-            this.db.SaveChanges();
-        }
+        //    this.db.SaveChanges();
+        //}
 
-        public void AddEuroStandart(string name)
-        {
-            var euroStandart = new EuroStandart { Name = name };
+        //public void AddEuroStandart(string name)
+        //{
+        //    var euroStandart = new EuroStandart { Name = name };
 
-            this.db.EuroStandarts.Add(euroStandart);
+        //    this.db.EuroStandarts.Add(euroStandart);
 
-            this.db.SaveChanges();
-        }
+        //    this.db.SaveChanges();
+        //}
 
-        public void AddFuelType(string name)
-        {
-            var fuelType = new FuelType { Name = name };
+        //public void AddFuelType(string name)
+        //{
+        //    var fuelType = new FuelType { Name = name };
 
-            this.db.FuelTypes.Add(fuelType);
+        //    this.db.FuelTypes.Add(fuelType);
 
-            this.db.SaveChanges();
-        }
+        //    this.db.SaveChanges();
+        //}
 
-        public void AddGearbox(string name)
-        {
-            var gearbox = new Gearbox { Name = name };
+        //public void AddGearbox(string name)
+        //{
+        //    var gearbox = new Gearbox { Name = name };
 
-            this.db.Gearboxes.Add(gearbox);
+        //    this.db.Gearboxes.Add(gearbox);
 
-            this.db.SaveChanges();
-        }
+        //    this.db.SaveChanges();
+        //}
 
-        public void AddMake(string name)
-        {
-            var makeEntity = new Make { Name = name };
+        //public void AddMake(string name)
+        //{
+        //    var makeEntity = new Make { Name = name };
 
-            this.db.Makes.Add(makeEntity);
+        //    this.db.Makes.Add(makeEntity);
 
-            this.db.SaveChanges();
-        }
+        //    this.db.SaveChanges();
+        //}
     }
 }

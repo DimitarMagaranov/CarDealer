@@ -2,15 +2,33 @@
 {
     using System.Diagnostics;
 
+    using CarDealer.Services.Data;
     using CarDealer.Web.ViewModels;
-
+    using CarDealer.Web.ViewModels.Home;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : BaseController
     {
+        private readonly IGetCountsService getCountsService;
+
+        public HomeController(IGetCountsService getCountsService)
+        {
+            this.getCountsService = getCountsService;
+        }
+
         public IActionResult Index()
         {
-            return this.View();
+            var counts = this.getCountsService.GetCounts();
+
+            var viewModel = new IndexViewModel
+            {
+                SalesCount = counts.SalesCount,
+                CarsCount = counts.CarsCount,
+                MakesCount = counts.MakesCount,
+                CategoriesCount = counts.CategoriesCount,
+            };
+
+            return this.View(viewModel);
         }
 
         public IActionResult Privacy()

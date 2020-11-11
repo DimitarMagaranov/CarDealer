@@ -5,19 +5,21 @@
     using System.Linq;
 
     using CarDealer.Data;
+    using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models;
     using CarDealer.Data.Models.SaleModels;
+    using CarDealer.Services.Data.Models;
     using CarDealer.Web.ViewModels.InputModels.Sales;
     using CarDealer.Web.ViewModels.Sales;
 
     public class SalesService : ISalesService
     {
-        private readonly ApplicationDbContext db;
+        private readonly IDeletableEntityRepository<Sale> salesRepository;
         private readonly ICarsService carsService;
 
-        public SalesService(ApplicationDbContext db, CarsService carsService)
+        public SalesService(IDeletableEntityRepository<Sale> salesRepository, ICarsService carsService)
         {
-            this.db = db;
+            this.salesRepository = salesRepository;
             this.carsService = carsService;
         }
 
@@ -33,24 +35,24 @@
                 Car = this.carsService.CreateCar(input.Car),
             };
 
-            this.db.Sales.Add(saleToAdd);
+            this.salesRepository.AddAsync(saleToAdd);
 
-            this.db.SaveChanges();
+            this.salesRepository.SaveChangesAsync();
         }
 
         public void RemoveSale(int saleId)
         {
-            var saleToRemove = this.db.Sales.FirstOrDefault(x => x.Id == saleId);
+            var saleToRemove = this.salesRepository.All().FirstOrDefault(x => x.Id == saleId);
 
-            this.db.Sales.Remove(saleToRemove);
+            this.salesRepository.Delete(saleToRemove);
 
-            this.db.SaveChanges();
+            this.salesRepository.SaveChangesAsync();
         }
 
-        public SaleViewModel GetSaleById(int id)
+        public SaleDto GetSaleById(int id)
         {
-            var sale = this.db.Sales.Where(x => x.Id == id)
-                .Select(x => new SaleViewModel
+            var sale = this.salesRepository.All().Where(x => x.Id == id)
+                .Select(x => new SaleDto
                 {
                     Id = x.Id,
                     CreatedOn = x.CreatedOn,
@@ -63,14 +65,14 @@
                     Car = this.carsService.GetCarById(x.Car.Id),
                 });
 
-            return (SaleViewModel)sale;
+            return (SaleDto)sale;
         }
 
-        public IEnumerable<SaleViewModel> GetAll()
+        public IEnumerable<SaleDto> GetAll()
         {
-            var sales = new List<SaleViewModel>();
+            var sales = new List<SaleDto>();
 
-            foreach (var sale in this.db.Sales)
+            foreach (var sale in this.salesRepository.All())
             {
                 sales.Add(this.GetSaleById(sale.Id));
             }
@@ -78,11 +80,11 @@
             return sales;
         }
 
-        public IEnumerable<SaleViewModel> GetAllByCategory(string categoryName)
+        public IEnumerable<SaleDto> GetAllByCategory(string categoryName)
         {
-            var sales = new List<SaleViewModel>();
+            var sales = new List<SaleDto>();
 
-            foreach (var sale in this.db.Sales.Where(x => x.Car.Category.Name == categoryName))
+            foreach (var sale in this.salesRepository.All().Where(x => x.Car.Category.Name == categoryName))
             {
                 sales.Add(this.GetSaleById(sale.Id));
             }
@@ -90,9 +92,9 @@
             return sales;
         }
 
-        public IEnumerable<SaleViewModel> GetAllBySearchForm(SearchSaleFormInputModel input)
+        public IEnumerable<SaleDto> GetAllBySearchForm(SearchSaleFormInputModel input)
         {
-            var sales = this.db.Sales.Where(x => x.Car.Category.Name == input.Category);
+            var sales = this.salesRepository.All().Where(x => x.Car.Category.Name == input.Category);
 
             if (input.Make != null)
             {
@@ -190,7 +192,7 @@
                 }
             }
 
-            var salesToShow = new List<SaleViewModel>();
+            var salesToShow = new List<SaleDto>();
 
             foreach (var sale in sales)
             {

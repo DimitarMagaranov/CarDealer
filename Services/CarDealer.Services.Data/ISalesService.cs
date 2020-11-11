@@ -1,7 +1,7 @@
 ﻿namespace CarDealer.Services.Data
 {
     using System.Collections.Generic;
-
+    using CarDealer.Services.Data.Models;
     using CarDealer.Web.ViewModels.InputModels.Sales;
     using CarDealer.Web.ViewModels.Sales;
 
@@ -11,12 +11,12 @@
 
         void RemoveSale(int saleId);
 
-        SaleViewModel GetSaleById(int id);
+        SaleDto GetSaleById(int id);
 
-        IEnumerable<SaleViewModel> GetAll();
+        IEnumerable<SaleDto> GetAll();
 
-        IEnumerable<SaleViewModel> GetAllByCategory(string category);
+        IEnumerable<SaleDto> GetAllByCategory(string category);
 
-        IEnumerable<SaleViewModel> GetAllBySearchForm(SearchSaleFormInputModel input);
+        IEnumerable<SaleDto> GetAllBySearchForm(SearchSaleFormInputModel input);
     }
 }

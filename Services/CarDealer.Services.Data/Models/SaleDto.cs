@@ -1,0 +1,28 @@
+﻿namespace CarDealer.Services.Data.Models
+{
+    using System;
+    using System.Globalization;
+
+    public class SaleDto
+    {
+        public int Id { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+
+        public string CreatedOnAsString => this.CreatedOn.ToString(CultureInfo.GetCultureInfo("bg-BG"));
+
+        public int CarId { get; set; }
+
+        public decimal Price { get; set; }
+
+        public string Region { get; set; }
+
+        public string UserName { get; set; }
+
+        public string UserPhoneNumber { get; set; }
+
+        public string Description { get; set; }
+
+        public CarDto Car { get; set; }
+    }
+}
