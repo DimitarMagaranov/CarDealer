@@ -1,14 +1,11 @@
 ﻿namespace CarDealer.Data.Models
 {
     using System;
-
+    using CarDealer.Data.Common.Models;
     using CarDealer.Data.Models.SaleModels;
 
-    public class Sale
+    public class Sale : BaseDeletableModel<int>
     {
-        public int Id { get; set; }
-
-        public DateTime CreatedOn { get; set; }
 
         public DaysValid DaysValid { get; set; }
 

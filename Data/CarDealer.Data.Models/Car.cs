@@ -2,17 +2,15 @@
 {
     using System;
     using System.Collections.Generic;
-
+    using CarDealer.Data.Common.Models;
     using CarDealer.Data.Models.CarModels;
 
-    public class Car
+    public class Car : BaseDeletableModel<int>
     {
         public Car()
         {
             this.Sales = new HashSet<Sale>();
         }
-
-        public int Id { get; set; }
 
         public int MakeId { get; set; }
 

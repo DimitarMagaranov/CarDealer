@@ -152,6 +152,12 @@ namespace CarDealer.Data.Migrations
                     b.Property<int>("ColorId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("Doors")
                         .HasColumnType("int");
 
@@ -167,6 +173,9 @@ namespace CarDealer.Data.Migrations
                     b.Property<int>("GearboxId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int>("MakeId")
                         .HasColumnType("int");
 
@@ -175,6 +184,9 @@ namespace CarDealer.Data.Migrations
 
                     b.Property<int>("Mileage")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("State")
                         .HasColumnType("int");
@@ -190,6 +202,8 @@ namespace CarDealer.Data.Migrations
                     b.HasIndex("FuelTypeId");
 
                     b.HasIndex("GearboxId");
+
+                    b.HasIndex("IsDeleted");
 
                     b.HasIndex("MakeId");
 
@@ -322,8 +336,17 @@ namespace CarDealer.Data.Migrations
                     b.Property<int>("DaysValid")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -337,6 +360,8 @@ namespace CarDealer.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CarId");
+
+                    b.HasIndex("IsDeleted");
 
                     b.HasIndex("RegionId");
 

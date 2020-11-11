@@ -1217,15 +1217,22 @@
         }
       },
       "CarDealer.Services/1.0.0": {
+        "dependencies": {
+          "CarDealer.Data": "1.0.0",
+          "CarDealer.Data.Models": "1.0.0",
+          "CarDealer.Web.ViewModels": "1.0.0"
+        },
         "runtime": {
           "CarDealer.Services.dll": {}
         }
       },
       "CarDealer.Services.Data/1.0.0": {
         "dependencies": {
+          "CarDealer.Data": "1.0.0",
           "CarDealer.Data.Common": "1.0.0",
           "CarDealer.Data.Models": "1.0.0",
-          "CarDealer.Services.Mapping": "1.0.0"
+          "CarDealer.Services.Mapping": "1.0.0",
+          "CarDealer.Web.ViewModels": "1.0.0"
         },
         "runtime": {
           "CarDealer.Services.Data.dll": {}
@@ -1245,6 +1252,15 @@
         },
         "runtime": {
           "CarDealer.Services.Messaging.dll": {}
+        }
+      },
+      "CarDealer.Web.ViewModels/1.0.0": {
+        "dependencies": {
+          "CarDealer.Data.Models": "1.0.0",
+          "CarDealer.Services.Mapping": "1.0.0"
+        },
+        "runtime": {
+          "CarDealer.Web.ViewModels.dll": {}
         }
       }
     }
@@ -2110,6 +2126,11 @@
       "sha512": ""
     },
     "CarDealer.Services.Messaging/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CarDealer.Web.ViewModels/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

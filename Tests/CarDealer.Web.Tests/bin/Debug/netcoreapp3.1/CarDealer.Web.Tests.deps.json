@@ -3104,6 +3104,11 @@
         }
       },
       "CarDealer.Services/1.0.0": {
+        "dependencies": {
+          "CarDealer.Data": "1.0.0",
+          "CarDealer.Data.Models": "1.0.0",
+          "CarDealer.Web.ViewModels": "1.0.0"
+        },
         "runtime": {
           "CarDealer.Services.dll": {}
         },
@@ -3113,9 +3118,11 @@
       },
       "CarDealer.Services.Data/1.0.0": {
         "dependencies": {
+          "CarDealer.Data": "1.0.0",
           "CarDealer.Data.Common": "1.0.0",
           "CarDealer.Data.Models": "1.0.0",
-          "CarDealer.Services.Mapping": "1.0.0"
+          "CarDealer.Services.Mapping": "1.0.0",
+          "CarDealer.Web.ViewModels": "1.0.0"
         },
         "runtime": {
           "CarDealer.Services.Data.dll": {}
