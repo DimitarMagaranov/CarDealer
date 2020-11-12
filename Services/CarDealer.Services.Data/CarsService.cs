@@ -31,15 +31,11 @@
                 EuroStandartId = input.EuroStandartId,
                 GearboxId = input.GearboxId,
                 ColorId = input.ColorId,
-                Doors = (Doors)Enum.Parse(typeof(Doors), input.Doors),
-                State = (State)Enum.Parse(typeof(State), input.State),
+                Doors = input.Doors,
+                State = input.State,
                 Mileage = input.Mileage,
                 ManufactureDate = input.ManufactureDate,
             };
-
-            this.carsRepository.AddAsync(carToAdd);
-
-            this.carsRepository.SaveChangesAsync();
 
             return carToAdd;
         }

@@ -4,9 +4,11 @@
     using CarDealer.Web.ViewModels.InputModels.Cars;
     using CarDealer.Web.ViewModels.InputModels.Sales;
     using Microsoft.AspNetCore.Mvc;
+    using System.Threading.Tasks;
 
     public class SalesController : BaseController
     {
+        private readonly ISalesService salesService;
         private readonly ICategoriesService categoriesService;
         private readonly IMakesService makesService;
         private readonly IFuelTypesService fuelTypesService;
@@ -15,7 +17,9 @@
         private readonly IColorsService colorsService;
         private readonly IRegionsService regionsService;
 
-        public SalesController(ICategoriesService categoriesService,
+        public SalesController(
+            ISalesService salesService,
+            ICategoriesService categoriesService,
             IMakesService makesService,
             IFuelTypesService fuelTypesService,
             IEuroStandartsService euroStandartsService,
@@ -23,6 +27,7 @@
             IColorsService colorsService,
             IRegionsService regionsService)
         {
+            this.salesService = salesService;
             this.categoriesService = categoriesService;
             this.makesService = makesService;
             this.fuelTypesService = fuelTypesService;
@@ -53,13 +58,27 @@
         }
 
         [HttpPost]
-        public IActionResult Create(AddSaleInputModel input)
+        public async Task<IActionResult> Create(AddSaleInputModel input)
         {
             if (!this.ModelState.IsValid)
             {
-                input.Car.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
+                input.RegionsItems = this.regionsService.GetAllAsKeyValuePairs();
+
+                var carViewModel = new AddCarInputModel();
+
+                carViewModel.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
+                carViewModel.MakesItems = this.makesService.GetAllAsKeyValuePairs();
+                carViewModel.FuelTypeItems = this.fuelTypesService.GetAllAsKeyValuePairs();
+                carViewModel.EuroStandartItems = this.euroStandartsService.GetAllAsKeyValuePairs();
+                carViewModel.GearboxesItems = this.gearboxesService.GetAllAsKeyValuePairs();
+                carViewModel.ColorstItems = this.colorsService.GetAllAsKeyValuePairs();
+
+                input.Car = carViewModel;
+
                 return this.View(input);
             }
+
+            await this.salesService.CreateSaleAsync(input);
 
             // TODO: Redirect to car info page
 

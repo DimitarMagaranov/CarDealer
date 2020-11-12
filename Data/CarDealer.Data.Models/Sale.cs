@@ -25,6 +25,7 @@
 
         public virtual Region Region { get; set; }
 
+        // TODO: must make userid required
         public string UserId { get; set; }
 
         public virtual ApplicationUser User { get; set; }

@@ -17,12 +17,16 @@
 
         public IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs()
         {
-            return this.euroStandartsRepository.AllAsNoTracking()
+            var data = this.euroStandartsRepository.AllAsNoTracking()
                 .Select(x => new
                 {
                     x.Id,
                     x.Name,
-                }).ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
+                }).ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name)).ToList();
+
+            data[0] = new KeyValuePair<string, string>(null, "Select euro standart");
+
+            return data;
         }
     }
 }

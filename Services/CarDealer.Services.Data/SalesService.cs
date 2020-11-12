@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
+    using System.Threading.Tasks;
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models;
     using CarDealer.Data.Models.SaleModels;
@@ -21,20 +21,21 @@
             this.carsService = carsService;
         }
 
-        public void CreateSale(AddSaleInputModel input)
+        public async Task CreateSaleAsync(AddSaleInputModel input)
         {
             var saleToAdd = new Sale
             {
-                DaysValid = (DaysValid)Enum.Parse(typeof(DaysValid), input.DaysValid),
+                DaysValid = input.DaysValid,
                 Price = input.Price,
                 RegionId = input.RegionId,
                 UserId = input.UserId,
+                Description = input.Description,
                 Car = this.carsService.CreateCar(input.Car),
             };
 
-            this.salesRepository.AddAsync(saleToAdd);
+            await this.salesRepository.AddAsync(saleToAdd);
 
-            this.salesRepository.SaveChangesAsync();
+            await this.salesRepository.SaveChangesAsync();
         }
 
         public void RemoveSale(int saleId)

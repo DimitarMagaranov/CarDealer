@@ -6,7 +6,7 @@
     var categoriesItems = this.Model.Car.CategoriesItems.Select(x => new SelectListItem(x.Value, x.Key));
     var makesItems = this.Model.Car.MakesItems.Select(x => new SelectListItem(x.Value, x.Key));
     var fuelTypesItems = this.Model.Car.FuelTypeItems.Select(x => new SelectListItem(x.Value, x.Key));
-    var euroStandartsItems = this.Model.Car.EuroStandartItems.Select(x => new SelectListItem(x.Key, x.Value));
+    var euroStandartsItems = this.Model.Car.EuroStandartItems.Select(x => new SelectListItem(x.Value, x.Key));
     var gearboxesItems = this.Model.Car.GearboxesItems.Select(x => new SelectListItem(x.Value, x.Key));
     var colorsItems = this.Model.Car.ColorstItems.Select(x => new SelectListItem(x.Value, x.Key));
     var regionsItems = this.Model.RegionsItems.Select(x => new SelectListItem(x.Value, x.Key));

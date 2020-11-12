@@ -17,12 +17,16 @@
 
         public IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs()
         {
-            return this.fuelTypesSepository.AllAsNoTracking()
+            var data = this.fuelTypesSepository.AllAsNoTracking()
                 .Select(x => new
                 {
                     x.Id,
                     x.Name,
-                }).ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
+                }).ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name)).ToList();
+
+            data[0] = new KeyValuePair<string, string>(null, "Select fuel type");
+
+            return data;
         }
     }
 }

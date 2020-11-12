@@ -1,13 +1,14 @@
 ﻿namespace CarDealer.Services.Data
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using CarDealer.Services.Data.Models;
     using CarDealer.Web.ViewModels.InputModels.Sales;
     using CarDealer.Web.ViewModels.Sales;
 
     public interface ISalesService
     {
-        void CreateSale(AddSaleInputModel input);
+        Task CreateSaleAsync(AddSaleInputModel input);
 
         void RemoveSale(int saleId);
 
