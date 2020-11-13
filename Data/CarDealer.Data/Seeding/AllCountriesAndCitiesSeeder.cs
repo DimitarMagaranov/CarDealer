@@ -7,13 +7,13 @@
     using System.Text.Json;
     using System.Threading.Tasks;
 
-    using CarDealer.Data.Models.CarModels;
+    using CarDealer.Data.Models.SaleModels;
 
-    public class CarMakesAndModelsSeeder : ISeeder
+    public class AllCountriesAndCitiesSeeder : ISeeder
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
-            if (dbContext.Makes.Any())
+            if (dbContext.Countries.Any())
             {
                 return;
             }
@@ -26,17 +26,17 @@
             {
                 try
                 {
-                    var make = new Make { Name = property.Key };
-                    var models = new List<Model>();
+                    var country = new Country { Name = property.Key };
 
-                    foreach (var modelName in property.Value)
+                    await dbContext.Countries.AddAsync(country);
+                    await dbContext.SaveChangesAsync();
+
+                    foreach (var cityName in property.Value)
                     {
-                        models.Add(new Model { Name = modelName });
+                        dbContext.Countries.FirstOrDefault(x => x.Name == country.Name).Cities.Add(new City { Name = cityName });
                     }
 
-                    make.Models = models;
-
-                    await dbContext.Makes.AddAsync(make);
+                    await dbContext.SaveChangesAsync();
                 }
                 catch
                 {

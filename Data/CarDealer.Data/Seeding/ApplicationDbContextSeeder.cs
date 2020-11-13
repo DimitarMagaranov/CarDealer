@@ -32,6 +32,7 @@
                               new CarEuroStandartsSeeder(),
                               new CarFuelTypesSeeder(),
                               new CarGearboxesSeeder(),
+                              new AllCountriesAndCitiesSeeder(),
                           };
 
             foreach (var seeder in seeders)
