@@ -26,8 +26,8 @@
             var seeders = new List<ISeeder>
                           {
                               new RolesSeeder(),
-                              new CarMakesSeeder(),
                               new CarCategoriesSeeder(),
+                              new CarMakesAndModelsSeeder(),
                               new CarColorsSeeder(),
                               new CarEuroStandartsSeeder(),
                               new CarFuelTypesSeeder(),
