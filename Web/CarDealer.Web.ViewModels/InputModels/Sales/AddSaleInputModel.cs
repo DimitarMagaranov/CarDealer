@@ -8,21 +8,22 @@
 
     public class AddSaleInputModel
     {
+        [Range(10, 60)]
         [DisplayName("Duration in days")]
-        public DaysValid DaysValid { get; set; }
+        public int DaysValid { get; set; }
 
         public AddCarInputModel Car { get; set; }
 
         public decimal Price { get; set; }
 
-        [DisplayName("Region")]
-        public int RegionId { get; set; }
+        [DisplayName("Country")]
+        public int CountryId { get; set; }
 
         public string UserId { get; set; }
 
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
-        public IEnumerable<KeyValuePair<string, string>> RegionsItems { get; set; }
+        public IEnumerable<KeyValuePair<string, string>> CountriesItems { get; set; }
     }
 }

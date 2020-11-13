@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     using CarDealer.Data.Models.CarModels;
 
     public class AddCarInputModel
@@ -36,6 +37,7 @@
         public int Mileage { get; set; }
 
         [DisplayName("Date of manufacture")]
+        [DataType(DataType.Date)]
         public DateTime ManufactureDate { get; set; }
 
         public IEnumerable<KeyValuePair<string, string>> CategoriesItems { get; set; }

@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public interface IRegionsService
+    public interface ICountriesService
     {
         IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs();
     }

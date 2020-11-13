@@ -4,6 +4,7 @@
     using CarDealer.Web.ViewModels.InputModels.Cars;
     using CarDealer.Web.ViewModels.InputModels.Sales;
     using Microsoft.AspNetCore.Mvc;
+    using System;
     using System.Threading.Tasks;
 
     public class SalesController : BaseController
@@ -15,7 +16,7 @@
         private readonly IEuroStandartsService euroStandartsService;
         private readonly IGearboxesService gearboxesService;
         private readonly IColorsService colorsService;
-        private readonly IRegionsService regionsService;
+        private readonly ICountriesService countriessService;
 
         public SalesController(
             ISalesService salesService,
@@ -25,7 +26,7 @@
             IEuroStandartsService euroStandartsService,
             IGearboxesService gearboxesService,
             IColorsService colorsService,
-            IRegionsService regionsService)
+            ICountriesService countriessService)
         {
             this.salesService = salesService;
             this.categoriesService = categoriesService;
@@ -34,13 +35,14 @@
             this.euroStandartsService = euroStandartsService;
             this.gearboxesService = gearboxesService;
             this.colorsService = colorsService;
-            this.regionsService = regionsService;
+            this.countriessService = countriessService;
         }
 
         public IActionResult Create()
         {
             var carViewModel = new AddCarInputModel();
 
+            carViewModel.ManufactureDate = DateTime.UtcNow;
             carViewModel.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
             carViewModel.MakesItems = this.makesService.GetAllAsKeyValuePairs();
             carViewModel.FuelTypeItems = this.fuelTypesService.GetAllAsKeyValuePairs();
@@ -50,8 +52,7 @@
 
             var viewModel = new AddSaleInputModel();
 
-            viewModel.RegionsItems = this.regionsService.GetAllAsKeyValuePairs();
-
+            viewModel.CountriesItems = this.countriessService.GetAllAsKeyValuePairs();
             viewModel.Car = carViewModel;
 
             return this.View(viewModel);
@@ -62,10 +63,11 @@
         {
             if (!this.ModelState.IsValid)
             {
-                input.RegionsItems = this.regionsService.GetAllAsKeyValuePairs();
+                input.CountriesItems = this.countriessService.GetAllAsKeyValuePairs();
 
                 var carViewModel = new AddCarInputModel();
 
+                carViewModel.ManufactureDate = DateTime.UtcNow;
                 carViewModel.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
                 carViewModel.MakesItems = this.makesService.GetAllAsKeyValuePairs();
                 carViewModel.FuelTypeItems = this.fuelTypesService.GetAllAsKeyValuePairs();

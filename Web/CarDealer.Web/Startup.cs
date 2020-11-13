@@ -73,7 +73,7 @@
             services.AddTransient<IEuroStandartsService, EuroStandartsService>();
             services.AddTransient<IGearboxesService, GearboxesService>();
             services.AddTransient<IColorsService, ColorsService>();
-            services.AddTransient<IRegionsService, RegionsService>();
+            services.AddTransient<ICountriesService, CountriesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -4,13 +4,6 @@
 
     public class MakeWithModelsDto
     {
-        public MakeWithModelsDto()
-        {
-            this.Models = new List<ModelDto>();
-        }
-
-        public string Brand { get; set; }
-
-        public ICollection<ModelDto> Models { get; set; }
+        public Dictionary<string, List<string>> Data { get; set; }
     }
 }

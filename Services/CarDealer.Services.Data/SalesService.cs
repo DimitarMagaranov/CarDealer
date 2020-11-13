@@ -27,7 +27,7 @@
             {
                 DaysValid = input.DaysValid,
                 Price = input.Price,
-                RegionId = input.RegionId,
+                CountryId = input.CountryId,
                 UserId = input.UserId,
                 Description = input.Description,
                 Car = this.carsService.CreateCar(input.Car),
@@ -55,7 +55,7 @@
                     Id = x.Id,
                     CreatedOn = x.CreatedOn,
                     Price = x.Price,
-                    Region = x.Region.Name,
+                    Country = x.Country.Name,
                     UserName = x.User.UserName,
                     UserPhoneNumber = x.User.PhoneNumber,
                     Description = x.Description,
@@ -164,9 +164,9 @@
                 sales = sales.Where(x => x.Car.EuroStandart.Name == input.EuroStandart);
             }
 
-            if (input.Region != null)
+            if (input.Country != null)
             {
-                sales = sales.Where(x => x.Region.Name == input.Region);
+                sales = sales.Where(x => x.Country.Name == input.Country);
             }
 
             if (input.SortCommand != null)

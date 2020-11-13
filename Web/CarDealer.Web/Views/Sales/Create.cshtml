@@ -9,7 +9,7 @@
     var euroStandartsItems = this.Model.Car.EuroStandartItems.Select(x => new SelectListItem(x.Value, x.Key));
     var gearboxesItems = this.Model.Car.GearboxesItems.Select(x => new SelectListItem(x.Value, x.Key));
     var colorsItems = this.Model.Car.ColorstItems.Select(x => new SelectListItem(x.Value, x.Key));
-    var regionsItems = this.Model.RegionsItems.Select(x => new SelectListItem(x.Value, x.Key));
+    var countriesItems = this.Model.CountriesItems.Select(x => new SelectListItem(x.Value, x.Key));
 }
 
 <form method="post" class="col-md-6 offset-md-3">
@@ -76,13 +76,13 @@
         <span asp-validation-for="Car.ColorId" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="RegionId"></label>
-        <select asp-for="RegionId" class="form-control" asp-items="regionsItems"></select>
-        <span asp-validation-for="RegionId" class="text-danger"></span>
+        <label asp-for="CountryId"></label>
+        <select asp-for="CountryId" class="form-control" asp-items="countriesItems"></select>
+        <span asp-validation-for="CountryId" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="DaysValid"></label>
-        <select asp-for="DaysValid" class="form-control" asp-items="@Html.GetEnumSelectList<DaysValid>()"></select>
+        <input asp-for="DaysValid" class="form-control" />
         <span asp-validation-for="DaysValid" class="text-danger"></span>
     </div>
     <div class="form-group">

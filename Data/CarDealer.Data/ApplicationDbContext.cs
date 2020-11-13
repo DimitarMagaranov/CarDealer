@@ -37,7 +37,9 @@
 
         public DbSet<Category> Categories { get; set; }
 
-        public DbSet<Region> Regions { get; set; }
+        public DbSet<Country> Countries { get; set; }
+
+        public DbSet<City> Cities { get; set; }
 
         public DbSet<FuelType> FuelTypes { get; set; }
 

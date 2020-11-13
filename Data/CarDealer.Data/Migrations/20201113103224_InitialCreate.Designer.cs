@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarDealer.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201111090359_RemoveSalesTableAndFunctionality")]
-    partial class RemoveSalesTableAndFunctionality
+    [Migration("20201113103224_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -332,6 +332,9 @@ namespace CarDealer.Data.Migrations
                     b.Property<int>("CarId")
                         .HasColumnType("int");
 
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
@@ -353,9 +356,6 @@ namespace CarDealer.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("RegionId")
-                        .HasColumnType("int");
-
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
@@ -363,13 +363,48 @@ namespace CarDealer.Data.Migrations
 
                     b.HasIndex("CarId");
 
-                    b.HasIndex("IsDeleted");
+                    b.HasIndex("CountryId");
 
-                    b.HasIndex("RegionId");
+                    b.HasIndex("IsDeleted");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Sales");
+                });
+
+            modelBuilder.Entity("CarDealer.Data.Models.SaleModels.City", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("Cities");
+                });
+
+            modelBuilder.Entity("CarDealer.Data.Models.SaleModels.Country", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Countries");
                 });
 
             modelBuilder.Entity("CarDealer.Data.Models.SaleModels.Image", b =>
@@ -402,21 +437,6 @@ namespace CarDealer.Data.Migrations
                     b.HasIndex("SaleId");
 
                     b.ToTable("Images");
-                });
-
-            modelBuilder.Entity("CarDealer.Data.Models.SaleModels.Region", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Regions");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -579,15 +599,24 @@ namespace CarDealer.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("CarDealer.Data.Models.SaleModels.Region", "Region")
+                    b.HasOne("CarDealer.Data.Models.SaleModels.Country", "Country")
                         .WithMany("Sales")
-                        .HasForeignKey("RegionId")
+                        .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("CarDealer.Data.Models.ApplicationUser", "User")
                         .WithMany("Sales")
                         .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("CarDealer.Data.Models.SaleModels.City", b =>
+                {
+                    b.HasOne("CarDealer.Data.Models.SaleModels.Country", "Country")
+                        .WithMany("Cities")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("CarDealer.Data.Models.SaleModels.Image", b =>
