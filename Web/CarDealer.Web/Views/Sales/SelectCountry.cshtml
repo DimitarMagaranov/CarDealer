@@ -1,0 +1,16 @@
+﻿@using CarDealer.Data.Models.CarModels
+@using CarDealer.Data.Models.SaleModels
+@model CarDealer.Web.ViewModels.InputModels.Sales.AddSaleInputModel
+@{
+    this.ViewData["Title"] = "Select country";
+    var countriesItems = this.Model.CountriesItems.Select(x => new SelectListItem(x.Value, x.Key));
+}
+<form method="post" class="col-md-6 offset-md-3">
+    <h1>@this.ViewData["Title"]</h1>
+    <div class="form-group">
+        <label asp-for="CountryId"></label>
+        <select asp-for="CountryId" class="form-control" asp-items="countriesItems"></select>
+        <span asp-validation-for="CountryId" class="text-danger"></span>
+    </div>
+    <input type="submit" class="btn btn-primary" />
+</form>

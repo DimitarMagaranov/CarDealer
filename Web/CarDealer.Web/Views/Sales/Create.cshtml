@@ -1,15 +1,16 @@
 ﻿@using CarDealer.Data.Models.CarModels
 @using CarDealer.Data.Models.SaleModels
 @model CarDealer.Web.ViewModels.InputModels.Sales.AddSaleInputModel
-@{ 
+@{
     this.ViewData["Title"] = "Add new sale";
     var categoriesItems = this.Model.Car.CategoriesItems.Select(x => new SelectListItem(x.Value, x.Key));
     var makesItems = this.Model.Car.MakesItems.Select(x => new SelectListItem(x.Value, x.Key));
+    var modelsItems = this.Model.Car.ModelstItems.Select(x => new SelectListItem(x.Value, x.Key));
     var fuelTypesItems = this.Model.Car.FuelTypeItems.Select(x => new SelectListItem(x.Value, x.Key));
     var euroStandartsItems = this.Model.Car.EuroStandartItems.Select(x => new SelectListItem(x.Value, x.Key));
     var gearboxesItems = this.Model.Car.GearboxesItems.Select(x => new SelectListItem(x.Value, x.Key));
     var colorsItems = this.Model.Car.ColorstItems.Select(x => new SelectListItem(x.Value, x.Key));
-    var countriesItems = this.Model.CountriesItems.Select(x => new SelectListItem(x.Value, x.Key));
+    var citiesItems = this.Model.CitiesItems.Select(x => new SelectListItem(x.Value, x.Key));
 }
 
 <form method="post" class="col-md-6 offset-md-3">
@@ -24,6 +25,11 @@
         <label asp-for="Car.MakeId"></label>
         <select asp-for="Car.MakeId" class="form-control" asp-items="makesItems"></select>
         <span asp-validation-for="Car.MakeId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Car.ModelId"></label>
+        <select asp-for="Car.ModelId" class="form-control" asp-items="modelsItems"></select>
+        <span asp-validation-for="Car.ModelId" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Car.FuelTypeId"></label>
@@ -76,9 +82,9 @@
         <span asp-validation-for="Car.ColorId" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="CountryId"></label>
-        <select asp-for="CountryId" class="form-control" asp-items="countriesItems"></select>
-        <span asp-validation-for="CountryId" class="text-danger"></span>
+        <label asp-for="CityId"></label>
+        <select asp-for="CityId" class="form-control" asp-items="citiesItems"></select>
+        <span asp-validation-for="CityId" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="DaysValid"></label>

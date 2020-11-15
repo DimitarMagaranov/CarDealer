@@ -19,11 +19,16 @@
         [DisplayName("Country")]
         public int CountryId { get; set; }
 
+        [DisplayName("City")]
+        public int CityId { get; set; }
+
         public string UserId { get; set; }
 
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
         public IEnumerable<KeyValuePair<string, string>> CountriesItems { get; set; }
+
+        public IEnumerable<KeyValuePair<string, string>> CitiesItems { get; set; }
     }
 }

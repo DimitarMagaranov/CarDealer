@@ -11,6 +11,9 @@
         [DisplayName("Brand")]
         public int MakeId { get; set; }
 
+        [DisplayName("Model")]
+        public int ModelId { get; set; }
+
         [DisplayName("Category")]
         public int CategoryId { get; set; }
 
@@ -43,6 +46,8 @@
         public IEnumerable<KeyValuePair<string, string>> CategoriesItems { get; set; }
 
         public IEnumerable<KeyValuePair<string, string>> MakesItems { get; set; }
+
+        public IEnumerable<KeyValuePair<string, string>> ModelstItems { get; set; }
 
         public IEnumerable<KeyValuePair<string, string>> FuelTypeItems { get; set; }
 

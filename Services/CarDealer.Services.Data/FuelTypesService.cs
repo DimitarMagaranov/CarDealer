@@ -24,7 +24,7 @@
                     x.Name,
                 }).ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name)).ToList();
 
-            data[0] = new KeyValuePair<string, string>(null, "Select fuel type");
+            data.Insert(0, new KeyValuePair<string, string>(null, "Select fuel type"));
 
             return data;
         }

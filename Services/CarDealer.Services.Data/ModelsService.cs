@@ -4,28 +4,27 @@
     using System.Linq;
 
     using CarDealer.Data.Common.Repositories;
-    using CarDealer.Data.Models.SaleModels;
-    using CarDealer.Web.ViewModels.InputModels.Sales;
+    using CarDealer.Data.Models.CarModels;
 
-    public class CountriesService : ICountriesService
+    public class ModelsService : IModelsService
     {
-        private readonly IRepository<Country> countriesRepository;
+        private readonly IRepository<Model> modelsRepository;
 
-        public CountriesService(IRepository<Country> countriesRepository)
+        public ModelsService(IRepository<Model> modelsRepository)
         {
-            this.countriesRepository = countriesRepository;
+            this.modelsRepository = modelsRepository;
         }
 
         public IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs()
         {
-            var data = this.countriesRepository.AllAsNoTracking()
+            var data = this.modelsRepository.AllAsNoTracking()
                 .Select(x => new
                 {
                     x.Id,
                     x.Name,
                 }).ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name)).ToList();
 
-            data.Insert(0, new KeyValuePair<string, string>(null, "Select country"));
+            data.Insert(0, new KeyValuePair<string, string>(null, "Select model"));
 
             return data;
         }

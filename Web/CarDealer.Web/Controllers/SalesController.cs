@@ -1,59 +1,63 @@
 ﻿namespace CarDealer.Web.Controllers
 {
+    using System;
+    using System.Threading.Tasks;
+
     using CarDealer.Services.Data;
     using CarDealer.Web.ViewModels.InputModels.Cars;
     using CarDealer.Web.ViewModels.InputModels.Sales;
     using Microsoft.AspNetCore.Mvc;
-    using System;
-    using System.Threading.Tasks;
 
     public class SalesController : BaseController
     {
+        private static AddSaleInputModel inputModel = new AddSaleInputModel();
+
         private readonly ISalesService salesService;
         private readonly ICategoriesService categoriesService;
         private readonly IMakesService makesService;
+        private readonly IModelsService modelsService;
         private readonly IFuelTypesService fuelTypesService;
         private readonly IEuroStandartsService euroStandartsService;
         private readonly IGearboxesService gearboxesService;
         private readonly IColorsService colorsService;
-        private readonly ICountriesService countriessService;
+        private readonly ICountriesService countriesService;
+        private readonly ICitiesService citiesService;
 
         public SalesController(
             ISalesService salesService,
             ICategoriesService categoriesService,
             IMakesService makesService,
+            IModelsService modelsService,
             IFuelTypesService fuelTypesService,
             IEuroStandartsService euroStandartsService,
             IGearboxesService gearboxesService,
             IColorsService colorsService,
-            ICountriesService countriessService)
+            ICountriesService countriessService,
+            ICitiesService citiesService)
         {
             this.salesService = salesService;
             this.categoriesService = categoriesService;
             this.makesService = makesService;
+            this.modelsService = modelsService;
             this.fuelTypesService = fuelTypesService;
             this.euroStandartsService = euroStandartsService;
             this.gearboxesService = gearboxesService;
             this.colorsService = colorsService;
-            this.countriessService = countriessService;
+            this.countriesService = countriessService;
+            this.citiesService = citiesService;
         }
 
         public IActionResult Create()
         {
-            var carViewModel = new AddCarInputModel();
+            var viewModel = inputModel;
 
-            carViewModel.ManufactureDate = DateTime.UtcNow;
-            carViewModel.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
-            carViewModel.MakesItems = this.makesService.GetAllAsKeyValuePairs();
-            carViewModel.FuelTypeItems = this.fuelTypesService.GetAllAsKeyValuePairs();
-            carViewModel.EuroStandartItems = this.euroStandartsService.GetAllAsKeyValuePairs();
-            carViewModel.GearboxesItems = this.gearboxesService.GetAllAsKeyValuePairs();
-            carViewModel.ColorstItems = this.colorsService.GetAllAsKeyValuePairs();
+            if (viewModel.CountryId == 0)
+            {
+                return this.RedirectToAction(nameof(this.SelectCountry));
+            }
 
-            var viewModel = new AddSaleInputModel();
-
-            viewModel.CountriesItems = this.countriessService.GetAllAsKeyValuePairs();
-            viewModel.Car = carViewModel;
+            viewModel.CitiesItems = this.citiesService.GetAllAsKeyValuePairs(viewModel.CountryId);
+            viewModel.Car = this.GetCarInputModelWithFilledProperties();
 
             return this.View(viewModel);
         }
@@ -63,28 +67,59 @@
         {
             if (!this.ModelState.IsValid)
             {
-                input.CountriesItems = this.countriessService.GetAllAsKeyValuePairs();
-
-                var carViewModel = new AddCarInputModel();
-
-                carViewModel.ManufactureDate = DateTime.UtcNow;
-                carViewModel.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
-                carViewModel.MakesItems = this.makesService.GetAllAsKeyValuePairs();
-                carViewModel.FuelTypeItems = this.fuelTypesService.GetAllAsKeyValuePairs();
-                carViewModel.EuroStandartItems = this.euroStandartsService.GetAllAsKeyValuePairs();
-                carViewModel.GearboxesItems = this.gearboxesService.GetAllAsKeyValuePairs();
-                carViewModel.ColorstItems = this.colorsService.GetAllAsKeyValuePairs();
-
-                input.Car = carViewModel;
+                input.CitiesItems = this.citiesService.GetAllAsKeyValuePairs(input.CountryId);
+                input.Car = this.GetCarInputModelWithFilledProperties();
 
                 return this.View(input);
             }
+
+            input.CountryId = inputModel.CountryId;
 
             await this.salesService.CreateSaleAsync(input);
 
             // TODO: Redirect to car info page
 
             return this.Redirect("/");
+        }
+
+        public IActionResult SelectCountry()
+        {
+            var viewModel = inputModel;
+
+            viewModel.CountriesItems = this.countriesService.GetAllAsKeyValuePairs();
+
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult SelectCountry(AddSaleInputModel input)
+        {
+            if (input.CountryId == 0)
+            {
+                input.CountriesItems = this.countriesService.GetAllAsKeyValuePairs();
+
+                return this.View(input);
+            }
+
+            inputModel = input;
+
+            return this.Redirect("/Sales/Create");
+        }
+
+        public AddCarInputModel GetCarInputModelWithFilledProperties()
+        {
+            var carViewModel = new AddCarInputModel();
+
+            carViewModel.ManufactureDate = DateTime.UtcNow;
+            carViewModel.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
+            carViewModel.MakesItems = this.makesService.GetAllAsKeyValuePairs();
+            carViewModel.ModelstItems = this.modelsService.GetAllAsKeyValuePairs();
+            carViewModel.FuelTypeItems = this.fuelTypesService.GetAllAsKeyValuePairs();
+            carViewModel.EuroStandartItems = this.euroStandartsService.GetAllAsKeyValuePairs();
+            carViewModel.GearboxesItems = this.gearboxesService.GetAllAsKeyValuePairs();
+            carViewModel.ColorstItems = this.colorsService.GetAllAsKeyValuePairs();
+
+            return carViewModel;
         }
     }
 }

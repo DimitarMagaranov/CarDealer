@@ -542,7 +542,6 @@ C:\Users\Dimitar\Desktop\CarDealer\Tests\CarDealer.Web.Tests\bin\Debug\netcoreap
 C:\Users\Dimitar\Desktop\CarDealer\Tests\CarDealer.Web.Tests\bin\Debug\netcoreapp3.1\CarDealer.Web.exe
 C:\Users\Dimitar\Desktop\CarDealer\Tests\CarDealer.Web.Tests\bin\Debug\netcoreapp3.1\CarDealer.Web.Tests.StaticWebAssets.xml
 C:\Users\Dimitar\Desktop\CarDealer\Tests\CarDealer.Web.Tests\bin\Debug\netcoreapp3.1\CarDealer.Web.Tests.exe
-C:\Users\Dimitar\Desktop\CarDealer\Tests\CarDealer.Web.Tests\bin\Debug\netcoreapp3.1\Seeding\JsonFiles\CarMakesJsonImporterFile.json
 C:\Users\Dimitar\Desktop\CarDealer\Tests\CarDealer.Web.Tests\bin\Debug\netcoreapp3.1\CarDealer.Web.Tests.deps.json
 C:\Users\Dimitar\Desktop\CarDealer\Tests\CarDealer.Web.Tests\bin\Debug\netcoreapp3.1\CarDealer.Web.Tests.runtimeconfig.json
 C:\Users\Dimitar\Desktop\CarDealer\Tests\CarDealer.Web.Tests\bin\Debug\netcoreapp3.1\CarDealer.Web.Tests.runtimeconfig.dev.json

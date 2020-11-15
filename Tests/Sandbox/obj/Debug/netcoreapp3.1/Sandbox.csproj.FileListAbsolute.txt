@@ -93,7 +93,6 @@ C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Tests\Sandbox\obj\Debug\
 C:\Users\Dimitar\Desktop\Projects\CarDealerNikiTemplate\Tests\Sandbox\obj\Debug\netcoreapp3.1\Sandbox.genruntimeconfig.cache
 C:\Users\Dimitar\Desktop\CarDealer\Tests\Sandbox\bin\Debug\netcoreapp3.1\Sandbox.exe
 C:\Users\Dimitar\Desktop\CarDealer\Tests\Sandbox\bin\Debug\netcoreapp3.1\appsettings.json
-C:\Users\Dimitar\Desktop\CarDealer\Tests\Sandbox\bin\Debug\netcoreapp3.1\Seeding\JsonFiles\CarMakesJsonImporterFile.json
 C:\Users\Dimitar\Desktop\CarDealer\Tests\Sandbox\bin\Debug\netcoreapp3.1\Sandbox.deps.json
 C:\Users\Dimitar\Desktop\CarDealer\Tests\Sandbox\bin\Debug\netcoreapp3.1\Sandbox.runtimeconfig.json
 C:\Users\Dimitar\Desktop\CarDealer\Tests\Sandbox\bin\Debug\netcoreapp3.1\Sandbox.runtimeconfig.dev.json
