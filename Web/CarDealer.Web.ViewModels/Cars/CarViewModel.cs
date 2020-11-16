@@ -9,6 +9,8 @@
 
         public string Make { get; set; }
 
+        public string Model { get; set; }
+
         public string Category { get; set; }
 
         public string FuelType { get; set; }
@@ -29,6 +31,6 @@
 
         public DateTime ManufactureDate { get; set; }
 
-        public string ManufactureDateAsString => this.ManufactureDate.ToString(CultureInfo.GetCultureInfo("bg-BG"));
+        public string ManufactureDateAsString => this.ManufactureDate.ToString(CultureInfo.InvariantCulture);
     }
 }

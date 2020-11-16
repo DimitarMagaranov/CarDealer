@@ -22,5 +22,10 @@ namespace CarDealer.Web.Controllers
 
             return this.Redirect("/");
         }
+
+        public IActionResult CarInfo(int carId)
+        {
+            return this.View();
+        }
     }
 }

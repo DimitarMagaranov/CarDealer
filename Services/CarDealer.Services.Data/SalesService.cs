@@ -6,22 +6,57 @@
     using System.Threading.Tasks;
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models;
+    using CarDealer.Data.Models.CarModels;
     using CarDealer.Data.Models.SaleModels;
     using CarDealer.Services.Data.Models;
+    using CarDealer.Web.ViewModels.Cars;
     using CarDealer.Web.ViewModels.InputModels.Sales;
+    using CarDealer.Web.ViewModels.Sales;
 
     public class SalesService : ISalesService
     {
-        private readonly IDeletableEntityRepository<Sale> salesRepository;
         private readonly ICarsService carsService;
+        private readonly IDeletableEntityRepository<Sale> salesRepository;
+        private readonly IRepository<Country> countriesRepository;
+        private readonly IRepository<City> citiesRepository;
+        private readonly IRepository<Model> modelsRepository;
+        private readonly IDeletableEntityRepository<Car> carsRepository;
+        private readonly IRepository<Make> makesRepository;
+        private readonly IRepository<Category> categoriesRepository;
+        private readonly IRepository<Color> colorsRepository;
+        private readonly IRepository<FuelType> fuelTypesRepository;
+        private readonly IRepository<Gearbox> gearboxesRepository;
+        private readonly IRepository<EuroStandart> euroStandartsRepository;
 
-        public SalesService(IDeletableEntityRepository<Sale> salesRepository, ICarsService carsService)
+        public SalesService(
+            ICarsService carsService,
+            IDeletableEntityRepository<Sale> salesRepository,
+            IRepository<Country> countriesRepository,
+            IRepository<City> citiesRepository,
+            IRepository<Model> modelsRepository,
+            IDeletableEntityRepository<Car> carsRepository,
+            IRepository<Make> makesRepository,
+            IRepository<Category> categoriesRepository,
+            IRepository<Color> colorsRepository,
+            IRepository<FuelType> fuelTypesRepository,
+            IRepository<Gearbox> gearboxesRepository,
+            IRepository<EuroStandart> euroStandartsRepository)
         {
-            this.salesRepository = salesRepository;
             this.carsService = carsService;
+            this.salesRepository = salesRepository;
+            this.countriesRepository = countriesRepository;
+            this.citiesRepository = citiesRepository;
+            this.modelsRepository = modelsRepository;
+            this.carsRepository = carsRepository;
+            this.makesRepository = makesRepository;
+            this.categoriesRepository = categoriesRepository;
+            this.colorsRepository = colorsRepository;
+            this.fuelTypesRepository = fuelTypesRepository;
+            this.gearboxesRepository = gearboxesRepository;
+            this.euroStandartsRepository = euroStandartsRepository;
         }
 
-        public async Task CreateSaleAsync(AddSaleInputModel input)
+        public async Task<int> CreateSaleAsync(AddSaleInputModel input)
         {
             var saleToAdd = new Sale
             {
@@ -36,6 +71,8 @@
             await this.salesRepository.AddAsync(saleToAdd);
 
             await this.salesRepository.SaveChangesAsync();
+
+            return saleToAdd.Id;
         }
 
         public void RemoveSale(int saleId)
@@ -198,6 +235,49 @@
             }
 
             return salesToShow;
+        }
+
+        public SaleViewModel GetSaleInfo(int saleId, int modelId, int cityId)
+        {
+            var sale = this.salesRepository.AllAsNoTracking().First(x => x.Id == saleId);
+            var car = this.carsRepository.AllAsNoTracking().First(x => x.Id == sale.CarId);
+            var carMake = this.makesRepository.AllAsNoTracking().First(x => x.Id == car.MakeId);
+            var carModel = this.modelsRepository.AllAsNoTracking().First(x => x.Id == modelId);
+            var country = this.countriesRepository.AllAsNoTracking().First(x => x.Id == sale.CountryId);
+            var city = this.citiesRepository.AllAsNoTracking().First(x => x.Id == cityId);
+            var category = this.categoriesRepository.AllAsNoTracking().First(x => x.Id == car.CategoryId);
+            var color = this.colorsRepository.AllAsNoTracking().First(x => x.Id == car.ColorId);
+            var fuelType = this.fuelTypesRepository.AllAsNoTracking().First(x => x.Id == car.FuelTypeId);
+            var gearbox = this.gearboxesRepository.AllAsNoTracking().First(x => x.Id == car.GearboxId);
+            var euroStandart = this.euroStandartsRepository.AllAsNoTracking().First(x => x.Id == car.EuroStandartId);
+
+            var saleInfo = new SaleViewModel
+            {
+                Id = sale.Id,
+                Name = $"{carMake.Name} {carModel.Name} {car.EngineSize}",
+                CountryName = country.Name,
+                CityName = city.Name,
+                CreatedOn = sale.CreatedOn,
+                Description = sale.Description,
+                Price = sale.Price,
+                Car = new CarViewModel
+                {
+                    Make = carMake.Name,
+                    Model = carModel.Name,
+                    State = car.State.ToString(),
+                    EngineSize = car.EngineSize,
+                    EuroStandart = euroStandart.Name,
+                    ManufactureDate = car.ManufactureDate,
+                    Category = category.Name,
+                    Color = color.Name,
+                    FuelType = fuelType.Name,
+                    Gearbox = gearbox.Name,
+                    Doors = car.Doors.ToString(),
+                    Mileage = car.Mileage,
+                },
+            };
+
+            return saleInfo;
         }
     }
 }

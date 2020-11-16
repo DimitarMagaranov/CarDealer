@@ -8,7 +8,7 @@
 
     public interface ISalesService
     {
-        Task CreateSaleAsync(AddSaleInputModel input);
+        Task<int> CreateSaleAsync(AddSaleInputModel input);
 
         void RemoveSale(int saleId);
 
@@ -19,5 +19,7 @@
         IEnumerable<SaleDto> GetAllByCategory(string category);
 
         IEnumerable<SaleDto> GetAllBySearchForm(SearchSaleFormInputModel input);
+
+        SaleViewModel GetSaleInfo(int saleId, int modelId, int cityId);
     }
 }

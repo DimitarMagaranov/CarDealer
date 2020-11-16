@@ -75,11 +75,13 @@
 
             input.CountryId = inputModel.CountryId;
 
-            await this.salesService.CreateSaleAsync(input);
+            int cityId = input.CityId;
+            int modelId = input.Car.ModelId;
+            int saleId = await this.salesService.CreateSaleAsync(input);
 
             // TODO: Redirect to car info page
 
-            return this.Redirect("/");
+            return this.RedirectToAction(nameof(this.SaleInfo), new { saleId, modelId, cityId });
         }
 
         public IActionResult SelectCountry()
@@ -104,6 +106,13 @@
             inputModel = input;
 
             return this.Redirect("/Sales/Create");
+        }
+
+        public IActionResult SaleInfo(int saleId, int modelId, int cityId)
+        {
+            var viewModel = this.salesService.GetSaleInfo(saleId, modelId, cityId);
+
+            return this.View(viewModel);
         }
 
         public AddCarInputModel GetCarInputModelWithFilledProperties()

@@ -917,3 +917,5 @@ C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\Car
 C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\Razor\Views\Cars\Create.cshtml.g.cs
 C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\Razor\Views\Sales\Create.cshtml.g.cs
 C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\Razor\Views\Sales\SelectCountry.cshtml.g.cs
+C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\Razor\Views\Cars\CarInfo.cshtml.g.cs
+C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\Razor\Views\Sales\SaleInfo.cshtml.g.cs
