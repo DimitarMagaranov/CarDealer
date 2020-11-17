@@ -9,7 +9,7 @@
 
         public DateTime CreatedOn { get; set; }
 
-        public string CreatedOnAsString => this.CreatedOn.ToString(CultureInfo.GetCultureInfo("bg-BG"));
+        public string CreatedOnAsString => this.CreatedOn.ToString(CultureInfo.InvariantCulture);
 
         public int CarId { get; set; }
 

@@ -29,6 +29,6 @@
 
         public DateTime ManufactureDate { get; set; }
 
-        public string ManufactureDateAsString => this.ManufactureDate.ToString(CultureInfo.GetCultureInfo("bg-BG"));
+        public string ManufactureDateAsString => this.ManufactureDate.ToString(CultureInfo.InvariantCulture);
     }
 }

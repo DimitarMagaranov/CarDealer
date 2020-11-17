@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CarDealer.Services.Data
 {
     public interface IEuroStandartsService
     {
-        IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs();
+        Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairs();
     }
 }

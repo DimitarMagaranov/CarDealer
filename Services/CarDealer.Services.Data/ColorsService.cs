@@ -2,9 +2,10 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-
+    using System.Threading.Tasks;
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models.CarModels;
+    using Microsoft.EntityFrameworkCore;
 
     public class ColorsService : IColorsService
     {
@@ -15,14 +16,16 @@
             this.colorsRepository = colorsRepository;
         }
 
-        public IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs()
+        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairs()
         {
-            var data = this.colorsRepository.AllAsNoTracking()
+            var colors = await this.colorsRepository.AllAsNoTracking()
                 .Select(x => new
                 {
                     x.Id,
                     x.Name,
-                }).ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name)).ToList();
+                }).ToListAsync();
+
+            var data = colors.Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name)).ToList();
 
             data.Insert(0, new KeyValuePair<string, string>(null, "Select color"));
 
