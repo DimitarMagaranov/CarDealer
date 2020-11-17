@@ -16,7 +16,7 @@
             this.makesRepository = makesRepository;
         }
 
-        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairs()
+        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairsAsync()
         {
             var makes = await this.makesRepository.AllAsNoTracking()
                 .Select(x => new

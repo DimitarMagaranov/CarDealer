@@ -47,7 +47,8 @@
             this.citiesService = citiesService;
         }
 
-        public async Task<IActionResult> Create()
+        [ActionName("Create")]
+        public async Task<IActionResult> CreateAsync()
         {
             var viewModel = inputModel;
 
@@ -56,19 +57,20 @@
                 return this.RedirectToAction(nameof(this.SelectCountry));
             }
 
-            viewModel.CitiesItems = await this.citiesService.GetAllAsKeyValuePairs(viewModel.CountryId);
-            viewModel.Car = await this.GetCarInputModelWithFilledProperties();
+            viewModel.CitiesItems = await this.citiesService.GetAllAsKeyValuePairsAsync(viewModel.CountryId);
+            viewModel.Car = await this.GetCarInputModelWithFilledPropertiesAsync();
 
             return this.View(viewModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(AddSaleInputModel input)
+        [ActionName("Create")]
+        public async Task<IActionResult> CreateAsync(AddSaleInputModel input)
         {
             if (!this.ModelState.IsValid)
             {
-                input.CitiesItems = await this.citiesService.GetAllAsKeyValuePairs(input.CountryId);
-                input.Car = await this.GetCarInputModelWithFilledProperties();
+                input.CitiesItems = await this.citiesService.GetAllAsKeyValuePairsAsync(input.CountryId);
+                input.Car = await this.GetCarInputModelWithFilledPropertiesAsync();
 
                 return this.View(input);
             }
@@ -96,21 +98,23 @@
         //    viewModel.CitiesItems = this.citiesService.GetAllAsKeyValuePairs(viewModel.CountryId);
         //}
 
-        public async Task<IActionResult> SelectCountry()
+        [ActionName("SelectCountry")]
+        public async Task<IActionResult> SelectCountryAsync()
         {
             var viewModel = inputModel;
 
-            viewModel.CountriesItems = await this.countriesService.GetAllAsKeyValuePairs();
+            viewModel.CountriesItems = await this.countriesService.GetAllAsKeyValuePairsAsync();
 
             return this.View(viewModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> SelectCountry(AddSaleInputModel input)
+        [ActionName("SelectCountry")]
+        public async Task<IActionResult> SelectCountryAsync(AddSaleInputModel input)
         {
             if (input.CountryId == 0)
             {
-                input.CountriesItems = await this.countriesService.GetAllAsKeyValuePairs();
+                input.CountriesItems = await this.countriesService.GetAllAsKeyValuePairsAsync();
 
                 return this.View(input);
             }
@@ -127,18 +131,18 @@
             return this.View(viewModel);
         }
 
-        public async Task<AddCarInputModel> GetCarInputModelWithFilledProperties()
+        public async Task<AddCarInputModel> GetCarInputModelWithFilledPropertiesAsync()
         {
             var carViewModel = new AddCarInputModel();
 
             carViewModel.ManufactureDate = DateTime.UtcNow;
-            carViewModel.CategoriesItems = await this.categoriesService.GetAllAsKeyValuePairs();
-            carViewModel.MakesItems = await this.makesService.GetAllAsKeyValuePairs();
-            carViewModel.ModelstItems = await this.modelsService.GetAllAsKeyValuePairs();
-            carViewModel.FuelTypeItems = await this.fuelTypesService.GetAllAsKeyValuePairs();
-            carViewModel.EuroStandartItems = await this.euroStandartsService.GetAllAsKeyValuePairs();
-            carViewModel.GearboxesItems = await this.gearboxesService.GetAllAsKeyValuePairs();
-            carViewModel.ColorstItems = await this.colorsService.GetAllAsKeyValuePairs();
+            carViewModel.CategoriesItems = await this.categoriesService.GetAllAsKeyValuePairsAsync();
+            carViewModel.MakesItems = await this.makesService.GetAllAsKeyValuePairsAsync();
+            carViewModel.ModelstItems = await this.modelsService.GetAllAsKeyValuePairsAsync();
+            carViewModel.FuelTypeItems = await this.fuelTypesService.GetAllAsKeyValuePairsAsync();
+            carViewModel.EuroStandartItems = await this.euroStandartsService.GetAllAsKeyValuePairsAsync();
+            carViewModel.GearboxesItems = await this.gearboxesService.GetAllAsKeyValuePairsAsync();
+            carViewModel.ColorstItems = await this.colorsService.GetAllAsKeyValuePairsAsync();
 
             return carViewModel;
         }

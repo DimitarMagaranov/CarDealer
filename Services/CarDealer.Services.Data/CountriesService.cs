@@ -17,7 +17,7 @@
             this.countriesRepository = countriesRepository;
         }
 
-        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairs()
+        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairsAsync()
         {
             var countries = await this.countriesRepository.AllAsNoTracking()
                 .Select(x => new

@@ -16,7 +16,7 @@
             this.modelsRepository = modelsRepository;
         }
 
-        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairs()
+        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairsAsync()
         {
             var models = await this.modelsRepository.AllAsNoTracking()
                 .Select(x => new

@@ -5,6 +5,6 @@
 
     public interface IMakesService
     {
-        Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairs();
+        Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairsAsync();
     }
 }

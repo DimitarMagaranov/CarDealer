@@ -16,7 +16,7 @@
             this.euroStandartsRepository = euroStandartsRepository;
         }
 
-        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairs()
+        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairsAsync()
         {
             var euroStandarts = await this.euroStandartsRepository.AllAsNoTracking()
                 .Select(x => new

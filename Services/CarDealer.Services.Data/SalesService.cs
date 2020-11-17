@@ -1,9 +1,9 @@
 ﻿namespace CarDealer.Services.Data
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models;
     using CarDealer.Data.Models.CarModels;
@@ -75,18 +75,18 @@
             return saleToAdd.Id;
         }
 
-        public void RemoveSale(int saleId)
+        public async Task RemoveSaleAsync(int saleId)
         {
-            var saleToRemove = this.salesRepository.All().FirstOrDefault(x => x.Id == saleId);
+            var saleToRemove = this.salesRepository.AllAsNoTracking().FirstOrDefault(x => x.Id == saleId);
 
             this.salesRepository.Delete(saleToRemove);
 
-            this.salesRepository.SaveChangesAsync();
+            await this.salesRepository.SaveChangesAsync();
         }
 
         public SaleDto GetSaleById(int id)
         {
-            var sale = this.salesRepository.All().Where(x => x.Id == id)
+            var sale = this.salesRepository.AllAsNoTracking().Where(x => x.Id == id)
                 .Select(x => new SaleDto
                 {
                     Id = x.Id,
@@ -107,7 +107,7 @@
         {
             var sales = new List<SaleDto>();
 
-            foreach (var sale in this.salesRepository.All())
+            foreach (var sale in this.salesRepository.AllAsNoTracking())
             {
                 sales.Add(this.GetSaleById(sale.Id));
             }

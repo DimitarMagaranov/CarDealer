@@ -5,6 +5,6 @@
 
     public interface IGearboxesService
     {
-        Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairs();
+        Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairsAsync();
     }
 }

@@ -5,6 +5,6 @@
 
     public interface ICitiesService
     {
-        Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairs(int countryId);
+        Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairsAsync(int countryId);
     }
 }

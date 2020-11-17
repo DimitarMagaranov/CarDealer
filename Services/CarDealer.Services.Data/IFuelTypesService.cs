@@ -5,6 +5,6 @@
 
     public interface IFuelTypesService
     {
-        Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairs();
+        Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairsAsync();
     }
 }

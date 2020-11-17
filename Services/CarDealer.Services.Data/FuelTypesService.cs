@@ -16,7 +16,7 @@
             this.fuelTypesSepository = fuelTypesSepository;
         }
 
-        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairs()
+        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairsAsync()
         {
             var fuelTypes = await this.fuelTypesSepository.AllAsNoTracking()
                 .Select(x => new

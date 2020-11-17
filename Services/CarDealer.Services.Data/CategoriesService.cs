@@ -16,7 +16,7 @@
             this.categoriesRepository = categoriesRepository;
         }
 
-        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairs()
+        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairsAsync()
         {
             var categories = await this.categoriesRepository.AllAsNoTracking()
                 .Select(x => new

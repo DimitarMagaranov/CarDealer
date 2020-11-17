@@ -16,7 +16,7 @@
             this.citiesRepository = citiesRepository;
         }
 
-        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairs(int countryId)
+        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairsAsync(int countryId)
         {
             var cities = await this.citiesRepository.AllAsNoTracking()
                 .Where(x => x.CountryId == countryId)

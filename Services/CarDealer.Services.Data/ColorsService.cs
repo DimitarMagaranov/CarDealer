@@ -16,7 +16,7 @@
             this.colorsRepository = colorsRepository;
         }
 
-        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairs()
+        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairsAsync()
         {
             var colors = await this.colorsRepository.AllAsNoTracking()
                 .Select(x => new

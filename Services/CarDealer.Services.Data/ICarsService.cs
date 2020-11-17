@@ -1,7 +1,7 @@
 ﻿namespace CarDealer.Services.Data
 {
     using System.Collections.Generic;
-
+    using System.Threading.Tasks;
     using CarDealer.Data.Models;
     using CarDealer.Services.Data.Models;
     using CarDealer.Web.ViewModels.Cars;
@@ -23,7 +23,7 @@
 
         Car CreateCar(AddCarInputModel input);
 
-        void RemoveCarById(int carId);
+        Task RemoveCarByIdAsync(int carId);
 
         CarDto GetCarById(int id);
 

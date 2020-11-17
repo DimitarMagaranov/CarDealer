@@ -10,7 +10,7 @@
     {
         Task<int> CreateSaleAsync(AddSaleInputModel input);
 
-        void RemoveSale(int saleId);
+        Task RemoveSaleAsync(int saleId);
 
         SaleDto GetSaleById(int id);
 
