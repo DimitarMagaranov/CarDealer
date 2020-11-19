@@ -5,7 +5,7 @@ namespace CarDealer.Data.Models
     using System.Collections.Generic;
 
     using CarDealer.Data.Common.Models;
-
+    using CarDealer.Data.Models.SaleModels;
     using Microsoft.AspNetCore.Identity;
 
     public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
@@ -18,6 +18,12 @@ namespace CarDealer.Data.Models
             this.Logins = new HashSet<IdentityUserLogin<string>>();
             this.Sales = new HashSet<Sale>();
         }
+
+        public int Age { get; set; }
+
+        public int CountryId { get; set; }
+
+        public Country Country { get; set; }
 
         // Audit info
         public DateTime CreatedOn { get; set; }

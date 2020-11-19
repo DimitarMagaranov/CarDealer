@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using CarDealer.Data;
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models;
