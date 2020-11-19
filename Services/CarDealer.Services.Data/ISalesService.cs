@@ -14,12 +14,12 @@
 
         SaleDto GetSaleById(int id);
 
-        IEnumerable<SaleDto> GetAll();
+        IEnumerable<SaleViewModel> GetAllByCountry(int countryId);
 
         IEnumerable<SaleDto> GetAllByCategory(string category);
 
         IEnumerable<SaleDto> GetAllBySearchForm(SearchSaleFormInputModel input);
 
-        SaleViewModel GetSaleInfo(int saleId, int modelId, int cityId);
+        SaleViewModel GetSaleInfo(int saleId);
     }
 }

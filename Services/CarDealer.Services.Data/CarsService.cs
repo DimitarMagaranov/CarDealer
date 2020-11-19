@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
+    using System.Threading.Tasks;
     using CarDealer.Data;
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models;
@@ -24,6 +24,7 @@
         {
             var carToAdd = new Car
             {
+                ModelId = input.ModelId,
                 MakeId = input.MakeId,
                 CategoryId = input.CategoryId,
                 FuelTypeId = input.FuelTypeId,
@@ -40,13 +41,13 @@
             return carToAdd;
         }
 
-        public void RemoveCarById(int carId)
+        public async Task RemoveCarByIdAsync(int carId)
         {
             var carToDelete = this.carsRepository.All().FirstOrDefault(x => x.Id == carId);
 
             this.carsRepository.Delete(carToDelete);
 
-            this.carsRepository.SaveChangesAsync();
+            await this.carsRepository.SaveChangesAsync();
         }
 
         public CarDto GetCarById(int id)

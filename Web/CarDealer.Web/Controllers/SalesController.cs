@@ -47,30 +47,28 @@
             this.citiesService = citiesService;
         }
 
-        [ActionName("Create")]
-        public async Task<IActionResult> CreateAsync()
+        public async Task<IActionResult> Create()
         {
             var viewModel = inputModel;
 
             if (viewModel.CountryId == 0)
             {
-                return this.RedirectToAction(nameof(this.SelectCountry));
+                return this.RedirectToAction(nameof(this.SelectCountryForCreateSale));
             }
 
             viewModel.CitiesItems = await this.citiesService.GetAllAsKeyValuePairsAsync(viewModel.CountryId);
-            viewModel.Car = await this.GetCarInputModelWithFilledPropertiesAsync();
+            viewModel.Car = await this.GetCarInputModelWithFilledProperties();
 
             return this.View(viewModel);
         }
 
         [HttpPost]
-        [ActionName("Create")]
-        public async Task<IActionResult> CreateAsync(AddSaleInputModel input)
+        public async Task<IActionResult> Create(AddSaleInputModel input)
         {
             if (!this.ModelState.IsValid)
             {
                 input.CitiesItems = await this.citiesService.GetAllAsKeyValuePairsAsync(input.CountryId);
-                input.Car = await this.GetCarInputModelWithFilledPropertiesAsync();
+                input.Car = await this.GetCarInputModelWithFilledProperties();
 
                 return this.View(input);
             }
@@ -81,25 +79,26 @@
             int modelId = input.Car.ModelId;
             int saleId = await this.salesService.CreateSaleAsync(input);
 
-            // TODO: Redirect to car info page
-
-            return this.RedirectToAction(nameof(this.SaleInfo), new { saleId, modelId, cityId });
+            return this.RedirectToAction(nameof(this.SaleInfo), new { saleId });
         }
 
-        //public IActionResult GetAll()
-        //{
-        //    var viewModel = inputModel;
+        public IActionResult GetAllByCountry()
+        {
+            var model = inputModel;
 
-        //    if (viewModel.CountryId == 0)
-        //    {
-        //        return this.RedirectToAction(nameof(this.SelectCountry));
-        //    }
+            if (model.CountryId == 0)
+            {
+                return this.RedirectToAction(nameof(this.SelectCountryForGetAllSales));
+            }
 
-        //    viewModel.CitiesItems = this.citiesService.GetAllAsKeyValuePairs(viewModel.CountryId);
-        //}
+            int countryId = model.CountryId;
 
-        [ActionName("SelectCountry")]
-        public async Task<IActionResult> SelectCountryAsync()
+            var viewModel = this.salesService.GetAllByCountry(countryId);
+
+            return this.View(viewModel);
+        }
+
+        public async Task<IActionResult> SelectCountryForCreateSale()
         {
             var viewModel = inputModel;
 
@@ -109,8 +108,7 @@
         }
 
         [HttpPost]
-        [ActionName("SelectCountry")]
-        public async Task<IActionResult> SelectCountryAsync(AddSaleInputModel input)
+        public async Task<IActionResult> SelectCountryForCreateSale(AddSaleInputModel input)
         {
             if (input.CountryId == 0)
             {
@@ -124,14 +122,45 @@
             return this.Redirect("/Sales/Create");
         }
 
-        public IActionResult SaleInfo(int saleId, int modelId, int cityId)
+        public async Task<IActionResult> SelectCountryForGetAllSales()
         {
-            var viewModel = this.salesService.GetSaleInfo(saleId, modelId, cityId);
+            var viewModel = inputModel;
+
+            viewModel.CountriesItems = await this.countriesService.GetAllAsKeyValuePairsAsync();
 
             return this.View(viewModel);
         }
 
-        public async Task<AddCarInputModel> GetCarInputModelWithFilledPropertiesAsync()
+        [HttpPost]
+        public async Task<IActionResult> SelectCountryForGetAllSales(AddSaleInputModel input)
+        {
+            if (input.CountryId == 0)
+            {
+                input.CountriesItems = await this.countriesService.GetAllAsKeyValuePairsAsync();
+
+                return this.View(input);
+            }
+
+            inputModel = input;
+
+            return this.Redirect("/Sales/GetAllByCountry");
+        }
+
+        public IActionResult SaleInfo(int saleId)
+        {
+            var viewModel = this.salesService.GetSaleInfo(saleId);
+
+            return this.View(viewModel);
+        }
+
+        public IActionResult AllSalesInfoByCountry(int countryId)
+        {
+            var viewModel = this.salesService.GetAllByCountry(countryId);
+
+            return this.View(viewModel);
+        }
+
+        public async Task<AddCarInputModel> GetCarInputModelWithFilledProperties()
         {
             var carViewModel = new AddCarInputModel();
 

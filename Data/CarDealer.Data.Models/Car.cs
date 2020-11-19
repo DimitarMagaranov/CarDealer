@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
     using CarDealer.Data.Common.Models;
     using CarDealer.Data.Models.CarModels;
 
@@ -15,6 +16,9 @@
         public int MakeId { get; set; }
 
         public virtual Make Make { get; set; }
+
+        [NotMapped]
+        public int ModelId { get; set; }
 
         public int CategoryId { get; set; }
 

@@ -4,14 +4,16 @@ using CarDealer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CarDealer.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201117115156_AddingNotMappedProperties")]
+    partial class AddingNotMappedProperties
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -320,24 +322,6 @@ namespace CarDealer.Data.Migrations
                     b.ToTable("Models");
                 });
 
-            modelBuilder.Entity("CarDealer.Data.Models.MetaData", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CarModelId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SaleCityId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MetaData");
-                });
-
             modelBuilder.Entity("CarDealer.Data.Models.Sale", b =>
                 {
                     b.Property<int>("Id")
@@ -366,9 +350,6 @@ namespace CarDealer.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int>("MetaDataId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
@@ -385,8 +366,6 @@ namespace CarDealer.Data.Migrations
                     b.HasIndex("CountryId");
 
                     b.HasIndex("IsDeleted");
-
-                    b.HasIndex("MetaDataId");
 
                     b.HasIndex("UserId");
 
@@ -623,12 +602,6 @@ namespace CarDealer.Data.Migrations
                     b.HasOne("CarDealer.Data.Models.SaleModels.Country", "Country")
                         .WithMany("Sales")
                         .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("CarDealer.Data.Models.MetaData", "MetaData")
-                        .WithMany()
-                        .HasForeignKey("MetaDataId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 

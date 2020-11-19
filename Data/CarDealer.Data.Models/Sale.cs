@@ -4,6 +4,7 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using CarDealer.Data.Common.Models;
     using CarDealer.Data.Models.SaleModels;
 
@@ -25,6 +26,9 @@
 
         public int CountryId { get; set; }
 
+        [NotMapped]
+        public int CityId { get; set; }
+
         public virtual Country Country { get; set; }
 
         // TODO: must make userid required
@@ -35,5 +39,9 @@
         public string Description { get; set; }
 
         public virtual ICollection<Image> Images { get; set; }
+
+        public int MetaDataId { get; set; }
+
+        public virtual MetaData MetaData { get; set; }
     }
 }

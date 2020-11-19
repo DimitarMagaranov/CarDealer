@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
+    using CarDealer.Data;
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models;
     using CarDealer.Data.Models.CarModels;
@@ -15,6 +15,7 @@
 
     public class SalesService : ISalesService
     {
+        private readonly ApplicationDbContext db;
         private readonly ICarsService carsService;
         private readonly IDeletableEntityRepository<Sale> salesRepository;
         private readonly IRepository<Country> countriesRepository;
@@ -27,8 +28,10 @@
         private readonly IRepository<FuelType> fuelTypesRepository;
         private readonly IRepository<Gearbox> gearboxesRepository;
         private readonly IRepository<EuroStandart> euroStandartsRepository;
+        private readonly IRepository<MetaData> metaDatasRepository;
 
         public SalesService(
+            ApplicationDbContext db,
             ICarsService carsService,
             IDeletableEntityRepository<Sale> salesRepository,
             IRepository<Country> countriesRepository,
@@ -40,8 +43,10 @@
             IRepository<Color> colorsRepository,
             IRepository<FuelType> fuelTypesRepository,
             IRepository<Gearbox> gearboxesRepository,
-            IRepository<EuroStandart> euroStandartsRepository)
+            IRepository<EuroStandart> euroStandartsRepository,
+            IRepository<MetaData> metaDatasRepository)
         {
+            this.db = db;
             this.carsService = carsService;
             this.salesRepository = salesRepository;
             this.countriesRepository = countriesRepository;
@@ -54,18 +59,21 @@
             this.fuelTypesRepository = fuelTypesRepository;
             this.gearboxesRepository = gearboxesRepository;
             this.euroStandartsRepository = euroStandartsRepository;
+            this.metaDatasRepository = metaDatasRepository;
         }
 
         public async Task<int> CreateSaleAsync(AddSaleInputModel input)
         {
             var saleToAdd = new Sale
             {
+                CityId = input.CityId,
                 DaysValid = input.DaysValid,
                 Price = input.Price,
                 CountryId = input.CountryId,
                 UserId = input.UserId,
                 Description = input.Description,
                 Car = this.carsService.CreateCar(input.Car),
+                MetaData = new MetaData { SaleCityId = input.CityId, CarModelId = input.Car.ModelId },
             };
 
             await this.salesRepository.AddAsync(saleToAdd);
@@ -103,16 +111,18 @@
             return (SaleDto)sale;
         }
 
-        public IEnumerable<SaleDto> GetAll()
+        public IEnumerable<SaleViewModel> GetAllByCountry(int countryId)
         {
-            var sales = new List<SaleDto>();
+            var data = new List<SaleViewModel>();
 
-            foreach (var sale in this.salesRepository.AllAsNoTracking())
+            var sales = this.salesRepository.AllAsNoTracking().Where(x => x.CountryId == countryId).ToList();
+
+            foreach (var sale in sales)
             {
-                sales.Add(this.GetSaleById(sale.Id));
+                data.Add(this.GetSaleInfo(sale.Id));
             }
 
-            return sales;
+            return data;
         }
 
         public IEnumerable<SaleDto> GetAllByCategory(string categoryName)
@@ -237,14 +247,15 @@
             return salesToShow;
         }
 
-        public SaleViewModel GetSaleInfo(int saleId, int modelId, int cityId)
+        public SaleViewModel GetSaleInfo(int saleId)
         {
-            var sale = this.salesRepository.AllAsNoTracking().First(x => x.Id == saleId);
+            var sale = this.db.Sales.ToList().FirstOrDefault(x => x.Id == saleId);
             var car = this.carsRepository.AllAsNoTracking().First(x => x.Id == sale.CarId);
             var carMake = this.makesRepository.AllAsNoTracking().First(x => x.Id == car.MakeId);
-            var carModel = this.modelsRepository.AllAsNoTracking().First(x => x.Id == modelId);
+            var metaData = this.metaDatasRepository.AllAsNoTracking().First(x => x.Id == sale.MetaDataId);
+            var carModel = this.modelsRepository.AllAsNoTracking().First(x => x.Id == metaData.CarModelId);
             var country = this.countriesRepository.AllAsNoTracking().First(x => x.Id == sale.CountryId);
-            var city = this.citiesRepository.AllAsNoTracking().First(x => x.Id == cityId);
+            var city = this.citiesRepository.AllAsNoTracking().First(x => x.Id == metaData.SaleCityId);
             var category = this.categoriesRepository.AllAsNoTracking().First(x => x.Id == car.CategoryId);
             var color = this.colorsRepository.AllAsNoTracking().First(x => x.Id == car.ColorId);
             var fuelType = this.fuelTypesRepository.AllAsNoTracking().First(x => x.Id == car.FuelTypeId);
