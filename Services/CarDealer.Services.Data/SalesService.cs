@@ -112,7 +112,7 @@
             return (SaleDto)sale;
         }
 
-        public IEnumerable<SaleViewModel> GetAllByCountry(int countryId)
+        public IEnumerable<SaleViewModel> GetAllByCountryId(int countryId)
         {
             var data = new List<SaleViewModel>();
 

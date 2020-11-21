@@ -2,10 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using CarDealer.Data.Models;
     using CarDealer.Services.Data;
     using CarDealer.Web.ViewModels.InputModels.Cars;
+    using CarDealer.Web.ViewModels.InputModels.Countries;
     using CarDealer.Web.ViewModels.InputModels.Sales;
     using CarDealer.Web.ViewModels.Sales;
     using Microsoft.AspNetCore.Authorization;
@@ -58,17 +60,27 @@
         public async Task<IActionResult> Create(int countryId)
         {
             var viewModel = new AddSaleInputModel();
-            viewModel.CountryId = countryId;
+
+            if (this.User.Identity.IsAuthenticated)
+            {
+                var user = await this.userManager.GetUserAsync(this.User);
+
+                viewModel.CountryId = (int)user.CountryId;
+            }
+            else
+            {
+                viewModel.CountryId = countryId;
+            }
 
             if (viewModel.CountryId == 0)
             {
-                return this.Redirect("/Countries/SelectCountry");
+                return this.Redirect("/Countries/SelectCountryForCreateSale");
             }
 
             inputModel.CountryId = countryId;
 
             viewModel.CitiesItems = await this.citiesService.GetAllAsKeyValuePairsAsync(viewModel.CountryId);
-            viewModel.Car = await this.GetCarInputModelWithFilledProperties(); 
+            viewModel.Car = await this.GetCarInputModelWithFilledProperties();
 
             return this.View(viewModel);
         }
@@ -78,6 +90,17 @@
         {
             if (!this.ModelState.IsValid)
             {
+                if (this.User.Identity.IsAuthenticated)
+                {
+                    var user = await this.userManager.GetUserAsync(this.User);
+
+                    input.CountryId = (int)user.CountryId;
+                }
+                else
+                {
+                    input.CountryId = inputModel.CountryId;
+                }
+
                 input.CitiesItems = await this.citiesService.GetAllAsKeyValuePairsAsync(input.CountryId);
                 input.Car = await this.GetCarInputModelWithFilledProperties();
 
@@ -93,35 +116,55 @@
             return this.RedirectToAction(nameof(this.SaleInfo), new { saleId });
         }
 
-        //public async Task<IActionResult> GetAllByCountry()
-        //{
-        //    IEnumerable<SaleViewModel> viewModel = new List<SaleViewModel>();
+        public async Task<IActionResult> GetAllByCountryId(int countryId)
+        {
+            IEnumerable<SaleViewModel> viewModel = new List<SaleViewModel>();
 
-        //    if (this.User.Identity.IsAuthenticated)
-        //    {
-        //        var user = await this.userManager.GetUserAsync(this.User);
+            if (this.User.Identity.IsAuthenticated)
+            {
+                var user = await this.userManager.GetUserAsync(this.User);
 
-        //        if (user.CountryId != null)
-        //        {
-        //            viewModel = this.salesService.GetAllByCountry((int)user.CountryId);
+                if (user.CountryId != null)
+                {
+                    viewModel = this.salesService.GetAllByCountryId((int)user.CountryId);
 
-        //            return this.View(viewModel);
-        //        }
-        //    }
+                    if (viewModel.Count() == 0)
+                    {
+                        return this.RedirectToAction(nameof(this.GetSalesForAnotherCountryById));
+                    }
 
-        //    var model = inputModel;
+                    return this.View(viewModel);
+                }
+            }
 
-        //    if (model.CountryId == 0)
-        //    {
-        //        return this.RedirectToAction("/Countries/SelectCountry");
-        //    }
+            if (countryId == 0)
+            {
+                return this.RedirectToAction("SelectCountryForGetAllSales", "Countries");
+            }
 
-        //    int countryId = model.CountryId;
+            viewModel = this.salesService.GetAllByCountryId(countryId);
 
-        //    var viewModel = this.salesService.GetAllByCountry(countryId);
+            if (viewModel.Count() == 0)
+            {
+                return this.RedirectToAction(nameof(this.GetSalesForAnotherCountryById));
+            }
 
-        //    return this.View(viewModel);
-        //}
+            return this.View(viewModel);
+        }
+
+        public IActionResult GetSalesForAnotherCountryById(int countryId = 0)
+        {
+            IEnumerable<SaleViewModel> viewModel = new List<SaleViewModel>();
+
+            if (countryId == 0)
+            {
+                return this.RedirectToAction("SelectAnotherCountryForGetAllSales", "Countries");
+            }
+
+            viewModel = this.salesService.GetAllByCountryId(countryId);
+
+            return this.View(viewModel);
+        }
 
         public IActionResult SaleInfo(int saleId)
         {
@@ -132,7 +175,7 @@
 
         public IActionResult AllSalesInfoByCountry(int countryId)
         {
-            var viewModel = this.salesService.GetAllByCountry(countryId);
+            var viewModel = this.salesService.GetAllByCountryId(countryId);
 
             return this.View(viewModel);
         }

@@ -14,7 +14,7 @@
 
         SaleDto GetSaleById(int id);
 
-        IEnumerable<SaleViewModel> GetAllByCountry(int countryId);
+        IEnumerable<SaleViewModel> GetAllByCountryId(int countryId);
 
         IEnumerable<SaleDto> GetAllByCategory(string category);
 
