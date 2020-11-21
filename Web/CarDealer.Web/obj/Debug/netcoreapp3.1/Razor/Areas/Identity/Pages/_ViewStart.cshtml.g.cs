@@ -12,7 +12,36 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
+#nullable restore
+#line 1 "C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\Areas\Identity\Pages\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Identity;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\Areas\Identity\Pages\_ViewImports.cshtml"
+using CarDealer.Web.Areas.Identity;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\Areas\Identity\Pages\_ViewImports.cshtml"
+using CarDealer.Web.Areas.Identity.Pages;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\Areas\Identity\Pages\_ViewImports.cshtml"
+using CarDealer.Data.Models;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"27614b1dbc7ec860502963b2c30d27790f312063", @"/Areas/Identity/Pages/_ViewStart.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a5176d1c25e19f0729e65125c03f78569eeadcbd", @"/Areas/Identity/Pages/_ViewImports.cshtml")]
     public class Areas_Identity_Pages__ViewStart : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

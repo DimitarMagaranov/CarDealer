@@ -886,9 +886,6 @@ C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\bin\Debug\netcoreapp3.1\Car
 C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\CarDealer.Web.csprojAssemblyReference.cache
 C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\CarDealer.Web.AssemblyInfoInputs.cache
 C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\CarDealer.Web.AssemblyInfo.cs
-C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\CarDealer.Web.csproj.CoreCompileInputs.cache
-C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\CarDealer.Web.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\CarDealer.Web.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\CarDealer.Web.RazorAssemblyInfo.cache
 C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\CarDealer.Web.RazorAssemblyInfo.cs
 C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\CarDealer.Web.TagHelpers.input.cache
@@ -921,3 +918,11 @@ C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\Raz
 C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\Razor\Views\Sales\SelectCountryForCreateSale.cshtml.g.cs
 C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\Razor\Views\Sales\SelectCountryForGetAllSales.cshtml.g.cs
 C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\Razor\Views\Sales\GetAllByCountry.cshtml.g.cs
+C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Register.cshtml.g.cs
+C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\_ViewImports.cshtml.g.cs
+C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
+C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
+C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\CarDealer.Web.csproj.CoreCompileInputs.cache
+C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\CarDealer.Web.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\CarDealer.Web.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Dimitar\Desktop\CarDealer\Web\CarDealer.Web\obj\Debug\netcoreapp3.1\Razor\Views\Countries\SelectCountry.cshtml.g.cs

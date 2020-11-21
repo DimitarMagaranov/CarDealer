@@ -19,9 +19,9 @@ namespace CarDealer.Data.Models
             this.Sales = new HashSet<Sale>();
         }
 
-        public int Age { get; set; }
+        public int? Age { get; set; }
 
-        public int CountryId { get; set; }
+        public int? CountryId { get; set; }
 
         public Country Country { get; set; }
 

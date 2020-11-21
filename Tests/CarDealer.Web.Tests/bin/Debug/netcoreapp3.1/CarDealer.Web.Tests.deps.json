@@ -3166,8 +3166,10 @@
           "CarDealer.Web.Infrastructure": "1.0.0",
           "CarDealer.Web.ViewModels": "1.0.0",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "3.1.9",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.1.9",
           "Microsoft.AspNetCore.Identity.UI": "3.1.9",
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "3.1.9",
+          "Microsoft.EntityFrameworkCore.SqlServer": "3.1.9",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.4",
           "Microsoft.Web.LibraryManager.Build": "2.1.113"
         },

@@ -68,14 +68,14 @@ namespace CarDealer.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("Age")
+                    b.Property<int?>("Age")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CountryId")
+                    b.Property<int?>("CountryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
@@ -576,9 +576,7 @@ namespace CarDealer.Data.Migrations
                 {
                     b.HasOne("CarDealer.Data.Models.SaleModels.Country", "Country")
                         .WithMany("Users")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("CountryId");
                 });
 
             modelBuilder.Entity("CarDealer.Data.Models.Car", b =>
