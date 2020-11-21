@@ -1,0 +1,16 @@
+﻿@model CarDealer.Web.ViewModels.InputModels.Countries.SelectCountryInputModel
+@{
+    this.ViewData["Title"] = "Select country";
+    var countriesItems = this.Model.CountriesItems.Select(x => new SelectListItem(x.Value, x.Key));
+}
+
+<form method="post" class="col-md-6 offset-md-3">
+    <span>Choise another country</span>
+    <div class="form-group">
+        <label asp-for="CountryId"></label>
+        <select asp-for="CountryId" class="form-control" asp-items="countriesItems"></select>
+        <span asp-validation-for="CountryId" class="text-danger"></span>
+    </div>
+    <input type="submit" class="btn btn-primary" />
+</form>
+<input type="submit" class="btn btn-primary" />

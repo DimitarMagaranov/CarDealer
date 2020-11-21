@@ -56,26 +56,14 @@
             this.userManager = userManager;
         }
 
-
+        [Authorize]
         public async Task<IActionResult> Create(int countryId)
         {
             var viewModel = new AddSaleInputModel();
 
-            if (this.User.Identity.IsAuthenticated)
-            {
-                var user = await this.userManager.GetUserAsync(this.User);
+            var user = await this.userManager.GetUserAsync(this.User);
 
-                viewModel.CountryId = (int)user.CountryId;
-            }
-            else
-            {
-                viewModel.CountryId = countryId;
-            }
-
-            if (viewModel.CountryId == 0)
-            {
-                return this.Redirect("/Countries/SelectCountryForCreateSale");
-            }
+            viewModel.CountryId = (int)user.CountryId;
 
             inputModel.CountryId = countryId;
 
@@ -86,32 +74,22 @@
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create(AddSaleInputModel input)
         {
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            input.CountryId = (int)user.CountryId;
+
             if (!this.ModelState.IsValid)
             {
-                if (this.User.Identity.IsAuthenticated)
-                {
-                    var user = await this.userManager.GetUserAsync(this.User);
-
-                    input.CountryId = (int)user.CountryId;
-                }
-                else
-                {
-                    input.CountryId = inputModel.CountryId;
-                }
-
                 input.CitiesItems = await this.citiesService.GetAllAsKeyValuePairsAsync(input.CountryId);
                 input.Car = await this.GetCarInputModelWithFilledProperties();
 
                 return this.View(input);
             }
 
-            input.CountryId = inputModel.CountryId;
-
-            int cityId = input.CityId;
-            int modelId = input.Car.ModelId;
-            int saleId = await this.salesService.CreateSaleAsync(input);
+            int saleId = await this.salesService.CreateSaleAsync(input, user.Id);
 
             return this.RedirectToAction(nameof(this.SaleInfo), new { saleId });
         }

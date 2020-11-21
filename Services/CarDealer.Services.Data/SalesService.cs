@@ -30,6 +30,7 @@
         private readonly IRepository<Gearbox> gearboxesRepository;
         private readonly IRepository<EuroStandart> euroStandartsRepository;
         private readonly IRepository<MetaData> metaDatasRepository;
+        private readonly IDeletableEntityRepository<ApplicationUser> usersRepository;
 
         public SalesService(
             ApplicationDbContext db,
@@ -45,7 +46,8 @@
             IRepository<FuelType> fuelTypesRepository,
             IRepository<Gearbox> gearboxesRepository,
             IRepository<EuroStandart> euroStandartsRepository,
-            IRepository<MetaData> metaDatasRepository)
+            IRepository<MetaData> metaDatasRepository,
+            IDeletableEntityRepository<ApplicationUser> usersRepository)
         {
             this.db = db;
             this.carsService = carsService;
@@ -61,9 +63,10 @@
             this.gearboxesRepository = gearboxesRepository;
             this.euroStandartsRepository = euroStandartsRepository;
             this.metaDatasRepository = metaDatasRepository;
+            this.usersRepository = usersRepository;
         }
 
-        public async Task<int> CreateSaleAsync(AddSaleInputModel input)
+        public async Task<int> CreateSaleAsync(AddSaleInputModel input, string userId)
         {
             var saleToAdd = new Sale
             {
@@ -71,10 +74,10 @@
                 DaysValid = input.DaysValid,
                 Price = input.Price,
                 CountryId = input.CountryId,
-                UserId = input.UserId,
                 Description = input.Description,
                 Car = this.carsService.CreateCar(input.Car),
                 MetaData = new MetaData { SaleCityId = input.CityId, CarModelId = input.Car.ModelId },
+                UserId = userId,
             };
 
             await this.salesRepository.AddAsync(saleToAdd);
