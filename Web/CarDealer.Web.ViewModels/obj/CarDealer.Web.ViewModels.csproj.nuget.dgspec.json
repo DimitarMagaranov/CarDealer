@@ -52,7 +52,7 @@
             },
             "System.ComponentModel.Annotations": {
               "target": "Package",
-              "version": "[4.7.0, )"
+              "version": "[5.0.0, )"
             }
           },
           "imports": [
@@ -120,7 +120,7 @@
           "dependencies": {
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.9, )"
+              "version": "[5.0.0, )"
             },
             "StyleCop.Analyzers": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers",
@@ -267,7 +267,7 @@
           "dependencies": {
             "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",
-              "version": "[3.1.10, )"
+              "version": "[5.0.0, )"
             },
             "StyleCop.Analyzers": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers",

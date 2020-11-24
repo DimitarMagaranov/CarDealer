@@ -1,5 +1,13 @@
 ﻿namespace CarDealer.Web.Areas.Identity.Pages.Account
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Text;
+    using System.Text.Encodings.Web;
+    using System.Threading.Tasks;
+
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models;
     using CarDealer.Data.Models.SaleModels;
@@ -11,13 +19,6 @@
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.AspNetCore.WebUtilities;
     using Microsoft.Extensions.Logging;
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Linq;
-    using System.Text;
-    using System.Text.Encodings.Web;
-    using System.Threading.Tasks;
 
     [AllowAnonymous]
     public class RegisterModel : PageModel
@@ -35,10 +36,10 @@
             IEmailSender emailSender,
             IRepository<Country> countriesRepository)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _logger = logger;
-            _emailSender = emailSender;
+            this._userManager = userManager;
+            this._signInManager = signInManager;
+            this._logger = logger;
+            this._emailSender = emailSender;
             this.countriesRepository = countriesRepository;
         }
 

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "6ehj4YdTgWos5FdsVbZYuMCGZyqk/eo23Zy8xpJK4N7qlGeuGYCOghAo8bAgsmHyMEdI3Qo2oyyAQFBA7/LqGw==",
+  "dgSpecHash": "F8Rguu5t4yKs7yVIx6BnZ2MNy1QqRb90Bns63LmOY8jTQIcLIZS3050mxj+K3qh2vyk99WivJWG18DLFxCWCYg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\Services\\CarDealer.Services.Messaging\\CarDealer.Services.Messaging.csproj",
   "expectedPackageFiles": [
@@ -8,7 +8,7 @@
     "C:\\Users\\Dimitar\\.nuget\\packages\\microsoft.netcore.platforms\\1.0.1\\microsoft.netcore.platforms.1.0.1.nupkg.sha512",
     "C:\\Users\\Dimitar\\.nuget\\packages\\microsoft.netcore.targets\\1.0.1\\microsoft.netcore.targets.1.0.1.nupkg.sha512",
     "C:\\Users\\Dimitar\\.nuget\\packages\\newtonsoft.json\\9.0.1\\newtonsoft.json.9.0.1.nupkg.sha512",
-    "C:\\Users\\Dimitar\\.nuget\\packages\\sendgrid\\9.21.0\\sendgrid.9.21.0.nupkg.sha512",
+    "C:\\Users\\Dimitar\\.nuget\\packages\\sendgrid\\9.21.2\\sendgrid.9.21.2.nupkg.sha512",
     "C:\\Users\\Dimitar\\.nuget\\packages\\starkbank-ecdsa\\1.2.0\\starkbank-ecdsa.1.2.0.nupkg.sha512",
     "C:\\Users\\Dimitar\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.205\\stylecop.analyzers.1.2.0-beta.205.nupkg.sha512",
     "C:\\Users\\Dimitar\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.205\\stylecop.analyzers.unstable.1.2.0.205.nupkg.sha512",
