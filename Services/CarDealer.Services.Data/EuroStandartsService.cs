@@ -1,11 +1,11 @@
 ﻿namespace CarDealer.Services.Data
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models.CarModels;
     using Microsoft.EntityFrameworkCore;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     public class EuroStandartsService : IEuroStandartsService
     {

@@ -1,11 +1,10 @@
 ﻿namespace CarDealer.Web.Controllers
 {
-    using System.Diagnostics;
-
     using CarDealer.Services.Data;
     using CarDealer.Web.ViewModels;
     using CarDealer.Web.ViewModels.Home;
     using Microsoft.AspNetCore.Mvc;
+    using System.Diagnostics;
 
     public class HomeController : BaseController
     {

@@ -328,3 +328,5 @@ C:\Users\Dimitar\Desktop\CarDealer\Tests\CarDealer.Services.Data.Tests\obj\Debug
 C:\Users\Dimitar\Desktop\CarDealer\Tests\CarDealer.Services.Data.Tests\obj\Debug\netcoreapp3.1\CarDealer.Services.Data.Tests.dll
 C:\Users\Dimitar\Desktop\CarDealer\Tests\CarDealer.Services.Data.Tests\obj\Debug\netcoreapp3.1\CarDealer.Services.Data.Tests.pdb
 C:\Users\Dimitar\Desktop\CarDealer\Tests\CarDealer.Services.Data.Tests\obj\Debug\netcoreapp3.1\CarDealer.Services.Data.Tests.genruntimeconfig.cache
+C:\Users\Dimitar\Desktop\CarDealer\Tests\CarDealer.Services.Data.Tests\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\Dimitar\Desktop\CarDealer\Tests\CarDealer.Services.Data.Tests\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll

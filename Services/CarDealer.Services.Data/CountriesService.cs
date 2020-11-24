@@ -1,12 +1,11 @@
 ﻿namespace CarDealer.Services.Data
 {
+    using CarDealer.Data.Common.Repositories;
+    using CarDealer.Data.Models.SaleModels;
+    using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using CarDealer.Data.Common.Repositories;
-    using CarDealer.Data.Models.SaleModels;
-    using CarDealer.Web.ViewModels.InputModels.Sales;
-    using Microsoft.EntityFrameworkCore;
 
     public class CountriesService : ICountriesService
     {

@@ -1,9 +1,8 @@
 ﻿namespace CarDealer.Web.ViewModels.Sales
 {
+    using CarDealer.Web.ViewModels.Cars;
     using System;
     using System.Globalization;
-
-    using CarDealer.Web.ViewModels.Cars;
 
     public class SaleViewModel
     {
@@ -26,6 +25,8 @@
         public string UserName { get; set; }
 
         public string UserPhoneNumber { get; set; }
+
+        public string ImageUrl { get; set; }
 
         public string Description { get; set; }
 

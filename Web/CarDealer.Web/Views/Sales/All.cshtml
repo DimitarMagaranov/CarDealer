@@ -1,0 +1,18 @@
+﻿@model CarDealer.Web.ViewModels.Sales.SalesListViewModel
+
+<h1>All sales in your country</h1>
+<hr />
+<div class="row">
+    @foreach(var sale in this.Model.Sales)
+    {
+        <div class="media col-md-4">
+            <img src="@sale.ImageUrl" width="100" class="mr-3 img-responsive">
+            <div class="media-body">
+                <h5 class="mt-0">@sale.Name</h5>
+                @sale.Car.CategoryName
+            </div>
+        </div>
+    }
+</div>
+<hr />
+<partial name="_PagingPartial" model="@Model" />

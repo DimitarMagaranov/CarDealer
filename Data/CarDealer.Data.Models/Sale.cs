@@ -1,12 +1,11 @@
 ﻿namespace CarDealer.Data.Models
 {
+    using CarDealer.Data.Common.Models;
+    using CarDealer.Data.Models.SaleModels;
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using CarDealer.Data.Common.Models;
-    using CarDealer.Data.Models.SaleModels;
 
     public class Sale : BaseDeletableModel<int>
     {

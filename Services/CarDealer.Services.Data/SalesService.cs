@@ -1,9 +1,5 @@
 ﻿namespace CarDealer.Services.Data
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-
     using CarDealer.Data;
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models;
@@ -13,9 +9,15 @@
     using CarDealer.Web.ViewModels.Cars;
     using CarDealer.Web.ViewModels.InputModels.Sales;
     using CarDealer.Web.ViewModels.Sales;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     public class SalesService : ISalesService
     {
+        private readonly string[] allowedExtensions = new[] { "jpg", "png", "gif" };
         private readonly ApplicationDbContext db;
         private readonly ICarsService carsService;
         private readonly IDeletableEntityRepository<Sale> salesRepository;
@@ -66,7 +68,7 @@
             this.usersRepository = usersRepository;
         }
 
-        public async Task<int> CreateSaleAsync(AddSaleInputModel input, string userId)
+        public async Task<int> CreateSaleAsync(AddSaleInputModel input, string userId, string imagePath)
         {
             var saleToAdd = new Sale
             {
@@ -80,8 +82,28 @@
                 UserId = userId,
             };
 
-            await this.salesRepository.AddAsync(saleToAdd);
+            Directory.CreateDirectory($"{imagePath}/sales/");
+            foreach (var image in input.Images)
+            {
+                var extension = Path.GetExtension(image.FileName).TrimStart('.');
+                if (!this.allowedExtensions.Any(x => extension.EndsWith(x)))
+                {
+                    throw new Exception($"Invalid image extension {extension}");
+                }
 
+                var dbImage = new Image
+                {
+                    AddedByUserId = userId,
+                    Extension = extension,
+                };
+                saleToAdd.Images.Add(dbImage);
+
+                var physicalPath = $"{imagePath}/sales/{dbImage.Id}.{extension}";
+                using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
+                await image.CopyToAsync(fileStream);
+            }
+
+            await this.salesRepository.AddAsync(saleToAdd);
             await this.salesRepository.SaveChangesAsync();
 
             return saleToAdd.Id;
@@ -115,11 +137,21 @@
             return (SaleDto)sale;
         }
 
-        public IEnumerable<SaleViewModel> GetAllByCountryId(int countryId)
+        public IEnumerable<SaleViewModel> GetAllByCountryId(int page, int itemsPerPage, int countryId)
         {
             var data = new List<SaleViewModel>();
 
-            var sales = this.salesRepository.AllAsNoTracking().Where(x => x.CountryId == countryId).ToList();
+            itemsPerPage = 2;
+
+            var sales = this.salesRepository.All()
+                .Where(x => x.CountryId == countryId)
+                .ToList();
+
+            sales = sales
+                .OrderByDescending(x => x.Id)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .ToList();
 
             foreach (var sale in sales)
             {
@@ -275,6 +307,7 @@
                 CreatedOn = sale.CreatedOn,
                 Description = sale.Description,
                 Price = sale.Price,
+                //ImageUrl = "/images/sales" + sale.Images.FirstOrDefault().Id + "." + sale.Images.FirstOrDefault().Extension,
                 Car = new CarViewModel
                 {
                     Make = carMake.Name,
@@ -283,7 +316,7 @@
                     EngineSize = car.EngineSize,
                     EuroStandart = euroStandart.Name,
                     ManufactureDate = car.ManufactureDate,
-                    Category = category.Name,
+                    CategoryName = category.Name,
                     Color = color.Name,
                     FuelType = fuelType.Name,
                     Gearbox = gearbox.Name,
@@ -293,6 +326,11 @@
             };
 
             return saleInfo;
+        }
+
+        public int GetSalesCountByCountryId(int countryId)
+        {
+            return this.salesRepository.All().Where(x => x.CountryId == countryId).Count();
         }
     }
 }

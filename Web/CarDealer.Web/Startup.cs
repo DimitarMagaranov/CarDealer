@@ -1,19 +1,15 @@
 ﻿namespace CarDealer.Web
 {
-    using System.Reflection;
-
     using CarDealer.Data;
     using CarDealer.Data.Common;
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models;
     using CarDealer.Data.Repositories;
     using CarDealer.Data.Seeding;
-    using CarDealer.Services;
     using CarDealer.Services.Data;
     using CarDealer.Services.Mapping;
     using CarDealer.Services.Messaging;
     using CarDealer.Web.ViewModels;
-
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -22,6 +18,7 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using System.Reflection;
 
     public class Startup
     {

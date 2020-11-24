@@ -1,11 +1,10 @@
 ﻿namespace CarDealer.Services.Data
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
     using CarDealer.Data.Models;
     using CarDealer.Services.Data.Models;
-    using CarDealer.Web.ViewModels.Cars;
     using CarDealer.Web.ViewModels.InputModels.Cars;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public interface ICarsService
     {

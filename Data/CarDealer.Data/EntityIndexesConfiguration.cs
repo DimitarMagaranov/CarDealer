@@ -1,10 +1,8 @@
 ﻿namespace CarDealer.Data
 {
-    using System.Linq;
-
     using CarDealer.Data.Common.Models;
-
     using Microsoft.EntityFrameworkCore;
+    using System.Linq;
 
     internal static class EntityIndexesConfiguration
     {

@@ -11,7 +11,7 @@
 
         public string Model { get; set; }
 
-        public string Category { get; set; }
+        public string CategoryName { get; set; }
 
         public string FuelType { get; set; }
 

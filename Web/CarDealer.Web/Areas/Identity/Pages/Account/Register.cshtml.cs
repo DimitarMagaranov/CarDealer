@@ -1,13 +1,5 @@
 ﻿namespace CarDealer.Web.Areas.Identity.Pages.Account
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Linq;
-    using System.Text;
-    using System.Text.Encodings.Web;
-    using System.Threading.Tasks;
-
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models;
     using CarDealer.Data.Models.SaleModels;
@@ -19,6 +11,13 @@
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.AspNetCore.WebUtilities;
     using Microsoft.Extensions.Logging;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Text;
+    using System.Text.Encodings.Web;
+    using System.Threading.Tasks;
 
     [AllowAnonymous]
     public class RegisterModel : PageModel
@@ -50,7 +49,7 @@
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
-        public IEnumerable<KeyValuePair<string, string>> CountriesItems => this.GetAllAsKeyValuePairs();
+        public IEnumerable<KeyValuePair<string, string>> CountriesItems => this.GetAllCountriesAsKeyValuePairs();
 
         public class InputModel
         {
@@ -95,6 +94,7 @@
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = Input.UserName, Email = Input.Email, Age = Input.Age, CountryId = Input.CountryId };
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
@@ -131,7 +131,7 @@
             return Page();
         }
 
-        public IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs()
+        public IEnumerable<KeyValuePair<string, string>> GetAllCountriesAsKeyValuePairs()
         {
             var countries = this.countriesRepository.AllAsNoTracking()
                 .Select(x => new

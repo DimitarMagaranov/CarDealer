@@ -1,11 +1,9 @@
 ﻿// ReSharper disable VirtualMemberCallInConstructor
 namespace CarDealer.Data.Models
 {
-    using System;
-
     using CarDealer.Data.Common.Models;
-
     using Microsoft.AspNetCore.Identity;
+    using System;
 
     public class ApplicationRole : IdentityRole, IAuditInfo, IDeletableEntity
     {

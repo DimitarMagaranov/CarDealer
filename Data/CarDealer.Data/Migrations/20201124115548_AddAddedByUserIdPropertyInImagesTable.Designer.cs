@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarDealer.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201117115156_AddingNotMappedProperties")]
-    partial class AddingNotMappedProperties
+    [Migration("20201124115548_AddAddedByUserIdPropertyInImagesTable")]
+    partial class AddAddedByUserIdPropertyInImagesTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -70,9 +70,15 @@ namespace CarDealer.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -119,6 +125,9 @@ namespace CarDealer.Data.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("TempCountryId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -127,6 +136,8 @@ namespace CarDealer.Data.Migrations
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
 
                     b.HasIndex("IsDeleted");
 
@@ -322,6 +333,24 @@ namespace CarDealer.Data.Migrations
                     b.ToTable("Models");
                 });
 
+            modelBuilder.Entity("CarDealer.Data.Models.MetaData", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CarModelId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SaleCityId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MetaDatas");
+                });
+
             modelBuilder.Entity("CarDealer.Data.Models.Sale", b =>
                 {
                     b.Property<int>("Id")
@@ -350,6 +379,9 @@ namespace CarDealer.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<int>("MetaDataId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
@@ -366,6 +398,8 @@ namespace CarDealer.Data.Migrations
                     b.HasIndex("CountryId");
 
                     b.HasIndex("IsDeleted");
+
+                    b.HasIndex("MetaDataId");
 
                     b.HasIndex("UserId");
 
@@ -412,6 +446,9 @@ namespace CarDealer.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("AddedByUserId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
@@ -419,6 +456,9 @@ namespace CarDealer.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Extension")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
@@ -543,6 +583,15 @@ namespace CarDealer.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("CarDealer.Data.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("CarDealer.Data.Models.SaleModels.Country", "Country")
+                        .WithMany("Users")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("CarDealer.Data.Models.Car", b =>
                 {
                     b.HasOne("CarDealer.Data.Models.CarModels.Category", "Category")
@@ -602,6 +651,12 @@ namespace CarDealer.Data.Migrations
                     b.HasOne("CarDealer.Data.Models.SaleModels.Country", "Country")
                         .WithMany("Sales")
                         .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("CarDealer.Data.Models.MetaData", "MetaData")
+                        .WithMany()
+                        .HasForeignKey("MetaDataId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 

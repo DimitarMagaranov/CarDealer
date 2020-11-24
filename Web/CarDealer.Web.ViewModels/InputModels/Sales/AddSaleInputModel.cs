@@ -1,10 +1,10 @@
 ﻿namespace CarDealer.Web.ViewModels.InputModels.Sales
 {
+    using CarDealer.Web.ViewModels.InputModels.Cars;
+    using Microsoft.AspNetCore.Http;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using CarDealer.Data.Models.SaleModels;
-    using CarDealer.Web.ViewModels.InputModels.Cars;
 
     public class AddSaleInputModel
     {
@@ -23,6 +23,8 @@
         public int CityId { get; set; }
 
         public string UserId { get; set; }
+
+        public IEnumerable<IFormFile> Images { get; set; }
 
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }

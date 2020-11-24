@@ -1,23 +1,21 @@
 ﻿namespace CarDealer.Web.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using CarDealer.Data.Models;
     using CarDealer.Services.Data;
     using CarDealer.Web.ViewModels.InputModels.Cars;
-    using CarDealer.Web.ViewModels.InputModels.Countries;
     using CarDealer.Web.ViewModels.InputModels.Sales;
     using CarDealer.Web.ViewModels.Sales;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using System;
+    using System.Threading.Tasks;
 
+    [Authorize]
     public class SalesController : BaseController
     {
-        private static AddSaleInputModel inputModel = new AddSaleInputModel();
-
+        private readonly IWebHostEnvironment webHostEnvironment;
         private readonly ISalesService salesService;
         private readonly ICategoriesService categoriesService;
         private readonly IMakesService makesService;
@@ -31,6 +29,7 @@
         private readonly UserManager<ApplicationUser> userManager;
 
         public SalesController(
+            IWebHostEnvironment webHostEnvironment,
             ISalesService salesService,
             ICategoriesService categoriesService,
             IMakesService makesService,
@@ -43,6 +42,7 @@
             ICitiesService citiesService,
             UserManager<ApplicationUser> userManager)
         {
+            this.webHostEnvironment = webHostEnvironment;
             this.salesService = salesService;
             this.categoriesService = categoriesService;
             this.makesService = makesService;
@@ -56,16 +56,16 @@
             this.userManager = userManager;
         }
 
-        [Authorize]
         public async Task<IActionResult> Create(int countryId)
         {
+            if (countryId == 0)
+            {
+                return this.RedirectToAction("SelectCountryForCreateSale", "Countries");
+            }
+
             var viewModel = new AddSaleInputModel();
 
-            var user = await this.userManager.GetUserAsync(this.User);
-
-            viewModel.CountryId = (int)user.CountryId;
-
-            inputModel.CountryId = countryId;
+            viewModel.CountryId = countryId;
 
             viewModel.CitiesItems = await this.citiesService.GetAllAsKeyValuePairsAsync(viewModel.CountryId);
             viewModel.Car = await this.GetCarInputModelWithFilledProperties();
@@ -74,12 +74,14 @@
         }
 
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> Create(AddSaleInputModel input)
         {
             var user = await this.userManager.GetUserAsync(this.User);
 
-            input.CountryId = (int)user.CountryId;
+            //Other way to take the userId:
+            //var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            var userId = user.Id;
 
             if (!this.ModelState.IsValid)
             {
@@ -89,71 +91,51 @@
                 return this.View(input);
             }
 
-            int saleId = await this.salesService.CreateSaleAsync(input, user.Id);
+            int saleId = 0;
+
+            try
+            {
+                saleId = await this.salesService.CreateSaleAsync(input, userId, $"{this.webHostEnvironment.ContentRootPath}/images");
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+
+                input.CitiesItems = await this.citiesService.GetAllAsKeyValuePairsAsync(input.CountryId);
+                input.Car = await this.GetCarInputModelWithFilledProperties();
+
+                return this.View(input);
+            }
 
             return this.RedirectToAction(nameof(this.SaleInfo), new { saleId });
         }
 
-        public async Task<IActionResult> GetAllByCountryId(int countryId)
+        public async Task<IActionResult> All(int id)
         {
-            IEnumerable<SaleViewModel> viewModel = new List<SaleViewModel>();
+            var user = await this.userManager.GetUserAsync(this.User);
 
-            if (this.User.Identity.IsAuthenticated)
+            const int ItemsPerPage = 2;
+
+            if (id == 0)
             {
-                var user = await this.userManager.GetUserAsync(this.User);
-
-                if (user.CountryId != null)
-                {
-                    viewModel = this.salesService.GetAllByCountryId((int)user.CountryId);
-
-                    if (viewModel.Count() == 0)
-                    {
-                        return this.RedirectToAction(nameof(this.GetSalesForAnotherCountryById));
-                    }
-
-                    return this.View(viewModel);
-                }
+                id++;
             }
 
-            if (countryId == 0)
-            {
-                return this.RedirectToAction("SelectCountryForGetAllSales", "Countries");
-            }
+            var salesListViewModel = new SalesListViewModel();
 
-            viewModel = this.salesService.GetAllByCountryId(countryId);
+            salesListViewModel.PageNumber = id;
 
-            if (viewModel.Count() == 0)
-            {
-                return this.RedirectToAction(nameof(this.GetSalesForAnotherCountryById));
-            }
+            salesListViewModel.ItemsPerPage = ItemsPerPage;
 
-            return this.View(viewModel);
-        }
+            salesListViewModel.Sales = this.salesService.GetAllByCountryId(id, ItemsPerPage, user.CountryId);
+            salesListViewModel.SalesCount = this.salesService.GetSalesCountByCountryId(user.CountryId);
 
-        public IActionResult GetSalesForAnotherCountryById(int countryId = 0)
-        {
-            IEnumerable<SaleViewModel> viewModel = new List<SaleViewModel>();
-
-            if (countryId == 0)
-            {
-                return this.RedirectToAction("SelectAnotherCountryForGetAllSales", "Countries");
-            }
-
-            viewModel = this.salesService.GetAllByCountryId(countryId);
-
-            return this.View(viewModel);
+            return this.View(salesListViewModel);
         }
 
         public IActionResult SaleInfo(int saleId)
         {
             var viewModel = this.salesService.GetSaleInfo(saleId);
-
-            return this.View(viewModel);
-        }
-
-        public IActionResult AllSalesInfoByCountry(int countryId)
-        {
-            var viewModel = this.salesService.GetAllByCountryId(countryId);
 
             return this.View(viewModel);
         }

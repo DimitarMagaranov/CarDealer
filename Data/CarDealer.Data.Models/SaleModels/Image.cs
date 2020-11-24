@@ -10,9 +10,13 @@ namespace CarDealer.Data.Models.SaleModels
             this.Id = Guid.NewGuid().ToString();
         }
 
+        public string AddedByUserId { get; set; }
+
         public int SaleId { get; set; }
 
         public virtual Sale Sale { get; set; }
+
+        public string ImageUrl { get; set; }
 
         public string Extension { get; set; }
 

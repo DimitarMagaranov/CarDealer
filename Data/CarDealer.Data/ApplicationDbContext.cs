@@ -1,17 +1,16 @@
 ﻿namespace CarDealer.Data
 {
-    using System;
-    using System.Linq;
-    using System.Reflection;
-    using System.Threading;
-    using System.Threading.Tasks;
-
     using CarDealer.Data.Common.Models;
     using CarDealer.Data.Models;
     using CarDealer.Data.Models.CarModels;
     using CarDealer.Data.Models.SaleModels;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using System;
+    using System.Linq;
+    using System.Reflection;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {

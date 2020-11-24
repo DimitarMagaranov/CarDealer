@@ -1,11 +1,10 @@
 ﻿namespace CarDealer.Services.Data
 {
-    using System.Linq;
-
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models;
     using CarDealer.Data.Models.CarModels;
     using CarDealer.Services.Data.Models;
+    using System.Linq;
 
     public class GetCountsService : IGetCountsService
     {
