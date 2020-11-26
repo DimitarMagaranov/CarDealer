@@ -18,7 +18,7 @@
                 return;
             }
 
-            var json = File.ReadAllText(@"C:\Users\Dimitar\Desktop\CarDealer\Data\CarDealer.Data\Seeding\JsonFiles\CarColorsJsonImporterFile.json");
+            var json = File.ReadAllText(@"C:\Users\Dimitar\Desktop\CarDealer\src\Data\CarDealer.Data\Seeding\JsonFiles\CarColorsJsonImporterFile.json");
 
             var properties = JsonSerializer.Deserialize<IEnumerable<ColorDto>>(json);
 

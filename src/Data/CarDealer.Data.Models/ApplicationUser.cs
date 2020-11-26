@@ -16,6 +16,7 @@ namespace CarDealer.Data.Models
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
             this.Sales = new HashSet<Sale>();
+            this.Votes = new HashSet<Vote>();
         }
 
         public int Age { get; set; }
@@ -43,5 +44,7 @@ namespace CarDealer.Data.Models
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
 
         public virtual ICollection<Sale> Sales { get; set; }
+
+        public ICollection<Vote> Votes { get; set; }
     }
 }

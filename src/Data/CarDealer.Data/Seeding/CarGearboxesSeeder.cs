@@ -18,7 +18,7 @@
                 return;
             }
 
-            var json = File.ReadAllText(@"C:\Users\Dimitar\Desktop\CarDealer\Data\CarDealer.Data\Seeding\JsonFiles\CarGearboxJsonImporterFile.json");
+            var json = File.ReadAllText(@"C:\Users\Dimitar\Desktop\CarDealer\src\Data\CarDealer.Data\Seeding\JsonFiles\CarGearboxJsonImporterFile.json");
 
             var properties = JsonSerializer.Deserialize<IEnumerable<GearboxDto>>(json);
 

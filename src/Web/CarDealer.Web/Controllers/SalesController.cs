@@ -91,11 +91,11 @@
                 return this.View(input);
             }
 
-            int saleId = 0;
+            int id = 0;
 
             try
             {
-                saleId = await this.salesService.CreateSaleAsync(input, userId, $"{this.webHostEnvironment.WebRootPath}/images");
+                id = await this.salesService.CreateSaleAsync(input, userId, $"{this.webHostEnvironment.WebRootPath}/images");
             }
             catch (Exception ex)
             {
@@ -105,7 +105,7 @@
                 return this.View(input);
             }
 
-            return this.RedirectToAction(nameof(this.SaleInfo), new { saleId });
+            return this.RedirectToAction(nameof(this.SaleInfo), new { id });
         }
 
         public async Task<IActionResult> All(int id)
@@ -131,11 +131,16 @@
             return this.View(salesListViewModel);
         }
 
-        public IActionResult SaleInfo(int saleId)
+        public IActionResult SaleInfo(int id)
         {
-            var viewModel = this.salesService.GetSaleInfo(saleId);
+            var viewModel = this.salesService.GetSaleInfo(id);
 
             return this.View(viewModel);
+        }
+
+        public IActionResult SaleInfoById()
+        {
+            return this.View();
         }
 
         [Authorize(Roles = "Administrator")]

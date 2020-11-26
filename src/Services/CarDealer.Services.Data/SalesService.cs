@@ -15,6 +15,7 @@
     using CarDealer.Web.ViewModels.Cars;
     using CarDealer.Web.ViewModels.InputModels.Sales;
     using CarDealer.Web.ViewModels.Sales;
+    using Microsoft.AspNetCore.Identity;
 
     public class SalesService : ISalesService
     {
@@ -34,6 +35,7 @@
         private readonly IRepository<EuroStandart> euroStandartsRepository;
         private readonly IRepository<MetaData> metaDatasRepository;
         private readonly IDeletableEntityRepository<Image> imagesRepository;
+        private readonly IDeletableEntityRepository<ApplicationUser> usersRepository;
 
         public SalesService(
             ApplicationDbContext db,
@@ -50,7 +52,8 @@
             IRepository<Gearbox> gearboxesRepository,
             IRepository<EuroStandart> euroStandartsRepository,
             IRepository<MetaData> metaDatasRepository,
-            IDeletableEntityRepository<Image> imagesRepository)
+            IDeletableEntityRepository<Image> imagesRepository,
+            IDeletableEntityRepository<ApplicationUser> usersRepository)
         {
             this.db = db;
             this.carsService = carsService;
@@ -67,6 +70,7 @@
             this.euroStandartsRepository = euroStandartsRepository;
             this.metaDatasRepository = metaDatasRepository;
             this.imagesRepository = imagesRepository;
+            this.usersRepository = usersRepository;
         }
 
         public async Task<int> CreateSaleAsync(AddSaleInputModel input, string userId, string imagePath)
@@ -147,6 +151,30 @@
 
             var sales = this.salesRepository.All()
                 .Where(x => x.CountryId == countryId)
+                .ToList();
+
+            sales = sales
+                .OrderByDescending(x => x.Id)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .ToList();
+
+            foreach (var sale in sales)
+            {
+                data.Add(this.GetSaleInfo(sale.Id));
+            }
+
+            return data;
+        }
+
+        public IEnumerable<SaleViewModel> GetAllByUserId(int page, int itemsPerPage, string userId)
+        {
+            var data = new List<SaleViewModel>();
+
+            itemsPerPage = 2;
+
+            var sales = this.salesRepository.All()
+                .Where(x => x.UserId == userId)
                 .ToList();
 
             sales = sales
@@ -288,6 +316,7 @@
         public SaleViewModel GetSaleInfo(int saleId)
         {
             var sale = this.salesRepository.AllAsNoTracking().FirstOrDefault(x => x.Id == saleId);
+            var user = this.usersRepository.AllAsNoTracking().First(x => x.Id == sale.UserId);
             var car = this.carsRepository.AllAsNoTracking().First(x => x.Id == sale.CarId);
             var carMake = this.makesRepository.AllAsNoTracking().First(x => x.Id == car.MakeId);
             var metaData = this.metaDatasRepository.AllAsNoTracking().First(x => x.Id == sale.MetaDataId);
@@ -311,6 +340,9 @@
                 Description = sale.Description,
                 Price = sale.Price,
                 ImageUrl = "/images/sales/" + images.FirstOrDefault().Id + "." + images.FirstOrDefault().Extension,
+                UserName = user.UserName,
+                UserPhoneNumber = user.PhoneNumber,
+                UserEmailAddress = user.Email,
                 Car = new CarViewModel
                 {
                     Make = carMake.Name,
@@ -334,6 +366,11 @@
         public int GetSalesCountByCountryId(int countryId)
         {
             return this.salesRepository.All().Where(x => x.CountryId == countryId).Count();
+        }
+
+        public int GetSalesCountByUserId(string userId)
+        {
+            return this.salesRepository.All().Where(x => x.UserId == userId).Count();
         }
     }
 }

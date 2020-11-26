@@ -1,81 +1,197 @@
 ﻿@model CarDealer.Web.ViewModels.Sales.SaleViewModel
-@{
-    this.ViewData["Title"] = "Sale info";
- }
 
-<div class="media">
-    <img src="@Model.ImageUrl" width="400" class="mr-3 img-responsive">
-</div>
+<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-xs-12">
+                <div>
+                    <img src="@Model.ImageUrl" width="520" height="360" alt="" class="img-responsive wc-image">
+                </div>
+            </div>
+            <hr />
+            <div class="col-md-6 col-xs-12">
+                <form action="#" method="post" class="form">
+                    <h2>@Model.Name</h2>
 
-<div class="text-md-left col-md-6">
-    <h1>@this.ViewData["Title"]</h1>
-    <strong style="font-size:20px; color:#000000;">@Model.Name</strong>
+                    <p class="lead"> <strong class="text-primary">@Model.Price €</strong></p>
 
-    <p>Manufacture date:    @Model.Car.ManufactureDateAsString</p>
-    <p>Fuel type:           @Model.Car.FuelType</p>
-    <p>Engine size:         @Model.Car.EngineSize</p>
-    <p>Euro standart:       @Model.Car.EuroStandart</p>
-    <p>Gearbox:             @Model.Car.Gearbox</p>
-    <p>Category:            @Model.Car.CategoryName</p>
-    <p>Miliage:             @Model.Car.Mileage km</p>
-    <p>Color:               @Model.Car.Color</p>
-    <p>Country:             @Model.CountryName</p>
-    <p>City:                @Model.CityName</p>
-    <p>Price:               @Model.Price</p>
-    <p>State:               @Model.Car.State</p>
-    <p>Created On:          @Model.CreatedOnAsString</p>
-    <p>Doors:               @Model.Car.Doors</p>
-    <p>Description:         @Model.Description</p>
-</div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6">
+                            <p>
+                                <span>Type</span>
 
-<h1>@this.ViewData["Title"]</h1>
-<div style="width:600px; display:inline-block; float:left;">
-    <strong style="font-size:20px; color:#000000;">@Model.Name</strong>
-    <br>
-    <div class="clearfix"></div>
-    <ul class="d-md-table-cell">
-        <li>Manufacture date:</li>
-        <li>@Model.Car.ManufactureDateAsString</li>
-        <li>Fuel type:</li>
-        <li>@Model.Car.FuelType</li>
-        <li>Engine size:</li>
-        <li>@Model.Car.EngineSize</li>
-        <li>Euro standart:</li>
-        <li>@Model.Car.EuroStandart</li>
-        <li>Gearbox:</li>
-        <li>@Model.Car.Gearbox</li>
-        <li>Category:</li>
-        <li>@Model.Car.CategoryName</li>
-        <li>Miliage:</li>
-        <li>@Model.Car.Mileage km</li>
-        <li>Color:</li>
-        <li>@Model.Car.Color</li>
-    </ul>
-</div>
+                                <br>
 
-<table class="table table-secondary">
-    <thead>
-        <tr>
-            <th>Manufacture date:</th>
-            <th>Fuel type:</th>
-            <th>Engine size:</th>
-            <th>Euro standart:</th>
-            <th>Gearbox:</th>
-            <th>Category:</th>
-            <th>Miliage:</th>
-            <th>Color:</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>@Model.Car.ManufactureDateAsString</td>
-            <td>@Model.Car.FuelType</td>
-            <td>@Model.Car.EngineSize</td>
-            <td>@Model.Car.EuroStandart</td>
-            <td>@Model.Car.Gearbox</td>
-            <td>@Model.Car.CategoryName</td>
-            <td>@Model.Car.Mileage</td>
-            <td>@Model.Car.Color</td>
-        </tr>
-    </tbody>
-</table>
+                                <strong>@Model.Car.State.ToString() vehicle</strong>
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <p>
+                                <span>Make</span>
+
+                                <br>
+
+                                <strong>@Model.Car.Make</strong>
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <p>
+                                <span> Model</span>
+
+                                <br>
+
+                                <strong>@Model.Car.Model</strong>
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <p>
+                                <span>First registration</span>
+
+                                <br>
+
+                                <strong>@Model.Car.ManufactureDate.Month/@Model.Car.ManufactureDate.Year</strong>
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <p>
+                                <span>Mileage</span>
+
+                                <br>
+
+                                <strong>@Model.Car.Mileage km</strong>
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <p>
+                                <span>Fuel</span>
+
+                                <br>
+
+                                <strong>@Model.Car.FuelType</strong>
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <p>
+                                <span>Engine size</span>
+
+                                <br>
+
+                                <strong>@Model.Car.EngineSize cc</strong>
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <p>
+                                <span>Gearbox</span>
+
+                                <br>
+
+                                <strong>@Model.Car.Gearbox</strong>
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <p>
+                                <span>Doors</span>
+
+                                <br>
+
+                                <strong>@Model.Car.Doors</strong>
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <p>
+                                <span>Color</span>
+
+                                <br>
+
+                                <strong>@Model.Car.Color</strong>
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr />
+        <div class="making-elements-wrap">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="item-description">
+                        <h4>Description</h4>
+
+                        <br>
+
+                        <strong>@Model.Description</strong>
+                    </p>
+                </div>
+                <hr />
+                <div class="col-lg-4 col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4>Contact Details</h4>
+                        </div>
+
+                        <div class="panel-body">
+                            <p>
+                                <span>Name</span>
+
+                                <br>
+
+                                <strong>@Model.UserName</strong>
+                            </p>
+
+                            <p>
+                                <span>Mobile phone</span>
+
+                                <br>
+
+                                <strong>@Model.UserPhoneNumber</strong>
+                            </p>
+
+                            <p>
+                                <span>Email</span>
+
+                                <br>
+
+                                <strong>@Model.UserEmailAddress</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+</body>
+
+@section Scripts {
+    <script>
+        $("li[data-vote]").each(function (el) {
+            $(this).click(function () {
+                var value = $(this).attr("data-vote");
+                var saleId = @Model.Id;
+                var antiForgeryToken = $('#antiForgeryForm input[name=__RequestVerificationToken]').val();
+                var data = { saleId: saleId, value: value };
+                $.ajax({
+                    type: "POST",
+                    url: "/api/Votes",
+                    data: JSON.stringify(data),
+                    headers: {
+                        'X-CSRF-TOKEN': antiForgeryToken
+                    },
+                    success: function (data) {
+                        $('#averageVoteValue').html(data.averageVote.toFixed(1));
+                    },
+                    contentType: 'application/json',
+                });
+            })
+        });
+    </script>
+}

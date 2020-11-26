@@ -17,7 +17,7 @@
                 return;
             }
 
-            var json = File.ReadAllText(@"C:\Users\Dimitar\Desktop\CarDealer\Data\CarDealer.Data\Seeding\JsonFiles\AllCountriesAndCitiesJsonImprorterFile.json");
+            var json = File.ReadAllText(@"C:\Users\Dimitar\Desktop\CarDealer\src\Data\CarDealer.Data\Seeding\JsonFiles\AllCountriesAndCitiesJsonImprorterFile.json");
 
             var properties = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(json);
 

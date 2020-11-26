@@ -14,6 +14,8 @@
 
         SaleDto GetSaleById(int id);
 
+        IEnumerable<SaleViewModel> GetAllByUserId(int page, int itemsPerPage, string userId);
+
         IEnumerable<SaleViewModel> GetAllByCountryId(int page, int itemsPerPage, int countryId);
 
         IEnumerable<SaleDto> GetAllByCategory(string category);
@@ -23,5 +25,7 @@
         SaleViewModel GetSaleInfo(int saleId);
 
         int GetSalesCountByCountryId(int countryId);
+
+        int GetSalesCountByUserId(string userId);
     }
 }

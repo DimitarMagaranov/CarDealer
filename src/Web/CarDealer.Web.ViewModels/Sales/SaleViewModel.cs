@@ -26,6 +26,8 @@
 
         public string UserPhoneNumber { get; set; }
 
+        public string UserEmailAddress { get; set; }
+
         public string ImageUrl { get; set; }
 
         public string Description { get; set; }

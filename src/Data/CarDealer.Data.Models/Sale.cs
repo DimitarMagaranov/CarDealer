@@ -12,6 +12,7 @@
         public Sale()
         {
             this.Images = new HashSet<Image>();
+            this.Votes = new HashSet<Vote>();
         }
 
         [Range(0, 60)]
@@ -42,5 +43,7 @@
         public int MetaDataId { get; set; }
 
         public virtual MetaData MetaData { get; set; }
+
+        public ICollection<Vote> Votes { get; set; }
     }
 }
