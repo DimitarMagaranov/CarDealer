@@ -5,6 +5,7 @@
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     public class AddCarInputModel
     {
@@ -43,18 +44,18 @@
         [DataType(DataType.Date)]
         public DateTime ManufactureDate { get; set; }
 
-        public IEnumerable<KeyValuePair<string, string>> CategoriesItems { get; set; }
+        public IEnumerable<SelectListItem> CategoriesItems { get; set; }
 
-        public IEnumerable<KeyValuePair<string, string>> MakesItems { get; set; }
+        public IEnumerable<SelectListItem> MakesItems { get; set; }
 
-        public IEnumerable<KeyValuePair<string, string>> ModelstItems { get; set; }
+        public IEnumerable<SelectListItem> ModelstItems { get; set; }
 
-        public IEnumerable<KeyValuePair<string, string>> FuelTypeItems { get; set; }
+        public IEnumerable<SelectListItem> FuelTypeItems { get; set; }
 
-        public IEnumerable<KeyValuePair<string, string>> EuroStandartItems { get; set; }
+        public IEnumerable<SelectListItem> EuroStandartItems { get; set; }
 
-        public IEnumerable<KeyValuePair<string, string>> GearboxesItems { get; set; }
+        public IEnumerable<SelectListItem> GearboxesItems { get; set; }
 
-        public IEnumerable<KeyValuePair<string, string>> ColorstItems { get; set; }
+        public IEnumerable<SelectListItem> ColorstItems { get; set; }
     }
 }

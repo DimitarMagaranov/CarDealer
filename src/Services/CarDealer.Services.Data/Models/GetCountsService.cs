@@ -3,7 +3,7 @@
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models;
     using CarDealer.Data.Models.CarModels;
-    using CarDealer.Services.Data.Models;
+    using CarDealer.Services.Data.Dtos;
     using System.Linq;
 
     public class GetCountsService : IGetCountsService

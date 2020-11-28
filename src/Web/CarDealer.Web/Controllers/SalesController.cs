@@ -1,5 +1,9 @@
 ﻿namespace CarDealer.Web.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
     using CarDealer.Data.Models;
     using CarDealer.Services.Data;
     using CarDealer.Web.ViewModels.InputModels.Cars;
@@ -9,8 +13,8 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using System;
-    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Mvc.Rendering;
+    using Microsoft.Data.SqlClient;
 
     [Authorize]
     public class SalesController : BaseController
@@ -67,7 +71,7 @@
 
             viewModel.CountryId = countryId;
 
-            viewModel.CitiesItems = await this.citiesService.GetAllAsKeyValuePairsAsync(viewModel.CountryId);
+            viewModel.CitiesItems = await this.citiesService.GetAllAsSelectListItemsAsync(viewModel.CountryId);
             viewModel.Car = await this.GetCarInputModelWithFilledProperties();
 
             return this.View(viewModel);
@@ -85,7 +89,7 @@
 
             if (!this.ModelState.IsValid)
             {
-                input.CitiesItems = await this.citiesService.GetAllAsKeyValuePairsAsync(input.CountryId);
+                input.CitiesItems = await this.citiesService.GetAllAsSelectListItemsAsync(input.CountryId);
                 input.Car = await this.GetCarInputModelWithFilledProperties();
 
                 return this.View(input);
@@ -100,7 +104,7 @@
             catch (Exception ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
-                input.CitiesItems = await this.citiesService.GetAllAsKeyValuePairsAsync(input.CountryId);
+                input.CitiesItems = await this.citiesService.GetAllAsSelectListItemsAsync(input.CountryId);
                 input.Car = await this.GetCarInputModelWithFilledProperties();
                 return this.View(input);
             }
@@ -154,15 +158,94 @@
             var carViewModel = new AddCarInputModel();
 
             carViewModel.ManufactureDate = DateTime.UtcNow;
-            carViewModel.CategoriesItems = await this.categoriesService.GetAllAsKeyValuePairsAsync();
-            carViewModel.MakesItems = await this.makesService.GetAllAsKeyValuePairsAsync();
-            carViewModel.ModelstItems = await this.modelsService.GetAllAsKeyValuePairsAsync();
-            carViewModel.FuelTypeItems = await this.fuelTypesService.GetAllAsKeyValuePairsAsync();
-            carViewModel.EuroStandartItems = await this.euroStandartsService.GetAllAsKeyValuePairsAsync();
-            carViewModel.GearboxesItems = await this.gearboxesService.GetAllAsKeyValuePairsAsync();
-            carViewModel.ColorstItems = await this.colorsService.GetAllAsKeyValuePairsAsync();
+            carViewModel.CategoriesItems = await this.categoriesService.GetAllAsSelectListItemsAsync();
+            carViewModel.MakesItems = await this.makesService.GetAllAsSelectListItemsAsync();
+            carViewModel.ModelstItems = await this.modelsService.GetAllAsSelectListItemsAsync();
+            carViewModel.FuelTypeItems = await this.fuelTypesService.GetAllAsSelectListItemsAsync();
+            carViewModel.EuroStandartItems = await this.euroStandartsService.GetAllAsSelectListItemsAsync();
+            carViewModel.GearboxesItems = await this.gearboxesService.GetAllAsSelectListItemsAsync();
+            carViewModel.ColorstItems = await this.colorsService.GetAllAsSelectListItemsAsync();
 
             return carViewModel;
+        }
+
+
+
+
+
+
+
+        public class CascadingModel
+        {
+            public CascadingModel()
+            {
+                this.Countries = new List<SelectListItem>();
+                this.Cities = new List<SelectListItem>();
+            }
+
+            public List<SelectListItem> Countries { get; set; }
+            public List<SelectListItem> Cities { get; set; }
+
+            public int CountryId { get; set; }
+            public int CityId { get; set; }
+        }
+
+        // GET: Home
+        public ActionResult Index()
+        {
+            CascadingModel model = new CascadingModel();
+            model.Countries = PopulateDropDown("SELECT Id, Name FROM Countries", "Name", "Id");
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Index(int countryId, int stateId, int cityId)
+        {
+            CascadingModel model = new CascadingModel();
+            model.Countries = PopulateDropDown("SELECT Id, Name FROM Countries", "Name", "Id");
+            model.Cities = PopulateDropDown("SELECT Id, Name FROM Cities WHERE CountryId = " + countryId, "Name", "ID");
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public JsonResult AjaxMethod(string type, int value)
+        {
+            CascadingModel model = new CascadingModel();
+
+            model.Cities = PopulateDropDown("SELECT Id, Name FROM Cities WHERE Id = " + value, "Name", "Id");
+
+            return this.Json(model);
+        }
+
+        private static List<SelectListItem> PopulateDropDown(string query, string textColumn, string valueColumn)
+        {
+            List<SelectListItem> items = new List<SelectListItem>();
+
+            string constr = "Server=DESKTOP-C92LTDN\\SQLEXPRESS;Database=CarDealer;Trusted_Connection=True;MultipleActiveResultSets=true";
+
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand(query))
+                {
+                    cmd.Connection = con;
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            items.Add(new SelectListItem
+                            {
+                                Text = sdr[textColumn].ToString(),
+                                Value = sdr[valueColumn].ToString(),
+                            });
+                        }
+                    }
+
+                    con.Close();
+                }
+            }
+
+            return items;
         }
     }
 }

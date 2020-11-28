@@ -2,9 +2,10 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using System.Web.Mvc;
 
     public interface ICitiesService
     {
-        Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairsAsync(int countryId);
+        Task<IEnumerable<SelectListItem>> GetAllAsSelectListItemsAsync(int countryId);
     }
 }

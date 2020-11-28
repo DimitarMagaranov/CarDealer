@@ -1,12 +1,13 @@
 ﻿namespace CarDealer.Services.Data
 {
-    using CarDealer.Data.Common.Repositories;
-    using CarDealer.Data.Models;
-    using CarDealer.Services.Data.Models;
-    using CarDealer.Web.ViewModels.InputModels.Cars;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
+    using CarDealer.Data.Common.Repositories;
+    using CarDealer.Data.Models;
+    using CarDealer.Services.Data.Dtos;
+    using CarDealer.Web.ViewModels.InputModels.Cars;
 
     public class CarsService : ICarsService
     {

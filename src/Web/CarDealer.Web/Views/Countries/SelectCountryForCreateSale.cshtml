@@ -1,7 +1,7 @@
 ﻿@model CarDealer.Web.ViewModels.InputModels.Countries.SelectCountryInputModel
 @{
     this.ViewData["Title"] = "Select country";
-    var countriesItems = this.Model.CountriesItems.Select(x => new SelectListItem(x.Value, x.Key));
+    var countriesItems = this.Model.CountriesItems.Select(x => new SelectListItem(x.Text, x.Value));
 }
 <form method="post" class="col-md-6 offset-md-3">
     <h1>@this.ViewData["Title"]</h1>

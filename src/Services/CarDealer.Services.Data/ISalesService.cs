@@ -1,6 +1,6 @@
 ﻿namespace CarDealer.Services.Data
 {
-    using CarDealer.Services.Data.Models;
+    using CarDealer.Services.Data.Dtos;
     using CarDealer.Web.ViewModels.InputModels.Sales;
     using CarDealer.Web.ViewModels.Sales;
     using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿namespace CarDealer.Services.Data.Models
+﻿namespace CarDealer.Services.Data.Dtos
 {
     public class CountsDto
     {

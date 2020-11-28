@@ -1,12 +1,13 @@
 ﻿namespace CarDealer.Web.Controllers
 {
+    using System.Threading.Tasks;
+
     using CarDealer.Data.Models;
     using CarDealer.Services.Data;
     using CarDealer.Web.ViewModels.InputModels.Countries;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
 
     public class CountriesController : BaseController
     {
@@ -28,7 +29,7 @@
 
             int countryId = user.CountryId;
 
-            var viewModel = new SelectCountryInputModel { CountryId = countryId, CountriesItems = await this.countriesService.GetAllAsKeyValuePairsAsync() };
+            var viewModel = new SelectCountryInputModel { CountryId = countryId, CountriesItems = await this.countriesService.GetAllAsSelectListItemsAsync() };
 
             return this.View(viewModel);
         }
@@ -39,7 +40,7 @@
         {
             if (input.CountryId == 0)
             {
-                input.CountriesItems = await this.countriesService.GetAllAsKeyValuePairsAsync();
+                input.CountriesItems = await this.countriesService.GetAllAsSelectListItemsAsync();
 
                 return this.View(input);
             }
@@ -56,7 +57,7 @@
 
             int countryId = user.CountryId;
 
-            var viewModel = new SelectCountryInputModel { CountryId = countryId, CountriesItems = await this.countriesService.GetAllAsKeyValuePairsAsync() };
+            var viewModel = new SelectCountryInputModel { CountryId = countryId, CountriesItems = await this.countriesService.GetAllAsSelectListItemsAsync() };
 
             return this.View(viewModel);
         }
@@ -67,7 +68,7 @@
         {
             if (input.CountryId == 0)
             {
-                input.CountriesItems = await this.countriesService.GetAllAsKeyValuePairsAsync();
+                input.CountriesItems = await this.countriesService.GetAllAsSelectListItemsAsync();
 
                 return this.View(input);
             }

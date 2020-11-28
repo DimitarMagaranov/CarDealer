@@ -1,6 +1,6 @@
 ﻿namespace CarDealer.Services.Data
 {
-    using CarDealer.Services.Data.Models;
+    using CarDealer.Services.Data.Dtos;
 
     public interface IGetCountsService
     {

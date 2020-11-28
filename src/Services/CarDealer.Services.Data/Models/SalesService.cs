@@ -11,7 +11,7 @@
     using CarDealer.Data.Models;
     using CarDealer.Data.Models.CarModels;
     using CarDealer.Data.Models.SaleModels;
-    using CarDealer.Services.Data.Models;
+    using CarDealer.Services.Data.Dtos;
     using CarDealer.Web.ViewModels.Cars;
     using CarDealer.Web.ViewModels.InputModels.Sales;
     using CarDealer.Web.ViewModels.Sales;
