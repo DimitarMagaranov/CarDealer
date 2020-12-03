@@ -1,5 +1,7 @@
 ﻿namespace CarDealer.Web
 {
+    using System.Reflection;
+    using CarDealer.Common;
     using CarDealer.Data;
     using CarDealer.Data.Common;
     using CarDealer.Data.Common.Repositories;
@@ -13,12 +15,12 @@
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using System.Reflection;
 
     public class Startup
     {
@@ -88,6 +90,27 @@
                 var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
                 dbContext.Database.Migrate();
                 new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
+            }
+
+            var userManager = app.ApplicationServices.CreateScope().ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+            if (!userManager.Users.AnyAsync(x => x.Email == "dimitar.magaranov1@gmail.com").GetAwaiter().GetResult())
+            {
+                var user = new ApplicationUser
+                {
+                    UserName = "Admin",
+                    Email = "dimitar.magaranov1@gmail.com",
+                    EmailConfirmed = true,
+                    CountryId = 25,
+                    Age = 27,
+                };
+
+                var result = userManager.CreateAsync(user, "AdminMagaranov").GetAwaiter().GetResult();
+
+                if (result.Succeeded)
+                {
+                    userManager.AddToRoleAsync(user, GlobalConstants.AdministratorRoleName);
+                }
             }
 
             if (env.IsDevelopment())

@@ -31,11 +31,11 @@
             }
 
             var email = input.Email;
-            var name = input.Name;
+            var fullName = input.FullName;
             var subject = input.Subject;
-            var content = input.Message;
+            var message = input.Message;
 
-            await this.emailSender.SendEmailAsync(email, name, "dimitar.magaranov1@gmail.com", subject, content, null);
+            await this.emailSender.SendEmailAsync(email, fullName, "dimitar.magaranov1@gmail.com", subject, message, null);
 
             return this.RedirectToAction("Index", "Home");
         }

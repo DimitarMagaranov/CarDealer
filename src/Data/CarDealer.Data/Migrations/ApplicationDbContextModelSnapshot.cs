@@ -184,6 +184,9 @@ namespace CarDealer.Data.Migrations
                     b.Property<int>("GearboxId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("HorsePower")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -198,6 +201,9 @@ namespace CarDealer.Data.Migrations
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("Seats")
+                        .HasColumnType("int");
 
                     b.Property<int>("State")
                         .HasColumnType("int");

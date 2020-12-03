@@ -1,67 +1,119 @@
 ﻿@model CarDealer.Web.ViewModels.InputModels.ContactUs.ContactUsInputModel
+@*<link rel="stylesheet" href="~/css/sitecustom.css">
 
-<link rel="stylesheet" href="~/css/sitecustom.css">
+    @{
+        this.ViewData["Title"] = "Contact Us";
+    }
 
-@{
-    this.ViewData["Title"] = "Contact Us";
-}
+    <body class="contact-bg">
+        <div class="row">
+            <div class="container justify-content-center">
+                <div class="col-md-6" style="padding-top:120px;margin-left:auto;margin-right:auto;">
+                    <div class="form-area">
+                        <form role="form" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <br style="clear:both">
+                            <h6 class="text-purple text-sm-center">GOT A QUESTION?</h6>
+                            <h2 style="margin-bottom: 25px; text-align: center;font-weight:700;">Contact CarDealer</h2>
+                            <div class="form-group">
+                                <input asp-for="Name"
+                                       type="text"
+                                       class="form-control"
+                                       id="name"
+                                       name="name"
+                                       placeholder="Name"
+                                       required>
+                                <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="Email"
+                                       class="form-control"
+                                       placeholder="Email" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="Subject"
+                                       type="text"
+                                       class="form-control"
+                                       id="subject"
+                                       name="subject"
+                                       placeholder="Subject"
+                                       required>
+                                <span asp-validation-for="@Model.Subject" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <textarea asp-for="Message"
+                                          class="form-control"
+                                          type="textarea"
+                                          id="message"
+                                          placeholder="Message"
+                                          rows="7">
+                                </textarea>
+                                <span asp-validation-for="@Model.Message" class="text-danger"></span>
+                            </div>
 
-<body class="contact-bg">
-    <div class="row">
-        <div class="container justify-content-center">
-            <div class="col-md-6" style="padding-top:120px;margin-left:auto;margin-right:auto;">
-                <div class="form-area">
-                    <form role="form" method="post">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <br style="clear:both">
-                        <h6 class="text-purple text-sm-center">GOT A QUESTION?</h6>
-                        <h2 style="margin-bottom: 25px; text-align: center;font-weight:700;">Contact CarDealer</h2>
-                        <div class="form-group">
-                            <input asp-for="Name"
-                                   type="text"
-                                   class="form-control"
-                                   id="name"
-                                   name="name"
-                                   placeholder="Name"
-                                   required>
-                            <span asp-validation-for="@Model.Name" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <input asp-for="Email"
-                                   class="form-control"
-                                   placeholder="Email" />
-                            <span asp-validation-for="Email" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <input asp-for="Subject"
-                                   type="text"
-                                   class="form-control"
-                                   id="subject"
-                                   name="subject"
-                                   placeholder="Subject"
-                                   required>
-                            <span asp-validation-for="@Model.Subject" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <textarea asp-for="Message"
-                                      class="form-control"
-                                      type="textarea"
-                                      id="message"
-                                      placeholder="Message"
-                                      rows="7">
-                            </textarea>
-                            <span asp-validation-for="@Model.Message" class="text-danger"></span>
-                        </div>
-
-                        <button type="submit"
-                                id="submit"
-                                name="submit"
-                                class="btn btn-primary pull-right">
-                            <i class="fas fa-paper-plane pr-1"></i>Submit
-                        </button>
-                    </form>
+                            <button type="submit"
+                                    id="submit"
+                                    name="submit"
+                                    class="btn btn-primary pull-right">
+                                <i class="fas fa-paper-plane pr-1"></i>Submit
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </body>*@
+
+<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+    <section>
+        <div class="container">
+            <div class="text-center">
+                <h1>Contact Us</h1>
+
+                <br>
+
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo, alias.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6 col-sm-12">
+                    <form id="contact-form" role="form" action="" method="post">
+                        <div class="col-md-12 col-sm-12">
+                            <input asp-for="FullName" type="text" class="form-control" id="fullName" name="fullName" placeholder="Enter full name" required>
+                            <span asp-validation-for="@Model.FullName" class="text-danger"></span>
+
+                            <input asp-for="Email" type="email" class="form-control" name="email" placeholder="Enter email address" required>
+                            <span asp-validation-for="@Model.Email" class="text-danger"></span>
+
+                            <input asp-for="Subject" type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>
+                            <span asp-validation-for="@Model.Subject" class="text-danger"></span>
+
+                            <textarea asp-for="Message" class="form-control" id="message" rows="6" placeholder="Tell us about your message" name="message" required></textarea>
+                            <span asp-validation-for="@Model.Message" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-4 col-sm-12">
+                            <input type="submit" class="form-control" name="send message" value="Send Message">
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="contact-image">
+                        <img src="images/contact-1-600x400.jpg" class="img-responsive" alt="">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
 </body>

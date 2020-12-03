@@ -24,6 +24,9 @@
         [DisplayName("Engine size")]
         public int EngineSize { get; set; }
 
+        [DisplayName("Horse power")]
+        public int HorsePower { get; set; }
+
         [DisplayName("Euro standart")]
         public int EuroStandartId { get; set; }
 
@@ -35,6 +38,9 @@
 
         [DisplayName("Doors count")]
         public Doors Doors { get; set; }
+
+        [DisplayName("Seats count")]
+        public Seats Seats { get; set; }
 
         public State State { get; set; }
 

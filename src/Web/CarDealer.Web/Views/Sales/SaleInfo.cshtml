@@ -1,19 +1,37 @@
 ﻿@model CarDealer.Web.ViewModels.Sales.SaleViewModel
 
-<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+<section>
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-xs-12">
                 <div>
-                    <img src="@Model.ImageUrl" width="520" height="360" alt="" class="img-responsive wc-image">
+                    <img src="@Model.ImageUrls.FirstOrDefault()" alt="" class="img-responsive wc-image">
                 </div>
+
+                <br>
+
+                @if (Model.ImageUrls.Length > 1)
+                {
+                    <div class="row">
+                        @foreach (var imageUrl in Model.ImageUrls.Skip(1))
+                        {
+                            <div class="col-sm-4 col-xs-6">
+                                <div>
+                                    <img src="@imageUrl" alt="" class="img-responsive">
+                                </div>
+
+                                <br>
+                            </div>
+                        }
+                    </div>
+                }
             </div>
-            <hr />
+
             <div class="col-md-6 col-xs-12">
                 <form action="#" method="post" class="form">
                     <h2>@Model.Name</h2>
 
-                    <p class="lead"> <strong class="text-primary">@Model.Price €</strong></p>
+                    <p class="lead"><strong class="text-primary">@Model.Price €</strong></p>
 
                     <div class="row">
                         <div class="col-md-4 col-sm-6">
@@ -88,11 +106,32 @@
 
                         <div class="col-md-4 col-sm-6">
                             <p>
+                                <span>Power</span>
+
+                                <br>
+
+                                <strong>@Model.Car.HorsePower hp</strong>
+                            </p>
+                        </div>
+
+
+                        <div class="col-md-4 col-sm-6">
+                            <p>
                                 <span>Gearbox</span>
 
                                 <br>
 
                                 <strong>@Model.Car.Gearbox</strong>
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <p>
+                                <span>Number of seats</span>
+
+                                <br>
+
+                                <strong>@Model.Car.Seats</strong>
                             </p>
                         </div>
 
@@ -119,79 +158,53 @@
                 </form>
             </div>
         </div>
-        <hr />
-        <div class="making-elements-wrap">
-            <div class="row">
-                <div class="col-md-6">
-                    <p class="item-description">
-                        <h4>Description</h4>
 
-                        <br>
+        <div class="row">
+            <div class="col-lg-8 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>Vehicle Description</h4>
+                    </div>
 
-                        <strong>@Model.Description</strong>
-                    </p>
+                    <div class="panel-body">
+                        <p>@Model.Description</p>
+                    </div>
                 </div>
-                <hr />
-                <div class="col-lg-4 col-xs-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4>Contact Details</h4>
-                        </div>
+            </div>
 
-                        <div class="panel-body">
-                            <p>
-                                <span>Name</span>
+            <div class="col-lg-4 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>Contact Details</h4>
+                    </div>
 
-                                <br>
+                    <div class="panel-body">
+                        <p>
+                            <span>Name</span>
 
-                                <strong>@Model.UserName</strong>
-                            </p>
+                            <br>
 
-                            <p>
-                                <span>Mobile phone</span>
+                            <strong>@Model.UserName</strong>
+                        </p>
 
-                                <br>
+                        <p>
+                            <span>Mobile phone</span>
 
-                                <strong>@Model.UserPhoneNumber</strong>
-                            </p>
+                            <br>
 
-                            <p>
-                                <span>Email</span>
+                            <strong>@Model.UserPhoneNumber</strong>
+                        </p>
 
-                                <br>
+                        <p>
+                            <span>Email</span>
 
-                                <strong>@Model.UserEmailAddress</strong>
-                            </p>
-                        </div>
+                            <br>
+
+                            <strong>@Model.UserEmailAddress</strong>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </section>
-</body>
-
-@section Scripts {
-    <script>
-        $("li[data-vote]").each(function (el) {
-            $(this).click(function () {
-                var value = $(this).attr("data-vote");
-                var saleId = @Model.Id;
-                var antiForgeryToken = $('#antiForgeryForm input[name=__RequestVerificationToken]').val();
-                var data = { saleId: saleId, value: value };
-                $.ajax({
-                    type: "POST",
-                    url: "/api/Votes",
-                    data: JSON.stringify(data),
-                    headers: {
-                        'X-CSRF-TOKEN': antiForgeryToken
-                    },
-                    success: function (data) {
-                        $('#averageVoteValue').html(data.averageVote.toFixed(1));
-                    },
-                    contentType: 'application/json',
-                });
-            })
-        });
-    </script>
-}
+</section>

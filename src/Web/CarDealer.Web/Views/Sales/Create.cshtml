@@ -47,6 +47,11 @@
         <span asp-validation-for="Car.EngineSize" class="text-danger"></span>
     </div>
     <div class="form-group">
+        <label asp-for="Car.HorsePower"></label>
+        <input asp-for="Car.HorsePower" class="form-control" />
+        <span asp-validation-for="Car.HorsePower" class="text-danger"></span>
+    </div>
+    <div class="form-group">
         <label asp-for="Car.EuroStandartId"></label>
         <select asp-for="Car.EuroStandartId" class="form-control" asp-items="euroStandartsItems"></select>
         <span asp-validation-for="Car.EuroStandartId" class="text-danger"></span>
@@ -55,6 +60,11 @@
         <label asp-for="Car.GearboxId"></label>
         <select asp-for="Car.GearboxId" class="form-control" asp-items="gearboxesItems"></select>
         <span asp-validation-for="Car.GearboxId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Car.Seats"></label>
+        <select asp-for="Car.Seats" class="form-control" asp-items="@Html.GetEnumSelectList<Seats>()"></select>
+        <span asp-validation-for="Car.Seats" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Car.Doors"></label>

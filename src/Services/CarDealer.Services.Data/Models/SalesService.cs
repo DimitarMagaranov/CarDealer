@@ -330,6 +330,14 @@
             var euroStandart = this.euroStandartsRepository.AllAsNoTracking().First(x => x.Id == car.EuroStandartId);
             var images = this.imagesRepository.AllAsNoTracking().Where(x => x.SaleId == saleId);
 
+            var imagesUrlList = new List<string>();
+
+            foreach (var image in images)
+            {
+                var imageUrl = "/images/sales/" + image.Id + "." + image.Extension;
+                imagesUrlList.Add(imageUrl);
+            }
+
             var saleInfo = new SaleViewModel
             {
                 Id = sale.Id,
@@ -339,7 +347,7 @@
                 CreatedOn = sale.CreatedOn,
                 Description = sale.Description,
                 Price = sale.Price,
-                ImageUrl = "/images/sales/" + images.FirstOrDefault().Id + "." + images.FirstOrDefault().Extension,
+                ImageUrls = imagesUrlList.ToArray(),
                 UserName = user.UserName,
                 UserPhoneNumber = user.PhoneNumber,
                 UserEmailAddress = user.Email,
@@ -349,12 +357,14 @@
                     Model = carModel.Name,
                     State = car.State.ToString(),
                     EngineSize = car.EngineSize,
+                    HorsePower = (int)car.HorsePower,
                     EuroStandart = euroStandart.Name,
                     ManufactureDate = car.ManufactureDate,
                     CategoryName = category.Name,
                     Color = color.Name,
                     FuelType = fuelType.Name,
                     Gearbox = gearbox.Name,
+                    Seats = car.Seats.ToString(),
                     Doors = car.Doors.ToString(),
                     Mileage = car.Mileage,
                 },

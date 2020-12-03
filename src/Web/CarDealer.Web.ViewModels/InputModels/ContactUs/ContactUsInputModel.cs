@@ -9,7 +9,7 @@ namespace CarDealer.Web.ViewModels.InputModels.ContactUs
     public class ContactUsInputModel
     {
         [Required]
-        public string Name { get; set; }
+        public string FullName { get; set; }
 
         [Required]
         [EmailAddress]

@@ -17,11 +17,15 @@
 
         public int EngineSize { get; set; }
 
+        public int HorsePower { get; set; }
+
         public string EuroStandart { get; set; }
 
         public string Gearbox { get; set; }
 
         public string Color { get; set; }
+
+        public string Seats { get; set; }
 
         public string Doors { get; set; }
 

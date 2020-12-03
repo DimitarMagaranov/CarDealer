@@ -28,7 +28,11 @@
 
         public virtual FuelType FuelType { get; set; }
 
+        public int? HorsePower { get; set; }
+
         public int EngineSize { get; set; }
+
+        public Seats Seats { get; set; }
 
         public int EuroStandartId { get; set; }
 
