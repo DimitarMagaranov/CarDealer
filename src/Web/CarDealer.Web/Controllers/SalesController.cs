@@ -109,6 +109,8 @@
                 return this.View(input);
             }
 
+            this.TempData["Message"] = "Sale added successfully.";
+
             return this.RedirectToAction(nameof(this.SaleInfo), new { id });
         }
 
