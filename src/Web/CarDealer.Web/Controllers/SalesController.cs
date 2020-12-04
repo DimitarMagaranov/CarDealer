@@ -67,9 +67,10 @@
                 return this.RedirectToAction("SelectCountryForCreateSale", "Countries");
             }
 
-            var viewModel = new AddSaleInputModel();
-
-            viewModel.CountryId = countryId;
+            var viewModel = new AddSaleInputModel
+            {
+                CountryId = countryId,
+            };
 
             viewModel.CitiesItems = await this.citiesService.GetAllAsSelectListItemsAsync(viewModel.CountryId);
             viewModel.Car = await this.GetCarInputModelWithFilledProperties();

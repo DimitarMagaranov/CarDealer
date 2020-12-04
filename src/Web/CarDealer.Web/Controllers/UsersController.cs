@@ -21,7 +21,7 @@
             this.salesService = salesService;
         }
 
-        public async Task<IActionResult> AllSales(int id)
+        public async Task<IActionResult> All(int id)
         {
             var user = await this.userManager.GetUserAsync(this.User);
 

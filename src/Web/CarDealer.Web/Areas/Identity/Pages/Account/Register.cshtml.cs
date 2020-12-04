@@ -7,6 +7,7 @@
     using System.Text;
     using System.Text.Encodings.Web;
     using System.Threading.Tasks;
+    using System.Web.WebPages.Html;
     using CarDealer.Common;
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models;
@@ -50,7 +51,7 @@
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
-        public IEnumerable<KeyValuePair<string, string>> CountriesItems => this.GetAllCountriesAsKeyValuePairs();
+        public IEnumerable<SelectListItem> CountriesItems => this.GetAllAsSelectListItemsAsync();
 
         public class InputModel
         {
@@ -134,17 +135,14 @@
             return Page();
         }
 
-        public IEnumerable<KeyValuePair<string, string>> GetAllCountriesAsKeyValuePairs()
+        public IEnumerable<SelectListItem> GetAllAsSelectListItemsAsync()
         {
-            var countries = this.countriesRepository.AllAsNoTracking()
-                .Select(x => new
-                {
-                    x.Id,
-                    x.Name,
-                }).ToList()
-                .Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name)).ToList();
+            List<SelectListItem> countries = new List<SelectListItem>();
 
-            countries.Insert(0, new KeyValuePair<string, string>(null, "Select country"));
+            countries = this.countriesRepository.AllAsNoTracking()
+                .Select(x => new SelectListItem() { Text = x.Name, Value = x.Id.ToString() }).ToList();
+
+            countries.Insert(0, new SelectListItem() { Text = "Select country", Value = null });
 
             return countries;
         }

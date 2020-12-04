@@ -178,7 +178,7 @@
                 .ToList();
 
             sales = sales
-                .OrderByDescending(x => x.Id)
+                .OrderByDescending(x => x.CreatedOn)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
                 .ToList();

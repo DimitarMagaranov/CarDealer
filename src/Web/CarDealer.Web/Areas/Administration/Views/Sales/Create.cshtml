@@ -1,0 +1,82 @@
+﻿@model CarDealer.Data.Models.Sale
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+<h4>Sale</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DaysValid" class="control-label"></label>
+                <input asp-for="DaysValid" class="form-control" />
+                <span asp-validation-for="DaysValid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarId" class="control-label"></label>
+                <select asp-for="CarId" class ="form-control" asp-items="ViewBag.CarId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryId" class="control-label"></label>
+                <select asp-for="CountryId" class ="form-control" asp-items="ViewBag.CountryId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MetaDataId" class="control-label"></label>
+                <select asp-for="MetaDataId" class ="form-control" asp-items="ViewBag.MetaDataId"></select>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsDeleted" /> @Html.DisplayNameFor(model => model.IsDeleted)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeletedOn" class="control-label"></label>
+                <input asp-for="DeletedOn" class="form-control" />
+                <span asp-validation-for="DeletedOn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedOn" class="control-label"></label>
+                <input asp-for="CreatedOn" class="form-control" />
+                <span asp-validation-for="CreatedOn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModifiedOn" class="control-label"></label>
+                <input asp-for="ModifiedOn" class="form-control" />
+                <span asp-validation-for="ModifiedOn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
