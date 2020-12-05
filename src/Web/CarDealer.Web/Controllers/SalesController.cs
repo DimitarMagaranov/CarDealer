@@ -115,6 +115,43 @@
             return this.RedirectToAction(nameof(this.SaleInfo), new { id });
         }
 
+        public async Task<IActionResult> Edit(int id)
+        {
+            var viewModel = this.salesService.GetEditSaleInputModel(id);
+
+            viewModel.CitiesItems = await this.citiesService.GetAllAsSelectListItemsAsync(viewModel.CountryId);
+
+            var carItemsModel = await this.GetCarInputModelWithFilledProperties();
+
+            viewModel.Car.ManufactureDate = carItemsModel.ManufactureDate;
+            viewModel.Car.CategoriesItems = carItemsModel.CategoriesItems;
+            viewModel.Car.MakesItems = carItemsModel.MakesItems;
+            viewModel.Car.ModelstItems = carItemsModel.ModelstItems;
+            viewModel.Car.FuelTypeItems = carItemsModel.FuelTypeItems;
+            viewModel.Car.EuroStandartItems = carItemsModel.EuroStandartItems;
+            viewModel.Car.GearboxesItems = carItemsModel.GearboxesItems;
+            viewModel.Car.ColorstItems = carItemsModel.ColorstItems;
+
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, EditSaleInputModel input)
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            input.CountryId = user.CountryId;
+
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
+
+            await this.salesService.UpdateAsync(id, input);
+
+            return this.RedirectToAction(nameof(this.SaleInfo), new { id });
+        }
+
         public async Task<IActionResult> All(int id)
         {
             var user = await this.userManager.GetUserAsync(this.User);
@@ -143,11 +180,6 @@
             var viewModel = this.salesService.GetSaleInfo(id);
 
             return this.View(viewModel);
-        }
-
-        public IActionResult SaleInfoById()
-        {
-            return this.View();
         }
 
         [Authorize(Roles = "Administrator")]

@@ -13,9 +13,11 @@
     using CarDealer.Data.Models.SaleModels;
     using CarDealer.Services.Data.Dtos;
     using CarDealer.Web.ViewModels.Cars;
+    using CarDealer.Web.ViewModels.InputModels.Cars;
     using CarDealer.Web.ViewModels.InputModels.Sales;
     using CarDealer.Web.ViewModels.Sales;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
 
     public class SalesService : ISalesService
     {
@@ -124,23 +126,43 @@
             await this.salesRepository.SaveChangesAsync();
         }
 
-        public SaleDto GetSaleById(int id)
+        public EditSaleInputModel GetEditSaleInputModel(int id)
         {
+            var saleDb = this.salesRepository.AllAsNoTracking().FirstOrDefault(x => x.Id == id);
+            var carDb = this.carsRepository.AllAsNoTracking().FirstOrDefault(x => x.Id == saleDb.CarId);
+            var metaData = this.metaDatasRepository.AllAsNoTracking().First(x => x.Id == saleDb.MetaDataId);
+            var carModel = this.modelsRepository.AllAsNoTracking().First(x => x.Id == metaData.CarModelId);
+            var city = this.citiesRepository.AllAsNoTracking().First(x => x.Id == metaData.SaleCityId);
+
             var sale = this.salesRepository.AllAsNoTracking().Where(x => x.Id == id)
-                .Select(x => new SaleDto
+                .Select(x => new EditSaleInputModel
                 {
                     Id = x.Id,
-                    CreatedOn = x.CreatedOn,
-                    Price = x.Price,
-                    Country = x.Country.Name,
-                    UserName = x.User.UserName,
-                    UserPhoneNumber = x.User.PhoneNumber,
+                    CountryId = x.CountryId,
+                    CityId = city.Id,
                     Description = x.Description,
-                    CarId = x.Car.Id,
-                    Car = this.carsService.GetCarById(x.Car.Id),
-                });
+                    Price = x.Price,
+                    DaysValid = x.DaysValid,
+                    Car = new EditCarInputModel
+                    {
+                        MakeId = carDb.MakeId,
+                        ModelId = carModel.Id,
+                        State = carDb.State,
+                        EngineSize = carDb.EngineSize,
+                        HorsePower = (int)carDb.HorsePower,
+                        EuroStandartId = carDb.EuroStandartId,
+                        ManufactureDate = carDb.ManufactureDate,
+                        CategoryId = carDb.CategoryId,
+                        ColorId = carDb.ColorId,
+                        FuelTypeId = carDb.FuelTypeId,
+                        GearboxId = carDb.GearboxId,
+                        Seats = carDb.Seats,
+                        Doors = carDb.Doors,
+                        Mileage = carDb.Mileage,
+                    },
+                }).FirstOrDefault();
 
-            return (SaleDto)sale;
+            return sale;
         }
 
         public IEnumerable<SaleViewModel> GetAllByCountryId(int page, int itemsPerPage, int countryId)
@@ -191,19 +213,7 @@
             return data;
         }
 
-        public IEnumerable<SaleDto> GetAllByCategory(string categoryName)
-        {
-            var sales = new List<SaleDto>();
-
-            foreach (var sale in this.salesRepository.All().Where(x => x.Car.Category.Name == categoryName))
-            {
-                sales.Add(this.GetSaleById(sale.Id));
-            }
-
-            return sales;
-        }
-
-        public IEnumerable<SaleDto> GetAllBySearchForm(SearchSaleFormInputModel input)
+        public IEnumerable<SaleViewModel> GetAllBySearchForm(SearchSaleFormInputModel input)
         {
             var sales = this.salesRepository.All().Where(x => x.Car.Category.Name == input.Category);
 
@@ -303,11 +313,11 @@
                 }
             }
 
-            var salesToShow = new List<SaleDto>();
+            var salesToShow = new List<SaleViewModel>();
 
             foreach (var sale in sales)
             {
-                salesToShow.Add(this.GetSaleById(sale.Id));
+                salesToShow.Add(this.GetSaleInfo(sale.Id));
             }
 
             return salesToShow;
@@ -381,6 +391,44 @@
         public int GetSalesCountByUserId(string userId)
         {
             return this.salesRepository.All().Where(x => x.UserId == userId).Count();
+        }
+
+        public async Task UpdateAsync(int id, EditSaleInputModel input)
+        {
+            var sale = this.salesRepository.All().FirstOrDefault(x => x.Id == id);
+            var car = this.carsRepository.All().FirstOrDefault(x => x.Id == sale.CarId);
+            var metaData = this.metaDatasRepository.All().FirstOrDefault(x => x.Id == sale.MetaDataId);
+
+            sale.CountryId = input.CountryId;
+            sale.CityId = input.CityId;
+            sale.CountryId = input.CountryId;
+            sale.DaysValid = input.DaysValid;
+            sale.Description = input.Description;
+            sale.ModifiedOn = DateTime.UtcNow;
+            sale.Price = input.Price;
+
+            metaData.SaleCityId = input.CityId;
+            metaData.CarModelId = input.Car.ModelId;
+
+            car.CategoryId = input.Car.CategoryId;
+            car.ColorId = input.Car.ColorId;
+            car.Doors = input.Car.Doors;
+            car.EngineSize = input.Car.EngineSize;
+            car.EuroStandartId = input.Car.EuroStandartId;
+            car.FuelTypeId = input.Car.FuelTypeId;
+            car.GearboxId = input.Car.GearboxId;
+            car.HorsePower = input.Car.HorsePower;
+            car.MakeId = input.Car.MakeId;
+            car.ManufactureDate = input.Car.ManufactureDate;
+            car.Mileage = input.Car.Mileage;
+            car.ModelId = input.Car.ModelId;
+            car.ModifiedOn = DateTime.UtcNow;
+            car.Seats = input.Car.Seats;
+            car.State = input.Car.State;
+
+            await this.salesRepository.SaveChangesAsync();
+            await this.carsRepository.SaveChangesAsync();
+            await this.metaDatasRepository.SaveChangesAsync();
         }
     }
 }

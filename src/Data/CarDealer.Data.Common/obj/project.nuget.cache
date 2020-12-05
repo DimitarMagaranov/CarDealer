@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "UPiT/Ec2YAgzQjiTcpUzH0Yv3EglmmGeqV7I8UU4uDZk/1vRRgXBPgcFMnSWHBsYF+sFLrpY3r1InFqFIGFRKg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\src\\Data\\CarDealer.Data.Common\\CarDealer.Data.Common.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Dimitar\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.205\\stylecop.analyzers.1.2.0-beta.205.nupkg.sha512",
+    "C:\\Users\\Dimitar\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.205\\stylecop.analyzers.unstable.1.2.0.205.nupkg.sha512",
+    "C:\\Users\\Dimitar\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

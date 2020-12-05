@@ -12,15 +12,15 @@
 
         Task RemoveSaleAsync(int saleId);
 
-        SaleDto GetSaleById(int id);
+        EditSaleInputModel GetEditSaleInputModel(int id);
+
+        Task UpdateAsync(int id, EditSaleInputModel input);
 
         IEnumerable<SaleViewModel> GetAllByUserId(int page, int itemsPerPage, string userId);
 
         IEnumerable<SaleViewModel> GetAllByCountryId(int page, int itemsPerPage, int countryId);
 
-        IEnumerable<SaleDto> GetAllByCategory(string category);
-
-        IEnumerable<SaleDto> GetAllBySearchForm(SearchSaleFormInputModel input);
+        IEnumerable<SaleViewModel> GetAllBySearchForm(SearchSaleFormInputModel input);
 
         SaleViewModel GetSaleInfo(int saleId);
 
