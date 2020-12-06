@@ -9,6 +9,7 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
+    [Authorize]
     public class CountriesController : BaseController
     {
         private readonly ICountriesService countriesService;
@@ -22,7 +23,6 @@
             this.userManager = userManager;
         }
 
-        [Authorize]
         public async Task<IActionResult> SelectCountryForCreateSale()
         {
             var user = await this.userManager.GetUserAsync(this.User);
@@ -35,7 +35,6 @@
         }
 
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> SelectCountryForCreateSale(SelectCountryInputModel input)
         {
             if (input.CountryId == 0)
@@ -50,7 +49,6 @@
             return this.RedirectToAction("Create", "Sales", new { countryId });
         }
 
-        [Authorize]
         public async Task<IActionResult> SelectCountryForGetAllSales()
         {
             var user = await this.userManager.GetUserAsync(this.User);
@@ -63,7 +61,6 @@
         }
 
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> SelectCountryForGetAllSales(SelectCountryInputModel input)
         {
             if (input.CountryId == 0)
@@ -76,6 +73,32 @@
             var countryId = input.CountryId;
 
             return this.RedirectToAction("All", "Sales", new { countryId });
+        }
+
+        public async Task<IActionResult> SelectCountryForSearchSales()
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            int countryId = user.CountryId;
+
+            var viewModel = new SelectCountryInputModel { CountryId = countryId, CountriesItems = await this.countriesService.GetAllAsSelectListItemsAsync() };
+
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SelectCountryForSearchSales(SelectCountryInputModel input)
+        {
+            if (input.CountryId == 0)
+            {
+                input.CountriesItems = await this.countriesService.GetAllAsSelectListItemsAsync();
+
+                return this.View(input);
+            }
+
+            var countryId = input.CountryId;
+
+            return this.RedirectToAction("Index", "SearchSales", new { countryId });
         }
     }
 }
