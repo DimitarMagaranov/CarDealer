@@ -15,6 +15,7 @@
     using CarDealer.Web.ViewModels.Cars;
     using CarDealer.Web.ViewModels.InputModels.Cars;
     using CarDealer.Web.ViewModels.InputModels.Sales;
+    using CarDealer.Web.ViewModels.InputModels.SearchSales;
     using CarDealer.Web.ViewModels.Sales;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
@@ -213,105 +214,98 @@
             return data;
         }
 
-        public IEnumerable<SaleViewModel> GetAllBySearchForm(SearchSaleFormInputModel input)
+        public IEnumerable<SaleViewModel> GetAllBySearchForm(SearchListInputModel input)
         {
-            var sales = this.salesRepository.All().Where(x => x.Car.Category.Name == input.Category);
+            var sales = this.salesRepository.All()
+                .Where(x => x.CountryId == input.CountryId && x.Images.FirstOrDefault() != null)
+                .Include(x => x.Car)
+                .ToList();
 
-            if (input.Make != null)
+            if (input.MakeId != null)
             {
-                sales = sales.Where(x => x.Car.Make.Name == input.Make);
+                sales = sales.Where(x => x.Car.MakeId == (int)input.MakeId).ToList();
 
-                if (input.Model != null)
+                if (input.ModelId != null)
                 {
-                    sales = sales.Where(x => x.Car.Make.Name == input.Make && x.Car.Make.Models.All(m => m.Name == input.Model));
+                    sales = sales.Where(x => x.Car.MakeId == (int)input.MakeId && x.Car.ModelId == input.ModelId).ToList();
                 }
             }
 
             if (input.State != null)
             {
-                sales = sales.Where(x => x.Car.State == input.State);
+                sales = sales.Where(x => x.Car.State == input.State).ToList();
             }
 
-            if (input.ManufactureYearFrom != null)
+            if (input.ManufacturerYearFrom != null)
             {
-                sales = sales.Where(x => x.Car.ManufactureDate.Year >= input.ManufactureYearFrom);
+                sales = sales.Where(x => x.Car.ManufactureDate.Year >= input.ManufacturerYearFrom).ToList();
             }
 
-            if (input.ManufactureYearTo != null)
+            if (input.ManufacturerYearTo != null)
             {
-                sales = sales.Where(x => x.Car.ManufactureDate.Year <= input.ManufactureYearTo);
+                sales = sales.Where(x => x.Car.ManufactureDate.Year <= input.ManufacturerYearTo).ToList();
             }
 
             if (input.PriceFrom != null)
             {
-                sales = sales.Where(x => x.Price >= input.PriceFrom);
+                sales = sales.Where(x => x.Price >= input.PriceFrom).ToList();
             }
 
             if (input.PriceTo != null)
             {
-                sales = sales.Where(x => x.Price <= input.PriceTo);
+                sales = sales.Where(x => x.Price <= input.PriceTo).ToList();
             }
 
-            if (input.FuelType != null)
+            if (input.FuelTypeId != null)
             {
-                sales = sales.Where(x => x.Car.FuelType.Name == input.FuelType);
+                sales = sales.Where(x => x.Car.FuelTypeId == input.FuelTypeId).ToList();
             }
 
-            if (input.Gearbox != null)
+            if (input.GearboxId != null)
             {
-                sales = sales.Where(x => x.Car.Gearbox.Name == input.Gearbox);
+                sales = sales.Where(x => x.Car.GearboxId == input.GearboxId).ToList();
             }
 
             if (input.EngineSizeFrom != null)
             {
-                sales = sales.Where(x => x.Car.EngineSize >= input.EngineSizeFrom);
+                sales = sales.Where(x => x.Car.EngineSize >= input.EngineSizeFrom).ToList();
             }
 
             if (input.EngineSizeTo != null)
             {
-                sales = sales.Where(x => x.Car.EngineSize <= input.EngineSizeTo);
+                sales = sales.Where(x => x.Car.EngineSize <= input.EngineSizeTo).ToList();
             }
 
-            if (input.MileageTo != null)
+            if (input.MilleageFrom != null)
             {
-                sales = sales.Where(x => x.Car.Mileage <= input.MileageTo);
+                sales = sales.Where(x => x.Car.Mileage >= input.MilleageFrom).ToList();
             }
 
-            if (input.Color != null)
+            if (input.MilleageTo != null)
             {
-                sales = sales.Where(x => x.Car.Color.Name == input.Color);
+                sales = sales.Where(x => x.Car.Mileage <= input.MilleageTo).ToList();
             }
 
-            if (input.EuroStandart != null)
-            {
-                sales = sales.Where(x => x.Car.EuroStandart.Name == input.EuroStandart);
-            }
-
-            if (input.Country != null)
-            {
-                sales = sales.Where(x => x.Country.Name == input.Country);
-            }
-
-            if (input.SortCommand != null)
-            {
-                switch (input.SortCommand)
-                {
-                    case "Price (Low - High)":
-                        sales = sales.OrderBy(x => x.Price);
-                        break;
-                    case "Manufacture date":
-                        sales = sales.OrderBy(x => x.Car.ManufactureDate);
-                        break;
-                    case "Miliage":
-                        sales = sales.OrderBy(x => x.Car.Mileage);
-                        break;
-                    case "Newest sales":
-                        sales = sales.OrderByDescending(x => x.CreatedOn);
-                        break;
-                    default:
-                        break;
-                }
-            }
+            //if (input.SortCommand != null)
+            //{
+            //    switch (input.SortCommand)
+            //    {
+            //        case "Price (Low - High)":
+            //            sales = sales.OrderBy(x => x.Price);
+            //            break;
+            //        case "Manufacture date":
+            //            sales = sales.OrderBy(x => x.Car.ManufactureDate);
+            //            break;
+            //        case "Miliage":
+            //            sales = sales.OrderBy(x => x.Car.Mileage);
+            //            break;
+            //        case "Newest sales":
+            //            sales = sales.OrderByDescending(x => x.CreatedOn);
+            //            break;
+            //        default:
+            //            break;
+            //    }
+            //}
 
             var salesToShow = new List<SaleViewModel>();
 

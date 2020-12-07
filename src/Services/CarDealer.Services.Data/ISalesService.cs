@@ -2,6 +2,7 @@
 {
     using CarDealer.Services.Data.Dtos;
     using CarDealer.Web.ViewModels.InputModels.Sales;
+    using CarDealer.Web.ViewModels.InputModels.SearchSales;
     using CarDealer.Web.ViewModels.Sales;
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -20,7 +21,7 @@
 
         IEnumerable<SaleViewModel> GetAllByCountryId(int page, int itemsPerPage, int countryId);
 
-        IEnumerable<SaleViewModel> GetAllBySearchForm(SearchSaleFormInputModel input);
+        IEnumerable<SaleViewModel> GetAllBySearchForm(SearchListInputModel input);
 
         SaleViewModel GetSaleInfo(int saleId);
 

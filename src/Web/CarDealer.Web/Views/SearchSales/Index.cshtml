@@ -1,0 +1,101 @@
+﻿@using CarDealer.Data.Models.CarModels
+@using CarDealer.Data.Models.SaleModels
+@model CarDealer.Web.ViewModels.InputModels.SearchSales.SearchListInputModel
+@{
+    this.ViewData["Title"] = "Add new sale";
+    var categoriesItems = this.Model.CategoriesItems.Select(x => new SelectListItem(x.Text, x.Value));
+    var makesItems = this.Model.MakesItems.Select(x => new SelectListItem(x.Text, x.Value));
+    var modelsItems = this.Model.ModelstItems.Select(x => new SelectListItem(x.Text, x.Value));
+    var fuelTypesItems = this.Model.FuelTypeItems.Select(x => new SelectListItem(x.Text, x.Value));
+    var euroStandartsItems = this.Model.EuroStandartItems.Select(x => new SelectListItem(x.Text, x.Value));
+    var gearboxesItems = this.Model.GearboxesItems.Select(x => new SelectListItem(x.Text, x.Value));
+    var colorsItems = this.Model.ColorstItems.Select(x => new SelectListItem(x.Text, x.Value));
+    var citiesItems = this.Model.CitiesItems.Select(x => new SelectListItem(x.Text, x.Value));
+    var countriesItems = this.Model.CountriesItems.Select(x => new SelectListItem(x.Text, x.Value));
+}
+
+<form asp-action="List" method="get" class="col-md-6 offset-md-3">
+    <div class="form-group">
+        <label asp-for="CountryId"></label>
+        <select asp-for="CountryId" class="form-control" asp-items="countriesItems"></select>
+        <span asp-validation-for="CountryId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CityId"></label>
+        <select asp-for="CityId" class="form-control" asp-items="citiesItems"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="State"></label>
+        <select asp-for="State" class="form-control" asp-items="@Html.GetEnumSelectList<State>()"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="CategoryId"></label>
+        <select asp-for="CategoryId" class="form-control" asp-items="categoriesItems"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="MakeId"></label>
+        <select asp-for="MakeId" class="form-control" asp-items="makesItems"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="ModelId"></label>
+        <select asp-for="ModelId" class="form-control" asp-items="modelsItems"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="ManufacturerYearFrom"></label>
+        <input asp-for="ManufacturerYearFrom" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ManufacturerYearTo"></label>
+        <input asp-for="ManufacturerYearTo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="PriceFrom"></label>
+        <input asp-for="PriceFrom" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="PriceTo"></label>
+        <input asp-for="PriceTo" class="form-control" />
+        <span asp-validation-for="PriceTo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="MilleageFrom"></label>
+        <input asp-for="MilleageFrom" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="MilleageTo"></label>
+        <input asp-for="MilleageTo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="EngineSizeFrom"></label>
+        <input asp-for="EngineSizeFrom" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="EngineSizeTo"></label>
+        <input asp-for="EngineSizeTo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="PowerFrom"></label>
+        <input asp-for="PowerFrom" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="PowerTo"></label>
+        <input asp-for="PowerTo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="FuelTypeId"></label>
+        <select asp-for="FuelTypeId" class="form-control" asp-items="fuelTypesItems"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="GearboxId"></label>
+        <select asp-for="GearboxId" class="form-control" asp-items="gearboxesItems"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Doors"></label>
+        <select asp-for="Doors" class="form-control" asp-items="@Html.GetEnumSelectList<Doors>()"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Seats"></label>
+        <select asp-for="Seats" class="form-control" asp-items="@Html.GetEnumSelectList<Seats>()"></select>
+    </div>
+    <button class="btn btn-primary">Search</button>
+</form>

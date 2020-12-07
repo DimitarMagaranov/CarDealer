@@ -20,11 +20,17 @@
         [DisplayName("Category:")]
         public int? CategoryId { get; set; }
 
-        [DisplayName("Make:")]
+        [DisplayName("Brand:")]
         public int? MakeId { get; set; }
 
         [DisplayName("Model")]
         public int? ModelId { get; set; }
+
+        [DisplayName("Year from:")]
+        public int? ManufacturerYearFrom { get; set; }
+
+        [DisplayName("Year to:")]
+        public int? ManufacturerYearTo { get; set; }
 
         [DisplayName("Price from:")]
         public int? PriceFrom { get; set; }
@@ -77,5 +83,7 @@
         public IEnumerable<SelectListItem> ColorstItems { get; set; }
 
         public IEnumerable<SelectListItem> CitiesItems { get; set; }
+
+        public IEnumerable<SelectListItem> CountriesItems { get; set; }
     }
 }

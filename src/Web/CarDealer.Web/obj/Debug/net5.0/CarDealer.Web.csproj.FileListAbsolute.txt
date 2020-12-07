@@ -1005,3 +1005,6 @@ C:\Users\Dimitar\Desktop\CarDealer\src\Web\CarDealer.Web\obj\Debug\net5.0\Razor\
 C:\Users\Dimitar\Desktop\CarDealer\src\Web\CarDealer.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\Sales\Index.cshtml.g.cs
 C:\Users\Dimitar\Desktop\CarDealer\src\Web\CarDealer.Web\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\Dimitar\Desktop\CarDealer\src\Web\CarDealer.Web\obj\Debug\net5.0\Razor\Views\Sales\Edit.cshtml.g.cs
+C:\Users\Dimitar\Desktop\CarDealer\src\Web\CarDealer.Web\obj\Debug\net5.0\Razor\Views\SearchSales\Index.cshtml.g.cs
+C:\Users\Dimitar\Desktop\CarDealer\src\Web\CarDealer.Web\obj\Debug\net5.0\Razor\Views\Countries\SelectCountryForSearchSales.cshtml.g.cs
+C:\Users\Dimitar\Desktop\CarDealer\src\Web\CarDealer.Web\obj\Debug\net5.0\Razor\Views\SearchSales\List.cshtml.g.cs
