@@ -17,6 +17,8 @@
 
         Task UpdateAsync(int id, EditSaleInputModel input);
 
+        Task DeleteAsync(int id);
+
         IEnumerable<SaleViewModel> GetAllByUserId(int page, int itemsPerPage, string userId);
 
         IEnumerable<SaleViewModel> GetAllByCountryId(int page, int itemsPerPage, int countryId);

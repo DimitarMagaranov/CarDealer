@@ -204,7 +204,13 @@
             return carViewModel;
         }
 
+        [HttpPost]
+        public async Task<IActionResult> DeleteSale(int id)
+        {
+            await this.salesService.DeleteAsync(id);
 
+            return this.RedirectToAction("All", "Users");
+        }
 
 
 

@@ -424,5 +424,14 @@
             await this.carsRepository.SaveChangesAsync();
             await this.metaDatasRepository.SaveChangesAsync();
         }
+
+        public async Task DeleteAsync(int id)
+        {
+            var sale = this.salesRepository.All().FirstOrDefault(x => x.Id == id);
+
+            this.salesRepository.Delete(sale);
+
+            await this.salesRepository.SaveChangesAsync();
+        }
     }
 }

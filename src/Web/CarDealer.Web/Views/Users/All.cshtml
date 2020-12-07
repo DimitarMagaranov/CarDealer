@@ -62,6 +62,11 @@ else
                                     <div class="courses-info">
                                         <a href="/Sales/Edit?id=@sale.Id" class="section-btn btn btn-primary btn-block">Edit</a>
                                     </div>
+                                    <div class="courses-info">
+                                        <form asp-action="DeleteSale" asp-controller="Sales" asp-route-id="@sale.Id" method="post" id="deleteForm">
+                                        </form>
+                                        <button type="submit" class="section-btn btn btn-primary btn-block" data-toggle="modal" data-target="#modalDelete">Delete</button>
+                                    </div>
                                 </div>
                             </div>
                         }
@@ -73,4 +78,27 @@ else
         </div>
     </section>
 }
+
+<!-- Modal -->
+<div class="modal" id="modalDelete" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Do you want to delete the sale?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="deleteForm.submit()">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
 
