@@ -117,20 +117,6 @@ namespace CarDealer.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MetaDatas",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    SaleCityId = table.Column<int>(type: "int", nullable: false),
-                    CarModelId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MetaDatas", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -218,7 +204,9 @@ namespace CarDealer.Data.Migrations
                     MakeId = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     FuelTypeId = table.Column<int>(type: "int", nullable: false),
+                    HorsePower = table.Column<int>(type: "int", nullable: true),
                     EngineSize = table.Column<int>(type: "int", nullable: false),
+                    Seats = table.Column<int>(type: "int", nullable: false),
                     EuroStandartId = table.Column<int>(type: "int", nullable: false),
                     GearboxId = table.Column<int>(type: "int", nullable: false),
                     ColorId = table.Column<int>(type: "int", nullable: false),
@@ -387,9 +375,10 @@ namespace CarDealer.Data.Migrations
                     CarId = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CountryId = table.Column<int>(type: "int", nullable: false),
+                    CityId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MetaDataId = table.Column<int>(type: "int", nullable: false),
+                    OpensSaleCounter = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
@@ -416,12 +405,6 @@ namespace CarDealer.Data.Migrations
                         principalTable: "Countries",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Sales_MetaDatas_MetaDataId",
-                        column: x => x.MetaDataId,
-                        principalTable: "MetaDatas",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -443,6 +426,35 @@ namespace CarDealer.Data.Migrations
                     table.PrimaryKey("PK_Images", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Images_Sales_SaleId",
+                        column: x => x.SaleId,
+                        principalTable: "Sales",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Votes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SaleId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Value = table.Column<byte>(type: "tinyint", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Votes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Votes_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Votes_Sales_SaleId",
                         column: x => x.SaleId,
                         principalTable: "Sales",
                         principalColumn: "Id",
@@ -574,13 +586,18 @@ namespace CarDealer.Data.Migrations
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sales_MetaDataId",
-                table: "Sales",
-                column: "MetaDataId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Sales_UserId",
                 table: "Sales",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Votes_SaleId",
+                table: "Votes",
+                column: "SaleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Votes_UserId",
+                table: "Votes",
                 column: "UserId");
         }
 
@@ -611,6 +628,9 @@ namespace CarDealer.Data.Migrations
                 name: "Models");
 
             migrationBuilder.DropTable(
+                name: "Votes");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
@@ -621,9 +641,6 @@ namespace CarDealer.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Cars");
-
-            migrationBuilder.DropTable(
-                name: "MetaDatas");
 
             migrationBuilder.DropTable(
                 name: "Countries");

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarDealer.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201125071912_InitialCreate")]
+    [Migration("20201208073017_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -186,6 +186,9 @@ namespace CarDealer.Data.Migrations
                     b.Property<int>("GearboxId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("HorsePower")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -200,6 +203,9 @@ namespace CarDealer.Data.Migrations
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("Seats")
+                        .HasColumnType("int");
 
                     b.Property<int>("State")
                         .HasColumnType("int");
@@ -333,24 +339,6 @@ namespace CarDealer.Data.Migrations
                     b.ToTable("Models");
                 });
 
-            modelBuilder.Entity("CarDealer.Data.Models.MetaData", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("CarModelId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SaleCityId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MetaDatas");
-                });
-
             modelBuilder.Entity("CarDealer.Data.Models.Sale", b =>
                 {
                     b.Property<int>("Id")
@@ -359,6 +347,9 @@ namespace CarDealer.Data.Migrations
                         .UseIdentityColumn();
 
                     b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CityId")
                         .HasColumnType("int");
 
                     b.Property<int>("CountryId")
@@ -379,11 +370,11 @@ namespace CarDealer.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int>("MetaDataId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("OpensSaleCounter")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -398,8 +389,6 @@ namespace CarDealer.Data.Migrations
                     b.HasIndex("CountryId");
 
                     b.HasIndex("IsDeleted");
-
-                    b.HasIndex("MetaDataId");
 
                     b.HasIndex("UserId");
 
@@ -477,6 +466,37 @@ namespace CarDealer.Data.Migrations
                     b.HasIndex("SaleId");
 
                     b.ToTable("Images");
+                });
+
+            modelBuilder.Entity("CarDealer.Data.Models.SaleModels.Vote", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("SaleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<byte>("Value")
+                        .HasColumnType("tinyint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SaleId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Votes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -670,12 +690,6 @@ namespace CarDealer.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("CarDealer.Data.Models.MetaData", "MetaData")
-                        .WithMany()
-                        .HasForeignKey("MetaDataId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("CarDealer.Data.Models.ApplicationUser", "User")
                         .WithMany("Sales")
                         .HasForeignKey("UserId");
@@ -683,8 +697,6 @@ namespace CarDealer.Data.Migrations
                     b.Navigation("Car");
 
                     b.Navigation("Country");
-
-                    b.Navigation("MetaData");
 
                     b.Navigation("User");
                 });
@@ -709,6 +721,23 @@ namespace CarDealer.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Sale");
+                });
+
+            modelBuilder.Entity("CarDealer.Data.Models.SaleModels.Vote", b =>
+                {
+                    b.HasOne("CarDealer.Data.Models.Sale", "Sale")
+                        .WithMany("Votes")
+                        .HasForeignKey("SaleId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("CarDealer.Data.Models.ApplicationUser", "User")
+                        .WithMany("Votes")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Sale");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -771,6 +800,8 @@ namespace CarDealer.Data.Migrations
                     b.Navigation("Roles");
 
                     b.Navigation("Sales");
+
+                    b.Navigation("Votes");
                 });
 
             modelBuilder.Entity("CarDealer.Data.Models.Car", b =>
@@ -813,6 +844,8 @@ namespace CarDealer.Data.Migrations
             modelBuilder.Entity("CarDealer.Data.Models.Sale", b =>
                 {
                     b.Navigation("Images");
+
+                    b.Navigation("Votes");
                 });
 
             modelBuilder.Entity("CarDealer.Data.Models.SaleModels.Country", b =>

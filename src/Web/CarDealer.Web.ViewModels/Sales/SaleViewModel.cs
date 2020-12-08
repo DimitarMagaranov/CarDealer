@@ -12,7 +12,7 @@
 
         public DateTime CreatedOn { get; set; }
 
-        public string CreatedOnAsString => this.CreatedOn.ToString(CultureInfo.InvariantCulture);
+        public string CreatedOnAsString => $"{this.CreatedOn.Day}/{this.CreatedOn.Month}/{this.CreatedOn.Year}";
 
         public int CarId { get; set; }
 
@@ -31,6 +31,8 @@
         public string[] ImageUrls { get; set; }
 
         public string Description { get; set; }
+
+        public int OpensSaleCount { get; set; }
 
         public CarViewModel Car { get; set; }
     }

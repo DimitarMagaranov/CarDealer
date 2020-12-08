@@ -17,7 +17,6 @@
 
         public virtual Make Make { get; set; }
 
-        [NotMapped]
         public int ModelId { get; set; }
 
         public int CategoryId { get; set; }

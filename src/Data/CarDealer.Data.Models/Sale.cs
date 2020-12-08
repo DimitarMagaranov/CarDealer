@@ -26,7 +26,6 @@
 
         public int CountryId { get; set; }
 
-        [NotMapped]
         public int CityId { get; set; }
 
         public virtual Country Country { get; set; }
@@ -40,10 +39,8 @@
 
         public virtual ICollection<Image> Images { get; set; }
 
-        public int MetaDataId { get; set; }
-
-        public virtual MetaData MetaData { get; set; }
-
         public ICollection<Vote> Votes { get; set; }
+
+        public int OpensSaleCounter { get; set; }
     }
 }

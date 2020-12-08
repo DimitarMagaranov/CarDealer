@@ -2,18 +2,12 @@
 
 namespace CarDealer.Data.Migrations
 {
-    public partial class AddSeatsAndHorsePowerToCarModel : Migration
+    public partial class AddModelIdToCarsTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
-                name: "HorsePower",
-                table: "Cars",
-                type: "int",
-                nullable: true);
-
-            migrationBuilder.AddColumn<int>(
-                name: "Seats",
+                name: "ModelId",
                 table: "Cars",
                 type: "int",
                 nullable: false,
@@ -23,11 +17,7 @@ namespace CarDealer.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "HorsePower",
-                table: "Cars");
-
-            migrationBuilder.DropColumn(
-                name: "Seats",
+                name: "ModelId",
                 table: "Cars");
         }
     }

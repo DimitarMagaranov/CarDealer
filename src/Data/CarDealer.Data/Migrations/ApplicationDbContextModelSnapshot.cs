@@ -199,6 +199,9 @@ namespace CarDealer.Data.Migrations
                     b.Property<int>("Mileage")
                         .HasColumnType("int");
 
+                    b.Property<int>("ModelId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
@@ -337,24 +340,6 @@ namespace CarDealer.Data.Migrations
                     b.ToTable("Models");
                 });
 
-            modelBuilder.Entity("CarDealer.Data.Models.MetaData", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("CarModelId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SaleCityId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MetaDatas");
-                });
-
             modelBuilder.Entity("CarDealer.Data.Models.Sale", b =>
                 {
                     b.Property<int>("Id")
@@ -363,6 +348,9 @@ namespace CarDealer.Data.Migrations
                         .UseIdentityColumn();
 
                     b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CityId")
                         .HasColumnType("int");
 
                     b.Property<int>("CountryId")
@@ -383,11 +371,11 @@ namespace CarDealer.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int>("MetaDataId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("OpensSaleCounter")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -402,8 +390,6 @@ namespace CarDealer.Data.Migrations
                     b.HasIndex("CountryId");
 
                     b.HasIndex("IsDeleted");
-
-                    b.HasIndex("MetaDataId");
 
                     b.HasIndex("UserId");
 
@@ -705,12 +691,6 @@ namespace CarDealer.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("CarDealer.Data.Models.MetaData", "MetaData")
-                        .WithMany()
-                        .HasForeignKey("MetaDataId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("CarDealer.Data.Models.ApplicationUser", "User")
                         .WithMany("Sales")
                         .HasForeignKey("UserId");
@@ -718,8 +698,6 @@ namespace CarDealer.Data.Migrations
                     b.Navigation("Car");
 
                     b.Navigation("Country");
-
-                    b.Navigation("MetaData");
 
                     b.Navigation("User");
                 });

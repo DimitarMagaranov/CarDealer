@@ -177,7 +177,7 @@
 
         public IActionResult SaleInfo(int id)
         {
-            var viewModel = this.salesService.GetSaleInfo(id);
+            var viewModel = this.salesService.GetSingleSaleInfo(id);
 
             return this.View(viewModel);
         }

@@ -27,8 +27,12 @@
 
         SaleViewModel GetSaleInfo(int saleId);
 
+        SaleViewModel GetSingleSaleInfo(int saleId);
+
         int GetSalesCountByCountryId(int countryId);
 
         int GetSalesCountByUserId(string userId);
+
+        Task IncreaseOpensSaleCounter(int id);
     }
 }

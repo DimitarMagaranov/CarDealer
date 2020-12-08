@@ -17,27 +17,24 @@
         private readonly IDeletableEntityRepository<Sale> salesRepository;
         private readonly IDeletableEntityRepository<Car> carsRepository;
         private readonly IDeletableEntityRepository<ApplicationUser> usersRepository;
-        private readonly IRepository<MetaData> metaDataRepository;
         private readonly IRepository<Country> countriesRepository;
 
         public SalesController(
             IDeletableEntityRepository<Sale> salesRepository,
             IDeletableEntityRepository<Car> carsRepository,
             IDeletableEntityRepository<ApplicationUser> usersRepository,
-            IRepository<MetaData> metaDataRepository,
             IRepository<Country> countriesRepository)
         {
             this.salesRepository = salesRepository;
             this.carsRepository = carsRepository;
             this.usersRepository = usersRepository;
-            this.metaDataRepository = metaDataRepository;
             this.countriesRepository = countriesRepository;
         }
 
         // GET: Administration/Sales
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = this.salesRepository.All().Include(s => s.Car).Include(s => s.Country).Include(s => s.MetaData).Include(s => s.User);
+            var applicationDbContext = this.salesRepository.All().Include(s => s.Car).Include(s => s.Country).Include(s => s.User);
             return this.View(await applicationDbContext.ToListAsync());
         }
 
@@ -52,7 +49,6 @@
             var sale = await this.salesRepository.All()
                 .Include(s => s.Car)
                 .Include(s => s.Country)
-                .Include(s => s.MetaData)
                 .Include(s => s.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (sale == null)
@@ -68,7 +64,6 @@
         {
             this.ViewData["CarId"] = new SelectList(this.carsRepository.All(), "Id", "Id");
             this.ViewData["CountryId"] = new SelectList(this.countriesRepository.All(), "Id", "Id");
-            this.ViewData["MetaDataId"] = new SelectList(this.metaDataRepository.All(), "Id", "Id");
             this.ViewData["UserId"] = new SelectList(this.usersRepository.All(), "Id", "Id");
             return this.View();
         }
@@ -89,7 +84,6 @@
 
             this.ViewData["CarId"] = new SelectList(this.carsRepository.All(), "Id", "Id", sale.CarId);
             this.ViewData["CountryId"] = new SelectList(this.countriesRepository.All(), "Id", "Id", sale.CountryId);
-            this.ViewData["MetaDataId"] = new SelectList(this.metaDataRepository.All(), "Id", "Id", sale.MetaDataId);
             this.ViewData["UserId"] = new SelectList(this.usersRepository.All(), "Id", "Id", sale.UserId);
             return this.View(sale);
         }
@@ -110,7 +104,6 @@
 
             this.ViewData["CarId"] = new SelectList(this.carsRepository.All(), "Id", "Id", sale.CarId);
             this.ViewData["CountryId"] = new SelectList(this.countriesRepository.All(), "Id", "Id", sale.CountryId);
-            this.ViewData["MetaDataId"] = new SelectList(this.metaDataRepository.All(), "Id", "Id", sale.MetaDataId);
             this.ViewData["UserId"] = new SelectList(this.usersRepository.All(), "Id", "Id", sale.UserId);
             return this.View(sale);
         }
@@ -151,7 +144,6 @@
 
             this.ViewData["CarId"] = new SelectList(this.carsRepository.All(), "Id", "Id", sale.CarId);
             this.ViewData["CountryId"] = new SelectList(this.countriesRepository.All(), "Id", "Id", sale.CountryId);
-            this.ViewData["MetaDataId"] = new SelectList(this.metaDataRepository.All(), "Id", "Id", sale.MetaDataId);
             this.ViewData["UserId"] = new SelectList(this.usersRepository.All(), "Id", "Id", sale.UserId);
             return this.View(sale);
         }
@@ -167,7 +159,6 @@
             var sale = await this.salesRepository.All()
                 .Include(s => s.Car)
                 .Include(s => s.Country)
-                .Include(s => s.MetaData)
                 .Include(s => s.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (sale == null)
