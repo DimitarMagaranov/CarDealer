@@ -1,9 +1,9 @@
 ﻿namespace CarDealer.Web.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using CarDealer.Data;
     using CarDealer.Data.Models;
     using CarDealer.Services.Data;
     using CarDealer.Web.ViewModels.InputModels.Cars;
@@ -13,8 +13,6 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Rendering;
-    using Microsoft.Data.SqlClient;
 
     [Authorize]
     public class SalesController : BaseController
@@ -31,6 +29,7 @@
         private readonly ICountriesService countriesService;
         private readonly ICitiesService citiesService;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly ApplicationDbContext db;
 
         public SalesController(
             IWebHostEnvironment webHostEnvironment,
@@ -44,7 +43,8 @@
             IColorsService colorsService,
             ICountriesService countriessService,
             ICitiesService citiesService,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,
+            ApplicationDbContext db)
         {
             this.webHostEnvironment = webHostEnvironment;
             this.salesService = salesService;
@@ -58,6 +58,7 @@
             this.countriesService = countriessService;
             this.citiesService = citiesService;
             this.userManager = userManager;
+            this.db = db;
         }
 
         public async Task<IActionResult> Create(int countryId)
@@ -81,6 +82,9 @@
         [HttpPost]
         public async Task<IActionResult> Create(AddSaleInputModel input)
         {
+            input.Car.MakeId = input.MakeId;
+            input.Car.ModelId = input.ModelId;
+
             var user = await this.userManager.GetUserAsync(this.User);
 
             //Other way to take the userId:
@@ -182,10 +186,12 @@
             return this.View(viewModel);
         }
 
-        [Authorize(Roles = "Administrator")]
-        public IActionResult AdminControlPanel()
+        [HttpPost]
+        public async Task<IActionResult> DeleteSale(int id)
         {
-            return null;
+            await this.salesService.DeleteAsync(id);
+
+            return this.RedirectToAction("All", "Users");
         }
 
         public async Task<AddCarInputModel> GetCarInputModelWithFilledProperties()
@@ -202,89 +208,6 @@
             carViewModel.ColorstItems = await this.colorsService.GetAllAsSelectListItemsAsync();
 
             return carViewModel;
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> DeleteSale(int id)
-        {
-            await this.salesService.DeleteAsync(id);
-
-            return this.RedirectToAction("All", "Users");
-        }
-
-
-
-        public class CascadingModel
-        {
-            public CascadingModel()
-            {
-                this.Countries = new List<SelectListItem>();
-                this.Cities = new List<SelectListItem>();
-            }
-
-            public List<SelectListItem> Countries { get; set; }
-            public List<SelectListItem> Cities { get; set; }
-
-            public int CountryId { get; set; }
-            public int CityId { get; set; }
-        }
-
-        // GET: Home
-        public ActionResult Index()
-        {
-            CascadingModel model = new CascadingModel();
-            model.Countries = PopulateDropDown("SELECT Id, Name FROM Countries", "Name", "Id");
-            return this.View(model);
-        }
-
-        [HttpPost]
-        public ActionResult Index(int countryId, int stateId, int cityId)
-        {
-            CascadingModel model = new CascadingModel();
-            model.Countries = PopulateDropDown("SELECT Id, Name FROM Countries", "Name", "Id");
-            model.Cities = PopulateDropDown("SELECT Id, Name FROM Cities WHERE CountryId = " + countryId, "Name", "ID");
-            return this.View(model);
-        }
-
-        [HttpPost]
-        public JsonResult AjaxMethod(string type, int value)
-        {
-            CascadingModel model = new CascadingModel();
-
-            model.Cities = PopulateDropDown("SELECT Id, Name FROM Cities WHERE Id = " + value, "Name", "Id");
-
-            return this.Json(model);
-        }
-
-        private static List<SelectListItem> PopulateDropDown(string query, string textColumn, string valueColumn)
-        {
-            List<SelectListItem> items = new List<SelectListItem>();
-
-            string constr = "Server=DESKTOP-C92LTDN\\SQLEXPRESS;Database=CarDealer;Trusted_Connection=True;MultipleActiveResultSets=true";
-
-            using (SqlConnection con = new SqlConnection(constr))
-            {
-                using (SqlCommand cmd = new SqlCommand(query))
-                {
-                    cmd.Connection = con;
-                    con.Open();
-                    using (SqlDataReader sdr = cmd.ExecuteReader())
-                    {
-                        while (sdr.Read())
-                        {
-                            items.Add(new SelectListItem
-                            {
-                                Text = sdr[textColumn].ToString(),
-                                Value = sdr[valueColumn].ToString(),
-                            });
-                        }
-                    }
-
-                    con.Close();
-                }
-            }
-
-            return items;
         }
     }
 }

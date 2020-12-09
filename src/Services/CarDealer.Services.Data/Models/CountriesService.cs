@@ -29,5 +29,10 @@
 
             return countries;
         }
+
+        public List<Country> GetAll()
+        {
+            return this.countriesRepository.All().ToList();
+        }
     }
 }

@@ -18,6 +18,14 @@
             this.makesRepository = makesRepository;
         }
 
+        public async Task<IEnumerable<Make>> GetMakeWithModelsAsync(int id)
+        {
+            return await this.makesRepository.All()
+                .Where(x => x.Id == id)
+                .Include(x => x.Models)
+                .ToListAsync();
+        }
+
         public async Task<IEnumerable<SelectListItem>> GetAllAsSelectListItemsAsync()
         {
             List<SelectListItem> makes = new List<SelectListItem>();

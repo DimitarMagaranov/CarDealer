@@ -9,5 +9,9 @@
         public AddCarInputModel Car { get; set; }
 
         public IEnumerable<IFormFile> Images { get; set; }
+
+        public int MakeId { get; set; }
+
+        public int ModelId { get; set; }
     }
 }

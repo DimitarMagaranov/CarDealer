@@ -957,7 +957,6 @@ C:\Users\Dimitar\Desktop\CarDealer\src\Web\CarDealer.Web\obj\Debug\net5.0\CarDea
 C:\Users\Dimitar\Desktop\CarDealer\src\Web\CarDealer.Web\bin\Debug\net5.0\Microsoft.AspNet.Identity.Core.dll
 C:\Users\Dimitar\Desktop\CarDealer\src\Web\CarDealer.Web\obj\Debug\net5.0\Razor\Views\ContactUs\Index.cshtml.g.cs
 C:\Users\Dimitar\Desktop\CarDealer\src\Web\CarDealer.Web\obj\Debug\net5.0\Razor\Views\Shared\_OwnSalesPagingPartial.cshtml.g.cs
-C:\Users\Dimitar\Desktop\CarDealer\src\Web\CarDealer.Web\obj\Debug\net5.0\Razor\Views\Sales\Index.cshtml.g.cs
 C:\Users\Dimitar\Desktop\CarDealer\src\Web\CarDealer.Web\bin\Debug\net5.0\System.Web.Mvc.dll
 C:\Users\Dimitar\Desktop\CarDealer\src\Web\CarDealer.Web\bin\Debug\net5.0\System.Web.Razor.dll
 C:\Users\Dimitar\Desktop\CarDealer\src\Web\CarDealer.Web\bin\Debug\net5.0\System.Web.Helpers.dll
