@@ -142,6 +142,9 @@
         [HttpPost]
         public async Task<IActionResult> Edit(int id, EditSaleInputModel input)
         {
+            input.Car.MakeId = input.MakeId;
+            input.Car.ModelId = input.ModelId;
+
             var user = await this.userManager.GetUserAsync(this.User);
 
             input.CountryId = user.CountryId;
