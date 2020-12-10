@@ -2,7 +2,6 @@
 @using CarDealer.Data.Models.SaleModels
 @model CarDealer.Web.ViewModels.InputModels.SearchSales.SearchListInputModel
 @{
-    this.ViewData["Title"] = "Add new sale";
     var categoriesItems = this.Model.CategoriesItems.Select(x => new SelectListItem(x.Text, x.Value));
     var makesItems = this.Model.MakesItems.Select(x => new SelectListItem(x.Text, x.Value));
     var modelsItems = this.Model.ModelstItems.Select(x => new SelectListItem(x.Text, x.Value));
@@ -15,11 +14,8 @@
 }
 
 <form asp-action="List" method="get" class="col-md-6 offset-md-3">
-    <div class="form-group">
-        <label asp-for="CountryId"></label>
-        <select asp-for="CountryId" class="form-control" asp-items="countriesItems"></select>
-        <span asp-validation-for="CountryId" class="text-danger"></span>
-    </div>
+    <input type="hidden" id="CountryId" name="CountryId" value=@this.TempData["CountryId"]>
+    <br />
     <div class="form-group">
         <label asp-for="CityId"></label>
         <select asp-for="CityId" class="form-control" asp-items="citiesItems"></select>

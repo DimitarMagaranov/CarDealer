@@ -140,7 +140,7 @@
         {
             var data = new List<SaleViewModel>();
 
-            itemsPerPage = 2;
+            itemsPerPage = 12;
 
             var sales = this.salesRepository.All()
                 .Where(x => x.CountryId == countryId)
@@ -416,6 +416,41 @@
             sale.OpensSaleCounter += 1;
 
             await this.salesRepository.SaveChangesAsync();
+        }
+
+        public IEnumerable<SaleViewModel> GetTopNineCarsInUsersCountry(int id)
+        {
+            var data = new List<SaleViewModel>();
+
+            var sales = this.salesRepository.All()
+                .Where(x => x.CountryId == id)
+                .OrderByDescending(x => x.CreatedOn)
+                .Take(9)
+                .ToList();
+
+            foreach (var sale in sales)
+            {
+                data.Add(this.GetSaleInfo(sale.Id));
+            }
+
+            return data;
+        }
+
+        public IEnumerable<SaleViewModel> GetTopNineCarsFromEnywhere()
+        {
+            var data = new List<SaleViewModel>();
+
+            var sales = this.salesRepository.All()
+                .OrderByDescending(x => x.CreatedOn)
+                .Take(9)
+                .ToList();
+
+            foreach (var sale in sales)
+            {
+                data.Add(this.GetSaleInfo(sale.Id));
+            }
+
+            return data;
         }
     }
 }

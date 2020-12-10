@@ -10,10 +10,6 @@
     {
         Car CreateCar(AddCarInputModel input);
 
-        Task RemoveCarByIdAsync(int carId);
-
-        CarDto GetCarById(int id);
-
-        IEnumerable<CarDto> GetAllCarsWithoutSorting();
+        Task<AddCarInputModel> GetCarInputModelWithFilledProperties();
     }
 }

@@ -1,26 +1,16 @@
 ﻿namespace CarDealer.Web.Controllers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using CarDealer.Data.Models;
     using CarDealer.Services.Data;
-    using CarDealer.Web.ViewModels.InputModels.Cars;
-    using CarDealer.Web.ViewModels.InputModels.Sales;
     using CarDealer.Web.ViewModels.InputModels.SearchSales;
     using CarDealer.Web.ViewModels.Sales;
     using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Rendering;
-    using Microsoft.Data.SqlClient;
 
     [Authorize]
     public class SearchSalesController : BaseController
     {
-        private readonly IWebHostEnvironment webHostEnvironment;
         private readonly ISalesService salesService;
         private readonly ICategoriesService categoriesService;
         private readonly IMakesService makesService;
@@ -31,10 +21,8 @@
         private readonly IColorsService colorsService;
         private readonly ICountriesService countriesService;
         private readonly ICitiesService citiesService;
-        private readonly UserManager<ApplicationUser> userManager;
 
         public SearchSalesController(
-            IWebHostEnvironment webHostEnvironment,
             ISalesService salesService,
             ICategoriesService categoriesService,
             IMakesService makesService,
@@ -44,10 +32,8 @@
             IGearboxesService gearboxesService,
             IColorsService colorsService,
             ICountriesService countriessService,
-            ICitiesService citiesService,
-            UserManager<ApplicationUser> userManager)
+            ICitiesService citiesService)
         {
-            this.webHostEnvironment = webHostEnvironment;
             this.salesService = salesService;
             this.categoriesService = categoriesService;
             this.makesService = makesService;
@@ -58,7 +44,6 @@
             this.colorsService = colorsService;
             this.countriesService = countriessService;
             this.citiesService = citiesService;
-            this.userManager = userManager;
         }
 
         public async Task<IActionResult> Index(int countryId)
@@ -68,6 +53,8 @@
                 return this.RedirectToAction("SelectCountryForSearchSales", "Countries");
             }
 
+            this.TempData["CountryId"] = countryId;
+
             var viewModel = await this.GetSearchListInputModelWithFilledProperties(countryId);
 
             viewModel.CountryId = countryId;
@@ -76,10 +63,8 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> List(SearchListInputModel input)
+        public IActionResult List(SearchListInputModel input)
         {
-            var user = await this.userManager.GetUserAsync(this.User);
-
             var salesListViewModel = new SalesListViewModel();
 
             salesListViewModel.Sales = this.salesService.GetAllBySearchForm(input);
@@ -89,17 +74,18 @@
 
         public async Task<SearchListInputModel> GetSearchListInputModelWithFilledProperties(int countryId)
         {
-            var carViewModel = new SearchListInputModel();
-
-            carViewModel.CategoriesItems = await this.categoriesService.GetAllAsSelectListItemsAsync();
-            carViewModel.MakesItems = await this.makesService.GetAllAsSelectListItemsAsync();
-            carViewModel.ModelstItems = await this.modelsService.GetAllAsSelectListItemsAsync();
-            carViewModel.FuelTypeItems = await this.fuelTypesService.GetAllAsSelectListItemsAsync();
-            carViewModel.EuroStandartItems = await this.euroStandartsService.GetAllAsSelectListItemsAsync();
-            carViewModel.GearboxesItems = await this.gearboxesService.GetAllAsSelectListItemsAsync();
-            carViewModel.ColorstItems = await this.colorsService.GetAllAsSelectListItemsAsync();
-            carViewModel.CitiesItems = await this.citiesService.GetAllAsSelectListItemsAsync(countryId);
-            carViewModel.CountriesItems = await this.countriesService.GetAllAsSelectListItemsAsync();
+            var carViewModel = new SearchListInputModel
+            {
+                CategoriesItems = await this.categoriesService.GetAllAsSelectListItemsAsync(),
+                MakesItems = await this.makesService.GetAllAsSelectListItemsAsync(),
+                ModelstItems = await this.modelsService.GetAllAsSelectListItemsAsync(),
+                FuelTypeItems = await this.fuelTypesService.GetAllAsSelectListItemsAsync(),
+                EuroStandartItems = await this.euroStandartsService.GetAllAsSelectListItemsAsync(),
+                GearboxesItems = await this.gearboxesService.GetAllAsSelectListItemsAsync(),
+                ColorstItems = await this.colorsService.GetAllAsSelectListItemsAsync(),
+                CitiesItems = await this.citiesService.GetAllAsSelectListItemsAsync(countryId),
+                CountriesItems = await this.countriesService.GetAllAsSelectListItemsAsync(),
+            };
 
             return carViewModel;
         }

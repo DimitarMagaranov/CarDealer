@@ -1,13 +1,13 @@
 ﻿namespace CarDealer.Web.Controllers
 {
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+
     using CarDealer.Services.Data;
     using CarDealer.Web.ViewModels.InputModels.Votes;
     using CarDealer.Web.ViewModels.Votes;
     using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using System.Security.Claims;
-    using System.Threading.Tasks;
 
     [ApiController]
     [Route("api/[controller]")]

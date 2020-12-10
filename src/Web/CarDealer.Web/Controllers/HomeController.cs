@@ -1,33 +1,45 @@
 ﻿namespace CarDealer.Web.Controllers
 {
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Threading.Tasks;
+
+    using CarDealer.Data.Models;
     using CarDealer.Services.Data;
     using CarDealer.Web.ViewModels;
-    using CarDealer.Web.ViewModels.Home;
+    using CarDealer.Web.ViewModels.Sales;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using System.Diagnostics;
 
     public class HomeController : BaseController
     {
-        private readonly IGetCountsService getCountsService;
+        private readonly ISalesService salesService;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public HomeController(IGetCountsService getCountsService)
+        public HomeController(
+            ISalesService salesService,
+            UserManager<ApplicationUser> userManager)
         {
-            this.getCountsService = getCountsService;
+            this.salesService = salesService;
+            this.userManager = userManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var counts = this.getCountsService.GetCounts();
+            IEnumerable<SaleViewModel> salesViewModel;
 
-            var viewModel = new IndexViewModel
+            if (this.User.Identity.IsAuthenticated)
             {
-                SalesCount = counts.SalesCount,
-                CarsCount = counts.CarsCount,
-                MakesCount = counts.MakesCount,
-                CategoriesCount = counts.CategoriesCount,
-            };
+                var user = await this.userManager.GetUserAsync(this.User);
 
-            return this.View(viewModel);
+                salesViewModel = this.salesService.GetTopNineCarsInUsersCountry(user.CountryId);
+
+                return this.View(salesViewModel);
+            }
+
+            salesViewModel = this.salesService.GetTopNineCarsFromEnywhere();
+
+            return this.View(salesViewModel);
         }
 
         public IActionResult Privacy()

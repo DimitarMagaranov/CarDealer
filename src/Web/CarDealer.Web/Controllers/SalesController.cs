@@ -3,10 +3,8 @@
     using System;
     using System.Threading.Tasks;
 
-    using CarDealer.Data;
     using CarDealer.Data.Models;
     using CarDealer.Services.Data;
-    using CarDealer.Web.ViewModels.InputModels.Cars;
     using CarDealer.Web.ViewModels.InputModels.Sales;
     using CarDealer.Web.ViewModels.Sales;
     using Microsoft.AspNetCore.Authorization;
@@ -18,6 +16,7 @@
     public class SalesController : BaseController
     {
         private readonly IWebHostEnvironment webHostEnvironment;
+        private readonly ICarsService carsService;
         private readonly ISalesService salesService;
         private readonly ICategoriesService categoriesService;
         private readonly IMakesService makesService;
@@ -29,10 +28,10 @@
         private readonly ICountriesService countriesService;
         private readonly ICitiesService citiesService;
         private readonly UserManager<ApplicationUser> userManager;
-        private readonly ApplicationDbContext db;
 
         public SalesController(
             IWebHostEnvironment webHostEnvironment,
+            ICarsService carsService,
             ISalesService salesService,
             ICategoriesService categoriesService,
             IMakesService makesService,
@@ -43,10 +42,10 @@
             IColorsService colorsService,
             ICountriesService countriessService,
             ICitiesService citiesService,
-            UserManager<ApplicationUser> userManager,
-            ApplicationDbContext db)
+            UserManager<ApplicationUser> userManager)
         {
             this.webHostEnvironment = webHostEnvironment;
+            this.carsService = carsService;
             this.salesService = salesService;
             this.categoriesService = categoriesService;
             this.makesService = makesService;
@@ -58,7 +57,6 @@
             this.countriesService = countriessService;
             this.citiesService = citiesService;
             this.userManager = userManager;
-            this.db = db;
         }
 
         public async Task<IActionResult> Create(int countryId)
@@ -74,7 +72,7 @@
             };
 
             viewModel.CitiesItems = await this.citiesService.GetAllAsSelectListItemsAsync(viewModel.CountryId);
-            viewModel.Car = await this.GetCarInputModelWithFilledProperties();
+            viewModel.Car = await this.carsService.GetCarInputModelWithFilledProperties();
 
             return this.View(viewModel);
         }
@@ -95,7 +93,7 @@
             if (!this.ModelState.IsValid)
             {
                 input.CitiesItems = await this.citiesService.GetAllAsSelectListItemsAsync(input.CountryId);
-                input.Car = await this.GetCarInputModelWithFilledProperties();
+                input.Car = await this.carsService.GetCarInputModelWithFilledProperties();
 
                 return this.View(input);
             }
@@ -110,7 +108,7 @@
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
                 input.CitiesItems = await this.citiesService.GetAllAsSelectListItemsAsync(input.CountryId);
-                input.Car = await this.GetCarInputModelWithFilledProperties();
+                input.Car = await this.carsService.GetCarInputModelWithFilledProperties();
                 return this.View(input);
             }
 
@@ -125,7 +123,7 @@
 
             viewModel.CitiesItems = await this.citiesService.GetAllAsSelectListItemsAsync(viewModel.CountryId);
 
-            var carItemsModel = await this.GetCarInputModelWithFilledProperties();
+            var carItemsModel = await this.carsService.GetCarInputModelWithFilledProperties();
 
             viewModel.Car.ManufactureDate = carItemsModel.ManufactureDate;
             viewModel.Car.CategoriesItems = carItemsModel.CategoriesItems;
@@ -163,7 +161,7 @@
         {
             var user = await this.userManager.GetUserAsync(this.User);
 
-            const int ItemsPerPage = 2;
+            const int ItemsPerPage = 12;
 
             if (id == 0)
             {
@@ -195,22 +193,6 @@
             await this.salesService.DeleteAsync(id);
 
             return this.RedirectToAction("All", "Users");
-        }
-
-        public async Task<AddCarInputModel> GetCarInputModelWithFilledProperties()
-        {
-            var carViewModel = new AddCarInputModel();
-
-            carViewModel.ManufactureDate = DateTime.UtcNow;
-            carViewModel.CategoriesItems = await this.categoriesService.GetAllAsSelectListItemsAsync();
-            carViewModel.MakesItems = await this.makesService.GetAllAsSelectListItemsAsync();
-            carViewModel.ModelstItems = await this.modelsService.GetAllAsSelectListItemsAsync();
-            carViewModel.FuelTypeItems = await this.fuelTypesService.GetAllAsSelectListItemsAsync();
-            carViewModel.EuroStandartItems = await this.euroStandartsService.GetAllAsSelectListItemsAsync();
-            carViewModel.GearboxesItems = await this.gearboxesService.GetAllAsSelectListItemsAsync();
-            carViewModel.ColorstItems = await this.colorsService.GetAllAsSelectListItemsAsync();
-
-            return carViewModel;
         }
     }
 }

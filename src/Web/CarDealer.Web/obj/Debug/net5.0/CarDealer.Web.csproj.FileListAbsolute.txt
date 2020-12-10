@@ -930,7 +930,6 @@ C:\Users\Dimitar\Desktop\CarDealer\src\Web\CarDealer.Web\obj\Debug\net5.0\Razor\
 C:\Users\Dimitar\Desktop\CarDealer\src\Web\CarDealer.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\Dimitar\Desktop\CarDealer\src\Web\CarDealer.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 C:\Users\Dimitar\Desktop\CarDealer\src\Web\CarDealer.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
-C:\Users\Dimitar\Desktop\CarDealer\src\Web\CarDealer.Web\obj\Debug\net5.0\Razor\Views\Cars\CarInfo.cshtml.g.cs
 C:\Users\Dimitar\Desktop\CarDealer\src\Web\CarDealer.Web\obj\Debug\net5.0\Razor\Views\Countries\SelectCountryForCreateSale.cshtml.g.cs
 C:\Users\Dimitar\Desktop\CarDealer\src\Web\CarDealer.Web\obj\Debug\net5.0\Razor\Views\Countries\SelectCountryForGetAllSales.cshtml.g.cs
 C:\Users\Dimitar\Desktop\CarDealer\src\Web\CarDealer.Web\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
