@@ -128,7 +128,7 @@
             <textarea asp-for="Description" class="form-control" rows="5"></textarea>
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
-        <div class="mb-4 mt-3 ml-xl-5 ml-lg-5">
+        @*<div class="mb-4 mt-3 ml-xl-5 ml-lg-5">
             <label class="col-md-3 col-form-label mb-1 font-weight-bold">Car Extras:</label>
             <div class="row">
                 @foreach (var extra in carService.GetAllExtras())
@@ -146,7 +146,7 @@
                     </div>
                 }
             </div>
-        </div>
+        </div>*@
     </div>
 
     <div style="overflow:auto;">
