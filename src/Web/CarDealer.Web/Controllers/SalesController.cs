@@ -82,6 +82,7 @@
         {
             input.Car.MakeId = input.MakeId;
             input.Car.ModelId = input.ModelId;
+            input.Car.CarExtras = input.CarExtras;
 
             var user = await this.userManager.GetUserAsync(this.User);
 

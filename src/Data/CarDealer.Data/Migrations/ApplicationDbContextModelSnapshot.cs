@@ -230,6 +230,28 @@ namespace CarDealer.Data.Migrations
                     b.ToTable("Cars");
                 });
 
+            modelBuilder.Entity("CarDealer.Data.Models.CarModels.CarExtra", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ExtraId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarId");
+
+                    b.HasIndex("ExtraId");
+
+                    b.ToTable("CarExtras");
+                });
+
             modelBuilder.Entity("CarDealer.Data.Models.CarModels.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -273,6 +295,28 @@ namespace CarDealer.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("EuroStandarts");
+                });
+
+            modelBuilder.Entity("CarDealer.Data.Models.CarModels.Extra", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Extras");
                 });
 
             modelBuilder.Entity("CarDealer.Data.Models.CarModels.FuelType", b =>
@@ -666,6 +710,25 @@ namespace CarDealer.Data.Migrations
                     b.Navigation("Make");
                 });
 
+            modelBuilder.Entity("CarDealer.Data.Models.CarModels.CarExtra", b =>
+                {
+                    b.HasOne("CarDealer.Data.Models.Car", "Car")
+                        .WithMany("CarExtras")
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("CarDealer.Data.Models.CarModels.Extra", "Extra")
+                        .WithMany()
+                        .HasForeignKey("ExtraId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Car");
+
+                    b.Navigation("Extra");
+                });
+
             modelBuilder.Entity("CarDealer.Data.Models.CarModels.Model", b =>
                 {
                     b.HasOne("CarDealer.Data.Models.CarModels.Make", "Make")
@@ -807,6 +870,8 @@ namespace CarDealer.Data.Migrations
 
             modelBuilder.Entity("CarDealer.Data.Models.Car", b =>
                 {
+                    b.Navigation("CarExtras");
+
                     b.Navigation("Sales");
                 });
 

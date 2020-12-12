@@ -15,25 +15,30 @@
             this.votesRepository = votesRepository;
         }
 
+        public double GetAverageVotes(int saleId)
+        {
+            return this.votesRepository.All()
+                .Where(x => x.SaleId == saleId)
+                .Average(x => x.Value);
+        }
+
         public async Task SetVoteAsync(int saleId, string userId, byte value)
         {
-            var vote = this.votesRepository.All().FirstOrDefault(x => x.SaleId == saleId && x.UserId == userId);
-
+            var vote = this.votesRepository.All()
+                .FirstOrDefault(x => x.SaleId == saleId && x.UserId == userId);
             if (vote == null)
             {
-                vote = new Vote { SaleId = saleId, UserId = userId };
+                vote = new Vote
+                {
+                    SaleId = saleId,
+                    UserId = userId,
+                };
 
                 await this.votesRepository.AddAsync(vote);
             }
 
             vote.Value = value;
-
             await this.votesRepository.SaveChangesAsync();
-        }
-
-        public double GetAverageVotes(int saleId)
-        {
-            return this.votesRepository.All().Where(x => x.SaleId == saleId).Average(x => x.Value);
         }
     }
 }

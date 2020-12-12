@@ -6951,8 +6951,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Dimitar\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\Dimitar\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -6963,13 +6962,9 @@
       "packagesPath": "C:\\Users\\Dimitar\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\src\\Tests\\Sandbox\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
         "C:\\Users\\Dimitar\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"

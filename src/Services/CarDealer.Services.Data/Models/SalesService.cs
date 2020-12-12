@@ -27,6 +27,7 @@
         private readonly IDeletableEntityRepository<Car> carsRepository;
         private readonly IDeletableEntityRepository<Image> imagesRepository;
         private readonly IDeletableEntityRepository<ApplicationUser> usersRepository;
+        private readonly IRepository<CarExtra> carExtrasRepository;
 
         public SalesService(
             ICarsService carsService,
@@ -35,7 +36,8 @@
             IRepository<City> citiesRepository,
             IDeletableEntityRepository<Car> carsRepository,
             IDeletableEntityRepository<Image> imagesRepository,
-            IDeletableEntityRepository<ApplicationUser> usersRepository)
+            IDeletableEntityRepository<ApplicationUser> usersRepository,
+            IRepository<CarExtra> carExtrasRepository)
         {
             this.salesRepository = salesRepository;
             this.carsService = carsService;
@@ -43,6 +45,7 @@
             this.carsRepository = carsRepository;
             this.imagesRepository = imagesRepository;
             this.usersRepository = usersRepository;
+            this.carExtrasRepository = carExtrasRepository;
             this.citiesRepository = citiesRepository;
         }
 
@@ -84,6 +87,7 @@
 
             await this.salesRepository.AddAsync(saleToAdd);
             await this.salesRepository.SaveChangesAsync();
+            //await this.AddExtrasToDbAsync(saleToAdd.CarId, input.Car.CarExtras);
 
             return saleToAdd.Id;
         }
@@ -451,6 +455,25 @@
             }
 
             return data;
+        }
+
+        private async Task AddExtrasToDbAsync(int carId, IEnumerable<int> extras)
+        {
+            if (extras == null)
+            {
+                return;
+            }
+
+            foreach (var extra in extras)
+            {
+                var carExtra = new CarExtra()
+                {
+                    CarId = carId,
+                    ExtraId = extra,
+                };
+
+                await this.carExtrasRepository.AddAsync(carExtra);
+            }
         }
     }
 }

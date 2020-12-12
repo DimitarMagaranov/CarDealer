@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "qExJaoXkrCXJL8ZDb2yc/7lErZBGEXodADRumMjuv++4Bcqb/E1GJQvsx55/QVR0BTqjb1uXzuAkezaUR/mUYg==",
+  "dgSpecHash": "nbn8sjMRvhl88vMj7l5B/Nl5v2WQjFZP0LSWaK1ic3KSyrVBlQU9cG3xBCu5Pot3G2KnZM7E9y4GyB8hDosPvg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Dimitar\\Desktop\\CarDealer\\src\\Web\\CarDealer.Web\\CarDealer.Web.csproj",
   "expectedPackageFiles": [
@@ -84,7 +84,7 @@
     "C:\\Users\\Dimitar\\.nuget\\packages\\microsoft.web.librarymanager.build\\2.1.113\\microsoft.web.librarymanager.build.2.1.113.nupkg.sha512",
     "C:\\Users\\Dimitar\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Dimitar\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
-    "C:\\Microsoft\\Xamarin\\NuGet\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\Dimitar\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
     "C:\\Users\\Dimitar\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\Dimitar\\.nuget\\packages\\sendgrid\\9.21.2\\sendgrid.9.21.2.nupkg.sha512",
     "C:\\Users\\Dimitar\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.0.4\\sqlitepclraw.bundle_e_sqlite3.2.0.4.nupkg.sha512",

@@ -1,10 +1,11 @@
 ﻿namespace CarDealer.Data.Seeding
 {
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
 
     public class ApplicationDbContextSeeder : ISeeder
     {
@@ -32,6 +33,7 @@
                               new CarFuelTypesSeeder(),
                               new CarGearboxesSeeder(),
                               new AllCountriesAndCitiesSeeder(),
+                              new ExtrasSeeder(),
                           };
 
             foreach (var seeder in seeders)

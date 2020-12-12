@@ -1,9 +1,14 @@
 ﻿namespace CarDealer.Services.Data
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
+    using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models;
+    using CarDealer.Data.Models.CarModels;
+    using CarDealer.Web.ViewModels.Cars.CarExtras;
     using CarDealer.Web.ViewModels.InputModels.Cars;
 
     public class CarsService : ICarsService
@@ -15,6 +20,8 @@
         private readonly IEuroStandartsService euroStandartsService;
         private readonly IGearboxesService gearboxesService;
         private readonly IColorsService colorsService;
+        private readonly IRepository<Extra> extrasRepository;
+        private readonly IRepository<CarExtra> carExtrasRepository;
 
         public CarsService(
             ICategoriesService categoriesService,
@@ -23,7 +30,9 @@
             IFuelTypesService fuelTypesService,
             IEuroStandartsService euroStandartsService,
             IGearboxesService gearboxesService,
-            IColorsService colorsService)
+            IColorsService colorsService,
+            IRepository<Extra> extrasRepository,
+            IRepository<CarExtra> carExtrasRepository)
         {
             this.categoriesService = categoriesService;
             this.makesService = makesService;
@@ -32,6 +41,8 @@
             this.euroStandartsService = euroStandartsService;
             this.gearboxesService = gearboxesService;
             this.colorsService = colorsService;
+            this.extrasRepository = extrasRepository;
+            this.carExtrasRepository = carExtrasRepository;
         }
 
         public Car CreateCar(AddCarInputModel input)
@@ -55,6 +66,17 @@
             };
 
             return carToAdd;
+        }
+
+        public IEnumerable<ExtraViewModel> GetAllExtras()
+        {
+            return this.extrasRepository.AllAsNoTracking()
+                .Select(x => new ExtraViewModel()
+                {
+                    Name = x.Name,
+                    Id = x.Id,
+                })
+                .ToList();
         }
 
         public async Task<AddCarInputModel> GetCarInputModelWithFilledProperties()

@@ -1,16 +1,17 @@
 ﻿namespace CarDealer.Data.Models
 {
-    using CarDealer.Data.Common.Models;
-    using CarDealer.Data.Models.CarModels;
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
+
+    using CarDealer.Data.Common.Models;
+    using CarDealer.Data.Models.CarModels;
 
     public class Car : BaseDeletableModel<int>
     {
         public Car()
         {
             this.Sales = new HashSet<Sale>();
+            this.CarExtras = new HashSet<CarExtra>();
         }
 
         public int MakeId { get; set; }
@@ -54,5 +55,7 @@
         public DateTime ManufactureDate { get; set; }
 
         public ICollection<Sale> Sales { get; set; }
+
+        public ICollection<CarExtra> CarExtras { get; set; }
     }
 }

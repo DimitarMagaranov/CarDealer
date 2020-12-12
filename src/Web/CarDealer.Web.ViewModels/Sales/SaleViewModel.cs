@@ -34,6 +34,8 @@
 
         public int OpensSaleCount { get; set; }
 
+        public double AverageVote { get; set; }
+
         public CarViewModel Car { get; set; }
     }
 }
