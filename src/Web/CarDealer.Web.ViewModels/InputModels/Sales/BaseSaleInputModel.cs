@@ -5,15 +5,14 @@
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
-    using CarDealer.Web.ViewModels.InputModels.Cars;
-    using Microsoft.AspNetCore.Http;
-
     public abstract class BaseSaleInputModel
     {
-        [Range(10, 60)]
         [DisplayName("Duration in days")]
+        [Range(10, 60, ErrorMessage = "The days of duration must be atleast 10.")]
         public int DaysValid { get; set; }
 
+        [DisplayName("Price")]
+        [DataType(DataType.Currency)]
         public decimal Price { get; set; }
 
         [DisplayName("Country")]

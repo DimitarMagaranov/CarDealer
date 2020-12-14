@@ -45,7 +45,7 @@
             {
                 ModelId = input.ModelId,
                 MakeId = input.MakeId,
-                CategoryId = input.CategoryId,
+                CategoryId = (int)input.CategoryId,
                 FuelTypeId = input.FuelTypeId,
                 EngineSize = input.EngineSize,
                 HorsePower = input.HorsePower,

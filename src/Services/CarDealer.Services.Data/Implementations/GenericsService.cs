@@ -1,5 +1,6 @@
 ﻿namespace CarDealer.Services.Data.Implementations
 {
+    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Web.Mvc;
@@ -28,7 +29,7 @@
                 }
             }
 
-            data.Insert(0, new SelectListItem() { Text = $"Select ...", Value = null });
+            data.Insert(0, new SelectListItem { Text = "Please make a selection", Value = null });
 
             return data;
         }

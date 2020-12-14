@@ -48,7 +48,7 @@
                 </button>
 
                 <!-- lOGO TEXT HERE -->
-                <a href="#" class="navbar-brand">Car Dealer Website</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Car Dealer Website</a>
             </div>
             <!-- MENU LINKS -->
             <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
@@ -95,7 +95,7 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    @if (this.SignInManager.IsSignedIn(this.User))
+                    @if (this.User.Identity.IsAuthenticated)
                     {
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @(this.User.Identity.Name)!</a>
@@ -108,7 +108,7 @@
                         }
                         <li class="nav-item">
                             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">
-                                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                                <button type="submit" class="btn navbar-btn btn-success" name="logout" id="logout" value="Log Out">Log Out</button>
                             </form>
                         </li>
                     }
@@ -146,7 +146,7 @@
                             <h2>Headquarter</h2>
                         </div>
                         <address>
-                            <p>212 Barrington Court <br>New York, ABC 10001</p>
+                            <p>Some street <br>Sofia Bulgaria</p>
                         </address>
 
                         <ul class="social-icon">
@@ -156,8 +156,7 @@
                         </ul>
 
                         <div class="copyright-text">
-                            <p>Copyright &copy; 2020 Company Name</p>
-                            <p>Template by: <a href="https://www.phpjabbers.com/">PHPJabbers.com</a></p>
+                            <p>Copyright &copy; @DateTime.UtcNow.Year Company Name</p>
                         </div>
                     </div>
                 </div>
@@ -168,8 +167,8 @@
                             <h2>Contact Info</h2>
                         </div>
                         <address>
-                            <p>+1 333 4040 5566</p>
-                            <p><a href="mailto:contact@company.com">contact@company.com</a></p>
+                            <p>+359 123 456 789</p>
+                            <p><a href="mailto:dimitar.magaranov1@gmail.com">dimitar.magaranov1@gmail.com</a></p>
                         </address>
 
                         <div class="footer_menu">
@@ -178,8 +177,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                                 </li>
-                                <li><a href="~/BootstrapTemplate/Html/about-us.cshtml">About Us</a></li>
-                                <li><a href="~/BootstrapTemplate/Html/terms.html">Terms & Conditions</a></li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="AboutUs" asp-action="Index">About us</a>
+                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="ContactUs" asp-action="Index">Contact Us</a>
                                 </li>

@@ -47,7 +47,7 @@
 
         public int Mileage { get; set; }
 
-        [DisplayName("Date of manufacture")]
+        [DisplayName("Manufacture date")]
         [DataType(DataType.Date)]
         public DateTime ManufactureDate { get; set; }
 

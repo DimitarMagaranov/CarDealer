@@ -2,7 +2,7 @@
 @using CarDealer.Data.Models.SaleModels
 @model CarDealer.Web.ViewModels.InputModels.Sales.EditSaleInputModel
 @{
-    this.ViewData["Title"] = "Edit sale";
+    this.ViewData["Title"] = "Edit ad";
     var categoriesItems = this.Model.Car.CategoriesItems.Select(x => new SelectListItem(x.Text, x.Value));
     var makesItems = this.Model.Car.MakesItems.Select(x => new SelectListItem(x.Text, x.Value));
     var modelsItems = this.Model.Car.ModelstItems.Select(x => new SelectListItem(x.Text, x.Value));
@@ -16,7 +16,7 @@
 <link href="~/css/multistep.css" rel="stylesheet" />
 
 <form method="post" class="col-md-6 offset-md-3" id="multiForm">
-    <h1>Edit sale:</h1>
+    <h2>@this.ViewData["Title"]</h2>
     <br />
     <div class="tab">
         <div asp-validation-summary="All" class="text-danger"></div>
