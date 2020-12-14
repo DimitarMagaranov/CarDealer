@@ -30,12 +30,7 @@
                 return this.View(input);
             }
 
-            var email = input.Email;
-            var fullName = input.FullName;
-            var subject = input.Subject;
-            var message = input.Message;
-
-            await this.emailSender.SendEmailAsync(email, fullName, "dimitar.magaranov1@gmail.com", subject, message, null);
+            await this.emailSender.SendEmailAsync(input.Email, input.FullName, "dimitar.magaranov1@gmail.com", input.Subject, input.Message, null);
 
             return this.RedirectToAction("Index", "Home");
         }

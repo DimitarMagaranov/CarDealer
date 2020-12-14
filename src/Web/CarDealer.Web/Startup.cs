@@ -9,6 +9,7 @@
     using CarDealer.Data.Repositories;
     using CarDealer.Data.Seeding;
     using CarDealer.Services.Data;
+    using CarDealer.Services.Data.Implementations;
     using CarDealer.Services.Mapping;
     using CarDealer.Services.Messaging;
     using CarDealer.Web.ViewModels;
@@ -64,7 +65,6 @@
 
             // Application services
             services.AddTransient<IEmailSender>(x => new SendGridEmailSender(this.configuration["SendGrid:ApiKey"]));
-            services.AddTransient<IGetCountsService, GetCountsService>();
             services.AddTransient<ICarsService, CarsService>();
             services.AddTransient<ISalesService, SalesService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
@@ -76,7 +76,11 @@
             services.AddTransient<IColorsService, ColorsService>();
             services.AddTransient<ICountriesService, CountriesService>();
             services.AddTransient<ICitiesService, CitiesService>();
-            services.AddTransient<IVotesService, VotesService>();
+            services.AddTransient<IExtrasService, ExtrasService>();
+            services.AddTransient<ICarExtrasService, CarExtrasService>();
+            services.AddTransient<IImagesService, ImagesService>();
+            services.AddTransient<IUsersService, UsersService>();
+            services.AddTransient<IGenericsService, GenericsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

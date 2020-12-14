@@ -1,4 +1,4 @@
-﻿namespace CarDealer.Services.Data
+﻿namespace CarDealer.Services.Data.Implementations
 {
     using System;
     using System.Collections.Generic;
@@ -8,7 +8,6 @@
 
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models;
-    using CarDealer.Data.Models.CarModels;
     using CarDealer.Data.Models.SaleModels;
     using CarDealer.Web.ViewModels.Cars;
     using CarDealer.Web.ViewModels.InputModels.Cars;
@@ -22,31 +21,28 @@
         private readonly string[] allowedExtensions = new[] { "jpg", "png", "gif" };
         private readonly IDeletableEntityRepository<Sale> salesRepository;
         private readonly ICarsService carsService;
-        private readonly IRepository<City> citiesRepository;
-        private readonly IRepository<Model> modelsRepository;
-        private readonly IDeletableEntityRepository<Car> carsRepository;
-        private readonly IDeletableEntityRepository<Image> imagesRepository;
-        private readonly IDeletableEntityRepository<ApplicationUser> usersRepository;
-        private readonly IRepository<CarExtra> carExtrasRepository;
+        private readonly ICarExtrasService carExtrasService;
+        private readonly IModelsService modelsService;
+        private readonly ICitiesService citiesService;
+        private readonly IImagesService imagesService;
+        private readonly IUsersService usersService;
 
         public SalesService(
             ICarsService carsService,
-            IDeletableEntityRepository<Sale> salesRepository,
-            IRepository<Model> modelsRepository,
-            IRepository<City> citiesRepository,
-            IDeletableEntityRepository<Car> carsRepository,
-            IDeletableEntityRepository<Image> imagesRepository,
-            IDeletableEntityRepository<ApplicationUser> usersRepository,
-            IRepository<CarExtra> carExtrasRepository)
+            ICarExtrasService carExtrasService,
+            IModelsService modelsService,
+            ICitiesService citiesService,
+            IImagesService imagesService,
+            IUsersService usersService,
+            IDeletableEntityRepository<Sale> salesRepository)
         {
             this.salesRepository = salesRepository;
             this.carsService = carsService;
-            this.modelsRepository = modelsRepository;
-            this.carsRepository = carsRepository;
-            this.imagesRepository = imagesRepository;
-            this.usersRepository = usersRepository;
-            this.carExtrasRepository = carExtrasRepository;
-            this.citiesRepository = citiesRepository;
+            this.carExtrasService = carExtrasService;
+            this.modelsService = modelsService;
+            this.citiesService = citiesService;
+            this.imagesService = imagesService;
+            this.usersService = usersService;
         }
 
         public async Task<int> CreateSaleAsync(AddSaleInputModel input, string userId, string imagePath)
@@ -87,7 +83,7 @@
 
             await this.salesRepository.AddAsync(saleToAdd);
             await this.salesRepository.SaveChangesAsync();
-            //await this.AddExtrasToDbAsync(saleToAdd.CarId, input.Car.CarExtras);
+            //await this.carExtrasService.AddExtrasToDbAsync(saleToAdd.CarId, input.Car.CarExtras);
 
             return saleToAdd.Id;
         }
@@ -101,27 +97,27 @@
             await this.salesRepository.SaveChangesAsync();
         }
 
-        public EditSaleInputModel GetEditSaleInputModel(int id)
+        public async Task<EditSaleInputModel> GetEditSaleInputModel(int id)
         {
             var saleDb = this.salesRepository.All()
                 .Include(x => x.Car)
                 .FirstOrDefault(x => x.Id == id);
-            var carModel = this.modelsRepository.AllAsNoTracking().First(x => x.Id == saleDb.Car.ModelId);
-            var city = this.citiesRepository.AllAsNoTracking().First(x => x.Id == saleDb.CityId);
 
-            var sale = this.salesRepository.AllAsNoTracking().Where(x => x.Id == id)
+            var carSelectListItems = await this.carsService.GetCarInputModelWithFilledProperties();
+
+            var editSaleInputModel = this.salesRepository.AllAsNoTracking().Where(x => x.Id == id)
                 .Select(x => new EditSaleInputModel
                 {
                     Id = x.Id,
                     CountryId = x.CountryId,
-                    CityId = city.Id,
+                    CityId = saleDb.CityId,
                     Description = x.Description,
                     Price = x.Price,
                     DaysValid = x.DaysValid,
                     Car = new EditCarInputModel
                     {
                         MakeId = saleDb.Car.MakeId,
-                        ModelId = carModel.Id,
+                        ModelId = saleDb.Car.ModelId,
                         State = saleDb.Car.State,
                         EngineSize = saleDb.Car.EngineSize,
                         HorsePower = (int)saleDb.Car.HorsePower,
@@ -134,10 +130,19 @@
                         Seats = saleDb.Car.Seats,
                         Doors = saleDb.Car.Doors,
                         Mileage = saleDb.Car.Mileage,
+                        CategoriesItems = carSelectListItems.CategoriesItems,
+                        MakesItems = carSelectListItems.MakesItems,
+                        ModelstItems = carSelectListItems.ModelstItems,
+                        FuelTypeItems = carSelectListItems.FuelTypeItems,
+                        EuroStandartItems = carSelectListItems.EuroStandartItems,
+                        GearboxesItems = carSelectListItems.GearboxesItems,
+                        ColorstItems = carSelectListItems.ColorstItems,
                     },
                 }).FirstOrDefault();
 
-            return sale;
+            editSaleInputModel.CitiesItems = await this.citiesService.GetAllAsSelectListItemsAsync(editSaleInputModel.CountryId);
+
+            return editSaleInputModel;
         }
 
         public IEnumerable<SaleViewModel> GetAllByCountryId(int page, int itemsPerPage, int countryId)
@@ -311,10 +316,10 @@
                 .Include(x => x.Car.Gearbox)
                 .FirstOrDefault(x => x.Id == saleId);
 
-            var user = this.usersRepository.AllAsNoTracking().First(x => x.Id == sale.UserId);
-            var carModel = this.modelsRepository.AllAsNoTracking().FirstOrDefault(x => x.Id == sale.Car.ModelId);
-            var city = this.citiesRepository.AllAsNoTracking().FirstOrDefault(x => x.Id == sale.CityId);
-            var images = this.imagesRepository.AllAsNoTracking().Where(x => x.SaleId == saleId);
+            var user = this.usersService.GetUserById(sale.UserId);
+            var carModel = this.modelsService.GetById(sale.Car.ModelId);
+            var city = this.citiesService.GetById(sale.CityId);
+            var images = this.imagesService.GetAllImagesBySaleId(sale.Id);
 
             var imagesUrlList = new List<string>();
 
@@ -370,7 +375,7 @@
             return this.salesRepository.All().Where(x => x.UserId == userId).Count();
         }
 
-        public async Task UpdateAsync(int id, EditSaleInputModel input)
+        public async Task UpdateSaleAsync(int id, EditSaleInputModel input)
         {
             var sale = this.salesRepository.All()
                 .Include(x => x.Car)
@@ -384,24 +389,8 @@
             sale.ModifiedOn = DateTime.UtcNow;
             sale.Price = input.Price;
 
-            sale.Car.CategoryId = input.Car.CategoryId;
-            sale.Car.ColorId = input.Car.ColorId;
-            sale.Car.Doors = input.Car.Doors;
-            sale.Car.EngineSize = input.Car.EngineSize;
-            sale.Car.EuroStandartId = input.Car.EuroStandartId;
-            sale.Car.FuelTypeId = input.Car.FuelTypeId;
-            sale.Car.GearboxId = input.Car.GearboxId;
-            sale.Car.HorsePower = input.Car.HorsePower;
-            sale.Car.MakeId = input.Car.MakeId;
-            sale.Car.ManufactureDate = input.Car.ManufactureDate;
-            sale.Car.Mileage = input.Car.Mileage;
-            sale.Car.ModelId = input.Car.ModelId;
-            sale.Car.ModifiedOn = DateTime.UtcNow;
-            sale.Car.Seats = input.Car.Seats;
-            sale.Car.State = input.Car.State;
-
             await this.salesRepository.SaveChangesAsync();
-            await this.carsRepository.SaveChangesAsync();
+            await this.carsService.UpdateCarAsync(sale.Car.Id, input.Car);
         }
 
         public async Task DeleteAsync(int id)
@@ -457,23 +446,45 @@
             return data;
         }
 
-        private async Task AddExtrasToDbAsync(int carId, IEnumerable<int> extras)
+        public async Task<AddSaleInputModel> GetViewModelForCreateSale(int countryId)
         {
-            if (extras == null)
+            var viewModel = new AddSaleInputModel
             {
-                return;
-            }
+                CountryId = countryId,
+            };
 
-            foreach (var extra in extras)
-            {
-                var carExtra = new CarExtra()
-                {
-                    CarId = carId,
-                    ExtraId = extra,
-                };
+            viewModel.CitiesItems = await this.citiesService.GetAllAsSelectListItemsAsync(viewModel.CountryId);
+            viewModel.Car = await this.carsService.GetCarInputModelWithFilledProperties();
 
-                await this.carExtrasRepository.AddAsync(carExtra);
-            }
+            return viewModel;
+        }
+
+        public SalesListViewModel GetSalesListViewModelByCountryId(int id, int itemsPerPage, int countryId)
+        {
+            var salesListViewModel = new SalesListViewModel();
+
+            salesListViewModel.PageNumber = id;
+
+            salesListViewModel.ItemsPerPage = itemsPerPage;
+
+            salesListViewModel.Sales = this.GetAllByCountryId(id, itemsPerPage, countryId);
+            salesListViewModel.SalesCount = this.GetSalesCountByCountryId(countryId);
+
+            return salesListViewModel;
+        }
+
+        public SalesListViewModel GetSalesListViewModelByUserId(int id, int itemsPerPage, string userId)
+        {
+            var viewModel = new SalesListViewModel();
+
+            viewModel.PageNumber = id;
+
+            viewModel.ItemsPerPage = itemsPerPage;
+
+            viewModel.Sales = this.GetAllByUserId(id, itemsPerPage, userId);
+            viewModel.SalesCount = this.GetSalesCountByUserId(userId);
+
+            return viewModel;
         }
     }
 }

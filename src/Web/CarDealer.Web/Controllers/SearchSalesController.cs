@@ -57,8 +57,6 @@
 
             var viewModel = await this.GetSearchListInputModelWithFilledProperties(countryId);
 
-            viewModel.CountryId = countryId;
-
             return this.View(viewModel);
         }
 
@@ -76,6 +74,7 @@
         {
             var carViewModel = new SearchListInputModel
             {
+                CountryId = countryId,
                 CategoriesItems = await this.categoriesService.GetAllAsSelectListItemsAsync(),
                 MakesItems = await this.makesService.GetAllAsSelectListItemsAsync(),
                 ModelstItems = await this.modelsService.GetAllAsSelectListItemsAsync(),

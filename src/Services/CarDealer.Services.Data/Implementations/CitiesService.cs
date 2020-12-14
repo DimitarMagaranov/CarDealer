@@ -1,4 +1,4 @@
-﻿namespace CarDealer.Services.Data
+﻿namespace CarDealer.Services.Data.Implementations
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -7,6 +7,7 @@
 
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models.SaleModels;
+    using CarDealer.Web.ViewModels.Cities;
     using Microsoft.EntityFrameworkCore;
 
     public class CitiesService : ICitiesService
@@ -16,6 +17,13 @@
         public CitiesService(IRepository<City> citiesRepository)
         {
             this.citiesRepository = citiesRepository;
+        }
+
+        public CityViewModel GetById(int id)
+        {
+            var city = this.citiesRepository.AllAsNoTracking().First(x => x.Id == id);
+
+            return new CityViewModel { Id = city.Id, Name = city.Name };
         }
 
         public async Task<IEnumerable<SelectListItem>> GetAllAsSelectListItemsAsync(int countryId)

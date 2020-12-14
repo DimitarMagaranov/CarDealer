@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-
-namespace CarDealer.Web.Controllers
+﻿namespace CarDealer.Web.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+
     public class AboutUsController : BaseController
     {
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             return this.View();
         }

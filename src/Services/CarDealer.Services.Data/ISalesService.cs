@@ -1,11 +1,11 @@
 ﻿namespace CarDealer.Services.Data
 {
-    using CarDealer.Services.Data.Dtos;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
     using CarDealer.Web.ViewModels.InputModels.Sales;
     using CarDealer.Web.ViewModels.InputModels.SearchSales;
     using CarDealer.Web.ViewModels.Sales;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
 
     public interface ISalesService
     {
@@ -13,9 +13,9 @@
 
         Task RemoveSaleAsync(int saleId);
 
-        EditSaleInputModel GetEditSaleInputModel(int id);
+        Task<EditSaleInputModel> GetEditSaleInputModel(int id);
 
-        Task UpdateAsync(int id, EditSaleInputModel input);
+        Task UpdateSaleAsync(int id, EditSaleInputModel input);
 
         Task DeleteAsync(int id);
 
@@ -38,5 +38,11 @@
         int GetSalesCountByUserId(string userId);
 
         Task IncreaseOpensSaleCounter(int id);
+
+        Task<AddSaleInputModel> GetViewModelForCreateSale(int countryId);
+
+        SalesListViewModel GetSalesListViewModelByCountryId(int id, int itemsPerPage, int countryId);
+
+        SalesListViewModel GetSalesListViewModelByUserId(int id, int itemsPerPage, string userId);
     }
 }

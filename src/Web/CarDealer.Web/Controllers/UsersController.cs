@@ -25,23 +25,16 @@
         {
             var user = await this.userManager.GetUserAsync(this.User);
 
-            const int ItemsPerPage = 2;
+            const int ItemsPerPage = 12;
 
             if (id == 0)
             {
                 id++;
             }
 
-            var salesListViewModel = new SalesListViewModel();
+            var viewModel = this.salesService.GetSalesListViewModelByUserId(id, ItemsPerPage, user.Id);
 
-            salesListViewModel.PageNumber = id;
-
-            salesListViewModel.ItemsPerPage = ItemsPerPage;
-
-            salesListViewModel.Sales = this.salesService.GetAllByUserId(id, ItemsPerPage, user.Id);
-            salesListViewModel.SalesCount = this.salesService.GetSalesCountByUserId(user.Id);
-
-            return this.View(salesListViewModel);
+            return this.View(viewModel);
         }
 
         public IActionResult SaleInfo(int id)

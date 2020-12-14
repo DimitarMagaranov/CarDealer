@@ -1,14 +1,15 @@
 ﻿namespace CarDealer.Services.Data
 {
-    using CarDealer.Data.Models.CarModels;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Web.Mvc;
+
+    using CarDealer.Web.ViewModels.InputModels.Cars.CarMakes;
 
     public interface IMakesService
     {
         Task<IEnumerable<SelectListItem>> GetAllAsSelectListItemsAsync();
 
-        Task<IEnumerable<Make>> GetMakeWithModelsAsync(int id);
+        Task<IEnumerable<MakeViewModel>> GetMakeWithModelsAsync(int id);
     }
 }

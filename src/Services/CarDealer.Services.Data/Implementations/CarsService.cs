@@ -1,18 +1,16 @@
-﻿namespace CarDealer.Services.Data
+﻿namespace CarDealer.Services.Data.Implementations
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models;
-    using CarDealer.Data.Models.CarModels;
-    using CarDealer.Web.ViewModels.Cars.CarExtras;
     using CarDealer.Web.ViewModels.InputModels.Cars;
 
     public class CarsService : ICarsService
     {
+        private readonly IDeletableEntityRepository<Car> carsRepository;
         private readonly ICategoriesService categoriesService;
         private readonly IMakesService makesService;
         private readonly IModelsService modelsService;
@@ -20,20 +18,18 @@
         private readonly IEuroStandartsService euroStandartsService;
         private readonly IGearboxesService gearboxesService;
         private readonly IColorsService colorsService;
-        private readonly IRepository<Extra> extrasRepository;
-        private readonly IRepository<CarExtra> carExtrasRepository;
 
         public CarsService(
+            IDeletableEntityRepository<Car> carsRepository,
             ICategoriesService categoriesService,
             IMakesService makesService,
             IModelsService modelsService,
             IFuelTypesService fuelTypesService,
             IEuroStandartsService euroStandartsService,
             IGearboxesService gearboxesService,
-            IColorsService colorsService,
-            IRepository<Extra> extrasRepository,
-            IRepository<CarExtra> carExtrasRepository)
+            IColorsService colorsService)
         {
+            this.carsRepository = carsRepository;
             this.categoriesService = categoriesService;
             this.makesService = makesService;
             this.modelsService = modelsService;
@@ -41,8 +37,6 @@
             this.euroStandartsService = euroStandartsService;
             this.gearboxesService = gearboxesService;
             this.colorsService = colorsService;
-            this.extrasRepository = extrasRepository;
-            this.carExtrasRepository = carExtrasRepository;
         }
 
         public Car CreateCar(AddCarInputModel input)
@@ -68,17 +62,6 @@
             return carToAdd;
         }
 
-        public IEnumerable<ExtraViewModel> GetAllExtras()
-        {
-            return this.extrasRepository.AllAsNoTracking()
-                .Select(x => new ExtraViewModel()
-                {
-                    Name = x.Name,
-                    Id = x.Id,
-                })
-                .ToList();
-        }
-
         public async Task<AddCarInputModel> GetCarInputModelWithFilledProperties()
         {
             var carViewModel = new AddCarInputModel
@@ -94,6 +77,29 @@
             };
 
             return carViewModel;
+        }
+
+        public async Task UpdateCarAsync(int id, EditCarInputModel input)
+        {
+            var carDb = this.carsRepository.All().First(x => x.Id == id);
+
+            carDb.CategoryId = input.CategoryId;
+            carDb.ColorId = input.ColorId;
+            carDb.Doors = input.Doors;
+            carDb.EngineSize = input.EngineSize;
+            carDb.EuroStandartId = input.EuroStandartId;
+            carDb.FuelTypeId = input.FuelTypeId;
+            carDb.GearboxId = input.GearboxId;
+            carDb.HorsePower = input.HorsePower;
+            carDb.MakeId = input.MakeId;
+            carDb.ManufactureDate = input.ManufactureDate;
+            carDb.Mileage = input.Mileage;
+            carDb.ModelId = input.ModelId;
+            carDb.ModifiedOn = DateTime.UtcNow;
+            carDb.Seats = input.Seats;
+            carDb.State = input.State;
+
+            await this.carsRepository.SaveChangesAsync();
         }
     }
 }
