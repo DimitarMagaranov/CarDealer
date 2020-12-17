@@ -20,5 +20,6 @@
     <WebStackScaffolding_DbContextTypeFullName>CarDealer.Data.ApplicationDbContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_IsViewGenerationSelected>True</WebStackScaffolding_IsViewGenerationSelected>
+    <NameOfLastUsedPublishProfile>CarDealerWebsite - Web Deploy</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

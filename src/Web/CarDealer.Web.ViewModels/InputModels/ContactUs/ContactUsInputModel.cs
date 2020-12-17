@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CarDealer.Web.ViewModels.InputModels.ContactUs
+﻿namespace CarDealer.Web.ViewModels.InputModels.ContactUs
 {
+    using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Text;
 
     public class ContactUsInputModel
     {

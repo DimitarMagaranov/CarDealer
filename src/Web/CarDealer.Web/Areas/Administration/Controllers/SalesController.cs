@@ -73,7 +73,7 @@
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DaysValid,CarId,Price,CountryId,UserId,Description,MetaDataId,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Sale sale)
+        public async Task<IActionResult> Create([Bind("DaysValid,CarId,Price,CountryId,UserId,Description,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Sale sale)
         {
             if (this.ModelState.IsValid)
             {
@@ -113,7 +113,7 @@
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DaysValid,CarId,Price,CountryId,UserId,Description,MetaDataId,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Sale sale)
+        public async Task<IActionResult> Edit(int id, [Bind("DaysValid,CarId,Price,CountryId,UserId,Description,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Sale sale)
         {
             if (id != sale.Id)
             {

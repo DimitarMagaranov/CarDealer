@@ -1,9 +1,10 @@
 ﻿namespace CarDealer.Data
 {
-    using CarDealer.Data.Common;
-    using Microsoft.EntityFrameworkCore;
     using System;
     using System.Threading.Tasks;
+
+    using CarDealer.Data.Common;
+    using Microsoft.EntityFrameworkCore;
 
     public class DbQueryRunner : IDbQueryRunner
     {

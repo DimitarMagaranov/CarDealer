@@ -2,10 +2,9 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using System.Web.Mvc;
 
     public interface IFuelTypesService
     {
-        Task<IEnumerable<SelectListItem>> GetAllAsSelectListItemsAsync();
+        Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsSelectListItemsAsync();
     }
 }

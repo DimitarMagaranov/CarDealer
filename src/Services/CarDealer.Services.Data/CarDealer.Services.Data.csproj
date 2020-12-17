@@ -14,17 +14,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.205" PrivateAssets="all">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Data\CarDealer.Data.Common\CarDealer.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\CarDealer.Data.Models\CarDealer.Data.Models.csproj" />
-    <ProjectReference Include="..\..\Data\CarDealer.Data\CarDealer.Data.csproj" />
     <ProjectReference Include="..\..\Web\CarDealer.Web.ViewModels\CarDealer.Web.ViewModels.csproj" />
     <ProjectReference Include="..\CarDealer.Services.Mapping\CarDealer.Services.Mapping.csproj" />
   </ItemGroup>

@@ -1,10 +1,11 @@
 ﻿namespace CarDealer.Data.Repositories
 {
-    using CarDealer.Data.Common.Repositories;
-    using Microsoft.EntityFrameworkCore;
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+
+    using CarDealer.Data.Common.Repositories;
+    using Microsoft.EntityFrameworkCore;
 
     public class EfRepository<TEntity> : IRepository<TEntity>
         where TEntity : class

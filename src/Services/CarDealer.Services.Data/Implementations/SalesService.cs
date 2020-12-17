@@ -83,7 +83,8 @@
 
             await this.salesRepository.AddAsync(saleToAdd);
             await this.salesRepository.SaveChangesAsync();
-            //await this.carExtrasService.AddExtrasToDbAsync(saleToAdd.CarId, input.Car.CarExtras);
+
+            ////await this.carExtrasService.AddExtrasToDbAsync(saleToAdd.CarId, input.Car.CarExtras);
 
             return saleToAdd.Id;
         }
@@ -264,27 +265,6 @@
             {
                 sales = sales.Where(x => x.Car.Mileage <= input.MilleageTo).ToList();
             }
-
-            //if (input.SortCommand != null)
-            //{
-            //    switch (input.SortCommand)
-            //    {
-            //        case "Price (Low - High)":
-            //            sales = sales.OrderBy(x => x.Price);
-            //            break;
-            //        case "Manufacture date":
-            //            sales = sales.OrderBy(x => x.Car.ManufactureDate);
-            //            break;
-            //        case "Miliage":
-            //            sales = sales.OrderBy(x => x.Car.Mileage);
-            //            break;
-            //        case "Newest sales":
-            //            sales = sales.OrderByDescending(x => x.CreatedOn);
-            //            break;
-            //        default:
-            //            break;
-            //    }
-            //}
 
             var salesToShow = new List<SaleViewModel>();
 

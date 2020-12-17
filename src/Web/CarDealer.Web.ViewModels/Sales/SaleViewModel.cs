@@ -1,8 +1,8 @@
 ﻿namespace CarDealer.Web.ViewModels.Sales
 {
-    using CarDealer.Web.ViewModels.Cars;
     using System;
-    using System.Globalization;
+
+    using CarDealer.Web.ViewModels.Cars;
 
     public class SaleViewModel
     {

@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using System.Web.Mvc;
 
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models.SaleModels;
@@ -26,17 +25,17 @@
             return new CityViewModel { Id = city.Id, Name = city.Name };
         }
 
-        public async Task<IEnumerable<SelectListItem>> GetAllAsSelectListItemsAsync(int countryId)
+        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsSelectListItemsAsync(int countryId)
         {
-            List<SelectListItem> cities = new List<SelectListItem>();
+            var cities = new List<KeyValuePair<string, string>>();
 
             cities = await this.citiesRepository.AllAsNoTracking()
                 .Where(x => x.CountryId == countryId)
-                .Select(x => new SelectListItem() { Text = x.Name, Value = x.Id.ToString() })
-                .OrderBy(x => x.Text)
+                .OrderBy(x => x.Name)
+                .Select(x => new KeyValuePair<string, string>(x.Name, x.Id.ToString()))
                 .ToListAsync();
 
-            cities.Insert(0, new SelectListItem() { Text = "Select city", Value = null });
+            cities.Insert(0, new KeyValuePair<string, string>("Select city", null));
 
             return cities;
         }

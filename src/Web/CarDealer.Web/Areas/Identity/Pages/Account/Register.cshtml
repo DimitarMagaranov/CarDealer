@@ -2,7 +2,7 @@
 @model CarDealer.Web.Areas.Identity.Pages.Account.RegisterModel
 @{
     ViewData["Title"] = "Register";
-    var countriesItems = Model.CountriesItems.Select(x => new SelectListItem(x.Text, x.Value));
+    var countriesItems = Model.CountriesItems.Select(x => new SelectListItem(x.Key, x.Value));
 }
 
 <h1>@ViewData["Title"]</h1>

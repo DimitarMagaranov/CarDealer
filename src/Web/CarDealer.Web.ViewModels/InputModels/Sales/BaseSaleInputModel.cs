@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using System.Web.Mvc;
 
     public abstract class BaseSaleInputModel
     {
@@ -26,8 +25,8 @@
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
-        public IEnumerable<SelectListItem> CountriesItems { get; set; }
+        public IEnumerable<KeyValuePair<string, string>> CountriesItems { get; set; }
 
-        public IEnumerable<SelectListItem> CitiesItems { get; set; }
+        public IEnumerable<KeyValuePair<string, string>> CitiesItems { get; set; }
     }
 }

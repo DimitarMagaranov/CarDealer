@@ -4,21 +4,20 @@
 @model CarDealer.Web.ViewModels.InputModels.Sales.AddSaleInputModel
 @{
     this.ViewData["Title"] = "Create ad:";
-    var categoriesItems = this.Model.Car.CategoriesItems.Select(x => new SelectListItem(x.Text, x.Value));
-    var makesItems = this.Model.Car.MakesItems.Select(x => new SelectListItem(x.Text, x.Value));
-    var modelsItems = this.Model.Car.ModelstItems.Select(x => new SelectListItem(x.Text, x.Value));
-    var fuelTypesItems = this.Model.Car.FuelTypeItems.Select(x => new SelectListItem(x.Text, x.Value));
-    var euroStandartsItems = this.Model.Car.EuroStandartItems.Select(x => new SelectListItem(x.Text, x.Value));
-    var gearboxesItems = this.Model.Car.GearboxesItems.Select(x => new SelectListItem(x.Text, x.Value));
-    var colorsItems = this.Model.Car.ColorstItems.Select(x => new SelectListItem(x.Text, x.Value));
-    var citiesItems = this.Model.CitiesItems.Select(x => new SelectListItem(x.Text, x.Value));
+    var categoriesItems = this.Model.Car.CategoriesItems.Select(x => new SelectListItem(x.Key, x.Value));
+    var makesItems = this.Model.Car.MakesItems.Select(x => new SelectListItem(x.Key, x.Value));
+    var fuelTypesItems = this.Model.Car.FuelTypeItems.Select(x => new SelectListItem(x.Key, x.Value));
+    var euroStandartsItems = this.Model.Car.EuroStandartItems.Select(x => new SelectListItem(x.Key, x.Value));
+    var gearboxesItems = this.Model.Car.GearboxesItems.Select(x => new SelectListItem(x.Key, x.Value));
+    var colorsItems = this.Model.Car.ColorstItems.Select(x => new SelectListItem(x.Key, x.Value));
+    var citiesItems = this.Model.CitiesItems.Select(x => new SelectListItem(x.Key, x.Value));
 }
 
 <link href="~/css/multistep.css" rel="stylesheet" />
 
 <form method="post" class="col-md-6 offset-md-3" id="multiForm" enctype="multipart/form-data">
     <h2>@this.ViewData["Title"]</h2>
-    <br/>
+    <br />
     <div class="tab">
         <div asp-validation-summary="All" class="text-danger"></div>
         <div class="form-group">

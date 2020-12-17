@@ -51,32 +51,32 @@
             <br />
             @foreach (var sale in Model)
             {
-                <div class="col-md-4 col-sm-4">
-                    <div class="courses-thumb courses-thumb-secondary">
-                        <div class="courses-top">
-                            <div class="courses-image">
-                                <img src="@sale.ImageUrls.FirstOrDefault()" class="img-responsive" alt="">
-                            </div>
-                            <div class="courses-date">
-                                <span title="Author"><i class="fa fa-dashboard"></i> @sale.Car.Mileage km</span>
-                                <span title="Author"><i class="fa fa-cube"></i> @sale.Car.EngineSize cc</span>
-                                <span title="Views"><i class="fa fa-cog"></i> @sale.Car.Gearbox</span>
-                            </div>
+            <div class="col-md-4 col-sm-4">
+                <div class="courses-thumb courses-thumb-secondary">
+                    <div class="courses-top">
+                        <div class="courses-image">
+                            <img src="@sale.ImageUrls.FirstOrDefault()" class="img-responsive" alt="">
                         </div>
-
-                        <div class="courses-detail">
-                            <h3 class="mt-0"><a asp-action="SaleInfo" asp-route-id="@sale.Id">@sale.Name</a></h3>
-
-                            <p class="lead"><strong>@sale.Price €</strong></p>
-
-                            <p>@sale.Car.HorsePower hp &nbsp;&nbsp;/&nbsp;&nbsp; @sale.Car.FuelType &nbsp;&nbsp;/&nbsp;&nbsp; @sale.Car.ManufactureDate.Month/@sale.Car.ManufactureDate.Year &nbsp;&nbsp;/&nbsp;&nbsp; @sale.Car.State vehicle</p>
-                        </div>
-
-                        <div class="courses-info">
-                            <a href="/Sales/SaleInfo?id=@sale.Id" class="section-btn btn btn-primary btn-block">View More</a>
+                        <div class="courses-date">
+                            <span title="Author"><i class="fa fa-dashboard"></i> @sale.Car.Mileage km</span>
+                            <span title="Author"><i class="fa fa-cube"></i> @sale.Car.EngineSize cc</span>
+                            <span title="Views"><i class="fa fa-cog"></i> @sale.Car.Gearbox</span>
                         </div>
                     </div>
+
+                    <div class="courses-detail">
+                        <h3 class="mt-0"><a asp-action="SaleInfo" asp-route-id="@sale.Id">@sale.Name</a></h3>
+
+                        <p class="lead"><strong>@sale.Price €</strong></p>
+
+                        <p>@sale.Car.HorsePower hp &nbsp;&nbsp;/&nbsp;&nbsp; @sale.Car.FuelType &nbsp;&nbsp;/&nbsp;&nbsp; @sale.Car.ManufactureDate.Month/@sale.Car.ManufactureDate.Year &nbsp;&nbsp;/&nbsp;&nbsp; @sale.Car.State vehicle</p>
+                    </div>
+
+                    <div class="courses-info">
+                        <a href="/Sales/SaleInfo?id=@sale.Id" class="section-btn btn btn-primary btn-block">View More</a>
+                    </div>
                 </div>
+            </div>
             }
         </div>
     </div>

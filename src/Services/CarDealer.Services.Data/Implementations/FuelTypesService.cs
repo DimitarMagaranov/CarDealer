@@ -1,21 +1,34 @@
 ﻿namespace CarDealer.Services.Data.Implementations
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
-    using System.Web.Mvc;
+
+    using CarDealer.Data.Common.Repositories;
+    using CarDealer.Data.Models.CarModels;
+    using Microsoft.EntityFrameworkCore;
 
     public class FuelTypesService : IFuelTypesService
     {
-        private readonly IGenericsService genericsService;
+        private readonly IRepository<FuelType> fuelTypesRepository;
 
-        public FuelTypesService(IGenericsService genericsService)
+        public FuelTypesService(IRepository<FuelType> fuelTypesRepository)
         {
-            this.genericsService = genericsService;
+            this.fuelTypesRepository = fuelTypesRepository;
         }
 
-        public async Task<IEnumerable<SelectListItem>> GetAllAsSelectListItemsAsync()
+        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsSelectListItemsAsync()
         {
-            return await this.genericsService.GetAllAsSelectListItemsAsync("FuelTypes");
+            var fuelTypes = new List<KeyValuePair<string, string>>();
+
+            fuelTypes = await this.fuelTypesRepository.AllAsNoTracking()
+                .OrderBy(x => x.Name)
+                .Select(x => new KeyValuePair<string, string>(x.Name, x.Id.ToString()))
+                .ToListAsync();
+
+            fuelTypes.Insert(0, new KeyValuePair<string, string>("Select fuel type", null));
+
+            return fuelTypes;
         }
     }
 }

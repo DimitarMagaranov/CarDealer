@@ -1,21 +1,29 @@
 ﻿namespace CarDealer.Services.Data.Implementations
 {
-    using System;
     using System.Collections.Generic;
+    using System.Data.SqlClient;
     using System.Threading.Tasks;
-    using System.Web.Mvc;
 
-    using Microsoft.Data.SqlClient;
+    using Microsoft.Extensions.Configuration;
 
     public class GenericsService : IGenericsService
     {
-        public async Task<IEnumerable<SelectListItem>> GetAllAsSelectListItemsAsync(string entity)
+        private readonly IConfiguration configuration;
+
+        public GenericsService(IConfiguration configuration)
         {
-            List<SelectListItem> data = new List<SelectListItem>();
+            this.configuration = configuration;
+        }
+
+        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsSelectListItemsAsync(string entity)
+        {
+            var data = new List<KeyValuePair<string, string>>();
 
             string queryString = $"SELECT [Id],[Name] FROM[CarDealer].[dbo].[{entity}]";
 
-            using (SqlConnection connection = new SqlConnection("Server=DESKTOP-C92LTDN\\SQLEXPRESS;Database=CarDealer;Trusted_Connection=True;MultipleActiveResultSets=true"))
+            string conStr = ConfigurationExtensions.GetConnectionString(this.configuration, "DefaultConnection");
+
+            using (SqlConnection connection = new SqlConnection(conStr))
             {
                 SqlCommand command = new SqlCommand(queryString, connection);
 
@@ -24,12 +32,12 @@
                 {
                     while (reader.Read())
                     {
-                        data.Add(new SelectListItem() { Text = reader[1].ToString(), Value = reader[0].ToString() });
+                        data.Add(new KeyValuePair<string, string>(reader[1].ToString(), reader[0].ToString()));
                     }
                 }
             }
 
-            data.Insert(0, new SelectListItem { Text = "Please make a selection", Value = null });
+            data.Insert(0, new KeyValuePair<string, string>("Please make a selection", null));
 
             return data;
         }

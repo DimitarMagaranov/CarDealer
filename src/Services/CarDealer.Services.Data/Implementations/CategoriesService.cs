@@ -1,22 +1,35 @@
 ﻿namespace CarDealer.Services.Data.Implementations
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
-    using System.Web.Mvc;
+
+    using CarDealer.Data.Common.Repositories;
+    using CarDealer.Data.Models.CarModels;
+    using Microsoft.EntityFrameworkCore;
 
     public class CategoriesService : ICategoriesService
     {
-        private readonly IGenericsService genericsService;
+        private readonly IRepository<Category> categoriesRepository;
 
         public CategoriesService(
-            IGenericsService genericsService)
+            IRepository<Category> categoriesRepository)
         {
-            this.genericsService = genericsService;
+            this.categoriesRepository = categoriesRepository;
         }
 
-        public async Task<IEnumerable<SelectListItem>> GetAllAsSelectListItemsAsync()
+        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsSelectListItemsAsync()
         {
-            return await this.genericsService.GetAllAsSelectListItemsAsync("Categories");
+            var categories = new List<KeyValuePair<string, string>>();
+
+            categories = await this.categoriesRepository.AllAsNoTracking()
+                .OrderBy(x => x.Name)
+                .Select(x => new KeyValuePair<string, string>(x.Name, x.Id.ToString()))
+                .ToListAsync();
+
+            categories.Insert(0, new KeyValuePair<string, string>("Select category", null));
+
+            return categories;
         }
     }
 }

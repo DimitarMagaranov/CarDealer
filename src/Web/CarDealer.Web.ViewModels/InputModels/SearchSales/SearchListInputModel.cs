@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel;
-    using System.Web.Mvc;
 
     using CarDealer.Data.Models.CarModels;
 
@@ -68,22 +67,22 @@
         [DisplayName("Number of seats:")]
         public Seats? Seats { get; set; }
 
-        public IEnumerable<SelectListItem> CategoriesItems { get; set; }
+        public IEnumerable<KeyValuePair<string, string>> CategoriesItems { get; set; }
 
-        public IEnumerable<SelectListItem> MakesItems { get; set; }
+        public IEnumerable<KeyValuePair<string, string>> MakesItems { get; set; }
 
-        public IEnumerable<SelectListItem> ModelstItems { get; set; }
+        public IEnumerable<KeyValuePair<string, string>> ModelstItems { get; set; }
 
-        public IEnumerable<SelectListItem> FuelTypeItems { get; set; }
+        public IEnumerable<KeyValuePair<string, string>> FuelTypeItems { get; set; }
 
-        public IEnumerable<SelectListItem> EuroStandartItems { get; set; }
+        public IEnumerable<KeyValuePair<string, string>> EuroStandartItems { get; set; }
 
-        public IEnumerable<SelectListItem> GearboxesItems { get; set; }
+        public IEnumerable<KeyValuePair<string, string>> GearboxesItems { get; set; }
 
-        public IEnumerable<SelectListItem> ColorstItems { get; set; }
+        public IEnumerable<KeyValuePair<string, string>> ColorstItems { get; set; }
 
-        public IEnumerable<SelectListItem> CitiesItems { get; set; }
+        public IEnumerable<KeyValuePair<string, string>> CitiesItems { get; set; }
 
-        public IEnumerable<SelectListItem> CountriesItems { get; set; }
+        public IEnumerable<KeyValuePair<string, string>> CountriesItems { get; set; }
     }
 }

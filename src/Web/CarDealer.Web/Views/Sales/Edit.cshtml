@@ -3,14 +3,13 @@
 @model CarDealer.Web.ViewModels.InputModels.Sales.EditSaleInputModel
 @{
     this.ViewData["Title"] = "Edit ad";
-    var categoriesItems = this.Model.Car.CategoriesItems.Select(x => new SelectListItem(x.Text, x.Value));
-    var makesItems = this.Model.Car.MakesItems.Select(x => new SelectListItem(x.Text, x.Value));
-    var modelsItems = this.Model.Car.ModelstItems.Select(x => new SelectListItem(x.Text, x.Value));
-    var fuelTypesItems = this.Model.Car.FuelTypeItems.Select(x => new SelectListItem(x.Text, x.Value));
-    var euroStandartsItems = this.Model.Car.EuroStandartItems.Select(x => new SelectListItem(x.Text, x.Value));
-    var gearboxesItems = this.Model.Car.GearboxesItems.Select(x => new SelectListItem(x.Text, x.Value));
-    var colorsItems = this.Model.Car.ColorstItems.Select(x => new SelectListItem(x.Text, x.Value));
-    var citiesItems = this.Model.CitiesItems.Select(x => new SelectListItem(x.Text, x.Value));
+    var categoriesItems = this.Model.Car.CategoriesItems.Select(x => new SelectListItem(x.Key, x.Value));
+    var makesItems = this.Model.Car.MakesItems.Select(x => new SelectListItem(x.Key, x.Value));
+    var fuelTypesItems = this.Model.Car.FuelTypeItems.Select(x => new SelectListItem(x.Key, x.Value));
+    var euroStandartsItems = this.Model.Car.EuroStandartItems.Select(x => new SelectListItem(x.Key, x.Value));
+    var gearboxesItems = this.Model.Car.GearboxesItems.Select(x => new SelectListItem(x.Key, x.Value));
+    var colorsItems = this.Model.Car.ColorstItems.Select(x => new SelectListItem(x.Key, x.Value));
+    var citiesItems = this.Model.CitiesItems.Select(x => new SelectListItem(x.Key, x.Value));
 }
 
 <link href="~/css/multistep.css" rel="stylesheet" />

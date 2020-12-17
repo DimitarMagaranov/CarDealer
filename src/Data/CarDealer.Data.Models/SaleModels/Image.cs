@@ -1,8 +1,9 @@
-﻿using CarDealer.Data.Common.Models;
-using System;
-
-namespace CarDealer.Data.Models.SaleModels
+﻿namespace CarDealer.Data.Models.SaleModels
 {
+    using System;
+
+    using CarDealer.Data.Common.Models;
+
     public class Image : BaseDeletableModel<string>
     {
         public Image()

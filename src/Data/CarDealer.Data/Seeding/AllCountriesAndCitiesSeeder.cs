@@ -1,12 +1,13 @@
 ﻿namespace CarDealer.Data.Seeding
 {
-    using CarDealer.Data.Models.SaleModels;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Text.Json;
     using System.Threading.Tasks;
+
+    using CarDealer.Data.Models.SaleModels;
 
     public class AllCountriesAndCitiesSeeder : ISeeder
     {

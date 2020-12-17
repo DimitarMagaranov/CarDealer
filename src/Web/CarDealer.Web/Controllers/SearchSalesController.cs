@@ -77,7 +77,6 @@
                 CountryId = countryId,
                 CategoriesItems = await this.categoriesService.GetAllAsSelectListItemsAsync(),
                 MakesItems = await this.makesService.GetAllAsSelectListItemsAsync(),
-                ModelstItems = await this.modelsService.GetAllAsSelectListItemsAsync(),
                 FuelTypeItems = await this.fuelTypesService.GetAllAsSelectListItemsAsync(),
                 EuroStandartItems = await this.euroStandartsService.GetAllAsSelectListItemsAsync(),
                 GearboxesItems = await this.gearboxesService.GetAllAsSelectListItemsAsync(),

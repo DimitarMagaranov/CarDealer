@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using System.Web.Mvc;
 
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models.CarModels;
@@ -45,9 +44,18 @@
             return viewModelList;
         }
 
-        public async Task<IEnumerable<SelectListItem>> GetAllAsSelectListItemsAsync()
+        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsSelectListItemsAsync()
         {
-            return await this.genericsService.GetAllAsSelectListItemsAsync("Makes");
+            var makes = new List<KeyValuePair<string, string>>();
+
+            makes = await this.makesRepository.AllAsNoTracking()
+                .OrderBy(x => x.Name)
+                .Select(x => new KeyValuePair<string, string>(x.Name, x.Id.ToString()))
+                .ToListAsync();
+
+            makes.Insert(0, new KeyValuePair<string, string>("Select make", null));
+
+            return makes;
         }
     }
 }
