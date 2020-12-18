@@ -9,6 +9,7 @@
     using CarDealer.Data.Models;
     using CarDealer.Data.Repositories;
     using CarDealer.Data.Seeding;
+    using CarDealer.Services;
     using CarDealer.Services.Data;
     using CarDealer.Services.Data.Implementations;
     using CarDealer.Services.Mapping;
@@ -82,6 +83,7 @@
             services.AddTransient<IImagesService, ImagesService>();
             services.AddTransient<IUsersService, UsersService>();
             services.AddTransient<IGenericsService, GenericsService>();
+            services.AddTransient<IImageSharpsService, ImageSharpsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -26,6 +26,7 @@
         private readonly ICitiesService citiesService;
         private readonly IImagesService imagesService;
         private readonly IUsersService usersService;
+        private readonly IImageSharpsService imageSharpsService;
 
         public SalesService(
             ICarsService carsService,
@@ -34,6 +35,7 @@
             ICitiesService citiesService,
             IImagesService imagesService,
             IUsersService usersService,
+            IImageSharpsService imageSharpsService,
             IDeletableEntityRepository<Sale> salesRepository)
         {
             this.salesRepository = salesRepository;
@@ -43,6 +45,7 @@
             this.citiesService = citiesService;
             this.imagesService = imagesService;
             this.usersService = usersService;
+            this.imageSharpsService = imageSharpsService;
         }
 
         public async Task<int> CreateSaleAsync(AddSaleInputModel input, string userId, string imagePath)

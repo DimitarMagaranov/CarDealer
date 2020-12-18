@@ -16,6 +16,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.2" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.205" PrivateAssets="all">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
@@ -27,6 +28,7 @@
     <ProjectReference Include="..\..\Data\CarDealer.Data.Models\CarDealer.Data.Models.csproj" />
     <ProjectReference Include="..\..\Web\CarDealer.Web.ViewModels\CarDealer.Web.ViewModels.csproj" />
     <ProjectReference Include="..\CarDealer.Services.Mapping\CarDealer.Services.Mapping.csproj" />
+    <ProjectReference Include="..\CarDealer.Services\CarDealer.Services.csproj" />
   </ItemGroup>
 
 </Project>

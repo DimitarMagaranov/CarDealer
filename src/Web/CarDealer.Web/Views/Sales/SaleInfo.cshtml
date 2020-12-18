@@ -5,6 +5,11 @@
     <div class="alert alert-success alert-dismissable">@this.TempData["Message"]</div>
 }
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <section>
     <div class="container">
         <div class="row">
@@ -16,26 +21,24 @@
                         <i class="fa fa-eye"></i> @Model.OpensSaleCount
                     </p>
 
-                    <img src="@Model.ImageUrls.FirstOrDefault()" alt="" class="img-responsive wc-image">
+                    @if (Model.ImageUrls.Length > 1)
+                    {
+                        <div class="owl-carousel owl-theme home-slider">
+                            @foreach (var imageUrl in Model.ImageUrls)
+                            {
+                                <div class="item active">
+                                    <img src="@imageUrl" alt="buffalo-skyline" width="640" height="360" />
+                                </div>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <img src="@Model.ImageUrls.FirstOrDefault()" alt="" class="img-responsive wc-image">
+                    }
                 </div>
 
                 <br>
-
-                @if (Model.ImageUrls.Length > 1)
-                {
-                    <div class="row">
-                        @foreach (var imageUrl in Model.ImageUrls.Skip(1))
-                        {
-                            <div class="col-sm-4 col-xs-6">
-                                <div>
-                                    <img src="@imageUrl" alt="" class="img-responsive">
-                                </div>
-
-                                <br>
-                            </div>
-                        }
-                    </div>
-                }
             </div>
 
             <div class="col-md-6 col-xs-12">

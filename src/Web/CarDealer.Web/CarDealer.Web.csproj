@@ -10,6 +10,17 @@
     <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
     <ApplicationInsightsResourceId>/subscriptions/b6194a69-0aca-4dda-83fe-79e27404e9be/resourceGroups/CarDealerWebsite/providers/microsoft.insights/components/CarDealerWebsite</ApplicationInsightsResourceId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Areas\Blog\**" />
+    <Compile Remove="Areas\Forum\**" />
+    <Content Remove="Areas\Blog\**" />
+    <Content Remove="Areas\Forum\**" />
+    <EmbeddedResource Remove="Areas\Blog\**" />
+    <EmbeddedResource Remove="Areas\Forum\**" />
+    <None Remove="Areas\Blog\**" />
+    <None Remove="Areas\Forum\**" />
+  </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\stylecop.json" />
   </ItemGroup>
@@ -46,8 +57,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Forum\" />
     <Folder Include="Areas\Administration\Views\Dashboard\" />
-    <Folder Include="Areas\Blog\" />
   </ItemGroup>
 </Project>
