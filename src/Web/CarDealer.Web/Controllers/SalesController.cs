@@ -62,7 +62,10 @@
         {
             if (countryId == 0)
             {
-                return this.RedirectToAction("SelectCountryForCreateSale", "Countries");
+                var methodName = nameof(this.Create).ToString();
+                var controllerName = "Sales";
+
+                return this.RedirectToAction("SelectCountry", "Countries", new { methodName, controllerName });
             }
 
             var viewModel = await this.salesService.GetViewModelForCreateSale(countryId);

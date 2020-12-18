@@ -50,7 +50,10 @@
         {
             if (countryId == 0)
             {
-                return this.RedirectToAction("SelectCountryForSearchSales", "Countries");
+                var methodName = nameof(this.Index).ToString();
+                var controllerName = "SearchSales";
+
+                return this.RedirectToAction("SelectCountry", "Countries", new { methodName, controllerName });
             }
 
             this.TempData["CountryId"] = countryId;

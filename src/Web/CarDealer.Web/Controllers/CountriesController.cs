@@ -23,19 +23,26 @@
             this.userManager = userManager;
         }
 
-        public async Task<IActionResult> SelectCountryForCreateSale()
+        public async Task<IActionResult> SelectCountry(string methodName, string controllerName)
         {
             var user = await this.userManager.GetUserAsync(this.User);
 
-            int countryId = user.CountryId;
+            var countryId = user.CountryId;
 
-            var viewModel = new SelectCountryInputModel { CountryId = countryId, CountriesItems = await this.countriesService.GetAllAsSelectListItemsAsync() };
+            this.ViewBag.CallerMethod = methodName;
+            this.ViewBag.CallerController = controllerName;
+
+            var viewModel = new SelectCountryInputModel
+            {
+                CountryId = countryId,
+                CountriesItems = await this.countriesService.GetAllAsSelectListItemsAsync(),
+            };
 
             return this.View(viewModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> SelectCountryForCreateSale(SelectCountryInputModel input)
+        public async Task<IActionResult> SelectCountry(SelectCountryInputModel input)
         {
             if (input.CountryId == 0)
             {
@@ -46,59 +53,7 @@
 
             var countryId = input.CountryId;
 
-            return this.RedirectToAction("Create", "Sales", new { countryId });
-        }
-
-        public async Task<IActionResult> SelectCountryForGetAllSales()
-        {
-            var user = await this.userManager.GetUserAsync(this.User);
-
-            int countryId = user.CountryId;
-
-            var viewModel = new SelectCountryInputModel { CountryId = countryId, CountriesItems = await this.countriesService.GetAllAsSelectListItemsAsync() };
-
-            return this.View(viewModel);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> SelectCountryForGetAllSales(SelectCountryInputModel input)
-        {
-            if (input.CountryId == 0)
-            {
-                input.CountriesItems = await this.countriesService.GetAllAsSelectListItemsAsync();
-
-                return this.View(input);
-            }
-
-            var countryId = input.CountryId;
-
-            return this.RedirectToAction("All", "Sales", new { countryId });
-        }
-
-        public async Task<IActionResult> SelectCountryForSearchSales()
-        {
-            var user = await this.userManager.GetUserAsync(this.User);
-
-            int countryId = user.CountryId;
-
-            var viewModel = new SelectCountryInputModel { CountryId = countryId, CountriesItems = await this.countriesService.GetAllAsSelectListItemsAsync() };
-
-            return this.View(viewModel);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> SelectCountryForSearchSales(SelectCountryInputModel input)
-        {
-            if (input.CountryId == 0)
-            {
-                input.CountriesItems = await this.countriesService.GetAllAsSelectListItemsAsync();
-
-                return this.View(input);
-            }
-
-            var countryId = input.CountryId;
-
-            return this.RedirectToAction("Index", "SearchSales", new { countryId });
+            return this.RedirectToAction(input.CallerMethodAsString, input.CallerCotrollerName, new { countryId });
         }
     }
 }

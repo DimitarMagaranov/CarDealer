@@ -5,6 +5,8 @@
 }
 <form method="post" class="col-md-6 offset-md-3">
     <h2>@this.ViewData["Title"]</h2>
+    <input id="CallerMethodAsString" name="CallerMethodAsString" type="hidden" value="@ViewBag.CallerMethod" />
+    <input id="CallerCotrollerName" name="CallerCotrollerName" type="hidden" value="@ViewBag.CallerController" />
     <div class="form-group">
         <label asp-for="CountryId"></label>
         <select asp-for="CountryId" class="form-control" asp-items="countriesItems"></select>

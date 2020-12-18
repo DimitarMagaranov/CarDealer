@@ -15,5 +15,40 @@
 
 
     <!-- CONTACT -->
-    <partial name="_ContactUsPartial" />
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6 col-sm-12">
+                    <form id="contact-form" role="form" action="" method="post">
+                        <div class="col-md-12 col-sm-12">
+                            <input asp-for="FullName" type="text" class="form-control" id="fullName" name="fullName" placeholder="Enter full name" required>
+                            <span asp-validation-for="@Model.FullName" class="text-danger"></span>
+
+                            <input asp-for="Email" type="email" class="form-control" name="email" placeholder="Enter email address" required>
+                            <span asp-validation-for="@Model.Email" class="text-danger"></span>
+
+                            <input asp-for="Subject" type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>
+                            <span asp-validation-for="@Model.Subject" class="text-danger"></span>
+
+                            <textarea asp-for="Message" class="form-control" id="message" rows="6" placeholder="Tell us about your message" name="message" required></textarea>
+                            <span asp-validation-for="@Model.Message" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-4 col-sm-12">
+                            <input type="submit" class="form-control" name="send message" value="Send Message">
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="contact-image">
+                        <img src="images/contact-1-600x400.jpg" class="img-responsive" alt="">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
 </body>
