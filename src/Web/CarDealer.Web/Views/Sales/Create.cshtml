@@ -1,6 +1,7 @@
 ﻿@using CarDealer.Data.Models.CarModels
 @using CarDealer.Data.Models.SaleModels
 @inject CarDealer.Services.Data.ICarsService carService
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 @model CarDealer.Web.ViewModels.InputModels.Sales.AddSaleInputModel
 @{
     this.ViewData["Title"] = "Create ad:";
@@ -16,6 +17,7 @@
 <link href="~/css/multistep.css" rel="stylesheet" />
 
 <form method="post" class="col-md-6 offset-md-3" id="multiForm" enctype="multipart/form-data">
+    <input type="hidden" name="captcha" id="captchaInput" />
     <h2>@this.ViewData["Title"]</h2>
     <br />
     <div class="tab">
@@ -179,4 +181,13 @@
                 });
             });
     });
+</script>
+
+<script src="https://www.google.com/recaptcha/api.js?render=@Configuration["googleReCaptcha:SiteKey"]"></script>
+<script>
+        grecaptcha.ready(function() {
+            window.grecaptcha.execute('@Configuration["googleReCaptcha:SiteKey"]', { action: 'home' }).then(function (token) {
+                $("#captchaInput").val(token);
+            });
+        });
 </script>

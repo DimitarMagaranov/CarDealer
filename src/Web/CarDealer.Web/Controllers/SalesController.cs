@@ -6,6 +6,7 @@
     using CarDealer.Data.Models;
     using CarDealer.Services.Data;
     using CarDealer.Web.ViewModels.InputModels.Sales;
+    using GoogleReCaptcha.V3.Interface;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -27,6 +28,7 @@
         private readonly ICountriesService countriesService;
         private readonly ICitiesService citiesService;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly ICaptchaValidator captchaValidator;
 
         public SalesController(
             IWebHostEnvironment webHostEnvironment,
@@ -41,7 +43,8 @@
             IColorsService colorsService,
             ICountriesService countriessService,
             ICitiesService citiesService,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,
+            ICaptchaValidator captchaValidator)
         {
             this.webHostEnvironment = webHostEnvironment;
             this.carsService = carsService;
@@ -56,6 +59,7 @@
             this.countriesService = countriessService;
             this.citiesService = citiesService;
             this.userManager = userManager;
+            this.captchaValidator = captchaValidator;
         }
 
         public async Task<IActionResult> Create(int countryId)
@@ -74,8 +78,13 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(AddSaleInputModel input)
+        public async Task<IActionResult> Create(AddSaleInputModel input, string captcha)
         {
+            if (!await this.captchaValidator.IsCaptchaPassedAsync(captcha))
+            {
+                this.ModelState.AddModelError("captcha", "Captcha validation failed");
+            }
+
             if (!this.ModelState.IsValid)
             {
                 input.CitiesItems = await this.citiesService.GetAllAsSelectListItemsAsync(input.CountryId);

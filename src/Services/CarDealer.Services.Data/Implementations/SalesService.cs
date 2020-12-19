@@ -87,6 +87,7 @@
             await this.salesRepository.AddAsync(saleToAdd);
             await this.salesRepository.SaveChangesAsync();
 
+
             ////await this.carExtrasService.AddExtrasToDbAsync(saleToAdd.CarId, input.Car.CarExtras);
 
             return saleToAdd.Id;

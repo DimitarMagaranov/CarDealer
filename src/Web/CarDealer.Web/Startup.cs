@@ -15,6 +15,8 @@
     using CarDealer.Services.Mapping;
     using CarDealer.Services.Messaging;
     using CarDealer.Web.ViewModels;
+    using GoogleReCaptcha.V3;
+    using GoogleReCaptcha.V3.Interface;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -55,6 +57,7 @@
                     {
                         options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                     }).AddRazorRuntimeCompilation();
+            services.AddHttpClient<ICaptchaValidator, GoogleReCaptchaValidator>();
             services.AddRazorPages();
             services.AddDatabaseDeveloperPageExceptionFilter();
 
