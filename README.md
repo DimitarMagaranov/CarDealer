@@ -24,7 +24,7 @@ This website is designed and runs using the **main** technologies below:
 - **[Bootstrap 3](https://bootstrapdocs.com/v3.3.6/docs/getting-started/)**
 - **[JavaScript](https://en.wikipedia.org/wiki/JavaScript)**
 - **[AJAX real-time Requests](https://en.wikipedia.org/wiki/Ajax_(programming))**
-- **[jQuery](https://jquery.com/))**
+- **[jQuery](https://jquery.com/)**
 - **[CSS](https://www.w3schools.com/css/css_intro.asp)**
 - **[MS Visual Studio 2019](https://code.visualstudio.com/)**
 - **[MS SQL Server Management Studio 2017](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15)**
