@@ -17,4 +17,4 @@
 - JavaScript and JS animations
 
 ## :wrench: DB Diagram
-![](https://res.cloudinary.com/dvlw1ehpa/image/upload/v1607548062/Diagram_hjwlfh.png)
+![](https://res.cloudinary.com/dlxqza3bo/image/upload/v1608367784/DB_Diagram_nuh4iy.png)
