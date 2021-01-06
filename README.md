@@ -29,6 +29,7 @@ This website is designed and runs using the **main** technologies below:
 - **[MS Visual Studio 2019](https://code.visualstudio.com/)**
 - **[MS SQL Server Management Studio 2017](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15)**
 - **[Microsoft Azure](https://azure.microsoft.com/en-us/)**
+- **[Cloudinary](https://cloudinary.com/)**
 
 
 ## :wrench: DB Diagram
