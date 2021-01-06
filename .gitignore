@@ -333,3 +333,5 @@ ASALocalRun/
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
 /src/Web/CarDealer.Web/appsettings.Production.json
+/src/Web/CarDealer.Web/appsettings.json
+/src/Web/CarDealer.Web/appsettings.Development.json

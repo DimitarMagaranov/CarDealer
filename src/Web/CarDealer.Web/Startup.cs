@@ -15,6 +15,7 @@
     using CarDealer.Services.Mapping;
     using CarDealer.Services.Messaging;
     using CarDealer.Web.ViewModels;
+    using CloudinaryDotNet;
     using GoogleReCaptcha.V3;
     using GoogleReCaptcha.V3.Interface;
     using Microsoft.AspNetCore.Builder;
@@ -87,6 +88,17 @@
             services.AddTransient<IUsersService, UsersService>();
             services.AddTransient<IGenericsService, GenericsService>();
             services.AddTransient<IImageSharpsService, ImageSharpsService>();
+            services.AddTransient<ICloudinaryService, CloudinaryService>();
+
+            // Cloudinary service
+            Account account = new Account(
+                              this.configuration["Cloudinary:AppName"],
+                              this.configuration["Cloudinary:AppKey"],
+                              this.configuration["Cloudinary:AppSecret"]);
+
+            Cloudinary cloudinary = new Cloudinary(account);
+
+            services.AddSingleton(cloudinary);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -14,6 +14,7 @@
     using CarDealer.Web.ViewModels.InputModels.Sales;
     using CarDealer.Web.ViewModels.InputModels.SearchSales;
     using CarDealer.Web.ViewModels.Sales;
+    using CloudinaryDotNet;
     using Microsoft.EntityFrameworkCore;
 
     public class SalesService : ISalesService
@@ -26,7 +27,8 @@
         private readonly ICitiesService citiesService;
         private readonly IImagesService imagesService;
         private readonly IUsersService usersService;
-        private readonly IImageSharpsService imageSharpsService;
+        private readonly ICloudinaryService cloudinaryService;
+        private readonly Cloudinary cloudinary;
 
         public SalesService(
             ICarsService carsService,
@@ -35,7 +37,8 @@
             ICitiesService citiesService,
             IImagesService imagesService,
             IUsersService usersService,
-            IImageSharpsService imageSharpsService,
+            ICloudinaryService cloudinaryService,
+            Cloudinary cloudinary,
             IDeletableEntityRepository<Sale> salesRepository)
         {
             this.salesRepository = salesRepository;
@@ -45,7 +48,8 @@
             this.citiesService = citiesService;
             this.imagesService = imagesService;
             this.usersService = usersService;
-            this.imageSharpsService = imageSharpsService;
+            this.cloudinaryService = cloudinaryService;
+            this.cloudinary = cloudinary;
         }
 
         public async Task<int> CreateSaleAsync(AddSaleInputModel input, string userId, string imagePath)
@@ -62,34 +66,31 @@
                 OpensSaleCounter = 0,
             };
 
-            Directory.CreateDirectory($"{imagePath}/sales/");
-
             foreach (var image in input.Images)
             {
                 var extension = Path.GetExtension(image.FileName).TrimStart('.');
+
                 if (!this.allowedExtensions.Any(x => extension.EndsWith(x)))
                 {
                     throw new Exception($"Invalid image extension {extension}");
                 }
 
+                var imageUrl = await this.cloudinaryService.Upload(this.cloudinary, image);
+
                 var dbImage = new Image
                 {
                     AddedByUserId = userId,
                     Extension = extension,
+                    ImageUrl = imageUrl,
                 };
-                saleToAdd.Images.Add(dbImage);
 
-                var physicalPath = $"{imagePath}/sales/{dbImage.Id}.{extension}";
-                using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
-                await image.CopyToAsync(fileStream);
+                saleToAdd.Images.Add(dbImage);
             }
 
             await this.salesRepository.AddAsync(saleToAdd);
             await this.salesRepository.SaveChangesAsync();
 
-
-            ////await this.carExtrasService.AddExtrasToDbAsync(saleToAdd.CarId, input.Car.CarExtras);
-
+            // await this.carExtrasService.AddExtrasToDbAsync(saleToAdd.CarId, input.Car.CarExtras);
             return saleToAdd.Id;
         }
 
@@ -290,6 +291,7 @@
         public SaleViewModel GetSaleInfo(int saleId)
         {
             var sale = this.salesRepository.All()
+                .Where(x => x.Id == saleId)
                 .Include(x => x.Car)
                 .Include(x => x.Car.Make)
                 .Include(x => x.Country)
@@ -298,7 +300,7 @@
                 .Include(x => x.Car.Color)
                 .Include(x => x.Car.FuelType)
                 .Include(x => x.Car.Gearbox)
-                .FirstOrDefault(x => x.Id == saleId);
+                .FirstOrDefault();
 
             var user = this.usersService.GetUserById(sale.UserId);
             var carModel = this.modelsService.GetById(sale.Car.ModelId);
@@ -309,7 +311,8 @@
 
             foreach (var image in images)
             {
-                var imageUrl = "/images/sales/" + image.Id + "." + image.Extension;
+                var imageUrl = image.ImageUrl;
+
                 imagesUrlList.Add(imageUrl);
             }
 

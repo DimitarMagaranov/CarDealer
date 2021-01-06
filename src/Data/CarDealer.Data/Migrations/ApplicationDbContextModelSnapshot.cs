@@ -501,6 +501,9 @@ namespace CarDealer.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("ResizedImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("SaleId")
                         .HasColumnType("int");
 
