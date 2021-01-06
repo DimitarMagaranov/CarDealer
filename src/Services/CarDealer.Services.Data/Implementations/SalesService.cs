@@ -101,6 +101,8 @@
             this.salesRepository.Delete(saleToRemove);
 
             await this.salesRepository.SaveChangesAsync();
+
+            this.cloudinaryService.Delete(this.cloudinary, saleId);
         }
 
         public async Task<EditSaleInputModel> GetEditSaleInputModel(int id)
@@ -387,6 +389,8 @@
             this.salesRepository.Delete(sale);
 
             await this.salesRepository.SaveChangesAsync();
+
+            this.cloudinaryService.Delete(this.cloudinary, id);
         }
 
         public async Task IncreaseOpensSaleCounter(int id)

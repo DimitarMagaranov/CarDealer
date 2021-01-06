@@ -162,7 +162,6 @@
             return this.View(viewModel);
         }
 
-        [HttpPost]
         public async Task<IActionResult> DeleteSale(int id)
         {
             await this.salesService.DeleteAsync(id);
