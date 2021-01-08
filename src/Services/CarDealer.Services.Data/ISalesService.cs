@@ -9,7 +9,7 @@
 
     public interface ISalesService
     {
-        Task<int> CreateSaleAsync(AddSaleInputModel input, string userId, string imagePath);
+        Task<int> CreateSaleAsync(AddSaleInputModel input, string userId);
 
         Task RemoveSaleAsync(int saleId);
 

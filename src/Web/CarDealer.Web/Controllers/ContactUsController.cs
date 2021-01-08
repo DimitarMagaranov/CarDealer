@@ -2,8 +2,10 @@
 {
     using System.Threading.Tasks;
 
+    using CarDealer.Common;
     using CarDealer.Services.Messaging;
     using CarDealer.Web.ViewModels.InputModels.ContactUs;
+
     using Microsoft.AspNetCore.Mvc;
 
     public class ContactUsController : BaseController
@@ -30,9 +32,9 @@
                 return this.View(input);
             }
 
-            await this.emailSender.SendEmailAsync(input.Email, input.FullName, "dimitar.magaranov1@gmail.com", input.Subject, input.Message, null);
+            await this.emailSender.SendEmailAsync(input.Email, input.FullName, GlobalConstants.AdministratorEmailAddress, input.Subject, input.Message, null);
 
-            return this.RedirectToAction("Index", "Home");
+            return this.Redirect("/");
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿namespace CarDealer.Web.Controllers
 {
     using System.Threading.Tasks;
-
+    using CarDealer.Common;
     using CarDealer.Services.Data;
     using CarDealer.Web.ViewModels.InputModels.SearchSales;
     using CarDealer.Web.ViewModels.Sales;
@@ -51,9 +51,11 @@
             if (countryId == 0)
             {
                 var methodName = nameof(this.Index).ToString();
-                var controllerName = "SearchSales";
+                var controllerName = nameof(SearchSalesController).Replace(GlobalConstants.ControllerAsString, string.Empty);
+                var nameOfCountriesController = nameof(CountriesController).Replace(GlobalConstants.ControllerAsString, string.Empty);
+                var nameOfSelectCountryActionInCountriesController = nameof(CountriesController.SelectCountry);
 
-                return this.RedirectToAction("SelectCountry", "Countries", new { methodName, controllerName });
+                return this.RedirectToAction(nameOfSelectCountryActionInCountriesController, nameOfCountriesController, new { methodName, controllerName });
             }
 
             this.TempData["CountryId"] = countryId;

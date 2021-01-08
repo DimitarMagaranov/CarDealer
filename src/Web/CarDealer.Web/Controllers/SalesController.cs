@@ -2,7 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
-
+    using CarDealer.Common;
     using CarDealer.Data.Models;
     using CarDealer.Services.Data;
     using CarDealer.Web.ViewModels.InputModels.Sales;
@@ -66,10 +66,12 @@
         {
             if (countryId == 0)
             {
-                var methodName = nameof(this.Create).ToString();
-                var controllerName = "Sales";
+                var methodName = nameof(Create).ToString();
+                var controllerName = nameof(SalesController).Replace(GlobalConstants.ControllerAsString, string.Empty);
+                var nameOfCountriesController = nameof(CountriesController).Replace(GlobalConstants.ControllerAsString, string.Empty);
+                var nameOfSelectCountryActionInCountriesController = nameof(CountriesController.SelectCountry);
 
-                return this.RedirectToAction("SelectCountry", "Countries", new { methodName, controllerName });
+                return this.RedirectToAction(nameOfSelectCountryActionInCountriesController, nameOfCountriesController, new { methodName, controllerName });
             }
 
             var viewModel = await this.salesService.GetViewModelForCreateSale(countryId);
@@ -82,7 +84,7 @@
         {
             if (!await this.captchaValidator.IsCaptchaPassedAsync(captcha))
             {
-                this.ModelState.AddModelError("captcha", "Captcha validation failed");
+                this.ModelState.AddModelError(GlobalConstants.ReCaptchaName, GlobalConstants.ReCaptchaErrorMessage);
             }
 
             if (!this.ModelState.IsValid)
@@ -99,7 +101,7 @@
 
             try
             {
-                id = await this.salesService.CreateSaleAsync(input, user.Id, $"{this.webHostEnvironment.WebRootPath}/images");
+                id = await this.salesService.CreateSaleAsync(input, user.Id);
             }
             catch (Exception ex)
             {
@@ -109,7 +111,7 @@
                 return this.View(input);
             }
 
-            this.TempData["Message"] = "Sale added successfully.";
+            this.TempData["Message"] = GlobalConstants.SuccessfullyAddedSaleMessage;
 
             return this.RedirectToAction(nameof(this.SaleInfo), new { id });
         }
@@ -138,16 +140,11 @@
             return this.RedirectToAction(nameof(this.SaleInfo), new { id });
         }
 
-        public async Task<IActionResult> All(int id)
+        public async Task<IActionResult> All(int id = 1)
         {
             var user = await this.userManager.GetUserAsync(this.User);
 
             const int ItemsPerPage = 12;
-
-            if (id == 0)
-            {
-                id++;
-            }
 
             var viewModel = this.salesService.GetSalesListViewModelByCountryId(id, ItemsPerPage, user.CountryId);
 
@@ -166,7 +163,10 @@
         {
             await this.salesService.DeleteAsync(id);
 
-            return this.RedirectToAction("All", "Users");
+            var nameOfUsersController = nameof(UsersController).Replace(GlobalConstants.ControllerAsString, string.Empty);
+            var nameOfAllActionInUsersController = nameof(UsersController.All);
+
+            return this.RedirectToAction(nameOfAllActionInUsersController, nameOfUsersController);
         }
     }
 }

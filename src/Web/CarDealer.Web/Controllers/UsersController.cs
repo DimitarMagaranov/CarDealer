@@ -1,7 +1,7 @@
 ﻿namespace CarDealer.Web.Controllers
 {
     using System.Threading.Tasks;
-
+    using CarDealer.Common;
     using CarDealer.Data.Models;
     using CarDealer.Services.Data;
     using CarDealer.Web.ViewModels.Sales;
@@ -21,16 +21,11 @@
             this.salesService = salesService;
         }
 
-        public async Task<IActionResult> All(int id)
+        public async Task<IActionResult> All(int id = 1)
         {
             var user = await this.userManager.GetUserAsync(this.User);
 
             const int ItemsPerPage = 12;
-
-            if (id == 0)
-            {
-                id++;
-            }
 
             var viewModel = this.salesService.GetSalesListViewModelByUserId(id, ItemsPerPage, user.Id);
 
@@ -39,7 +34,10 @@
 
         public IActionResult SaleInfo(int id)
         {
-            return this.RedirectToAction("SaleInfo", "Sales", new { id });
+            var nameOfSalesController = nameof(SalesController).Replace(GlobalConstants.ControllerAsString, string.Empty);
+            var nameOfSaleInfoActionInSalesController = nameof(SalesController.SaleInfo);
+
+            return this.RedirectToAction(nameOfSaleInfoActionInSalesController, nameOfSalesController, new { id });
         }
     }
 }
