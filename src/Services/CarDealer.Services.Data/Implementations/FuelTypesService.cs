@@ -17,7 +17,7 @@
             this.fuelTypesRepository = fuelTypesRepository;
         }
 
-        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsSelectListItemsAsync()
+        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairsAsync()
         {
             var fuelTypes = new List<KeyValuePair<string, string>>();
 

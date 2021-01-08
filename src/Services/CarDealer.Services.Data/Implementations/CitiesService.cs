@@ -25,7 +25,7 @@
             return new CityViewModel { Id = city.Id, Name = city.Name };
         }
 
-        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsSelectListItemsAsync(int countryId)
+        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairsAsync(int countryId)
         {
             var cities = new List<KeyValuePair<string, string>>();
 

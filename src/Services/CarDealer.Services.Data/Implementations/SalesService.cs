@@ -154,7 +154,7 @@
                     },
                 }).FirstOrDefault();
 
-            editSaleInputModel.CitiesItems = await this.citiesService.GetAllAsSelectListItemsAsync(editSaleInputModel.CountryId);
+            editSaleInputModel.CitiesItems = await this.citiesService.GetAllAsKeyValuePairsAsync(editSaleInputModel.CountryId);
 
             return editSaleInputModel;
         }
@@ -447,7 +447,7 @@
                 CountryId = countryId,
             };
 
-            viewModel.CitiesItems = await this.citiesService.GetAllAsSelectListItemsAsync(viewModel.CountryId);
+            viewModel.CitiesItems = await this.citiesService.GetAllAsKeyValuePairsAsync(viewModel.CountryId);
             viewModel.Car = await this.carsService.GetCarInputModelWithFilledProperties();
 
             return viewModel;

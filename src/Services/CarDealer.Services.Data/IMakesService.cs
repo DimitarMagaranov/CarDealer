@@ -7,7 +7,7 @@
 
     public interface IMakesService
     {
-        Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsSelectListItemsAsync();
+        Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairsAsync();
 
         Task<IEnumerable<MakeViewModel>> GetMakeWithModelsAsync(int id);
     }

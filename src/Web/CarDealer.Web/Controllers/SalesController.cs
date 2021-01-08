@@ -89,7 +89,7 @@
 
             if (!this.ModelState.IsValid)
             {
-                input.CitiesItems = await this.citiesService.GetAllAsSelectListItemsAsync(input.CountryId);
+                input.CitiesItems = await this.citiesService.GetAllAsKeyValuePairsAsync(input.CountryId);
                 input.Car = await this.carsService.GetCarInputModelWithFilledProperties();
 
                 return this.View(input);
@@ -106,7 +106,7 @@
             catch (Exception ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
-                input.CitiesItems = await this.citiesService.GetAllAsSelectListItemsAsync(input.CountryId);
+                input.CitiesItems = await this.citiesService.GetAllAsKeyValuePairsAsync(input.CountryId);
                 input.Car = await this.carsService.GetCarInputModelWithFilledProperties();
                 return this.View(input);
             }

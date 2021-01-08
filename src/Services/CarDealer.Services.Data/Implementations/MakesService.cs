@@ -13,14 +13,10 @@
     public class MakesService : IMakesService
     {
         private readonly IRepository<Make> makesRepository;
-        private readonly IGenericsService genericsService;
 
-        public MakesService(
-            IRepository<Make> makesRepository,
-            IGenericsService genericsService)
+        public MakesService(IRepository<Make> makesRepository)
         {
             this.makesRepository = makesRepository;
-            this.genericsService = genericsService;
         }
 
         public async Task<IEnumerable<MakeViewModel>> GetMakeWithModelsAsync(int id)
@@ -44,7 +40,7 @@
             return viewModelList;
         }
 
-        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsSelectListItemsAsync()
+        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairsAsync()
         {
             var makes = new List<KeyValuePair<string, string>>();
 

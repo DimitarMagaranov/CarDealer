@@ -80,14 +80,14 @@
             var carViewModel = new SearchListInputModel
             {
                 CountryId = countryId,
-                CategoriesItems = await this.categoriesService.GetAllAsSelectListItemsAsync(),
-                MakesItems = await this.makesService.GetAllAsSelectListItemsAsync(),
-                FuelTypeItems = await this.fuelTypesService.GetAllAsSelectListItemsAsync(),
-                EuroStandartItems = await this.euroStandartsService.GetAllAsSelectListItemsAsync(),
-                GearboxesItems = await this.gearboxesService.GetAllAsSelectListItemsAsync(),
-                ColorstItems = await this.colorsService.GetAllAsSelectListItemsAsync(),
-                CitiesItems = await this.citiesService.GetAllAsSelectListItemsAsync(countryId),
-                CountriesItems = await this.countriesService.GetAllAsSelectListItemsAsync(),
+                CategoriesItems = await this.categoriesService.GetAllAsKeyValuePairsAsync(),
+                MakesItems = await this.makesService.GetAllAsKeyValuePairsAsync(),
+                FuelTypeItems = await this.fuelTypesService.GetAllAsKeyValuePairsAsync(),
+                EuroStandartItems = await this.euroStandartsService.GetAllAsKeyValuePairsAsync(),
+                GearboxesItems = await this.gearboxesService.GetAllAsKeyValuePairsAsync(),
+                ColorstItems = await this.colorsService.GetAllAsKeyValuePairsAsync(),
+                CitiesItems = await this.citiesService.GetAllAsKeyValuePairsAsync(countryId),
+                CountriesItems = await this.countriesService.GetAllAsKeyValuePairsAsync(),
             };
 
             return carViewModel;

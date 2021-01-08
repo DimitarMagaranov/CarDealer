@@ -5,6 +5,6 @@
 
     public interface IFuelTypesService
     {
-        Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsSelectListItemsAsync();
+        Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairsAsync();
     }
 }

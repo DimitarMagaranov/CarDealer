@@ -10,7 +10,6 @@
 
     public class GearboxesService : IGearboxesService
     {
-        private readonly IGenericsService genericsService;
         private readonly IRepository<Gearbox> gearboxesRepository;
 
         public GearboxesService(IRepository<Gearbox> gearboxesRepository)
@@ -18,7 +17,7 @@
             this.gearboxesRepository = gearboxesRepository;
         }
 
-        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsSelectListItemsAsync()
+        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairsAsync()
         {
             var gearBoxes = new List<KeyValuePair<string, string>>();
 

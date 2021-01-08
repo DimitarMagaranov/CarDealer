@@ -17,7 +17,7 @@
             this.colorsRepository = colorsRepository;
         }
 
-        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsSelectListItemsAsync()
+        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairsAsync()
         {
             var colors = new List<KeyValuePair<string, string>>();
 

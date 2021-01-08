@@ -18,7 +18,7 @@
             this.countriesRepository = countriesRepository;
         }
 
-        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsSelectListItemsAsync()
+        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairsAsync()
         {
             var countries = new List<KeyValuePair<string, string>>();
 

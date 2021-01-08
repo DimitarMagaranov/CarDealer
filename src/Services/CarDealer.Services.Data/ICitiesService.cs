@@ -7,7 +7,7 @@
 
     public interface ICitiesService
     {
-        Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsSelectListItemsAsync(int countryId);
+        Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairsAsync(int countryId);
 
         CityViewModel GetById(int id);
     }

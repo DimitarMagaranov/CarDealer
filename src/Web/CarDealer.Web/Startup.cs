@@ -86,7 +86,6 @@
             services.AddTransient<ICarExtrasService, CarExtrasService>();
             services.AddTransient<IImagesService, ImagesService>();
             services.AddTransient<IUsersService, UsersService>();
-            services.AddTransient<IGenericsService, GenericsService>();
             services.AddTransient<IImageSharpsService, ImageSharpsService>();
             services.AddTransient<ICloudinaryService, CloudinaryService>();
 

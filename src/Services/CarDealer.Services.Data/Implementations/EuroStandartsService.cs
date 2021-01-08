@@ -17,7 +17,7 @@
             this.euroStandartsRepository = euroStandartsRepository;
         }
 
-        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsSelectListItemsAsync()
+        public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairsAsync()
         {
             var euroStandarts = new List<KeyValuePair<string, string>>();
 

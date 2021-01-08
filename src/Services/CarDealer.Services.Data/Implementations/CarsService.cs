@@ -67,12 +67,12 @@
             var carViewModel = new AddCarInputModel
             {
                 ManufactureDate = DateTime.UtcNow,
-                CategoriesItems = await this.categoriesService.GetAllAsSelectListItemsAsync(),
-                MakesItems = await this.makesService.GetAllAsSelectListItemsAsync(),
-                FuelTypeItems = await this.fuelTypesService.GetAllAsSelectListItemsAsync(),
-                EuroStandartItems = await this.euroStandartsService.GetAllAsSelectListItemsAsync(),
-                GearboxesItems = await this.gearboxesService.GetAllAsSelectListItemsAsync(),
-                ColorstItems = await this.colorsService.GetAllAsSelectListItemsAsync(),
+                CategoriesItems = await this.categoriesService.GetAllAsKeyValuePairsAsync(),
+                MakesItems = await this.makesService.GetAllAsKeyValuePairsAsync(),
+                FuelTypeItems = await this.fuelTypesService.GetAllAsKeyValuePairsAsync(),
+                EuroStandartItems = await this.euroStandartsService.GetAllAsKeyValuePairsAsync(),
+                GearboxesItems = await this.gearboxesService.GetAllAsKeyValuePairsAsync(),
+                ColorstItems = await this.colorsService.GetAllAsKeyValuePairsAsync(),
             };
 
             return carViewModel;

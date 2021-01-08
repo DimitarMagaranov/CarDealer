@@ -35,7 +35,7 @@
             var viewModel = new SelectCountryInputModel
             {
                 CountryId = countryId,
-                CountriesItems = await this.countriesService.GetAllAsSelectListItemsAsync(),
+                CountriesItems = await this.countriesService.GetAllAsKeyValuePairsAsync(),
             };
 
             return this.View(viewModel);
@@ -46,7 +46,7 @@
         {
             if (input.CountryId == 0)
             {
-                input.CountriesItems = await this.countriesService.GetAllAsSelectListItemsAsync();
+                input.CountriesItems = await this.countriesService.GetAllAsKeyValuePairsAsync();
 
                 return this.View(input);
             }
