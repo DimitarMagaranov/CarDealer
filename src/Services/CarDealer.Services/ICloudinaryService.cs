@@ -8,7 +8,7 @@
 
     public interface ICloudinaryService
     {
-        Task<string> Upload(Cloudinary cloudinary, IFormFile file);
+        Task<KeyValuePair<string, string>> Upload(Cloudinary cloudinary, IFormFile file);
 
         void Delete(Cloudinary cloudinary, int saleId);
     }

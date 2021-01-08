@@ -1,5 +1,6 @@
 ﻿namespace CarDealer.Services
 {
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -18,9 +19,9 @@
             this.db = db;
         }
 
-        public async Task<string> Upload(Cloudinary cloudinary, IFormFile file)
+        public async Task<KeyValuePair<string, string>> Upload(Cloudinary cloudinary, IFormFile file)
         {
-            string imageUrl;
+            KeyValuePair<string, string> imageUrls;
 
             byte[] destinationImage;
 
@@ -39,10 +40,18 @@
 
                 var result = await cloudinary.UploadAsync(uploadParams);
 
-                imageUrl = result.Uri.AbsoluteUri;
+                var imageUrl = result.Uri.AbsoluteUri;
+
+                var tokens = imageUrl.Split('/');
+                var idWithExt = tokens.Last().ToString();
+                var publicId = idWithExt.Split('.').First();
+
+                var resizedImageUrl = this.GetResizedImage(cloudinary, publicId);
+
+                imageUrls = new KeyValuePair<string, string>(imageUrl, resizedImageUrl);
             }
 
-            return imageUrl;
+            return imageUrls;
         }
 
         public void Delete(Cloudinary cloudinary, int saleId)
@@ -62,6 +71,21 @@
 
                 var deletionResult = cloudinary.DestroyAsync(deletionParams).GetAwaiter().GetResult();
             }
+        }
+
+        public string GetResizedImage(Cloudinary cloudinary, string imagePublicId)
+        {
+            var imageUrl = cloudinary
+                               .Api
+                               .UrlImgUp
+                               .Transform(new Transformation()
+                               .Height(480)
+                               .Width(720)
+                               .Gravity("faces")
+                               .Crop("fill"))
+                               .BuildUrl(string.Format("{0}.jpg", imagePublicId));
+
+            return imageUrl;
         }
     }
 }

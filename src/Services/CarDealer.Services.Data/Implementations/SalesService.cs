@@ -28,6 +28,7 @@
         private readonly IImagesService imagesService;
         private readonly IUsersService usersService;
         private readonly ICloudinaryService cloudinaryService;
+        private readonly IImageSharpsService imageSharpsService;
         private readonly Cloudinary cloudinary;
 
         public SalesService(
@@ -38,6 +39,7 @@
             IImagesService imagesService,
             IUsersService usersService,
             ICloudinaryService cloudinaryService,
+            IImageSharpsService imageSharpsService,
             Cloudinary cloudinary,
             IDeletableEntityRepository<Sale> salesRepository)
         {
@@ -49,6 +51,7 @@
             this.imagesService = imagesService;
             this.usersService = usersService;
             this.cloudinaryService = cloudinaryService;
+            this.imageSharpsService = imageSharpsService;
             this.cloudinary = cloudinary;
         }
 
@@ -75,13 +78,16 @@
                     throw new Exception($"Invalid image extension {extension}");
                 }
 
-                var imageUrl = await this.cloudinaryService.Upload(this.cloudinary, image);
+                var resizedImage = this.imageSharpsService.GetResizedImage(image);
+
+                var imageUrls = await this.cloudinaryService.Upload(this.cloudinary, image);
 
                 var dbImage = new Image
                 {
                     AddedByUserId = userId,
                     Extension = extension,
-                    ImageUrl = imageUrl,
+                    ImageUrl = imageUrls.Key,
+                    ResizedImageUrl = imageUrls.Value,
                 };
 
                 saleToAdd.Images.Add(dbImage);
@@ -157,8 +163,6 @@
         {
             var data = new List<SaleViewModel>();
 
-            itemsPerPage = 12;
-
             var sales = this.salesRepository.All()
                 .Where(x => x.CountryId == countryId)
                 .ToList();
@@ -180,8 +184,6 @@
         public IEnumerable<SaleViewModel> GetAllByUserId(int page, int itemsPerPage, string userId)
         {
             var data = new List<SaleViewModel>();
-
-            itemsPerPage = 2;
 
             var sales = this.salesRepository.All()
                 .Where(x => x.UserId == userId)
@@ -309,13 +311,13 @@
             var city = this.citiesService.GetById(sale.CityId);
             var images = this.imagesService.GetAllImagesBySaleId(sale.Id);
 
-            var imagesUrlList = new List<string>();
+            var originaImagesUrlList = new List<string>();
+            var resizedImagesUrlList = new List<string>();
 
             foreach (var image in images)
             {
-                var imageUrl = image.ImageUrl;
-
-                imagesUrlList.Add(imageUrl);
+                originaImagesUrlList.Add(image.OriginalImageUrl);
+                resizedImagesUrlList.Add(image.ResizedlImageUrl);
             }
 
             var saleInfo = new SaleViewModel
@@ -327,7 +329,8 @@
                 CreatedOn = sale.CreatedOn,
                 Description = sale.Description,
                 Price = sale.Price,
-                ImageUrls = imagesUrlList.ToArray(),
+                OriginalImageUrls = originaImagesUrlList.ToArray(),
+                ResizedImageUrls = resizedImagesUrlList.ToArray(),
                 UserName = user.UserName,
                 UserPhoneNumber = user.PhoneNumber,
                 UserEmailAddress = user.Email,

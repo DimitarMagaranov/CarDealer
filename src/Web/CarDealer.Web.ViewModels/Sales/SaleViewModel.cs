@@ -28,7 +28,9 @@
 
         public string UserEmailAddress { get; set; }
 
-        public string[] ImageUrls { get; set; }
+        public string[] OriginalImageUrls { get; set; }
+
+        public string[] ResizedImageUrls { get; set; }
 
         public string Description { get; set; }
 

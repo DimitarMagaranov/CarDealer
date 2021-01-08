@@ -8,7 +8,9 @@
 
         public int SaleId { get; set; }
 
-        public string ImageUrl { get; set; }
+        public string OriginalImageUrl { get; set; }
+
+        public string ResizedlImageUrl { get; set; }
 
         public string Extension { get; set; }
     }

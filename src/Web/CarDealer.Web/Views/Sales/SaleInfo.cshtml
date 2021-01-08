@@ -5,11 +5,6 @@
     <div class="alert alert-success alert-dismissable">@this.TempData["Message"]</div>
 }
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 <section>
     <div class="container">
         <div class="row">
@@ -21,21 +16,32 @@
                         <i class="fa fa-eye"></i> @Model.OpensSaleCount
                     </p>
 
-                    @if (Model.ImageUrls.Length > 1)
-                    {
-                        <div class="owl-carousel owl-theme home-slider">
-                            @foreach (var imageUrl in Model.ImageUrls)
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+
+                            @for (int i = 1; i < Model.ResizedImageUrls.Length; i++)
                             {
-                                <div class="item active">
-                                    <img src="@imageUrl" alt="buffalo-skyline" width="640" height="360" />
+                                <li data-target="#myCarousel" data-slide-to="@i"></li>
+                            }
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img src="@Model.ResizedImageUrls.FirstOrDefault()" alt="Los Angeles" style="width:100%" ;>
+                            </div>
+
+                            @foreach (var imgUrl in Model.ResizedImageUrls.Skip(1))
+                            {
+                                <div class="item">
+                                    <img src="@imgUrl" style="width:100%" ;>
                                 </div>
                             }
+
                         </div>
-                    }
-                    else
-                    {
-                        <img src="@Model.ImageUrls.FirstOrDefault()" alt="" class="img-responsive wc-image">
-                    }
+                    </div>
                 </div>
 
                 <br>

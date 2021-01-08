@@ -30,7 +30,8 @@
                     SaleId = image.SaleId,
                     AddedByUserId = image.AddedByUserId,
                     Extension = image.Extension,
-                    ImageUrl = image.ImageUrl,
+                    OriginalImageUrl = image.ImageUrl,
+                    ResizedlImageUrl = image.ResizedImageUrl,
                 });
             }
 
