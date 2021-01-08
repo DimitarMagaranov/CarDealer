@@ -2,11 +2,14 @@
 {
     using System;
     using System.Threading.Tasks;
+
     using CarDealer.Common;
     using CarDealer.Data.Models;
     using CarDealer.Services.Data;
     using CarDealer.Web.ViewModels.InputModels.Sales;
+
     using GoogleReCaptcha.V3.Interface;
+
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -66,7 +69,7 @@
         {
             if (countryId == 0)
             {
-                var methodName = nameof(Create).ToString();
+                var methodName = nameof(this.Create).ToString();
                 var controllerName = nameof(SalesController).Replace(GlobalConstants.ControllerAsString, string.Empty);
                 var nameOfCountriesController = nameof(CountriesController).Replace(GlobalConstants.ControllerAsString, string.Empty);
                 var nameOfSelectCountryActionInCountriesController = nameof(CountriesController.SelectCountry);
@@ -118,7 +121,7 @@
 
         public async Task<IActionResult> Edit(int id)
         {
-            var viewModel = await this.salesService.GetEditSaleInputModel(id);
+            var viewModel = await this.salesService.GetEditSaleViewModel(id);
 
             return this.View(viewModel);
         }

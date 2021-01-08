@@ -13,7 +13,7 @@
 
         Task RemoveSaleAsync(int saleId);
 
-        Task<EditSaleInputModel> GetEditSaleInputModel(int id);
+        Task<EditSaleViewModel> GetEditSaleViewModel(int id);
 
         Task UpdateSaleAsync(int id, EditSaleInputModel input);
 
@@ -39,7 +39,7 @@
 
         Task IncreaseOpensSaleCounter(int id);
 
-        Task<AddSaleInputModel> GetViewModelForCreateSale(int countryId);
+        Task<AddSaleViewModel> GetViewModelForCreateSale(int countryId);
 
         SalesListViewModel GetSalesListViewModelByCountryId(int id, int itemsPerPage, int countryId);
 

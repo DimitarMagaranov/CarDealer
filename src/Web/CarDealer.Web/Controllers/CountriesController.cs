@@ -1,9 +1,10 @@
 ﻿namespace CarDealer.Web.Controllers
 {
     using System.Threading.Tasks;
-    using CarDealer.Common;
+
     using CarDealer.Data.Models;
     using CarDealer.Services.Data;
+    using CarDealer.Web.ViewModels.Countries;
     using CarDealer.Web.ViewModels.InputModels.Countries;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -32,7 +33,7 @@
             this.ViewBag.CallerMethod = methodName;
             this.ViewBag.CallerController = controllerName;
 
-            var viewModel = new SelectCountryInputModel
+            var viewModel = new SelectCountryViewModel
             {
                 CountryId = countryId,
                 CountriesItems = await this.countriesService.GetAllAsKeyValuePairsAsync(),

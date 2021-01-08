@@ -1,6 +1,6 @@
 ﻿@using CarDealer.Data.Models.CarModels
 @using CarDealer.Data.Models.SaleModels
-@model CarDealer.Web.ViewModels.InputModels.Sales.EditSaleInputModel
+@model CarDealer.Web.ViewModels.Sales.EditSaleViewModel
 @{
     this.ViewData["Title"] = "Edit ad";
     var categoriesItems = this.Model.Car.CategoriesItems.Select(x => new SelectListItem(x.Key, x.Value));

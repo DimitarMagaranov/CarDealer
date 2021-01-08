@@ -4,6 +4,7 @@
 
     using CarDealer.Common;
     using CarDealer.Services.Messaging;
+    using CarDealer.Web.ViewModels.ContactUs;
     using CarDealer.Web.ViewModels.InputModels.ContactUs;
 
     using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,7 @@
 
         public IActionResult Index()
         {
-            var viewModel = new ContactUsInputModel();
+            var viewModel = new ContactUsViewModel();
 
             return this.View(viewModel);
         }

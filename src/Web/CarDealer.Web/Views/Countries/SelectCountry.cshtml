@@ -1,4 +1,4 @@
-﻿@model CarDealer.Web.ViewModels.InputModels.Countries.SelectCountryInputModel
+﻿@model CarDealer.Web.ViewModels.Countries.SelectCountryViewModel
 @{
     this.ViewData["Title"] = "Select country";
     var countriesItems = this.Model.CountriesItems.Select(x => new SelectListItem(x.Key, x.Value));

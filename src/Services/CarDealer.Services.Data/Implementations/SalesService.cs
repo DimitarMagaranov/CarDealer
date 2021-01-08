@@ -111,7 +111,7 @@
             this.cloudinaryService.Delete(this.cloudinary, saleId);
         }
 
-        public async Task<EditSaleInputModel> GetEditSaleInputModel(int id)
+        public async Task<EditSaleViewModel> GetEditSaleViewModel(int id)
         {
             var saleDb = this.salesRepository.All()
                 .Include(x => x.Car)
@@ -120,7 +120,7 @@
             var carSelectListItems = await this.carsService.GetCarInputModelWithFilledProperties();
 
             var editSaleInputModel = this.salesRepository.AllAsNoTracking().Where(x => x.Id == id)
-                .Select(x => new EditSaleInputModel
+                .Select(x => new EditSaleViewModel
                 {
                     Id = x.Id,
                     CountryId = x.CountryId,
@@ -128,7 +128,7 @@
                     Description = x.Description,
                     Price = x.Price,
                     DaysValid = x.DaysValid,
-                    Car = new EditCarInputModel
+                    Car = new EditCarViewModel
                     {
                         MakeId = saleDb.Car.MakeId,
                         ModelId = saleDb.Car.ModelId,
@@ -440,9 +440,9 @@
             return data;
         }
 
-        public async Task<AddSaleInputModel> GetViewModelForCreateSale(int countryId)
+        public async Task<AddSaleViewModel> GetViewModelForCreateSale(int countryId)
         {
-            var viewModel = new AddSaleInputModel
+            var viewModel = new AddSaleViewModel
             {
                 CountryId = countryId,
             };

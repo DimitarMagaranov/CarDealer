@@ -2,7 +2,7 @@
 @using CarDealer.Data.Models.SaleModels
 @inject CarDealer.Services.Data.ICarsService carService
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
-@model CarDealer.Web.ViewModels.InputModels.Sales.AddSaleInputModel
+@model CarDealer.Web.ViewModels.Sales.AddSaleViewModel
 @{
     this.ViewData["Title"] = "Create ad:";
     var categoriesItems = this.Model.Car.CategoriesItems.Select(x => new SelectListItem(x.Key, x.Value));
