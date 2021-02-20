@@ -10,7 +10,7 @@
 
 ## :pencil2: Overview
 
-**Car Dealer Website**  is an online platform where everyone can find his car all over the world. By default, when users search for or create an ad, they are doing it in the country they set when registering on the site, but can change it at any time.
+**Car Dealer Website**  is an online platform where everyone can find the wanted car all over the world. By default, when the users are searching for or creating an ad, they are doing it in the setted country by the site registration in the beginning. They can change it any time they want.
 
 ## :hammer: ## **Technologies Used**
 

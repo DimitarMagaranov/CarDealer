@@ -11,8 +11,6 @@
     {
         Task<int> CreateSaleAsync(AddSaleInputModel input, string userId);
 
-        Task RemoveSaleAsync(int saleId);
-
         Task<EditSaleViewModel> GetEditSaleViewModel(int id);
 
         Task UpdateSaleAsync(int id, EditSaleInputModel input);

@@ -37,6 +37,7 @@
                 };
 
                 await this.carExtrasRepository.AddAsync(carExtra);
+                await this.carExtrasRepository.SaveChangesAsync();
             }
         }
     }

@@ -7,6 +7,7 @@ https://templatemo.com/tm-516-known
 */
 
 @import url('https://fonts.googleapis.com/css?family=Muli:300,700|Nunito');
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
 body {
     background: #ffffff;
@@ -190,6 +191,11 @@ section {
     height: 390px;
 }
 
+/*---------------------------------------
+     Description               
+  -----------------------------------------*/
+
+
 
 
 /*---------------------------------------
@@ -207,10 +213,21 @@ section {
     transition: 0.5s;
 }
 
-    .section-btn:hover {
-        background: #ffffff;
-        border-color: transparent;
-    }
+.btn-delete {
+    background: red;
+    border-radius: 50px;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    font-size: inherit;
+    font-weight: normal;
+    padding: 15px 30px;
+    transition: 0.5s;
+}
+
+.section-btn:hover {
+    background: #ffffff;
+    border-color: transparent;
+}
 
 
 

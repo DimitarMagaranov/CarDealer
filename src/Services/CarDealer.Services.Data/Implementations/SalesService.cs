@@ -96,19 +96,8 @@
             await this.salesRepository.AddAsync(saleToAdd);
             await this.salesRepository.SaveChangesAsync();
 
-            // await this.carExtrasService.AddExtrasToDbAsync(saleToAdd.CarId, input.Car.CarExtras);
+            await this.carExtrasService.AddExtrasToDbAsync(saleToAdd.CarId, input.CarExtras);
             return saleToAdd.Id;
-        }
-
-        public async Task RemoveSaleAsync(int saleId)
-        {
-            var saleToRemove = this.salesRepository.AllAsNoTracking().FirstOrDefault(x => x.Id == saleId);
-
-            this.salesRepository.Delete(saleToRemove);
-
-            await this.salesRepository.SaveChangesAsync();
-
-            this.cloudinaryService.Delete(this.cloudinary, saleId);
         }
 
         public async Task<EditSaleViewModel> GetEditSaleViewModel(int id)

@@ -1,16 +1,20 @@
 ﻿namespace CarDealer.Services.Data.Implementations
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models;
+    using CarDealer.Data.Models.CarModels;
+    using CarDealer.Web.ViewModels.Cars.CarExtras;
     using CarDealer.Web.ViewModels.InputModels.Cars;
 
     public class CarsService : ICarsService
     {
         private readonly IDeletableEntityRepository<Car> carsRepository;
+        private readonly IRepository<Extra> extraRepository;
         private readonly ICategoriesService categoriesService;
         private readonly IMakesService makesService;
         private readonly IModelsService modelsService;
@@ -21,6 +25,7 @@
 
         public CarsService(
             IDeletableEntityRepository<Car> carsRepository,
+            IRepository<Extra> extraRepository,
             ICategoriesService categoriesService,
             IMakesService makesService,
             IModelsService modelsService,
@@ -30,6 +35,7 @@
             IColorsService colorsService)
         {
             this.carsRepository = carsRepository;
+            this.extraRepository = extraRepository;
             this.categoriesService = categoriesService;
             this.makesService = makesService;
             this.modelsService = modelsService;
@@ -99,6 +105,17 @@
             carDb.State = input.State;
 
             await this.carsRepository.SaveChangesAsync();
+        }
+
+        public IEnumerable<ExtraViewModel> GetAllExtras()
+        {
+            return this.extraRepository.AllAsNoTracking()
+                .Select(x => new ExtraViewModel()
+                {
+                    Name = x.Name,
+                    Id = x.Id,
+                })
+                .ToList();
         }
     }
 }
