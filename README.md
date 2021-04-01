@@ -1,20 +1,20 @@
 ## :eyeglasses: Project Introduction
 
-**Car Dealer Website** is my defense project for **ASP.NET Core MVC** course at [SoftUni](https://softuni.bg/ "SoftUni") (October-December 2020).
+**Car Dealer** is my defense project for **ASP.NET Core MVC** course at [SoftUni](https://softuni.bg/ "SoftUni") (October-December 2020).
 
 ------------
-**Access to the website:**
-**[Car Dealer Website at AZURE](https://cardealerwebsite.azurewebsites.net)**
+**Access to the application:**
+**[Car Dealer at AZURE](https://cardealerwebsite.azurewebsites.net)**
 
 ------------
 
 ## :pencil2: Overview
 
-**Car Dealer Website**  is an online platform where everyone can find the wanted car all over the world. By default, when the users are searching for or creating an ad, they are doing it in the setted country by the site registration in the beginning. They can change it any time they want.
+**Car Dealer**  is an online platform where everyone can find the wanted car all over the world. By default, when the users are searching for or creating an ad, they are doing it in the setted country by the site registration in the beginning. They can change it any time they want.
 
 ## :hammer: ## **Technologies Used**
 
-This website is designed and runs using the **main** technologies below:
+This application is designed and runs using the **main** technologies below:
 
 - **[C#](https://en.wikipedia.org/wiki/C_Sharp_(programming_language))**
 - **[.NET5.0](https://dotnet.microsoft.com/download/dotnet/5.0)**
@@ -38,6 +38,6 @@ This website is designed and runs using the **main** technologies below:
 ------------
 ------------
 
-#### This website has been created solely for educational purposes.
+#### This application has been created solely for educational purposes.
 
 ------------
