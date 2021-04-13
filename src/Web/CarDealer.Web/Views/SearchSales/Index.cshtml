@@ -15,101 +15,139 @@
 <form asp-action="List" method="get" class="col-md-6 offset-md-3">
     <input type="hidden" id="CountryId" name="CountryId" value=@this.TempData["CountryId"]>
     <br />
-    <div class="form-group">
+    <div class="form-group col-md-12">
         <label asp-for="CityId"></label>
-        <select asp-for="CityId" class="form-control" asp-items="citiesItems"></select>
+        <select asp-for="CityId" class="w-100 form-control mt-lg-1 mt-md-2" asp-items="citiesItems"></select>
     </div>
-    <div class="form-group">
-        <label asp-for="State"></label>
-        <select asp-for="State" class="form-control" asp-items="@Html.GetEnumSelectList<State>()"></select>
+    <br />
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="CategoryId"></label>
+            <select asp-for="CategoryId" class="w-100 form-control mt-lg-1 mt-md-2" asp-items="categoriesItems"></select>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="State"></label>
+            <select asp-for="State" class="w-100 form-control mt-lg-1 mt-md-2" asp-items="@Html.GetEnumSelectList<State>()"></select>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="CategoryId"></label>
-        <select asp-for="CategoryId" class="form-control" asp-items="categoriesItems"></select>
+    <br />
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label asp-for="FuelTypeId"></label>
+            <select asp-for="FuelTypeId" class="w-100 form-control mt-lg-1 mt-md-2" asp-items="fuelTypesItems"></select>
+        </div>
+        <div class="form-group col-md-3">
+            <label asp-for="GearboxId"></label>
+            <select asp-for="GearboxId" class="w-100 form-control mt-lg-1 mt-md-2" asp-items="gearboxesItems"></select>
+        </div>
+        <div class="form-group col-md-3">
+            <label asp-for="Doors"></label>
+            <select asp-for="Doors" class="w-100 form-control mt-lg-1 mt-md-2" asp-items="@Html.GetEnumSelectList<Doors>()"></select>
+        </div>
+        <div class="form-group col-md-3">
+            <label asp-for="Seats"></label>
+            <select asp-for="Seats" class="w-100 form-control mt-lg-1 mt-md-2" asp-items="@Html.GetEnumSelectList<Seats>()"></select>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="MakeId"></label>
-        <select name="Car.MakeId" id="MakeId" class="form-control" asp-items="makesItems"></select>
+    <br />
+    <div id="makes-models" class="form-row">
+        <div id="search-makes" class="form-group col-md-6">
+            <label asp-for="MakeId"></label>
+            <select name="MakeId" id="MakeId" class="w-100 form-control mt-lg-1 mt-md-2" asp-items="makesItems"></select>
+        </div>
+        <div id="search-models" class="form-group col-md-6">
+            <label asp-for="ModelId" style="display: none;"></label>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="ModelId"></label>
-        <select name="ModelId" id="ModelId" class="form-control"></select>
+    <br />
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="ManufacturerYearFrom"></label>
+            <input asp-for="ManufacturerYearFrom" class="w-100 form-control mt-lg-1 mt-md-2" />
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="ManufacturerYearTo"></label>
+            <input asp-for="ManufacturerYearTo" class="w-100 form-control mt-lg-1 mt-md-2" />
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="ManufacturerYearFrom"></label>
-        <input asp-for="ManufacturerYearFrom" class="form-control" />
+    <br />
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="PriceFrom"></label>
+            <input asp-for="PriceFrom" class="w-100 form-control mt-lg-1 mt-md-2" />
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="PriceTo"></label>
+            <input asp-for="PriceTo" class="w-100 form-control mt-lg-1 mt-md-2" />
+            <span asp-validation-for="PriceTo" class="text-danger"></span>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="ManufacturerYearTo"></label>
-        <input asp-for="ManufacturerYearTo" class="form-control" />
+    <br />
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="MilleageFrom"></label>
+            <input asp-for="MilleageFrom" class="w-100 form-control mt-lg-1 mt-md-2" />
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="MilleageTo"></label>
+            <input asp-for="MilleageTo" class="w-100 form-control mt-lg-1 mt-md-2" />
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="PriceFrom"></label>
-        <input asp-for="PriceFrom" class="form-control" />
+    <br />
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="EngineSizeFrom"></label>
+            <input asp-for="EngineSizeFrom" class="w-100 form-control mt-lg-1 mt-md-2" />
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="EngineSizeTo"></label>
+            <input asp-for="EngineSizeTo" class="w-100 form-control mt-lg-1 mt-md-2" />
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="PriceTo"></label>
-        <input asp-for="PriceTo" class="form-control" />
-        <span asp-validation-for="PriceTo" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="MilleageFrom"></label>
-        <input asp-for="MilleageFrom" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="MilleageTo"></label>
-        <input asp-for="MilleageTo" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="EngineSizeFrom"></label>
-        <input asp-for="EngineSizeFrom" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="EngineSizeTo"></label>
-        <input asp-for="EngineSizeTo" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="PowerFrom"></label>
-        <input asp-for="PowerFrom" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="PowerTo"></label>
-        <input asp-for="PowerTo" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="FuelTypeId"></label>
-        <select asp-for="FuelTypeId" class="form-control" asp-items="fuelTypesItems"></select>
-    </div>
-    <div class="form-group">
-        <label asp-for="GearboxId"></label>
-        <select asp-for="GearboxId" class="form-control" asp-items="gearboxesItems"></select>
-    </div>
-    <div class="form-group">
-        <label asp-for="Doors"></label>
-        <select asp-for="Doors" class="form-control" asp-items="@Html.GetEnumSelectList<Doors>()"></select>
-    </div>
-    <div class="form-group">
-        <label asp-for="Seats"></label>
-        <select asp-for="Seats" class="form-control" asp-items="@Html.GetEnumSelectList<Seats>()"></select>
+    <br />
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="PowerFrom"></label>
+            <input asp-for="PowerFrom" class="w-100 form-control mt-lg-1 mt-md-2" />
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="PowerTo"></label>
+            <input asp-for="PowerTo" class="w-100 form-control mt-lg-1 mt-md-2" />
+        </div>
     </div>
     <button class="btn btn-primary">Search</button>
 </form>
 
 <script>
-    document.getElementById('MakeId').addEventListener('change', (e) => {
-        const modelSelectElement = document.getElementById('ModelId');
-        modelSelectElement.removeAttribute("hidden");
-        modelSelectElement.innerHTML = "<option disabled value=''>Select Car Model</option>";
-        fetch(`/carmodels/getModels?Id=${e.target.value}`)
-            .then((response) => {
-                console.log(response);
-                return response.json();
-            })
-            .then((data) => {
-                Array.prototype.forEach.call(data, function (item, i) {
-                    console.log(item);
-                    document.getElementById('ModelId').innerHTML += `<option value="${item.id}">${item.name}</option>`
-                });
-            });
-    });
+    document.getElementById('search-makes').addEventListener('click', async (ev) => {
+        if (ev.target.tagName == 'LI') {
+            const id = ev.target.dataset.value;
+            if (id != 'Select make') {
+                const modelsDiv = document.getElementById('search-models');
+                modelsDiv.style.display = '';
+                const selectElement = document.createElement('select');
+                selectElement.setAttribute('name', 'ModelId');
+                selectElement.id = 'ModelId';
+                selectElement.className = 'w-100 form-control mt-lg-1 mt-md-2';
+
+                const response = await fetch(`/carmodels/getModels?Id=${id}`);
+                const data = await response.json();
+                const models = Array.from(data);
+                for (let item of models) {
+                    const option = document.createElement('option');
+                    option.textContent = item.name;
+                    option.setAttribute('value', item.id);
+                    selectElement.appendChild(option);
+                }
+
+                if (modelsDiv.querySelector('select')) {
+                    modelsDiv.querySelector('select').remove();
+                    modelsDiv.appendChild(selectElement);
+                } else {
+                    modelsDiv.querySelector('label').style.display = '';
+                    modelsDiv.appendChild(selectElement);
+                }
+            }
+        }
+    })
 </script>

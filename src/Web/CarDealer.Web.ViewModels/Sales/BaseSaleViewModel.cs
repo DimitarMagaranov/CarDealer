@@ -6,18 +6,18 @@
 
     public abstract class BaseSaleViewModel
     {
-        [DisplayName("Duration in days")]
+        [DisplayName("Duration in days (minimum 10) *")]
         [Range(10, 60, ErrorMessage = "The days of duration must be atleast 10.")]
         public int DaysValid { get; set; }
 
-        [DisplayName("Price")]
+        [DisplayName("Price *")]
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
 
-        [DisplayName("Country")]
+        [DisplayName("Country *")]
         public int CountryId { get; set; }
 
-        [DisplayName("City")]
+        [DisplayName("City *")]
         public int CityId { get; set; }
 
         public string UserId { get; set; }

@@ -3,213 +3,273 @@
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
-    <title>Car Dealer Website</title>
+    <!-- SITE TITTLE -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Car Dealer</title>
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- FAVICON -->
+    <link href="~/images/favicon.png" rel="shortcut icon">
+    <!-- PLUGINS CSS STYLE -->
+    <!-- <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet"> -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="~/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/plugins/bootstrap/css/bootstrap-slider.css">
+    <!-- Font Awesome -->
+    <link href="~/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link href="~/plugins/slick-carousel/slick/slick.css" rel="stylesheet">
+    <link href="~/plugins/slick-carousel/slick/slick-theme.css" rel="stylesheet">
+    <!-- Fancy Box -->
+    <link href="~/plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
+    <link href="~/plugins/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+    <!-- CUSTOM CSS -->
+    <link href="~/css/style.css" rel="stylesheet">
 
-    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true" />
-    <link href="~/css/font-awesome.min.css" rel="stylesheet" asp-append-version="true" />
-    <link href="~/css/owl.carousel.css" rel="stylesheet" asp-append-version="true" />
-    <link href="~/css/owl.theme.default.min.css" rel="stylesheet" asp-append-version="true" />
 
-    <!-- MAIN CSS -->
-    <link href="~/css/style.css" rel="stylesheet" asp-append-version="true" />
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
 </head>
-<body>
-    <div id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 
-        <!-- PRE LOADER -->
-        <section class="preloader">
-            <div class="spinner">
-                <span class="spinner-rotate"></span>
-            </div>
-        </section>
+<body class="body-wrapper">
 
 
-        <!-- MENU -->
-        <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
-            <div class="container">
-
-                <div class="navbar-header">
-                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon icon-bar"></span>
-                        <span class="icon icon-bar"></span>
-                        <span class="icon icon-bar"></span>
-                    </button>
-
-                    <!-- lOGO TEXT HERE -->
-                    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Car Dealer Website</a>
-                </div>
-                <!-- MENU LINKS -->
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="nav navbar-nav navbar-nav-first">
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        @if (this.SignInManager.IsSignedIn(this.User))
-                        {
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cars <span class="caret"></span></a>
-
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Sales" asp-action="All">All cars</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Sales" asp-action="Create">Create</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="SearchSales" asp-action="Index">Search</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="All">My cars</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        }
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="AboutUs" asp-action="Index">About Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ContactUs" asp-action="Index">Contact Us</a>
-                        </li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        @if (this.User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @(this.User.Identity.Name)!</a>
-                            </li>
-                            if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Admin">Admin</a>
-                                </li>
-                            }
-                            <li class="nav-item">
-                                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">
-                                    <button type="submit" class="btn navbar-btn btn-success" name="logout" id="logout" value="Log Out">Log Out</button>
-                                </form>
-                            </li>
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
-                            </li>
-                        }
-                    </ul>
-
-                </div>
-
-            </div>
-        </section>
-
+    <section>
         <div class="container">
-            <partial name="_CookieConsentPartial" />
-            <main role="main" class="pb-3">
-                @this.RenderBody()
-            </main>
-        </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-expand-lg navbar-light navigation">
+                        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                            <img src="~/images/logo.jpg" style="width: 130px;" alt="">
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto main-nav ">
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                </li>
+                                @if (this.User.Identity.IsAuthenticated)
+                                {
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-area="" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                                    </li>
+                                }
 
-        <!-- FOOTER -->
-        <footer id="footer" class="footer section section-sm">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4 col-sm-6">
-                        <div class="footer-info">
-                            <div class="section-title">
-                                <h2>Headquarter</h2>
-                            </div>
-                            <address>
-                                <p>Some street <br>Sofia Bulgaria</p>
-                            </address>
-
-                            <ul class="social-icon">
-                                <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
-                                <li><a href="#" class="fa fa-twitter"></a></li>
-                                <li><a href="#" class="fa fa-instagram"></a></li>
+                                <li class="nav-item dropdown dropdown-slide">
+                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Options <span><i class="fa fa-angle-down"></i></span>
+                                    </a>
+                                    <!-- Dropdown list -->
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" asp-area="" asp-controller="Sales" asp-action="All">All cars</a>
+                                        @if (this.User.Identity.IsAuthenticated)
+                                        {
+                                            <a class="dropdown-item" asp-area="" asp-controller="Sales" asp-action="Create">Create</a>
+                                        }
+                                        <a class="dropdown-item" asp-area="" asp-controller="SearchSales" asp-action="Index">Search</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-area="" asp-controller="AboutUs" asp-action="Index">About Us</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-area="" asp-controller="ContactUs" asp-action="Index">Contact Us</a>
+                                </li>
                             </ul>
-
-                            <div class="copyright-text">
-                                <p>Copyright &copy; @DateTime.UtcNow.Year Company Name</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-6">
-                        <div class="footer-info">
-                            <div class="section-title">
-                                <h2>Contact Info</h2>
-                            </div>
-                            <address>
-                                <p>+359 123 456 789</p>
-                                <p><a href="mailto:dimitar.magaranov1@gmail.com">dimitar.magaranov1@gmail.com</a></p>
-                            </address>
-
-                            <div class="footer_menu">
-                                <h2>Quick Links</h2>
-                                <ul>
+                            <ul class="navbar-nav ml-auto mt-10">
+                                @if (this.User.Identity.IsAuthenticated)
+                                {
                                     <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Index">Hello, @(this.User.Identity.Name)!</a>
+                                    </li>
+                                    <li>
+                                        <button class="nav-link login-button" href="" data-toggle="modal" data-target="#logoutModal">Log Out</button>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="AboutUs" asp-action="Index">About us</a>
+                                        <a class="nav-link text-white add-button" asp-area="" asp-controller="Sales" asp-action="Create"><i class="fa fa-plus-circle"></i> Add Listing</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link login-button" asp-area="Identity" asp-page="/Account/Login">Login</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="ContactUs" asp-action="Index">Contact Us</a>
+                                        <a class="nav-link login-button" asp-area="Identity" asp-page="/Account/Register">Register</a>
                                     </li>
-                                </ul>
-                            </div>
+                                }
+                            </ul>
+                            <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))" style="display: none;">
+                                <button class="nav-link login-button" type="submit" name="logout" id="logout" value="Log Out">Log Out</button>
+                            </form>
                         </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-12">
-                        <div class="footer-info newsletter-form">
-                            <div class="section-title">
-                                <h2>Newsletter Signup</h2>
-                            </div>
-                            <div>
-                                <div class="form-group">
-                                    <form action="#" method="get">
-                                        <input type="email" class="form-control" placeholder="Enter your email" name="email" id="email" required>
-                                        <input type="submit" class="form-control" name="submit" id="form-submit" value="Send me">
-                                    </form>
-                                    <span><sup>*</sup> Please note - we do not spam your email.</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    </nav>
                 </div>
             </div>
-        </footer>
+        </div>
+    </section>
+
+    <main>
+        <partial name="_CookieConsentPartial" />
+        @this.RenderBody()
+    </main>
+
+    <!--============================
+    =            Footer            =
+    =============================-->
+
+    <footer class="footer section section-sm">
+        <!-- Container Start -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-7 offset-md-1 offset-lg-0">
+                    <!-- About -->
+                    <div class="block about">
+                        <!-- footer logo -->
+                        <img src="~/images/logo.jpg" alt="" style="width: 200px;">
+                        <!-- description -->
+                        <p class="alt-color">
+                            Car Dealer is an online platform where everyone can find the wanted car all over the world. By default, when you are searching for or creating an ad, you are doing it in the setted country by the site registration in the beginning, but you can change it any time they want.
+                        </p>
+                    </div>
+                </div>
+                <!-- Link list -->
+                <div class="col-lg-2 offset-lg-1 col-md-3">
+                    <div class="block">
+                        <h4>Site Pages</h4>
+                        <ul>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><a asp-area="" asp-controller="Sales" asp-action="All">All cars</a></li>
+                            @if (this.User.Identity.IsAuthenticated)
+                            {
+                                <li><a asp-area="" asp-controller="Dashboard" asp-action="Index">Dashboard</a></li>
+                                <li><a asp-area="" asp-controller="Sales" asp-action="Create">Create Ad</a></li>
+                            }
+                            <li><a asp-area="" asp-controller="SearchSales" asp-action="Index">Search</a></li>
+                            <li><a asp-area="" asp-controller="AboutUs" asp-action="Index">About Us</a></li>
+                            <li><a asp-area="" asp-controller="ContactUs" asp-action="Index">Contact Us</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="TermsAndConditions">Terms & Conditions</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Promotion -->
+                <div class="col-lg-4 col-md-7">
+                    <!-- App promotion -->
+                    <div class="block-2 app-promotion">
+                        <div class="mobile d-flex">
+                            <a href="">
+                                <!-- Icon -->
+                                <img src="images/footer/phone-icon.png" alt="mobile-icon">
+                            </a>
+                            <p>Get the Dealsy Mobile App and Save more</p>
+                        </div>
+                        <div class="download-btn d-flex my-3">
+                            <a href="#"><img src="images/apps/google-play-store.png" class="img-fluid" alt=""></a>
+                            <a href="#" class=" ml-3"><img src="images/apps/apple-app-store.png" class="img-fluid" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Container End -->
+    </footer>
+    <!-- Footer Bottom -->
+    <footer class="footer-bottom">
+        <!-- Container Start -->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-12">
+                    <!-- Copyright -->
+                    <div class="copyright">
+                        <p>
+                            Copyright ©
+                            <script>
+                                var CurrentYear = new Date().getFullYear()
+                                document.write(CurrentYear)
+                            </script>. All Rights Reserved, theme by <a class="text-primary" href="https://themefisher.com" target="_blank">themefisher.com</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12">
+                    <!-- Social Icons -->
+                    <ul class="social-media-icons text-right">
+                        <li><a class="fa fa-facebook" href="https://www.facebook.com/themefisher" target="_blank"></a></li>
+                        <li><a class="fa fa-twitter" href="https://www.twitter.com/themefisher" target="_blank"></a></li>
+                        <li><a class="fa fa-pinterest-p" href="https://www.pinterest.com/themefisher" target="_blank"></a></li>
+                        <li><a class="fa fa-vimeo" href=""></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Container End -->
+        <!-- To Top -->
+        <div class="top-to">
+            <a id="top" class="" href="#"><i class="fa fa-angle-up"></i></a>
+        </div>
+    </footer>
+
+    <!-- Logout Modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-bottom-0">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="images/account/logout.png" class="img-fluid mb-2" alt="">
+                    <h6 class="py-2">Are you sure you want to logout?</h6>
+                </div>
+                <div class="modal-footer border-top-0 mb-3 mx-5 justify-content-lg-between justify-content-center">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    <button onclick="document.getElementById('logoutForm').submit()" type="button" class="btn btn-danger">Logout</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <script src="~/js/jquery.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="~/js/owl.carousel.min.js"></script>
-    <script src="~/js/smoothscroll.js"></script>
-    <script src="~/js/custom.js"></script>
-    <script>
-        $(".dropdown-menu").click(function (event) {
-            // stop bootstrap.js to hide the parents
-            event.stopPropagation();
-        });
-    </script>
-</body>
+
+    <!-- JAVASCRIPTS -->
+    <script src="~/plugins/jQuery/jquery.min.js"></script>
+    <script src="~/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="~/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/plugins/bootstrap/js/bootstrap-slider.js"></script>
+    <!-- tether js -->
+    <script src="~/plugins/tether/js/tether.min.js"></script>
+    <script src="~/plugins/raty/jquery.raty-fa.js"></script>
+    <script src="~/plugins/slick-carousel/slick/slick.min.js"></script>
+    <script src="~/plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="~/plugins/fancybox/jquery.fancybox.pack.js"></script>
+    <script src="~/plugins/smoothscroll/SmoothScroll.min.js"></script>
+    <!-- google map -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
+    <script src="~/plugins/google-map/gmap.js"></script>
+    <script src="~/js/script.js"></script>
+
+    <!-- advanced search -->
+    <script src="~/js/advancedSearch.js"></script>
+
+    <!-- car models loader -->
+    <script src="~/js/carModels.js"></script>
+</body> 
+
 </html>
+
+
+

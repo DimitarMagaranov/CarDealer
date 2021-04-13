@@ -9,7 +9,7 @@
 
     public interface ISalesService
     {
-        Task<int> CreateSaleAsync(AddSaleInputModel input, string userId);
+        Task<int> CreateSaleAsync(AddSaleViewModel input, string userId);
 
         Task<EditSaleViewModel> GetEditSaleViewModel(int id);
 
@@ -26,6 +26,8 @@
         IEnumerable<SaleViewModel> GetTopNineCarsInUsersCountry(int id);
 
         IEnumerable<SaleViewModel> GetTopNineCarsFromEnywhere();
+
+        IEnumerable<SaleViewModel> GetUserDashboardSalesByUserId(string userId);
 
         SaleViewModel GetSaleInfo(int saleId);
 

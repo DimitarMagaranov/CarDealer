@@ -1,6 +1,8 @@
 ﻿namespace CarDealer.Web.ViewModels.Cars
 {
+    using CarDealer.Web.ViewModels.Cars.CarExtras;
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
 
     public class CarViewModel
@@ -36,5 +38,7 @@
         public DateTime ManufactureDate { get; set; }
 
         public string ManufactureDateAsString => this.ManufactureDate.ToString(CultureInfo.InvariantCulture);
+
+        public IEnumerable<string> Extras { get; set; }
     }
 }

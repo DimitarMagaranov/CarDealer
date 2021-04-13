@@ -1,83 +1,104 @@
 ﻿@model IEnumerable<CarDealer.Web.ViewModels.Sales.SaleViewModel>
 
-<section id="home">
-    <div class="row">
-        <div class="owl-carousel owl-theme home-slider">
-            <div class="item item-first">
-                <div class="caption">
-                    <div class="container">
-                        <div class="col-md-6 col-sm-12">
-                            <h3>You can browse cars in any country.</h3>
-                            <a asp-area="" asp-controller="SearchSales" asp-action="Index" class="section-btn btn btn-default">Browse Cars</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<section class="hero-area bg-2 text-center overly">
+    <!-- Container Start -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Header Contetnt -->
+                <div class="content-block">
+                    <h1>Buy & Sell Cars All Over The World </h1>
+                    <p>Join the millions who buy and sell cars from each other <br> everyday in local communities around the world</p>
 
-            <div class="item item-second">
-                <div class="caption">
+                </div>
+                <!-- Advance Search -->
+                <div class="advance-search">
                     <div class="container">
-                        <div class="col-md-6 col-sm-12">
-                            <h3>You can browse cars in any country.</h3>
-                            <a asp-area="" asp-controller="SearchSales" asp-action="Index" class="section-btn btn btn-default">Browse Cars</a>
+                        <div class="row justify-content-center">
+                            <div class="col-lg-12 col-md-12 align-content-center">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <input type="text" class="form-control my-2 my-lg-1" id="inputtext4" placeholder="What are you looking for">
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <select class="w-100 form-control mt-lg-1 mt-md-2">
+                                                <option>Category</option>
+                                                <option value="1">Top rated</option>
+                                                <option value="2">Lowest Price</option>
+                                                <option value="4">Highest Price</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <input type="text" class="form-control my-2 my-lg-1" id="inputLocation4" placeholder="Location">
+                                        </div>
+                                        <div class="form-group col-md-2 align-self-center">
+                                            <button type="submit" class="btn btn-primary">Search Now</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="item item-third">
-                <div class="caption">
-                    <div class="container">
-                        <div class="col-md-6 col-sm-12">
-                            <h3>You can browse cars in any country.</h3>
-                            <a asp-area="" asp-controller="SearchSales" asp-action="Index" class="section-btn btn btn-default">Browse Cars</a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 </section>
 
-@*CARS*@
-<section>
-    <div class="container">
-        <div class="row">
+<!--====================================
+=            Futured cars            =
+=====================================-->
+@if (Model.Count() > 0)
+{
+    <section>
+        <div id="cars">
+            <br />
             <div class="col-md-12 col-sm-12">
                 <div class="section-title text-center">
-                    <h2>Featured Cars</h2>
+                    <h2>Recently added cars in @this.ViewData["CountryName"]</h2>
                 </div>
             </div>
             <br />
-            @foreach (var sale in Model)
-            {
-                <div class="col-md-4 col-sm-4">
-                    <div class="courses-thumb courses-thumb-secondary">
-                        <div class="courses-top">
-                            <div class="courses-image">
-                                <img src="@sale.ResizedImageUrls.FirstOrDefault()" class="img-responsive" alt="">
+
+            <div class="product-grid-list">
+                <div class="row mt-30">
+                    @foreach (var sale in Model)
+                    {
+                        <div class="col-sm-12 col-lg-4 col-md-6">
+                            <!-- product card -->
+                            <div class="product-item bg-light">
+                                <div class="card">
+                                    <div class="thumb-content">
+                                        <div class="price">$@sale.Price</div>
+                                        <a asp-action="SaleInfo" asp-controller="Sales" asp-route-id="@sale.Id">
+                                            <img class="card-img-top img-fluid" src="@sale.ResizedImageUrls.FirstOrDefault()" alt="Card image cap">
+                                        </a>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="card-title"><a asp-action="SaleInfo" asp-controller="Sales" asp-route-id="@sale.Id">@sale.Car.Make @sale.Car.Model</a></h4>
+                                        <ul class="list-inline product-meta">
+                                            <li class="list-inline-item">
+                                                <a href="#"><i class="fa fa-calendar"></i>@sale.Car.ManufactureDate.Month/@sale.Car.ManufactureDate.Year</a>
+                                            </li>
+                                        </ul>
+                                        <div class="product-ratings">
+                                            <ul class="list-inline">
+                                                <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+                                                <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+                                                <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+                                                <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+                                                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="courses-date">
-                                <span title="Author"><i class="fa fa-dashboard"></i> @sale.Car.Mileage km</span>
-                                <span title="Author"><i class="fa fa-cube"></i> @sale.Car.EngineSize cc</span>
-                                <span title="Views"><i class="fa fa-cog"></i> @sale.Car.Gearbox</span>
-                            </div>
                         </div>
-
-                        <div class="courses-detail">
-                            <h3 class="mt-0"><a asp-action="SaleInfo" asp-controller="Sales" asp-route-id="@sale.Id">@sale.Name</a></h3>
-
-                            <p class="lead"><strong>@sale.Price €</strong></p>
-
-                            <p>@sale.Car.HorsePower hp &nbsp;&nbsp;/&nbsp;&nbsp; @sale.Car.FuelType &nbsp;&nbsp;/&nbsp;&nbsp; @sale.Car.ManufactureDate.Month/@sale.Car.ManufactureDate.Year &nbsp;&nbsp;/&nbsp;&nbsp; @sale.Car.State vehicle</p>
-                        </div>
-
-                        <div class="courses-info">
-                            <a asp-action="SaleInfo" asp-controller="Sales" asp-route-id="@sale.Id" class="section-btn btn btn-primary btn-block">View More</a>
-                        </div>
-                    </div>
+                    }
                 </div>
-            }
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+}

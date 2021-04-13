@@ -9,44 +9,46 @@
 
     public abstract class BaseCarInputModel
     {
-        [DisplayName("Brand")]
+        [DisplayName("Brand *")]
         public int MakeId { get; set; }
 
-        [DisplayName("Model")]
+        [DisplayName("Model *")]
         public int ModelId { get; set; }
 
-        [DisplayName("Category")]
+        [DisplayName("Category *")]
         public int CategoryId { get; set; }
 
-        [DisplayName("Fuel type")]
+        [DisplayName("Fuel type *")]
         public int FuelTypeId { get; set; }
 
-        [DisplayName("Engine size")]
+        [DisplayName("Engine size *")]
         public int EngineSize { get; set; }
 
-        [DisplayName("Horse power")]
+        [DisplayName("Horse power *")]
         public int HorsePower { get; set; }
 
-        [DisplayName("Euro standart")]
+        [DisplayName("Euro standart *")]
         public int EuroStandartId { get; set; }
 
-        [DisplayName("Gearbox type")]
+        [DisplayName("Gearbox type *")]
         public int GearboxId { get; set; }
 
-        [DisplayName("Color")]
+        [DisplayName("Color *")]
         public int ColorId { get; set; }
 
-        [DisplayName("Doors count")]
+        [DisplayName("Doors count *")]
         public Doors Doors { get; set; }
 
-        [DisplayName("Seats count")]
+        [DisplayName("Seats count *")]
         public Seats Seats { get; set; }
 
+        [DisplayName("State *")]
         public State State { get; set; }
 
+        [DisplayName("Mileage *")]
         public int Mileage { get; set; }
 
-        [DisplayName("Manufacture date")]
+        [DisplayName("Manufacture date *")]
         [DataType(DataType.Date)]
         public DateTime ManufactureDate { get; set; }
 

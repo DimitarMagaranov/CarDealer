@@ -31,5 +31,10 @@
 
             return countries;
         }
+
+        public int GetCountryIdByName(string countryName)
+        {
+            return this.countriesRepository.AllAsNoTracking().Where(x => x.Name == countryName).FirstOrDefault().Id;
+        }
     }
 }

@@ -55,7 +55,7 @@
             this.cloudinary = cloudinary;
         }
 
-        public async Task<int> CreateSaleAsync(AddSaleInputModel input, string userId)
+        public async Task<int> CreateSaleAsync(AddSaleViewModel input, string userId)
         {
             var saleToAdd = new Sale
             {
@@ -192,6 +192,22 @@
             return data;
         }
 
+        public IEnumerable<SaleViewModel> GetUserDashboardSalesByUserId(string userId)
+        {
+            var data = new List<SaleViewModel>();
+
+            var sales = this.salesRepository.All()
+                .Where(x => x.UserId == userId)
+                .ToList();
+
+            foreach (var sale in sales)
+            {
+                data.Add(this.GetSaleInfo(sale.Id));
+            }
+
+            return data;
+        }
+
         public IEnumerable<SaleViewModel> GetAllBySearchForm(SearchListInputModel input)
         {
             var sales = this.salesRepository.All()
@@ -299,6 +315,7 @@
             var carModel = this.modelsService.GetById(sale.Car.ModelId);
             var city = this.citiesService.GetById(sale.CityId);
             var images = this.imagesService.GetAllImagesBySaleId(sale.Id);
+            var carExtras = this.carExtrasService.GetExtras(sale.Car.Id);
 
             var originaImagesUrlList = new List<string>();
             var resizedImagesUrlList = new List<string>();
@@ -340,6 +357,7 @@
                     Seats = sale.Car.Seats.ToString(),
                     Doors = sale.Car.Doors.ToString(),
                     Mileage = sale.Car.Mileage,
+                    Extras = carExtras,
                 },
             };
 

@@ -1,43 +1,43 @@
 ﻿namespace CarDealer.Web.Controllers
 {
-    using System.Collections.Generic;
     using System.Diagnostics;
-    using System.Threading.Tasks;
 
     using CarDealer.Data.Models;
     using CarDealer.Services.Data;
     using CarDealer.Web.ViewModels;
-    using CarDealer.Web.ViewModels.Sales;
+    using CarDealer.Web.ViewModels.Users;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
+    using Newtonsoft.Json;
 
     public class HomeController : BaseController
     {
         private readonly ISalesService salesService;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly ILogger<HomeController> logger;
+        private readonly ICountriesService countriesService;
 
         public HomeController(
             ISalesService salesService,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,
+            ILogger<HomeController> logger,
+            ICountriesService countriesService)
         {
             this.salesService = salesService;
             this.userManager = userManager;
+            this.logger = logger;
+            this.countriesService = countriesService;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            IEnumerable<SaleViewModel> salesViewModel;
+            var userCountryName = this.GetUserCountryName();
+            var countryId = this.countriesService.GetCountryIdByName(userCountryName);
 
-            if (this.User.Identity.IsAuthenticated)
-            {
-                var user = await this.userManager.GetUserAsync(this.User);
+            var salesViewModel = this.salesService.GetTopNineCarsInUsersCountry(countryId);
 
-                salesViewModel = this.salesService.GetTopNineCarsInUsersCountry(user.CountryId);
-
-                return this.View(salesViewModel);
-            }
-
-            salesViewModel = this.salesService.GetTopNineCarsFromEnywhere();
+            this.ViewData["CountryName"] = userCountryName;
 
             return this.View(salesViewModel);
         }
@@ -47,11 +47,27 @@
             return this.View();
         }
 
+        public IActionResult TermsAndConditions()
+        {
+            return this.View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return this.View(
                 new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
+        }
+
+        public string GetUserCountryName()
+        {
+            UserGeoLocationViewModel viewModel = new UserGeoLocationViewModel();
+            GeoHelper geoHelper = new GeoHelper();
+            var result = geoHelper.GetGeoInfo().GetAwaiter().GetResult();
+            viewModel = JsonConvert.DeserializeObject<UserGeoLocationViewModel>(result);
+            var countryName = viewModel.CountryName;
+
+            return countryName;
         }
     }
 }

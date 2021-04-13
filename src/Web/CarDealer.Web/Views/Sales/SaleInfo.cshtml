@@ -5,227 +5,184 @@
     <div class="alert alert-success alert-dismissable">@this.TempData["Message"]</div>
 }
 
-<section>
+<section class="section bg-gray">
+    <!-- Container Start -->
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-xs-12">
-                <div>
-                    <p class="lead">
-                        <i class="fa fa-user"></i> @Model.UserName &nbsp;&nbsp;&nbsp;
-                        <i class="fa fa-calendar"></i> @Model.CreatedOnAsString &nbsp;&nbsp;&nbsp;
-                        <i class="fa fa-eye"></i> @Model.OpensSaleCount
-                    </p>
+            <!-- Left sidebar -->
+            <div class="col-md-8">
+                <div class="product-details">
+                    <h1 class="product-title">@Model.Car.Make @Model.Car.Model </h1>
+                    <div class="product-meta">
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><i class="fa fa-user-o"></i> By <a href="">@Model.UserName</a></li>
+                            <li class="list-inline-item"><i class="fa fa-folder-open-o"></i> Category<a href="">@Model.Car.CategoryName</a></li>
+                            <li class="list-inline-item"><i class="fa fa-location-arrow"></i> Location<a href="">@Model.CityName, @Model.CountryName</a></li>
+                            <li class="list-inline-item"><i class="fa fa-eye"></i><a href="">@Model.OpensSaleCount</a></li>
+                        </ul>
+                    </div>
 
-                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-
-                            @for (int i = 1; i < Model.ResizedImageUrls.Length; i++)
-                            {
-                                <li data-target="#myCarousel" data-slide-to="@i"></li>
-                            }
-                        </ol>
-
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <img src="@Model.ResizedImageUrls.FirstOrDefault()" alt="Los Angeles" style="width:100%" ;>
-                            </div>
-
+                    <!-- product slider -->
+                    <div class="product-slider">
+                        <div class="product-slider-item my-4" data-image="@Model.ResizedImageUrls.FirstOrDefault()">
+                            <img class="img-fluid w-100" src="@Model.ResizedImageUrls.FirstOrDefault()" alt="product-img" style="padding-bottom: 50px;">
+                        </div>
+                        @if (Model.ResizedImageUrls.Count() > 0)
+                        {
                             @foreach (var imgUrl in Model.ResizedImageUrls.Skip(1))
                             {
-                                <div class="item">
-                                    <img src="@imgUrl" style="width:100%" ;>
+                                <div class="product-slider-item my-4" data-image=@imgUrl>
+                                    <img class="d-block img-fluid w-100" src=@imgUrl alt="Second slide">
                                 </div>
                             }
+                        }
+                    </div>
+                    <!-- product slider -->
 
+                    <div class="content mt-5 pt-5">
+                        <ul class="nav nav-pills  justify-content-center" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home"
+                                   aria-selected="true">Description</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile"
+                                   aria-selected="false">Specifications</a>
+                            </li>
+                            @if (Model.Car.Extras.Count() > 0)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact"
+                                       aria-selected="false">Extras</a>
+                                </li>
+                            }
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                <p>
+                                    @Model.Description
+                                </p>
+                            </div>
+                            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                <h3 class="tab-title">Product Specifications</h3>
+                                <table class="table table-bordered product-table">
+                                    <tbody>
+                                        <tr>
+                                            <td>Added</td>
+                                            <td>@Model.CreatedOnAsString</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Seller Price</td>
+                                            <td>@Model.Price €</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Manufacture date</td>
+                                            <td>@Model.Car.ManufactureDate.Day/@Model.Car.ManufactureDate.Month/@Model.Car.ManufactureDate.Year</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Location</td>
+                                            <td>@Model.CityName, @Model.CountryName</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Brand</td>
+                                            <td>@Model.Car.Make</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Model</td>
+                                            <td>@Model.Car.Model</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Condition</td>
+                                            <td>@Model.Car.State.ToString()</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mileage</td>
+                                            <td>@Model.Car.Mileage km</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Fuel type</td>
+                                            <td>@Model.Car.FuelType</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Engine size</td>
+                                            <td>@Model.Car.EngineSize cc</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Horse power</td>
+                                            <td>@Model.Car.HorsePower hp</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gearbox</td>
+                                            <td>@Model.Car.Gearbox</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Seats</td>
+                                            <td>@Model.Car.Seats</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Doors</td>
+                                            <td>@Model.Car.Doors</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Color</td>
+                                            <td>@Model.Car.Color</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                                <h2>Car extras:</h2>
+                                <div class="product-review">
+                                    @foreach (var extra in Model.Car.Extras)
+                                    {
+                                        <p>@extra</p>
+                                    }
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <br>
             </div>
-
-            <div class="col-md-6 col-xs-12">
-                <form action="#" method="post" class="form">
-
-                    <h2>@Model.Name</h2>
-
-                    <p class="lead"><strong class="text-primary">@Model.Price €</strong></p>
-
-                    <div class="row">
-                        <div class="col-md-4 col-sm-6">
-                            <p>
-                                <span>Type</span>
-
-                                <br>
-
-                                <strong>@Model.Car.State.ToString() vehicle</strong>
-                            </p>
-                        </div>
-
-                        <div class="col-md-4 col-sm-6">
-                            <p>
-                                <span>Make</span>
-
-                                <br>
-
-                                <strong>@Model.Car.Make</strong>
-                            </p>
-                        </div>
-
-                        <div class="col-md-4 col-sm-6">
-                            <p>
-                                <span> Model</span>
-
-                                <br>
-
-                                <strong>@Model.Car.Model</strong>
-                            </p>
-                        </div>
-
-                        <div class="col-md-4 col-sm-6">
-                            <p>
-                                <span>First registration</span>
-
-                                <br>
-
-                                <strong>@Model.Car.ManufactureDate.Month/@Model.Car.ManufactureDate.Year</strong>
-                            </p>
-                        </div>
-
-                        <div class="col-md-4 col-sm-6">
-                            <p>
-                                <span>Mileage</span>
-
-                                <br>
-
-                                <strong>@Model.Car.Mileage km</strong>
-                            </p>
-                        </div>
-
-                        <div class="col-md-4 col-sm-6">
-                            <p>
-                                <span>Fuel</span>
-
-                                <br>
-
-                                <strong>@Model.Car.FuelType</strong>
-                            </p>
-                        </div>
-
-                        <div class="col-md-4 col-sm-6">
-                            <p>
-                                <span>Engine size</span>
-
-                                <br>
-
-                                <strong>@Model.Car.EngineSize cc</strong>
-                            </p>
-                        </div>
-
-                        <div class="col-md-4 col-sm-6">
-                            <p>
-                                <span>Power</span>
-
-                                <br>
-
-                                <strong>@Model.Car.HorsePower hp</strong>
-                            </p>
-                        </div>
-
-
-                        <div class="col-md-4 col-sm-6">
-                            <p>
-                                <span>Gearbox</span>
-
-                                <br>
-
-                                <strong>@Model.Car.Gearbox</strong>
-                            </p>
-                        </div>
-
-                        <div class="col-md-4 col-sm-6">
-                            <p>
-                                <span>Number of seats</span>
-
-                                <br>
-
-                                <strong>@Model.Car.Seats</strong>
-                            </p>
-                        </div>
-
-                        <div class="col-md-4 col-sm-6">
-                            <p>
-                                <span>Doors</span>
-
-                                <br>
-
-                                <strong>@Model.Car.Doors</strong>
-                            </p>
-                        </div>
-
-                        <div class="col-md-4 col-sm-6">
-                            <p>
-                                <span>Color</span>
-
-                                <br>
-
-                                <strong>@Model.Car.Color</strong>
-                            </p>
-                        </div>
+            <div class="col-md-4">
+                <div class="sidebar">
+                    <div class="widget rate">
+                        <!-- Heading -->
+                        <h5 class="widget-header text-center">
+                            What would you rate
+                            <br>
+                            this product
+                        </h5>
+                        <!-- Rate -->
+                        <div class="starrr"></div>
                     </div>
-                </form>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-8 col-xs-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4>Vehicle Description</h4>
+                    <div class="widget price text-center">
+                        <h4>Price</h4>
+                        <p>@Model.Price €</p>
                     </div>
-
-                    <div class="panel-body">
-                        <p>@Model.Description</p>
+                    <!-- User Profile widget -->
+                    <div class="widget user text-center">
+                        <h4><a href="">@Model.UserName</a></h4>
+                        <h4><a href="">@Model.UserEmailAddress</a></h4>
+                        <h4><a href="">@Model.UserPhoneNumber</a></h4>
+                        <p class="member-time">Member Since Jun 27, 2017</p>
+                        <a href="">See all ads</a>
+                        <ul class="list-inline mt-20">
+                            <li class="list-inline-item"><a href="" class="btn btn-contact d-inline-block  btn-primary px-lg-5 my-1 px-md-3">Contact</a></li>
+                            <li class="list-inline-item">
+                                <a href="" class="btn btn-offer d-inline-block btn-primary ml-n1 my-1 px-lg-4 px-md-3">Make an offer</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Map Widget -->
+                    <div class="widget map">
+                        <div class="map">
+                            <div id="map_canvas" data-latitude="51.507351" data-longitude="-0.127758"></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-4 col-xs-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4>Contact Details</h4>
-                    </div>
-
-                    <div class="panel-body">
-                        <p>
-                            <span>Name</span>
-
-                            <br>
-
-                            <strong>@Model.UserName</strong>
-                        </p>
-
-                        <p>
-                            <span>Mobile phone</span>
-
-                            <br>
-
-                            <strong>@Model.UserPhoneNumber</strong>
-                        </p>
-
-                        <p>
-                            <span>Email</span>
-
-                            <br>
-
-                            <strong>@Model.UserEmailAddress</strong>
-                        </p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
+    <!-- Container End -->
 </section>

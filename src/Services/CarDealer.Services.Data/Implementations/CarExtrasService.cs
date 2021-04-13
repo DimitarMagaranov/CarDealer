@@ -6,19 +6,38 @@
 
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models.CarModels;
+    using CarDealer.Web.ViewModels.Cars.CarExtras;
 
     public class CarExtrasService : ICarExtrasService
     {
         private readonly IRepository<CarExtra> carExtrasRepository;
+        private readonly IExtrasService extrasService;
 
-        public CarExtrasService(IRepository<CarExtra> carExtrasRepository)
+        public CarExtrasService(
+            IRepository<CarExtra> carExtrasRepository,
+            IExtrasService extrasService)
         {
             this.carExtrasRepository = carExtrasRepository;
+            this.extrasService = extrasService;
         }
 
-        public IEnumerable<int> GetExtras(int carId)
+        public IEnumerable<string> GetExtras(int carId)
         {
-            return this.carExtrasRepository.AllAsNoTracking().Where(x => x.CarId == carId).Select(x => x.ExtraId).ToList();
+            var extraIds = this.carExtrasRepository.AllAsNoTracking().Where(x => x.CarId == carId).Select(x => x.ExtraId).ToList();
+            var extrasDb = this.extrasService.GetAllExtras();
+            var carExtras = new List<string>();
+            if (extraIds.Count > 0)
+            {
+                foreach (var extra in extrasDb)
+                {
+                    if (extraIds.Contains(extra.Id))
+                    {
+                        carExtras.Add(extra.Name);
+                    }
+                }
+            }
+
+            return carExtras;
         }
 
         public async Task AddExtrasToDbAsync(int carId, IEnumerable<int> extras)

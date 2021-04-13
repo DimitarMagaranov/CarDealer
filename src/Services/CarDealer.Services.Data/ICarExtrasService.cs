@@ -3,9 +3,11 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using CarDealer.Web.ViewModels.Cars.CarExtras;
+
     public interface ICarExtrasService
     {
-        IEnumerable<int> GetExtras(int carId);
+        IEnumerable<string> GetExtras(int carId);
 
         Task AddExtrasToDbAsync(int carId, IEnumerable<int> extras);
     }

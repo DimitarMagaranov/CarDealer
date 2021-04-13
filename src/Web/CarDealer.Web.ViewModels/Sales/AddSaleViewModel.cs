@@ -1,6 +1,7 @@
 ﻿namespace CarDealer.Web.ViewModels.Sales
 {
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     using CarDealer.Web.ViewModels.InputModels.Cars;
@@ -10,6 +11,7 @@
     {
         public AddCarInputModel Car { get; set; }
 
+        [DisplayName("Images *")]
         [Required(ErrorMessage = "The images must be atleast 1.")]
         public IEnumerable<IFormFile> Images { get; set; }
 

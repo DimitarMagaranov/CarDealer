@@ -7,7 +7,7 @@
     using CarDealer.Data.Models;
     using CarDealer.Services.Data;
     using CarDealer.Web.ViewModels.InputModels.Sales;
-
+    using CarDealer.Web.ViewModels.Sales;
     using GoogleReCaptcha.V3.Interface;
 
     using Microsoft.AspNetCore.Authorization;
@@ -83,7 +83,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(AddSaleInputModel input, string captcha)
+        public async Task<IActionResult> Create(AddSaleViewModel input, string captcha)
         {
             if (!await this.captchaValidator.IsCaptchaPassedAsync(captcha))
             {
@@ -166,8 +166,8 @@
         {
             await this.salesService.DeleteAsync(id);
 
-            var nameOfUsersController = nameof(UsersController).Replace(GlobalConstants.ControllerAsString, string.Empty);
-            var nameOfAllActionInUsersController = nameof(UsersController.All);
+            var nameOfUsersController = nameof(DashboardController).Replace(GlobalConstants.ControllerAsString, string.Empty);
+            var nameOfAllActionInUsersController = nameof(DashboardController.Index);
 
             return this.RedirectToAction(nameOfAllActionInUsersController, nameOfUsersController);
         }
