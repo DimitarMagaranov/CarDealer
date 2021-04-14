@@ -1,8 +1,8 @@
 ﻿namespace CarDealer.Services.Data.Implementations
 {
-    using System;
     using System.Linq;
     using System.Threading.Tasks;
+
     using CarDealer.Data;
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models;
@@ -24,36 +24,6 @@
             this.usersRepository = usersRepository;
             this.userManager = userManager;
             this.context = context;
-        }
-
-        public async Task DeleteUser(ApplicationUser user)
-        {
-            //var logins = user.Logins;
-
-            ////Gets list of Roles associated with current user
-            //var rolesForUser = await this.userManager.GetRolesAsync(user);
-
-            //using (var transaction = this.context.Database.BeginTransaction())
-            //{
-            //    foreach (var login in logins.ToList())
-            //    {
-            //        await this.userManager.RemoveLoginAsync(user, login.LoginProvider, login.ProviderKey);
-            //    }
-
-            //    if (rolesForUser.Count() > 0)
-            //    {
-            //        foreach (var item in rolesForUser.ToList())
-            //        {
-            //            // item should be the name of the role
-            //            var result = await this.userManager.RemoveFromRoleAsync(user, "User");
-            //        }
-            //    }
-
-            //    //Delete User
-            //    await this.userManager.DeleteAsync(user);
-            //}
-
-            this.usersRepository.Delete(user);
         }
 
         public UserViewModel GetUserById(string id)

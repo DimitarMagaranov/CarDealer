@@ -10,10 +10,10 @@
     using CarDealer.Data.Models;
     using CarDealer.Data.Models.SaleModels;
     using CarDealer.Web.ViewModels.Cars;
-    using CarDealer.Web.ViewModels.InputModels.Cars;
     using CarDealer.Web.ViewModels.InputModels.Sales;
     using CarDealer.Web.ViewModels.InputModels.SearchSales;
     using CarDealer.Web.ViewModels.Sales;
+
     using CloudinaryDotNet;
     using Microsoft.EntityFrameworkCore;
 
@@ -40,8 +40,8 @@
             IUsersService usersService,
             ICloudinaryService cloudinaryService,
             IImageSharpsService imageSharpsService,
-            Cloudinary cloudinary,
-            IDeletableEntityRepository<Sale> salesRepository)
+            IDeletableEntityRepository<Sale> salesRepository,
+            Cloudinary cloudinary)
         {
             this.salesRepository = salesRepository;
             this.carsService = carsService;
@@ -158,28 +158,6 @@
 
             sales = sales
                 .OrderByDescending(x => x.Id)
-                .Skip((page - 1) * itemsPerPage)
-                .Take(itemsPerPage)
-                .ToList();
-
-            foreach (var sale in sales)
-            {
-                data.Add(this.GetSaleInfo(sale.Id));
-            }
-
-            return data;
-        }
-
-        public IEnumerable<SaleViewModel> GetAllByUserId(int page, int itemsPerPage, string userId)
-        {
-            var data = new List<SaleViewModel>();
-
-            var sales = this.salesRepository.All()
-                .Where(x => x.UserId == userId)
-                .ToList();
-
-            sales = sales
-                .OrderByDescending(x => x.CreatedOn)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
                 .ToList();
@@ -369,11 +347,6 @@
             return this.salesRepository.All().Where(x => x.CountryId == countryId).Count();
         }
 
-        public int GetSalesCountByUserId(string userId)
-        {
-            return this.salesRepository.All().Where(x => x.UserId == userId).Count();
-        }
-
         public async Task UpdateSaleAsync(int id, EditSaleInputModel input)
         {
             var sale = this.salesRepository.All()
@@ -430,23 +403,6 @@
             return data;
         }
 
-        public IEnumerable<SaleViewModel> GetTopNineCarsFromEnywhere()
-        {
-            var data = new List<SaleViewModel>();
-
-            var sales = this.salesRepository.All()
-                .OrderByDescending(x => x.CreatedOn)
-                .Take(9)
-                .ToList();
-
-            foreach (var sale in sales)
-            {
-                data.Add(this.GetSaleInfo(sale.Id));
-            }
-
-            return data;
-        }
-
         public async Task<AddSaleViewModel> GetViewModelForCreateSale(int countryId)
         {
             var viewModel = new AddSaleViewModel
@@ -472,20 +428,6 @@
             salesListViewModel.SalesCount = this.GetSalesCountByCountryId(countryId);
 
             return salesListViewModel;
-        }
-
-        public SalesListViewModel GetSalesListViewModelByUserId(int id, int itemsPerPage, string userId)
-        {
-            var viewModel = new SalesListViewModel();
-
-            viewModel.PageNumber = id;
-
-            viewModel.ItemsPerPage = itemsPerPage;
-
-            viewModel.Sales = this.GetAllByUserId(id, itemsPerPage, userId);
-            viewModel.SalesCount = this.GetSalesCountByUserId(userId);
-
-            return viewModel;
         }
     }
 }

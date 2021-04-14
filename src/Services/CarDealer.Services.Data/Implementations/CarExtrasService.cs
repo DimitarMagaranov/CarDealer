@@ -6,7 +6,6 @@
 
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models.CarModels;
-    using CarDealer.Web.ViewModels.Cars.CarExtras;
 
     public class CarExtrasService : ICarExtrasService
     {

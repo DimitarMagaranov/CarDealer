@@ -30,8 +30,8 @@
         private readonly IColorsService colorsService;
         private readonly ICountriesService countriesService;
         private readonly ICitiesService citiesService;
-        private readonly UserManager<ApplicationUser> userManager;
         private readonly ICaptchaValidator captchaValidator;
+        private readonly UserManager<ApplicationUser> userManager;
 
         public SalesController(
             IWebHostEnvironment webHostEnvironment,
