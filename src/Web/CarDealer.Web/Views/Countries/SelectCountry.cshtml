@@ -7,10 +7,9 @@
     <h2>@this.ViewData["Title"]</h2>
     <input id="CallerMethodAsString" name="CallerMethodAsString" type="hidden" value="@ViewBag.CallerMethod" />
     <input id="CallerCotrollerName" name="CallerCotrollerName" type="hidden" value="@ViewBag.CallerController" />
-    <div class="form-group">
-        <label asp-for="CountryId"></label>
-        <select asp-for="CountryId" class="form-control" asp-items="countriesItems"></select>
+    <div class="form-group col-md-6">
+        <select asp-for="CountryId" class="w-100 form-control mt-lg-1 mt-md-2" asp-items="countriesItems"></select>
         <span asp-validation-for="CountryId" class="text-danger"></span>
     </div>
-    <input type="submit" class="btn btn-primary" />
+    <input type="submit" class="btn btn-success" />
 </form>

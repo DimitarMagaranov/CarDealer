@@ -21,7 +21,7 @@
 
         IEnumerable<SaleViewModel> GetAllBySearchForm(SearchListInputModel input);
 
-        IEnumerable<SaleViewModel> GetTopNineCarsInUsersCountry(int id);
+        IEnumerable<SaleViewModel> GetTopSixteenCarsInUsersCountry(int id);
 
         IEnumerable<SaleViewModel> GetUserDashboardSalesByUserId(string userId);
 

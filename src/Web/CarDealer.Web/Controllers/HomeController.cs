@@ -3,6 +3,7 @@
     using System.Diagnostics;
 
     using CarDealer.Data.Models;
+    using CarDealer.Services;
     using CarDealer.Services.Data;
     using CarDealer.Web.ViewModels;
     using CarDealer.Web.ViewModels.Users;
@@ -17,17 +18,20 @@
         private readonly UserManager<ApplicationUser> userManager;
         private readonly ILogger<HomeController> logger;
         private readonly ICountriesService countriesService;
+        private readonly IGeoHelperService geoHelperService;
 
         public HomeController(
             ISalesService salesService,
             UserManager<ApplicationUser> userManager,
             ILogger<HomeController> logger,
-            ICountriesService countriesService)
+            ICountriesService countriesService,
+            IGeoHelperService geoHelperService)
         {
             this.salesService = salesService;
             this.userManager = userManager;
             this.logger = logger;
             this.countriesService = countriesService;
+            this.geoHelperService = geoHelperService;
         }
 
         public IActionResult Index()
@@ -35,7 +39,7 @@
             var userCountryName = this.GetUserCountryName();
             var countryId = this.countriesService.GetCountryIdByName(userCountryName);
 
-            var salesViewModel = this.salesService.GetTopNineCarsInUsersCountry(countryId);
+            var salesViewModel = this.salesService.GetTopSixteenCarsInUsersCountry(countryId);
 
             this.ViewData["CountryName"] = userCountryName;
 
@@ -62,8 +66,7 @@
         public string GetUserCountryName()
         {
             UserGeoLocationViewModel viewModel = new UserGeoLocationViewModel();
-            GeoHelper geoHelper = new GeoHelper();
-            var result = geoHelper.GetGeoInfo().GetAwaiter().GetResult();
+            var result = this.geoHelperService.GetGeoInfo().GetAwaiter().GetResult();
             viewModel = JsonConvert.DeserializeObject<UserGeoLocationViewModel>(result);
             var countryName = viewModel.CountryName;
 

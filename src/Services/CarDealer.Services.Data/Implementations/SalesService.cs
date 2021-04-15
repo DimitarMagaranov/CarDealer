@@ -385,14 +385,14 @@
             await this.salesRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<SaleViewModel> GetTopNineCarsInUsersCountry(int id)
+        public IEnumerable<SaleViewModel> GetTopSixteenCarsInUsersCountry(int id)
         {
             var data = new List<SaleViewModel>();
 
             var sales = this.salesRepository.All()
                 .Where(x => x.CountryId == id)
                 .OrderByDescending(x => x.CreatedOn)
-                .Take(9)
+                .Take(16)
                 .ToList();
 
             foreach (var sale in sales)

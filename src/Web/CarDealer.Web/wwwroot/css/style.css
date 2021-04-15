@@ -715,6 +715,46 @@ ul.pagination .active a {
         color: #fff;
     }
 
+.button-search {
+    width: 200px;
+    height: 50px;
+    border: none;
+    border: solid 2px black;
+    border-radius: 5px;
+    background: rgba(255, 255, 255,0);
+    font-size: 17px;
+}
+
+    .button-search span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+
+    .button-search:hover {
+        background: #28a745;
+        color: white;
+    }
+
+    .button-search span:after {
+        content: '\00bb';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+        transition: 0.5s;
+    }
+
+    .button-search:hover span {
+        padding-right: 25px;
+    }
+
+        .button-search:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+
 .main-nav .nav-item .nav-link {
     font-size: 16px;
     line-height: 43px;
@@ -1434,7 +1474,9 @@ header {
 }
 
     .nice-select .list {
-        border-radius: 0;
+        width:inherit;
+        max-height: 400px;
+        overflow: auto;
     }
 
 .arrow-right, .arrow-left {
@@ -2720,12 +2762,13 @@ form textarea {
 }
 
 #register {
-    padding-left: 200px;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 #cars {
-    padding-left: 150px;
-    padding-right: 150px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 /*# sourceMappingURL=maps/style.css.map */

@@ -22,8 +22,8 @@
             var euroStandarts = new List<KeyValuePair<string, string>>();
 
             euroStandarts = await this.euroStandartsRepository.AllAsNoTracking()
-                .OrderBy(x => x.Name)
-                .Select(x => new KeyValuePair<string, string>(x.Name, x.Id.ToString()))
+                .OrderByDescending(x => x.Id)
+                .Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Id.ToString()))
                 .ToListAsync();
 
             euroStandarts.Insert(0, new KeyValuePair<string, string>("Select euro standart", null));

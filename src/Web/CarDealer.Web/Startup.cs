@@ -88,6 +88,7 @@
             services.AddTransient<IUsersService, UsersService>();
             services.AddTransient<IImageSharpsService, ImageSharpsService>();
             services.AddTransient<ICloudinaryService, CloudinaryService>();
+            services.AddTransient<IGeoHelperService, GeoHelperService>();
 
             // Cloudinary service
             Account account = new Account(

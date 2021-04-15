@@ -3,6 +3,7 @@
     using System.Threading.Tasks;
 
     using CarDealer.Data.Models;
+    using CarDealer.Services;
     using CarDealer.Services.Data;
     using CarDealer.Web.ViewModels.Countries;
     using CarDealer.Web.ViewModels.InputModels.Countries;
@@ -16,13 +17,16 @@
     public class CountriesController : BaseController
     {
         private readonly ICountriesService countriesService;
+        private readonly IGeoHelperService geoHelperService;
         private readonly UserManager<ApplicationUser> userManager;
 
         public CountriesController(
             ICountriesService countriesService,
+            IGeoHelperService geoHelperService,
             UserManager<ApplicationUser> userManager)
         {
             this.countriesService = countriesService;
+            this.geoHelperService = geoHelperService;
             this.userManager = userManager;
         }
 
@@ -66,9 +70,16 @@
 
         public string GetUserCountryName()
         {
+            //UserGeoLocationViewModel viewModel = new UserGeoLocationViewModel();
+            //GeoHelper geoHelper = new GeoHelper();
+            //var result = geoHelper.GetGeoInfo().GetAwaiter().GetResult();
+            //viewModel = JsonConvert.DeserializeObject<UserGeoLocationViewModel>(result);
+            //var countryName = viewModel.CountryName;
+
+            //return countryName;
+
             UserGeoLocationViewModel viewModel = new UserGeoLocationViewModel();
-            GeoHelper geoHelper = new GeoHelper();
-            var result = geoHelper.GetGeoInfo().GetAwaiter().GetResult();
+            var result = this.geoHelperService.GetGeoInfo().GetAwaiter().GetResult();
             viewModel = JsonConvert.DeserializeObject<UserGeoLocationViewModel>(result);
             var countryName = viewModel.CountryName;
 
