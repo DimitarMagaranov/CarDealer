@@ -76,12 +76,22 @@
         </div>
         <div class="form-group col-md-4">
             <label asp-for="Car.Seats"></label>
-            <select asp-for="Car.Seats" class="w-100 form-control mt-lg-1 mt-md-2" asp-items="@Html.GetEnumSelectList<Seats>()"></select>
+            <select asp-for="Car.Seats" class="w-100 form-control mt-lg-1 mt-md-2">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="7">7</option>
+            </select>
             <span asp-validation-for="Car.Seats" class="text-danger"></span>
         </div>
         <div class="form-group col-md-4">
             <label asp-for="Car.Doors"></label>
-            <select asp-for="Car.Doors" class="w-100 form-control mt-lg-1 mt-md-2" asp-items="@Html.GetEnumSelectList<Doors>()"></select>
+            <select asp-for="Car.Doors" class="w-100 form-control mt-lg-1 mt-md-2">
+                <option>Select doors count</option>
+                <option value="0">3</option>
+                <option value="1">5</option>
+            </select>
             <span asp-validation-for="Car.Doors" class="text-danger"></span>
         </div>
     </div>

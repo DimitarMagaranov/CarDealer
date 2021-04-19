@@ -13,7 +13,6 @@
     using Microsoft.AspNetCore.Mvc;
     using Newtonsoft.Json;
 
-    [Authorize]
     public class CountriesController : BaseController
     {
         private readonly ICountriesService countriesService;

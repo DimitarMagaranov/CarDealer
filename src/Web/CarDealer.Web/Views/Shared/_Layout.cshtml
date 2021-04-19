@@ -70,20 +70,20 @@
                                     </li>
                                 }
 
-                                <li class="nav-item dropdown dropdown-slide">
+                            <li class="nav-item dropdown dropdown-slide">
+                                @if (this.User.Identity.IsAuthenticated)
+                                {
                                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Options <span><i class="fa fa-angle-down"></i></span>
                                     </a>
                                     <!-- Dropdown list -->
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" asp-area="" asp-controller="Sales" asp-action="All">All cars</a>
-                                        @if (this.User.Identity.IsAuthenticated)
-                                        {
-                                            <a class="dropdown-item" asp-area="" asp-controller="Sales" asp-action="Create">Create</a>
-                                        }
+                                        <a class="dropdown-item" asp-area="" asp-controller="Sales" asp-action="Create">Create</a>
                                         <a class="dropdown-item" asp-area="" asp-controller="SearchSales" asp-action="Index">Search</a>
                                     </div>
-                                </li>
+                                }
+                            </li>
                                 <li class="nav-item active">
                                     <a class="nav-link" asp-area="" asp-controller="AboutUs" asp-action="Index">About Us</a>
                                 </li>
@@ -260,10 +260,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
     <script src="~/plugins/google-map/gmap.js"></script>
     <script src="~/js/script.js"></script>
-
-    <!-- advanced search -->
-    <script src="~/js/advancedSearch.js"></script>
-</body> 
+</body>
 
 </html>
 

@@ -193,6 +193,41 @@
                 .Include(x => x.Car)
                 .ToList();
 
+            if (input.CityId != null)
+            {
+                sales = sales.Where(x => x.CityId == input.CityId).ToList();
+            }
+
+            if (input.CategoryId != null)
+            {
+                sales = sales.Where(x => x.Car.CategoryId == input.CategoryId).ToList();
+            }
+
+            if (input.State != null)
+            {
+                sales = sales.Where(x => x.Car.State == input.State).ToList();
+            }
+
+            if (input.FuelTypeId != null)
+            {
+                sales = sales.Where(x => x.Car.FuelTypeId == input.FuelTypeId).ToList();
+            }
+
+            if (input.GearboxId != null)
+            {
+                sales = sales.Where(x => x.Car.GearboxId == input.GearboxId).ToList();
+            }
+
+            if (input.Doors != null)
+            {
+                sales = sales.Where(x => x.Car.Doors == input.Doors).ToList();
+            }
+
+            if (input.Seats != null)
+            {
+                sales = sales.Where(x => x.Car.Seats == input.Seats).ToList();
+            }
+
             if (input.MakeId != null)
             {
                 sales = sales.Where(x => x.Car.MakeId == (int)input.MakeId).ToList();
@@ -201,11 +236,6 @@
                 {
                     sales = sales.Where(x => x.Car.MakeId == (int)input.MakeId && x.Car.ModelId == input.ModelId).ToList();
                 }
-            }
-
-            if (input.State != null)
-            {
-                sales = sales.Where(x => x.Car.State == input.State).ToList();
             }
 
             if (input.ManufacturerYearFrom != null)
@@ -228,14 +258,14 @@
                 sales = sales.Where(x => x.Price <= input.PriceTo).ToList();
             }
 
-            if (input.FuelTypeId != null)
+            if (input.MilleageFrom != null)
             {
-                sales = sales.Where(x => x.Car.FuelTypeId == input.FuelTypeId).ToList();
+                sales = sales.Where(x => x.Car.Mileage >= input.MilleageFrom).ToList();
             }
 
-            if (input.GearboxId != null)
+            if (input.MilleageTo != null)
             {
-                sales = sales.Where(x => x.Car.GearboxId == input.GearboxId).ToList();
+                sales = sales.Where(x => x.Car.Mileage <= input.MilleageTo).ToList();
             }
 
             if (input.EngineSizeFrom != null)
@@ -248,14 +278,14 @@
                 sales = sales.Where(x => x.Car.EngineSize <= input.EngineSizeTo).ToList();
             }
 
-            if (input.MilleageFrom != null)
+            if (input.PowerFrom != null)
             {
-                sales = sales.Where(x => x.Car.Mileage >= input.MilleageFrom).ToList();
+                sales = sales.Where(x => x.Car.HorsePower >= input.PowerFrom).ToList();
             }
 
-            if (input.MilleageTo != null)
+            if (input.PowerTo != null)
             {
-                sales = sales.Where(x => x.Car.Mileage <= input.MilleageTo).ToList();
+                sales = sales.Where(x => x.Car.HorsePower <= input.PowerTo).ToList();
             }
 
             var salesToShow = new List<SaleViewModel>();
@@ -326,7 +356,7 @@
                     State = sale.Car.State.ToString(),
                     EngineSize = sale.Car.EngineSize,
                     HorsePower = (int)sale.Car.HorsePower,
-                    EuroStandart = sale.Car.EuroStandart.Name,
+                    EuroStandart = sale.Car.EuroStandart.Id,
                     ManufactureDate = sale.Car.ManufactureDate,
                     CategoryName = sale.Car.Category.Name,
                     Color = sale.Car.Color.Name,

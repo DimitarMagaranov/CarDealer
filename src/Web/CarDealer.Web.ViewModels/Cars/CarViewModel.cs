@@ -1,6 +1,5 @@
 ﻿namespace CarDealer.Web.ViewModels.Cars
 {
-    using CarDealer.Web.ViewModels.Cars.CarExtras;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
@@ -21,7 +20,7 @@
 
         public int HorsePower { get; set; }
 
-        public string EuroStandart { get; set; }
+        public int EuroStandart { get; set; }
 
         public string Gearbox { get; set; }
 

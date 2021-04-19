@@ -1,15 +1,19 @@
 ﻿namespace CarDealer.Web.Controllers
 {
     using System.Diagnostics;
+    using System.Threading.Tasks;
 
     using CarDealer.Data.Models;
     using CarDealer.Services;
     using CarDealer.Services.Data;
     using CarDealer.Web.ViewModels;
+    using CarDealer.Web.ViewModels.Countries;
     using CarDealer.Web.ViewModels.Users;
+
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+
     using Newtonsoft.Json;
 
     public class HomeController : BaseController
@@ -34,16 +38,52 @@
             this.geoHelperService = geoHelperService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var userCountryName = this.GetUserCountryName();
-            var countryId = this.countriesService.GetCountryIdByName(userCountryName);
+            var viewModel = new SelectCountryViewModel
+            {
+                CountriesItems = await this.countriesService.GetAllAsKeyValuePairsAsync(),
+            };
 
-            var salesViewModel = this.salesService.GetTopSixteenCarsInUsersCountry(countryId);
+            if (this.User.Identity.IsAuthenticated)
+            {
+                var user = await this.userManager.GetUserAsync(this.User);
+                viewModel.CountryId = user.CountryId;
+            }
 
-            this.ViewData["CountryName"] = userCountryName;
+            return this.View(viewModel);
+        }
 
-            return this.View(salesViewModel);
+        [HttpPost]
+        public async Task<IActionResult> Index(SelectCountryViewModel inputModel)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                var viewModel = new SelectCountryViewModel
+                {
+                    CountriesItems = await this.countriesService.GetAllAsKeyValuePairsAsync(),
+                };
+
+                return this.View(viewModel);
+            }
+
+            var countryId = inputModel.CountryId;
+            return this.RedirectToAction(nameof(this.IndexCars), new { countryId });
+        }
+
+        public async Task<IActionResult> IndexCars(int countryId)
+        {
+            if (countryId == 0)
+            {
+                var user = await this.userManager.GetUserAsync(this.User);
+                countryId = user.CountryId;
+
+                var salesViewModel = this.salesService.GetTopSixteenCarsInUsersCountry(countryId);
+                return this.View(salesViewModel);
+            }
+
+            var viewModel = this.salesService.GetTopSixteenCarsInUsersCountry(countryId);
+            return this.View(viewModel);
         }
 
         public IActionResult Privacy()
@@ -61,16 +101,6 @@
         {
             return this.View(
                 new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
-        }
-
-        public string GetUserCountryName()
-        {
-            UserGeoLocationViewModel viewModel = new UserGeoLocationViewModel();
-            var result = this.geoHelperService.GetGeoInfo().GetAwaiter().GetResult();
-            viewModel = JsonConvert.DeserializeObject<UserGeoLocationViewModel>(result);
-            var countryName = viewModel.CountryName;
-
-            return countryName;
         }
     }
 }

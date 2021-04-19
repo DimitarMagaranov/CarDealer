@@ -3,10 +3,12 @@
     using System.Threading.Tasks;
 
     using CarDealer.Common;
+    using CarDealer.Data.Models;
     using CarDealer.Services.Data;
     using CarDealer.Web.ViewModels.InputModels.SearchSales;
     using CarDealer.Web.ViewModels.Sales;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
     [Authorize]
@@ -22,6 +24,7 @@
         private readonly IColorsService colorsService;
         private readonly ICountriesService countriesService;
         private readonly ICitiesService citiesService;
+        private readonly UserManager<ApplicationUser> userManager;
 
         public SearchSalesController(
             ISalesService salesService,
@@ -33,7 +36,8 @@
             IGearboxesService gearboxesService,
             IColorsService colorsService,
             ICountriesService countriessService,
-            ICitiesService citiesService)
+            ICitiesService citiesService,
+            UserManager<ApplicationUser> userManager)
         {
             this.salesService = salesService;
             this.categoriesService = categoriesService;
@@ -45,6 +49,7 @@
             this.colorsService = colorsService;
             this.countriesService = countriessService;
             this.citiesService = citiesService;
+            this.userManager = userManager;
         }
 
         public async Task<IActionResult> Index(int countryId)

@@ -254,7 +254,7 @@ a:focus, a:hover {
         color: #666;
         box-shadow: none;
         border: 1px solid #5672f9;
-        background-color: transparent;
+        background-color: white;
     }
 
 textarea.form-control {
@@ -1468,13 +1468,14 @@ header {
         }
 
 .nice-select {
+    background-color: white;
     float: none;
     display: inline-block;
     border-radius: 0;
 }
 
     .nice-select .list {
-        width:inherit;
+        width: inherit;
         max-height: 400px;
         overflow: auto;
     }
