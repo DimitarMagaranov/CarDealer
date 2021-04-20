@@ -5,6 +5,7 @@
     using CarDealer.Data.Models;
     using CarDealer.Services.Data;
     using CarDealer.Web.ViewModels.InputModels.Users;
+
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;

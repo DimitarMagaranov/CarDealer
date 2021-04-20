@@ -8,13 +8,10 @@
     using CarDealer.Services.Data;
     using CarDealer.Web.ViewModels;
     using CarDealer.Web.ViewModels.Countries;
-    using CarDealer.Web.ViewModels.Users;
 
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-
-    using Newtonsoft.Json;
 
     public class HomeController : BaseController
     {

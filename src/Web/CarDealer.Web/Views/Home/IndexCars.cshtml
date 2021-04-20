@@ -1,0 +1,111 @@
+﻿@model IEnumerable<CarDealer.Web.ViewModels.Sales.SaleViewModel>
+
+<section class="hero-area bg-2 text-center overly">
+    <!-- Container Start -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Header Contetnt -->
+                <div class="content-block">
+                    <h1>Buy & Sell Cars All Over The World </h1>
+                    <p>Join the millions who buy and sell cars from each other <br> everyday in local communities around the world</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--====================================
+=            Futured cars            =
+=====================================-->
+@if (Model.Count() > 0)
+{
+    <br />
+    <br />
+    <br />
+    <section>
+        <div id="cars">
+            <div class="text-center">
+                <h2>Recently added cars near you</h2>
+            </div>
+            <br />
+            <div class="product-grid-list">
+                <div class="row mt-30">
+                    @foreach (var sale in Model)
+                    {
+                        <div class="col-sm-12 col-lg-3">
+                            <!-- product card -->
+                            <div class="product-item bg-light">
+                                <div class="card">
+                                    <div class="thumb-content">
+                                        <div class="price">$@sale.Price</div>
+                                        <a asp-action="SaleInfo" asp-controller="Sales" asp-route-id="@sale.Id">
+                                            <img class="card-img-top img-fluid" src="@sale.ResizedImageUrls.FirstOrDefault()" alt="Card image cap">
+                                        </a>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="card-title"><a asp-action="SaleInfo" asp-controller="Sales" asp-route-id="@sale.Id">@sale.Car.Make @sale.Car.Model</a></h4>
+                                        <ul class="list-inline product-meta">
+                                            <li class="list-inline-item">
+                                                <a href="#"><i class="fa fa-calendar"></i>@sale.CreatedOnAsString</a>
+                                            </li>
+                                        </ul>
+                                        <div class="product-ratings">
+                                            <ul class="list-inline">
+                                                <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+                                                <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+                                                <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+                                                <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+                                                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+}
+else
+{
+    @if (!this.User.Identity.IsAuthenticated)
+    {
+        <div class="col-md-12 col-sm-12">
+            <div class="text-center">
+                <h2>There is no cars in your country. You need to login or create an account to add a new one.</h2>
+                <br />
+                <h3>If you want to research or create new ads you need to login or create an account.</h3>
+            </div>
+            <br />
+            <form>
+                <div style="text-align:center">
+                    <a class="nav-link login-button" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                </div>
+                <div style="text-align:center">
+                    <a class="nav-link login-button" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                </div>
+            </form>
+            <br />
+            <br />
+        </div>
+    }
+    else
+    {
+        <div class="col-md-12 col-sm-12">
+            <hr />
+            <div class="text-center">
+                <h2>There is no cars in your country. If you want to add click the create button.</h2>
+            </div>
+            <br />
+            <form>
+                <div style="text-align:center">
+                    <button class="btn-success" asp-area="" asp-controller="Sales" asp-action="Create">Create Ad</button>
+                </div>
+            </form>
+            <hr />
+        </div>
+    }
+}

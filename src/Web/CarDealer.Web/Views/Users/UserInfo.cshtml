@@ -1,0 +1,74 @@
+﻿@model CarDealer.Web.ViewModels.Users.UserViewModel
+
+<section class="user-profile section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 offset-md-1 col-lg-3 offset-lg-0">
+                <div class="sidebar">
+                    <!-- User Widget -->
+                    <div class="widget user">
+                        <!-- User Image -->
+                        <div class="image d-flex justify-content-center">
+                            <img src="~/images/user/no-profile.jpg" alt="" class="">
+                        </div>
+                        <!-- User Name -->
+                        <h5 class="text-center">@Model.FirstName @Model.LastName</h5>
+                    </div>
+                    <!-- Dashboard Links -->
+                    <div class="widget dashboard-links">
+                        <ul>
+                            <li><a class="my-1 d-inline-block" href="">Savings Dashboard</a></li>
+                            <li><a class="my-1 d-inline-block" href="">Saved Offer <span>(5)</span></a></li>
+                            <li><a class="my-1 d-inline-block" href="">Favourite Stores <span>(3)</span></a></li>
+                            <li><a class="my-1 d-inline-block" href="">Recommended</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10 offset-md-1 col-lg-9 offset-lg-0">
+                <!-- Edit Profile Welcome Text -->
+                <div class="widget welcome-message">
+                    <h2>Edit profile</h2>
+                </div>
+                <!-- Edit Personal Info -->
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="widget personal-info">
+                            <h3 class="widget-header user">Edit Personal Information</h3>
+                            <form method="post" enctype="multipart/form-data">
+                                <!-- User Name -->
+                                <div class="form-group">
+                                    <label for="comunity-name">User Name</label>
+                                    <input asp-for="UserName" type="text" class="form-control" id="comunity-name" value="@Model.UserName">
+                                </div>
+                                <!-- First Name -->
+                                <div class="form-group">
+                                    <label for="first-name">First Name</label>
+                                    <input asp-for="FirstName" type="text" class="form-control" id="first-name" value="@Model.FirstName">
+                                </div>
+                                <!-- Last Name -->
+                                <div class="form-group">
+                                    <label for="last-name">Last Name</label>
+                                    <input asp-for="LastName" type="text" class="form-control" id="last-name" value="@Model.LastName">
+                                </div>
+                                <!-- Phone number -->
+                                <div class="form-group">
+                                    <label for="last-name">Phone number</label>
+                                    <input asp-for="PhoneNumber" type="text" class="form-control" id="phone-number" value="@Model.PhoneNumber">
+                                </div>
+                                <!-- Email -->
+                                <div class="form-group">
+                                    <label for="last-name">Email</label>
+                                    <input asp-for="Email" type="text" class="form-control" id="email" value="@Model.Email">
+                                </div>
+                                <!-- Submit button -->
+                                @*<button class="btn btn-transparent" asp-area="" asp-controller="Users" asp-action="UserInfo">Save My Changes</button>*@
+                            <button type="submit" class="btn btn-transparent">Save My Changes</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
