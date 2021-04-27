@@ -434,6 +434,7 @@ namespace CarDealer.Data.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -768,7 +769,9 @@ namespace CarDealer.Data.Migrations
 
                     b.HasOne("CarDealer.Data.Models.ApplicationUser", "User")
                         .WithMany("Sales")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Car");
 
@@ -793,7 +796,7 @@ namespace CarDealer.Data.Migrations
                     b.HasOne("CarDealer.Data.Models.Sale", "Sale")
                         .WithMany("Images")
                         .HasForeignKey("SaleId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Sale");
