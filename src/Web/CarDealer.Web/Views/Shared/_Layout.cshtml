@@ -70,20 +70,20 @@
                                     </li>
                                 }
 
-                            <li class="nav-item dropdown dropdown-slide">
-                                @if (this.User.Identity.IsAuthenticated)
-                                {
-                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Options <span><i class="fa fa-angle-down"></i></span>
-                                    </a>
-                                    <!-- Dropdown list -->
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" asp-area="" asp-controller="Sales" asp-action="All">All cars</a>
-                                        <a class="dropdown-item" asp-area="" asp-controller="Sales" asp-action="Create">Create</a>
-                                        <a class="dropdown-item" asp-area="" asp-controller="SearchSales" asp-action="Index">Search</a>
-                                    </div>
-                                }
-                            </li>
+                                <li class="nav-item dropdown dropdown-slide">
+                                    @if (this.User.Identity.IsAuthenticated)
+                                    {
+                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Options <span><i class="fa fa-angle-down"></i></span>
+                                        </a>
+                                        <!-- Dropdown list -->
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" asp-area="" asp-controller="Sales" asp-action="All">All cars</a>
+                                            <a class="dropdown-item" asp-area="" asp-controller="Sales" asp-action="Create">Create</a>
+                                            <a class="dropdown-item" asp-area="" asp-controller="SearchSales" asp-action="Index">Search</a>
+                                        </div>
+                                    }
+                                </li>
                                 <li class="nav-item active">
                                     <a class="nav-link" asp-area="" asp-controller="AboutUs" asp-action="Index">About Us</a>
                                 </li>
@@ -94,9 +94,25 @@
                             <ul class="navbar-nav ml-auto mt-10">
                                 @if (this.User.Identity.IsAuthenticated)
                                 {
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Index">Hello, @(this.User.Identity.Name)!</a>
-                                    </li>
+                                    @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                                    {
+                                        <li class="nav-item dropdown dropdown-slide">
+                                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Admin <span><i class="fa fa-angle-down"></i></span>
+                                            </a>
+                                            <!-- Dropdown list -->
+                                            <div class="dropdown-menu">
+                                                <a class="nav-link text-dark" asp-area="Administration" asp-controller="Users" asp-action="Index">Users</a>
+                                                <a class="nav-link text-dark" asp-area="Administration" asp-controller="Sales" asp-action="Index">Sales</a>
+                                            </div>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Index">Hello, @(this.User.Identity.Name)!</a>
+                                        </li>
+                                    }
                                     <li>
                                         <button class="nav-link login-button" href="" data-toggle="modal" data-target="#logoutModal">Log Out</button>
                                     </li>
@@ -260,6 +276,8 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
     <script src="~/plugins/google-map/gmap.js"></script>
     <script src="~/js/script.js"></script>
+
+    @await this.RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>

@@ -2,12 +2,11 @@
 
 @{
     ViewData["Title"] = "Details";
-    Layout = "/Areas/Identity/Pages/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2 class="text-center">Details</h2>
 
-<div>
+<div class="col-md-10 col-lg-5 offset-lg-0" style="margin:auto">
     <h4>Sale</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -73,7 +72,7 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="text-center">
+    <a class="btn btn-success" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a class="btn btn-primary" asp-action="Index">Back to List</a>
 </div>

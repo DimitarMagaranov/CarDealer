@@ -101,6 +101,12 @@
             {
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
+
+            //builder.Entity<Sale>()
+            //    .HasOne(s => s.User)
+            //    .WithMany(u => u.Sales)
+            //    .IsRequired()
+            //    .OnDelete(DeleteBehavior.Cascade);
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)

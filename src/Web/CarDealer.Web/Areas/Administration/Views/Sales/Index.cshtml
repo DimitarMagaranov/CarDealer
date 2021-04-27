@@ -1,90 +1,60 @@
-﻿@model IEnumerable<CarDealer.Data.Models.Sale>
+﻿@model List<CarDealer.Web.ViewModels.Sales.SaleViewModel>
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "/Areas/Identity/Pages/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="col-md-10 col-lg-5 offset-lg-0" style="margin:auto">
+    <div class="widget dashboard-container my-adslist">
+        <h2>All sales</h2>
+        <br />
+        <table class="table table-responsive product-dashboard-table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>CAR INFO</th>
+                    <th class="text-center">Category</th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var sale in Model)
+                {
+                    <tr>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DaysValid)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Car)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Country)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsDeleted)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DeletedOn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedOn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ModifiedOn)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DaysValid)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Car.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Country.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsDeleted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DeletedOn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedOn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ModifiedOn)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                        <td class="product-thumb">
+                            <img width="80px" height="auto" src=@sale.ResizedImageUrls.FirstOrDefault() alt="image description">
+                        </td>
+                        <td class="product-details">
+                            <h3 class="title">@sale.Car.Make @sale.Car.Model</h3>
+                            <span><strong>Posted on: </strong><time>@sale.CreatedOnAsString</time> </span>
+                            <span class="location"><strong>Location</strong>@sale.CityName, @sale.CountryName</span>
+                        </td>
+                        <td class="product-category"><span class="categories">@sale.Car.CategoryName</span></td>
+                        <td class="action" data-title="Action">
+                            <div class="">
+                                <ul class="list-inline justify-content-center">
+                                    <li class="list-inline-item">
+                                        <a data-toggle="tooltip" data-placement="top" title="view" class="view" asp-action="Details" asp-route-id="@sale.Id">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a class="edit" data-toggle="tooltip" data-placement="top" title="Edit" asp-action="Edit" asp-route-id="@sale.Id">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a class="delete" data-toggle="tooltip" data-placement="top" title="Delete" asp-action="Delete" asp-route-id="@sale.Id">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

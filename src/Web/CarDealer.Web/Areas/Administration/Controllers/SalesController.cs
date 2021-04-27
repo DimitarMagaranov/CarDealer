@@ -1,12 +1,15 @@
 ﻿namespace CarDealer.Web.Areas.Administration.Controllers
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
-    using CarDealer.Data;
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models;
     using CarDealer.Data.Models.SaleModels;
+    using CarDealer.Services.Data;
+    using CarDealer.Web.ViewModels.Sales;
+
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.EntityFrameworkCore;
@@ -18,24 +21,32 @@
         private readonly IDeletableEntityRepository<Car> carsRepository;
         private readonly IDeletableEntityRepository<ApplicationUser> usersRepository;
         private readonly IRepository<Country> countriesRepository;
+        private readonly ISalesService salesService;
 
         public SalesController(
             IDeletableEntityRepository<Sale> salesRepository,
             IDeletableEntityRepository<Car> carsRepository,
             IDeletableEntityRepository<ApplicationUser> usersRepository,
-            IRepository<Country> countriesRepository)
+            IRepository<Country> countriesRepository,
+            ISalesService salesService)
         {
             this.salesRepository = salesRepository;
             this.carsRepository = carsRepository;
             this.usersRepository = usersRepository;
             this.countriesRepository = countriesRepository;
+            this.salesService = salesService;
         }
 
         // GET: Administration/Sales
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = this.salesRepository.All().Include(s => s.Car).Include(s => s.Country).Include(s => s.User);
-            return this.View(await applicationDbContext.ToListAsync());
+            var sales = await applicationDbContext.ToListAsync();
+
+            var viewModel = new List<SaleViewModel>();
+            sales.ForEach(x => viewModel.Add(this.salesService.GetSingleSaleInfo(x.Id)));
+
+            return this.View(viewModel);
         }
 
         // GET: Administration/Sales/Details/5

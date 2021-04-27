@@ -34,6 +34,12 @@
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [Display(Name = "First name")]
+            public string Firstname { get; set; }
+
+            [Display(Name = "Last name")]
+            public string LastName { get; set; }
         }
 
         public async Task<IActionResult> OnGetAsync()
