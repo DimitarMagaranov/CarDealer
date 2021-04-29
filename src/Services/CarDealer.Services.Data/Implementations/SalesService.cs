@@ -56,7 +56,7 @@
             this.cloudinary = cloudinary;
         }
 
-        public async Task<int> CreateSaleAsync(AddSaleViewModel input, string userId)
+        public async Task<int> CreateSaleAsync(AddSaleInputModel input, string userId)
         {
             var saleToAdd = new Sale
             {
