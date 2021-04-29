@@ -4,27 +4,32 @@
     using System.Collections.Generic;
     using System.Globalization;
 
-    public class CarViewModel
+    using AutoMapper;
+
+    using CarDealer.Data.Models;
+    using CarDealer.Services.Mapping;
+
+    public class CarViewModel : IMapFrom<Car>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
-        public string Make { get; set; }
+        public string MakeName { get; set; }
 
-        public string Model { get; set; }
+        public string ModelName { get; set; }
 
         public string CategoryName { get; set; }
 
-        public string FuelType { get; set; }
+        public string FuelTypeName { get; set; }
 
         public int EngineSize { get; set; }
 
         public int HorsePower { get; set; }
 
-        public int EuroStandart { get; set; }
+        public int EuroStandartId { get; set; }
 
-        public string Gearbox { get; set; }
+        public string GearboxName { get; set; }
 
-        public string Color { get; set; }
+        public string ColorName { get; set; }
 
         public string Seats { get; set; }
 
@@ -36,8 +41,22 @@
 
         public DateTime ManufactureDate { get; set; }
 
-        public string ManufactureDateAsString => this.ManufactureDate.ToString(CultureInfo.InvariantCulture);
+        public string ManufactureDateAsString { get; set; }
 
         public IEnumerable<string> Extras { get; set; }
+
+        public void CreateMappings(IProfileExpression configuration)
+        {
+            configuration.CreateMap<Car, CarViewModel>()
+                .ForMember(x => x.ManufactureDateAsString, options =>
+                options.MapFrom(x => x.ManufactureDate.ToString(CultureInfo.InvariantCulture)));
+        }
+
+        ////imposible mappings:
+        // -ModelName
+        // -Seats
+        // -Doors
+        // -State
+        // -Extras
     }
 }

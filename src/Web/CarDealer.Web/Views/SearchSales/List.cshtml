@@ -41,10 +41,10 @@ else
                                         </a>
                                     </div>
                                     <div class="card-body">
-                                        <h4 class="card-title"><a asp-action="SaleInfo" asp-controller="Sales" asp-route-id="@sale.Id">@sale.Car.Make @sale.Car.Model</a></h4>
+                                        <h4 class="card-title"><a asp-action="SaleInfo" asp-controller="Sales" asp-route-id="@sale.Id">@sale.Car.MakeName @sale.Car.ModelName</a></h4>
                                         <ul class="list-inline product-meta">
                                             <li class="list-inline-item">
-                                                <a href="#"><i class="fa fa-calendar"></i>@sale.CreatedOnAsString</a>
+                                                <a href="#"><i class="fa fa-calendar"></i>@sale.CreatedOn.Day/@sale.CreatedOn.Month/@sale.CreatedOn.Year</a>
                                             </li>
                                         </ul>
                                         <div class="product-ratings">

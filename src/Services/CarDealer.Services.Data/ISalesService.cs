@@ -36,5 +36,7 @@
         Task<AddSaleViewModel> GetViewModelForCreateSale(int countryId);
 
         SalesListViewModel GetSalesListViewModelByCountryId(int id, int itemsPerPage, int countryId);
+
+        Task<IEnumerable<SaleViewModel>> GetSalesListViewModelByUserId(string id);
     }
 }

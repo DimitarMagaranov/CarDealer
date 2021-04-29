@@ -1,6 +1,9 @@
 ﻿namespace CarDealer.Web.ViewModels.Images
 {
-    public class ImageViewModel
+    using CarDealer.Data.Models.SaleModels;
+    using CarDealer.Services.Mapping;
+
+    public class ImageViewModel : IMapFrom<Image>
     {
         public string Id { get; set; }
 
@@ -8,9 +11,9 @@
 
         public int SaleId { get; set; }
 
-        public string OriginalImageUrl { get; set; }
+        public string ImageUrl { get; set; }
 
-        public string ResizedlImageUrl { get; set; }
+        public string ResizedImageUrl { get; set; }
 
         public string Extension { get; set; }
     }

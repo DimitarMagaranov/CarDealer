@@ -7,5 +7,7 @@
     public interface IImagesService
     {
         IEnumerable<ImageViewModel> GetAllImagesBySaleId(int id);
+
+        ImageViewModel GetImageViewModelById(string id);
     }
 }

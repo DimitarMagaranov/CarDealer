@@ -8,6 +8,7 @@
     using CarDealer.Data.Models;
     using CarDealer.Web.ViewModels.InputModels.Users;
     using CarDealer.Web.ViewModels.Users;
+    using CarDealer.Services.Mapping;
     using Microsoft.AspNetCore.Identity;
 
     public class UsersService : IUsersService
@@ -28,16 +29,7 @@
 
         public UserViewModel GetUserById(string id)
         {
-            var user = this.usersRepository.AllAsNoTracking().First(x => x.Id == id);
-
-            return new UserViewModel
-            {
-                UserName = user.UserName,
-                PhoneNumber = user.PhoneNumber,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Email = user.Email,
-            };
+            return this.usersRepository.AllAsNoTracking().Where(x => x.Id == id).To<UserViewModel>().FirstOrDefault();
         }
 
         public async Task UpdateUserInfo(string userId, UserInputModel input)

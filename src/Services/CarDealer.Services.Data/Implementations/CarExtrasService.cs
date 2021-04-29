@@ -20,7 +20,7 @@
             this.extrasService = extrasService;
         }
 
-        public IEnumerable<string> GetExtras(int carId)
+        public IEnumerable<string> GetExtrasByCarId(int carId)
         {
             var extraIds = this.carExtrasRepository.AllAsNoTracking().Where(x => x.CarId == carId).Select(x => x.ExtraId).ToList();
             var extrasDb = this.extrasService.GetAllExtras();

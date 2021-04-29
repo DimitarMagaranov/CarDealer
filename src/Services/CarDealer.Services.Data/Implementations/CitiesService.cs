@@ -5,24 +5,30 @@
     using System.Threading.Tasks;
 
     using CarDealer.Data.Common.Repositories;
+    using CarDealer.Data.Models;
     using CarDealer.Data.Models.SaleModels;
-    using CarDealer.Web.ViewModels.Cities;
+
     using Microsoft.EntityFrameworkCore;
 
     public class CitiesService : ICitiesService
     {
         private readonly IRepository<City> citiesRepository;
+        private readonly IDeletableEntityRepository<Sale> salesRepository;
 
-        public CitiesService(IRepository<City> citiesRepository)
+        public CitiesService(
+            IRepository<City> citiesRepository,
+            IDeletableEntityRepository<Sale> salesRepository)
         {
             this.citiesRepository = citiesRepository;
+            this.salesRepository = salesRepository;
         }
 
-        public CityViewModel GetById(int id)
+        public string GetCityNameBySaleId(int id)
         {
-            var city = this.citiesRepository.AllAsNoTracking().First(x => x.Id == id);
+            var sale = this.salesRepository.AllAsNoTracking().FirstOrDefault(x => x.Id == id);
+            var city = this.citiesRepository.AllAsNoTracking().FirstOrDefault(x => x.Id == sale.CityId);
 
-            return new CityViewModel { Id = city.Id, Name = city.Name };
+            return city.Name;
         }
 
         public async Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairsAsync(int countryId)

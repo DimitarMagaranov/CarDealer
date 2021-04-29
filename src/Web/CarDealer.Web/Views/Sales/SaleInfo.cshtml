@@ -12,13 +12,13 @@
             <!-- Left sidebar -->
             <div class="col-md-8">
                 <div class="product-details">
-                    <h1 class="product-title">@Model.Car.Make @Model.Car.Model </h1>
+                    <h1 class="product-title">@Model.Car.MakeName @Model.Car.ModelName </h1>
                     <div class="product-meta">
                         <ul class="list-inline">
                             <li class="list-inline-item"><i class="fa fa-user-o"></i> By <a href="">@Model.UserName</a></li>
                             <li class="list-inline-item"><i class="fa fa-folder-open-o"></i> Category<a href="">@Model.Car.CategoryName</a></li>
                             <li class="list-inline-item"><i class="fa fa-location-arrow"></i> Location<a href="">@Model.CityName, @Model.CountryName</a></li>
-                            <li class="list-inline-item"><i class="fa fa-eye"></i><a href="">@Model.OpensSaleCount</a></li>
+                            <li class="list-inline-item"><i class="fa fa-eye"></i><a href="">@Model.OpensSaleCounter</a></li>
                         </ul>
                     </div>
 
@@ -69,7 +69,7 @@
                                     <tbody>
                                         <tr>
                                             <td>Added</td>
-                                            <td>@Model.CreatedOnAsString</td>
+                                            <td>@Model.CreatedOn.Day/@Model.CreatedOn.Month/@Model.CreatedOn.Year</td>
                                         </tr>
                                         <tr>
                                             <td>Seller Price</td>
@@ -85,11 +85,11 @@
                                         </tr>
                                         <tr>
                                             <td>Brand</td>
-                                            <td>@Model.Car.Make</td>
+                                            <td>@Model.Car.MakeName</td>
                                         </tr>
                                         <tr>
                                             <td>Model</td>
-                                            <td>@Model.Car.Model</td>
+                                            <td>@Model.Car.ModelName</td>
                                         </tr>
                                         <tr>
                                             <td>Condition</td>
@@ -101,7 +101,7 @@
                                         </tr>
                                         <tr>
                                             <td>Fuel type</td>
-                                            <td>@Model.Car.FuelType</td>
+                                            <td>@Model.Car.FuelTypeName</td>
                                         </tr>
                                         <tr>
                                             <td>Engine size</td>
@@ -113,11 +113,11 @@
                                         </tr>
                                         <tr>
                                             <td>Euro standart</td>
-                                            <td>@Model.Car.EuroStandart</td>
+                                            <td>@Model.Car.EuroStandartId</td>
                                         </tr>
                                         <tr>
                                             <td>Gearbox</td>
-                                            <td>@Model.Car.Gearbox</td>
+                                            <td>@Model.Car.GearboxName</td>
                                         </tr>
                                         <tr>
                                             <td>Seats</td>
@@ -129,7 +129,7 @@
                                         </tr>
                                         <tr>
                                             <td>Color</td>
-                                            <td>@Model.Car.Color</td>
+                                            <td>@Model.Car.ColorName</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -166,22 +166,10 @@
                     <!-- User Profile widget -->
                     <div class="widget user text-center">
                         <h4><a href="">@Model.UserName</a></h4>
-                        <h4><a href="">@Model.UserEmailAddress</a></h4>
+                        <h4><a href="">@Model.UserEmail</a></h4>
                         <h4><a href="">@Model.UserPhoneNumber</a></h4>
                         <p class="member-time">Member Since Jun 27, 2017</p>
-                        <a href="">See all ads</a>
-                        <ul class="list-inline mt-20">
-                            <li class="list-inline-item"><a href="" class="btn btn-contact d-inline-block  btn-primary px-lg-5 my-1 px-md-3">Contact</a></li>
-                            <li class="list-inline-item">
-                                <a href="" class="btn btn-offer d-inline-block btn-primary ml-n1 my-1 px-lg-4 px-md-3">Make an offer</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- Map Widget -->
-                    <div class="widget map">
-                        <div class="map">
-                            <div id="map_canvas" data-latitude="51.507351" data-longitude="-0.127758"></div>
-                        </div>
+                        <a asp-controller="Sales" asp-action="AllByUserId" asp-route-id="@Model.UserId">See all ads</a>
                     </div>
                 </div>
             </div>

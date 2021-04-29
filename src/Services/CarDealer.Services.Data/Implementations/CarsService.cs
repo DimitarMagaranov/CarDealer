@@ -1,23 +1,18 @@
 ﻿namespace CarDealer.Services.Data.Implementations
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models;
-    using CarDealer.Data.Models.CarModels;
-    using CarDealer.Web.ViewModels.Cars.CarExtras;
     using CarDealer.Web.ViewModels.InputModels.Cars;
 
     public class CarsService : ICarsService
     {
         private readonly IDeletableEntityRepository<Car> carsRepository;
-        private readonly IRepository<Extra> extraRepository;
         private readonly ICategoriesService categoriesService;
         private readonly IMakesService makesService;
-        private readonly IModelsService modelsService;
         private readonly IFuelTypesService fuelTypesService;
         private readonly IEuroStandartsService euroStandartsService;
         private readonly IGearboxesService gearboxesService;
@@ -25,20 +20,16 @@
 
         public CarsService(
             IDeletableEntityRepository<Car> carsRepository,
-            IRepository<Extra> extraRepository,
             ICategoriesService categoriesService,
             IMakesService makesService,
-            IModelsService modelsService,
             IFuelTypesService fuelTypesService,
             IEuroStandartsService euroStandartsService,
             IGearboxesService gearboxesService,
             IColorsService colorsService)
         {
             this.carsRepository = carsRepository;
-            this.extraRepository = extraRepository;
             this.categoriesService = categoriesService;
             this.makesService = makesService;
-            this.modelsService = modelsService;
             this.fuelTypesService = fuelTypesService;
             this.euroStandartsService = euroStandartsService;
             this.gearboxesService = gearboxesService;
@@ -51,7 +42,7 @@
             {
                 ModelId = input.ModelId,
                 MakeId = input.MakeId,
-                CategoryId = (int)input.CategoryId,
+                CategoryId = input.CategoryId,
                 FuelTypeId = input.FuelTypeId,
                 EngineSize = input.EngineSize,
                 HorsePower = input.HorsePower,
@@ -68,7 +59,7 @@
             return carToAdd;
         }
 
-        public async Task<AddCarInputModel> GetCarInputModelWithFilledProperties()
+        public async Task<AddCarInputModel> GetCarInputModelWithFilledListItems()
         {
             var carViewModel = new AddCarInputModel
             {
@@ -105,17 +96,6 @@
             carDb.State = input.State;
 
             await this.carsRepository.SaveChangesAsync();
-        }
-
-        public IEnumerable<ExtraViewModel> GetAllExtras()
-        {
-            return this.extraRepository.AllAsNoTracking()
-                .Select(x => new ExtraViewModel()
-                {
-                    Name = x.Name,
-                    Id = x.Id,
-                })
-                .ToList();
         }
     }
 }

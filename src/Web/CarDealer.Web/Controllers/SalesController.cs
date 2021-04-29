@@ -94,7 +94,7 @@
             if (!this.ModelState.IsValid)
             {
                 input.CitiesItems = await this.citiesService.GetAllAsKeyValuePairsAsync(input.CountryId);
-                input.Car = await this.carsService.GetCarInputModelWithFilledProperties();
+                input.Car = await this.carsService.GetCarInputModelWithFilledListItems();
 
                 return this.View(input);
             }
@@ -111,7 +111,7 @@
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
                 input.CitiesItems = await this.citiesService.GetAllAsKeyValuePairsAsync(input.CountryId);
-                input.Car = await this.carsService.GetCarInputModelWithFilledProperties();
+                input.Car = await this.carsService.GetCarInputModelWithFilledListItems();
                 return this.View(input);
             }
 
@@ -151,6 +151,13 @@
             const int ItemsPerPage = 12;
 
             var viewModel = this.salesService.GetSalesListViewModelByCountryId(id, ItemsPerPage, user.CountryId);
+
+            return this.View(viewModel);
+        }
+
+        public async Task<IActionResult> AllByUserId(string id)
+        {
+            var viewModel = await this.salesService.GetSalesListViewModelByUserId(id);
 
             return this.View(viewModel);
         }

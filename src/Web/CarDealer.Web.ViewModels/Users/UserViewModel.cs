@@ -1,8 +1,9 @@
 ﻿namespace CarDealer.Web.ViewModels.Users
 {
-    using Microsoft.AspNetCore.Http;
+    using CarDealer.Data.Models;
+    using CarDealer.Services.Mapping;
 
-    public class UserViewModel
+    public class UserViewModel : IMapFrom<ApplicationUser>
     {
         public string UserName { get; set; }
 

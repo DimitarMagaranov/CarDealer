@@ -7,7 +7,7 @@
 
     public interface ICarExtrasService
     {
-        IEnumerable<string> GetExtras(int carId);
+        IEnumerable<string> GetExtrasByCarId(int carId);
 
         Task AddExtrasToDbAsync(int carId, IEnumerable<int> extras);
     }

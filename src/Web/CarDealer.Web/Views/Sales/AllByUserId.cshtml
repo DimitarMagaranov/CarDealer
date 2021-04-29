@@ -1,0 +1,44 @@
+﻿@model IEnumerable<CarDealer.Web.ViewModels.Sales.SaleViewModel>
+
+<section>
+    <div id="cars">
+        <br />
+        <div class="product-grid-list">
+            <div class="row mt-30">
+                @foreach (var sale in Model)
+                {
+                    <div class="col-sm-12 col-lg-3">
+                        <!-- product card -->
+                        <div class="product-item bg-light">
+                            <div class="card">
+                                <div class="thumb-content">
+                                    <div class="price">$@sale.Price</div>
+                                    <a asp-action="SaleInfo" asp-controller="Sales" asp-route-id="@sale.Id">
+                                        <img class="card-img-top img-fluid" src="@sale.ResizedImageUrls.FirstOrDefault()" alt="Card image cap">
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title"><a asp-action="SaleInfo" asp-controller="Sales" asp-route-id="@sale.Id">@sale.Car.MakeName @sale.Car.ModelName</a></h4>
+                                    <ul class="list-inline product-meta">
+                                        <li class="list-inline-item">
+                                            <a href="#"><i class="fa fa-calendar"></i>@sale.CreatedOn.Day/@sale.CreatedOn.Month/@sale.CreatedOn.Year</a>
+                                        </li>
+                                    </ul>
+                                    <div class="product-ratings">
+                                        <ul class="list-inline">
+                                            <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+                                            <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+                                            <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+                                            <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+                                            <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

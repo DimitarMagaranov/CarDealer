@@ -1,8 +1,11 @@
 ﻿namespace CarDealer.Web.ViewModels.Sales
 {
+    using AutoMapper;
+    using CarDealer.Data.Models;
+    using CarDealer.Services.Mapping;
     using CarDealer.Web.ViewModels.Cars;
 
-    public class EditSaleViewModel : BaseSaleViewModel
+    public class EditSaleViewModel : BaseSaleViewModel, IMapFrom<Sale>
     {
         public int Id { get; set; }
 

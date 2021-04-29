@@ -26,8 +26,8 @@
                             <img width="80px" height="auto" src=@sale.ResizedImageUrls.FirstOrDefault() alt="image description">
                         </td>
                         <td class="product-details">
-                            <h3 class="title">@sale.Car.Make @sale.Car.Model</h3>
-                            <span><strong>Posted on: </strong><time>@sale.CreatedOnAsString</time> </span>
+                            <h3 class="title">@sale.Car.MakeName @sale.Car.ModelName</h3>
+                            <span><strong>Posted on: </strong><time>@sale.CreatedOn.Day/@sale.CreatedOn.Month/@sale.CreatedOn.Year</time> </span>
                             <span class="location"><strong>Location</strong>@sale.CityName, @sale.CountryName</span>
                         </td>
                         <td class="product-category"><span class="categories">@sale.Car.CategoryName</span></td>

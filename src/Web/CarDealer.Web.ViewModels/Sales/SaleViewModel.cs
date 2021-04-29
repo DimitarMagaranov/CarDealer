@@ -2,17 +2,17 @@
 {
     using System;
 
+    using AutoMapper;
+
+    using CarDealer.Data.Models;
+    using CarDealer.Services.Mapping;
     using CarDealer.Web.ViewModels.Cars;
 
-    public class SaleViewModel
+    public class SaleViewModel : IMapFrom<Sale>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
-
         public DateTime CreatedOn { get; set; }
-
-        public string CreatedOnAsString => $"{this.CreatedOn.Day}/{this.CreatedOn.Month}/{this.CreatedOn.Year}";
 
         public int CarId { get; set; }
 
@@ -22,11 +22,13 @@
 
         public string CityName { get; set; }
 
+        public string UserId { get; set; }
+
         public string UserName { get; set; }
 
         public string UserPhoneNumber { get; set; }
 
-        public string UserEmailAddress { get; set; }
+        public string UserEmail { get; set; }
 
         public string[] OriginalImageUrls { get; set; }
 
@@ -34,10 +36,15 @@
 
         public string Description { get; set; }
 
-        public int OpensSaleCount { get; set; }
-
-        public double AverageVote { get; set; }
+        public int OpensSaleCounter { get; set; }
 
         public CarViewModel Car { get; set; }
+
+        public void CreateMappings(IProfileExpression configuration)
+        {
+            configuration.CreateMap<Sale, SaleViewModel>()
+                .ForMember(x => x.UserName, options =>
+                options.MapFrom(x => x.User.UserName));
+        }
     }
 }

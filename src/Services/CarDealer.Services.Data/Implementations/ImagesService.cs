@@ -5,6 +5,7 @@
 
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models.SaleModels;
+    using CarDealer.Services.Mapping;
     using CarDealer.Web.ViewModels.Images;
 
     public class ImagesService : IImagesService
@@ -20,22 +21,16 @@
         {
             var data = new List<ImageViewModel>();
 
-            var imagesDb = this.imagesRepository.AllAsNoTracking().Where(x => x.SaleId == id);
-
-            foreach (var image in imagesDb)
-            {
-                data.Add(new ImageViewModel
-                {
-                    Id = image.Id,
-                    SaleId = image.SaleId,
-                    AddedByUserId = image.AddedByUserId,
-                    Extension = image.Extension,
-                    OriginalImageUrl = image.ImageUrl,
-                    ResizedlImageUrl = image.ResizedImageUrl,
-                });
-            }
+            this.imagesRepository.AllAsNoTracking().Where(x => x.SaleId == id)
+                .ToList()
+                .ForEach(x => data.Add(this.GetImageViewModelById(x.Id)));
 
             return data;
+        }
+
+        public ImageViewModel GetImageViewModelById(string id)
+        {
+            return this.imagesRepository.All().Where(x => x.Id == id).To<ImageViewModel>().FirstOrDefault();
         }
     }
 }

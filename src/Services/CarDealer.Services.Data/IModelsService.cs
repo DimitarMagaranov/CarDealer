@@ -8,5 +8,7 @@
     public interface IModelsService
     {
         ModelViewModel GetById(int id);
+
+        string GetModelNameByCarId(int id);
     }
 }
