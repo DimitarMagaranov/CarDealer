@@ -335,3 +335,4 @@ ASALocalRun/
 /src/Web/CarDealer.Web/appsettings.Production.json
 /src/Web/CarDealer.Web/appsettings.json
 /src/Web/CarDealer.Web/appsettings.Development.json
+/src/Tests/CarDealer.Services.Data.Tests/appsettings.Test.json

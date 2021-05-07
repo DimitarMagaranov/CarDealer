@@ -19,20 +19,17 @@
         private readonly UserManager<ApplicationUser> userManager;
         private readonly ILogger<HomeController> logger;
         private readonly ICountriesService countriesService;
-        private readonly IGeoHelperService geoHelperService;
 
         public HomeController(
             ISalesService salesService,
             UserManager<ApplicationUser> userManager,
             ILogger<HomeController> logger,
-            ICountriesService countriesService,
-            IGeoHelperService geoHelperService)
+            ICountriesService countriesService)
         {
             this.salesService = salesService;
             this.userManager = userManager;
             this.logger = logger;
             this.countriesService = countriesService;
-            this.geoHelperService = geoHelperService;
         }
 
         public async Task<IActionResult> Index()

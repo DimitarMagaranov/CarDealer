@@ -16,16 +16,13 @@
     public class CountriesController : BaseController
     {
         private readonly ICountriesService countriesService;
-        private readonly IGeoHelperService geoHelperService;
         private readonly UserManager<ApplicationUser> userManager;
 
         public CountriesController(
             ICountriesService countriesService,
-            IGeoHelperService geoHelperService,
             UserManager<ApplicationUser> userManager)
         {
             this.countriesService = countriesService;
-            this.geoHelperService = geoHelperService;
             this.userManager = userManager;
         }
 

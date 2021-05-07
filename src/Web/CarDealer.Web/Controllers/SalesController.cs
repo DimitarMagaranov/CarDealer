@@ -84,7 +84,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(AddSaleInputModel input, string captcha)
+        public async Task<IActionResult> Create(AddSaleViewModel input, string captcha)
         {
             if (!await this.captchaValidator.IsCaptchaPassedAsync(captcha))
             {

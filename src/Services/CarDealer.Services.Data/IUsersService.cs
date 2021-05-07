@@ -9,6 +9,6 @@
     {
         UserViewModel GetUserById(string id);
 
-        Task UpdateUserInfo(string userId, UserInputModel input);
+        Task<UserViewModel> UpdateUserInfo(string userId, UserInputModel input);
     }
 }

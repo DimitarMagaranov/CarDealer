@@ -9,7 +9,7 @@
     {
         Car CreateCar(AddCarInputModel input);
 
-        Task UpdateCarAsync(int id, EditCarInputModel input);
+        Task<Car> UpdateCarAsync(int id, EditCarInputModel input);
 
         Task<AddCarInputModel> GetCarInputModelWithFilledListItems();
     }

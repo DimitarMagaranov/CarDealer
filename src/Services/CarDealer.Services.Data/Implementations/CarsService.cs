@@ -61,7 +61,7 @@
 
         public async Task<AddCarInputModel> GetCarInputModelWithFilledListItems()
         {
-            var carViewModel = new AddCarInputModel
+            var carInputModel = new AddCarInputModel
             {
                 ManufactureDate = DateTime.UtcNow,
                 CategoriesItems = await this.categoriesService.GetAllAsKeyValuePairsAsync(),
@@ -72,10 +72,10 @@
                 ColorstItems = await this.colorsService.GetAllAsKeyValuePairsAsync(),
             };
 
-            return carViewModel;
+            return carInputModel;
         }
 
-        public async Task UpdateCarAsync(int id, EditCarInputModel input)
+        public async Task<Car> UpdateCarAsync(int id, EditCarInputModel input)
         {
             var carDb = this.carsRepository.All().First(x => x.Id == id);
 
@@ -96,6 +96,8 @@
             carDb.State = input.State;
 
             await this.carsRepository.SaveChangesAsync();
+
+            return carDb;
         }
     }
 }

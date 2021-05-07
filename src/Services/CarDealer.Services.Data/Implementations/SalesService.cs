@@ -27,7 +27,6 @@
         private readonly IModelsService modelsService;
         private readonly ICitiesService citiesService;
         private readonly IImagesService imagesService;
-        private readonly IUsersService usersService;
         private readonly ICloudinaryService cloudinaryService;
         private readonly IImageSharpsService imageSharpsService;
         private readonly Cloudinary cloudinary;
@@ -38,7 +37,6 @@
             IModelsService modelsService,
             ICitiesService citiesService,
             IImagesService imagesService,
-            IUsersService usersService,
             ICloudinaryService cloudinaryService,
             IImageSharpsService imageSharpsService,
             IDeletableEntityRepository<Sale> salesRepository,
@@ -50,13 +48,12 @@
             this.modelsService = modelsService;
             this.citiesService = citiesService;
             this.imagesService = imagesService;
-            this.usersService = usersService;
             this.cloudinaryService = cloudinaryService;
             this.imageSharpsService = imageSharpsService;
             this.cloudinary = cloudinary;
         }
 
-        public async Task<int> CreateSaleAsync(AddSaleInputModel input, string userId)
+        public async Task<int> CreateSaleAsync(AddSaleViewModel input, string userId)
         {
             var saleToAdd = new Sale
             {
@@ -123,13 +120,14 @@
         {
             var data = new List<SaleViewModel>();
 
-            this.salesRepository.AllAsNoTracking()
+            var sales = this.salesRepository.AllAsNoTracking()
                 .Where(x => x.CountryId == countryId)
                 .OrderByDescending(x => x.Id)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
-                .ToList()
-                .ForEach(x => data.Add(this.GetSaleInfo(x.Id)));
+                .ToList();
+            
+            sales.ForEach(x => data.Add(this.GetSaleInfo(x.Id)));
 
             return data;
         }
@@ -283,6 +281,11 @@
                 .To<SaleViewModel>()
                 .FirstOrDefault();
 
+            if (saleInfo == null)
+            {
+                return null;
+            }
+
             saleInfo.CityName = this.citiesService.GetCityNameBySaleId(saleId);
             saleInfo.OriginalImageUrls = originaImagesUrlList.ToArray();
             saleInfo.ResizedImageUrls = resizedImagesUrlList.ToArray();
@@ -297,7 +300,7 @@
             return this.salesRepository.AllAsNoTracking().Where(x => x.CountryId == countryId).Count();
         }
 
-        public async Task UpdateSaleAsync(int id, EditSaleInputModel input)
+        public async Task<SaleViewModel> UpdateSaleAsync(int id, EditSaleInputModel input)
         {
             var sale = this.salesRepository.All()
                 .Include(x => x.Car)
@@ -313,6 +316,8 @@
 
             await this.salesRepository.SaveChangesAsync();
             await this.carsService.UpdateCarAsync(sale.Car.Id, input.Car);
+
+            return this.GetSingleSaleInfo(id);
         }
 
         public async Task DeleteAsync(int id)
