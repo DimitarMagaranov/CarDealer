@@ -21,9 +21,14 @@
         {
             var data = new List<ImageViewModel>();
 
-            this.imagesRepository.AllAsNoTracking().Where(x => x.SaleId == id)
-                .ToList()
-                .ForEach(x => data.Add(this.GetImageViewModelById(x.Id)));
+            var imagesDb = this.imagesRepository.AllAsNoTracking().Where(x => x.SaleId == id)
+                .ToList();
+
+            foreach (var image in imagesDb)
+            {
+                var model = this.GetImageViewModelById(image.Id);
+                data.Add(model);
+            }
 
             return data;
         }

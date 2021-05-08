@@ -1,5 +1,6 @@
 ﻿namespace CarDealer.Web.Controllers
 {
+    using System.Linq;
     using System.Threading.Tasks;
 
     using CarDealer.Common;
@@ -8,11 +9,12 @@
     using CarDealer.Web.ViewModels.InputModels.SearchSales;
     using CarDealer.Web.ViewModels.Sales;
 
-    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    [Authorize]
+    using Newtonsoft.Json;
+
     public class SearchSalesController : BaseController
     {
         private readonly ISalesService salesService;
@@ -55,7 +57,16 @@
 
         public async Task<IActionResult> Index(int countryId)
         {
-            if (countryId == 0)
+            if (this.HttpContext.Session.Keys.Contains("CountryId"))
+            {
+                countryId = JsonConvert.DeserializeObject<int>(this.HttpContext.Session.GetString("CountryId"));
+            }
+            else if (this.User.Identity.IsAuthenticated)
+            {
+                var user = await this.userManager.GetUserAsync(this.User);
+                countryId = user.CountryId;
+            }
+            else
             {
                 var methodName = nameof(this.Index).ToString();
                 var controllerName = nameof(SearchSalesController).Replace(GlobalConstants.ControllerAsString, string.Empty);

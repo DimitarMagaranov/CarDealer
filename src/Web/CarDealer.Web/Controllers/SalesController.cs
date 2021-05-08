@@ -1,6 +1,7 @@
 ﻿namespace CarDealer.Web.Controllers
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using CarDealer.Common;
@@ -13,10 +14,12 @@
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    [Authorize]
+    using Newtonsoft.Json;
+
     public class SalesController : BaseController
     {
         private readonly IWebHostEnvironment webHostEnvironment;
@@ -66,6 +69,7 @@
             this.captchaValidator = captchaValidator;
         }
 
+        [Authorize]
         public async Task<IActionResult> Create(int countryId)
         {
             if (countryId == 0)
@@ -83,6 +87,7 @@
             return this.View(viewModel);
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create(AddSaleViewModel input, string captcha)
         {
@@ -120,6 +125,7 @@
             return this.RedirectToAction(nameof(this.SaleInfo), new { id });
         }
 
+        [Authorize]
         public async Task<IActionResult> Edit(int id)
         {
             var viewModel = await this.salesService.GetEditSaleViewModel(id);
@@ -127,6 +133,7 @@
             return this.View(viewModel);
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Edit(int id, EditSaleInputModel input)
         {
@@ -146,11 +153,30 @@
 
         public async Task<IActionResult> All(int id = 1)
         {
-            var user = await this.userManager.GetUserAsync(this.User);
+            int countryId;
+
+            if (this.HttpContext.Session.Keys.Contains("CountryId"))
+            {
+                countryId = JsonConvert.DeserializeObject<int>(this.HttpContext.Session.GetString("CountryId"));
+            }
+            else if (this.User.Identity.IsAuthenticated)
+            {
+                var user = await this.userManager.GetUserAsync(this.User);
+                countryId = user.CountryId;
+            }
+            else
+            {
+                var methodName = nameof(this.All).ToString();
+                var controllerName = nameof(SalesController).Replace(GlobalConstants.ControllerAsString, string.Empty);
+                var nameOfCountriesController = nameof(CountriesController).Replace(GlobalConstants.ControllerAsString, string.Empty);
+                var nameOfSelectCountryActionInCountriesController = nameof(CountriesController.SelectCountry);
+
+                return this.RedirectToAction(nameOfSelectCountryActionInCountriesController, nameOfCountriesController, new { methodName, controllerName });
+            }
 
             const int ItemsPerPage = 12;
 
-            var viewModel = this.salesService.GetSalesListViewModelByCountryId(id, ItemsPerPage, user.CountryId);
+            var viewModel = this.salesService.GetSalesListViewModelByCountryId(id, ItemsPerPage, countryId);
 
             return this.View(viewModel);
         }
@@ -162,7 +188,6 @@
             return this.View(viewModel);
         }
 
-        [AllowAnonymous]
         public IActionResult SaleInfo(int id)
         {
             var viewModel = this.salesService.GetSingleSaleInfo(id);
@@ -170,6 +195,7 @@
             return this.View(viewModel);
         }
 
+        [Authorize]
         public async Task<IActionResult> DeleteSale(int id)
         {
             await this.salesService.DeleteAsync(id);

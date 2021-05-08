@@ -1,17 +1,21 @@
 ﻿namespace CarDealer.Web.Controllers
 {
     using System.Diagnostics;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using CarDealer.Data.Models;
-    using CarDealer.Services;
     using CarDealer.Services.Data;
     using CarDealer.Web.ViewModels;
     using CarDealer.Web.ViewModels.Countries;
 
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Caching.Distributed;
     using Microsoft.Extensions.Logging;
+
+    using Newtonsoft.Json;
 
     public class HomeController : BaseController
     {
@@ -34,6 +38,13 @@
 
         public async Task<IActionResult> Index()
         {
+            if (this.HttpContext.Session.Keys.Contains("CountryId"))
+            {
+                var countryId = JsonConvert.DeserializeObject<int>(this.HttpContext.Session.GetString("CountryId"));
+
+                return this.RedirectToAction(nameof(this.IndexCars), new { countryId });
+            }
+
             var viewModel = new SelectCountryViewModel
             {
                 CountriesItems = await this.countriesService.GetAllAsKeyValuePairsAsync(),
@@ -61,21 +72,14 @@
                 return this.View(viewModel);
             }
 
+            this.HttpContext.Session.SetString("CountryId", JsonConvert.SerializeObject(inputModel.CountryId));
+
             var countryId = inputModel.CountryId;
             return this.RedirectToAction(nameof(this.IndexCars), new { countryId });
         }
 
-        public async Task<IActionResult> IndexCars(int countryId)
+        public IActionResult IndexCars(int countryId)
         {
-            if (countryId == 0)
-            {
-                var user = await this.userManager.GetUserAsync(this.User);
-                countryId = user.CountryId;
-
-                var salesViewModel = this.salesService.GetTopSixteenCarsInUsersCountry(countryId);
-                return this.View(salesViewModel);
-            }
-
             var viewModel = this.salesService.GetTopSixteenCarsInUsersCountry(countryId);
             return this.View(viewModel);
         }

@@ -70,19 +70,25 @@
                                     </li>
                                 }
 
-                                <li class="nav-item dropdown dropdown-slide">
-                                    @if (this.User.Identity.IsAuthenticated)
-                                    {
+                                @if (Context.Session.Keys.Contains("CountryId"))
+                                {
+                                    <li class="nav-item dropdown dropdown-slide">
                                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Options <span><i class="fa fa-angle-down"></i></span>
                                         </a>
                                         <!-- Dropdown list -->
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" asp-area="" asp-controller="Sales" asp-action="All">All cars</a>
-                                            <a class="dropdown-item" asp-area="" asp-controller="Sales" asp-action="Create">Create</a>
                                             <a class="dropdown-item" asp-area="" asp-controller="SearchSales" asp-action="Index">Search</a>
+                                            @if (this.User.Identity.IsAuthenticated)
+                                            {
+                                                <a class="dropdown-item" asp-area="" asp-controller="Sales" asp-action="Create">Create</a>
+                                            }
                                         </div>
-                                    }
+                                    </li>
+                                }
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-area="" asp-controller="Countries" asp-action="SelectCountry">Select Country</a>
                                 </li>
                                 <li class="nav-item active">
                                     <a class="nav-link" asp-area="" asp-controller="AboutUs" asp-action="Index">About Us</a>

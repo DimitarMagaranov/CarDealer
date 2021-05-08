@@ -43,6 +43,21 @@
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(this.configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddMemoryCache();
+
+            services.AddDistributedSqlServerCache(options =>
+            {
+                options.ConnectionString = this.configuration.GetConnectionString("DefaultConnection");
+                options.SchemaName = "dbo";
+                options.TableName = "CacheRecords";
+            });
+
+            services.AddSession(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
             services.AddDefaultIdentity<ApplicationUser>(IdentityOptionsProvider.GetIdentityOptions)
                 .AddRoles<ApplicationRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -148,6 +163,8 @@
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            app.UseSession();
 
             app.UseRouting();
 
