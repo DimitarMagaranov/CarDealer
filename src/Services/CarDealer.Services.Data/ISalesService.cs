@@ -17,25 +17,25 @@
 
         Task DeleteAsync(int id);
 
-        IEnumerable<SaleViewModel> GetAllByCountryId(int page, int itemsPerPage, int countryId);
+        Task<IEnumerable<SaleViewModel>> GetAllByCountryId(int page, int itemsPerPage, int countryId);
 
-        IEnumerable<SaleViewModel> GetAllBySearchForm(SearchListInputModel input);
+        Task<IEnumerable<SaleViewModel>> GetAllBySearchForm(SearchListInputModel input);
 
-        IEnumerable<SaleViewModel> GetTopSixteenCarsInUsersCountry(int id);
+        Task<IEnumerable<SaleViewModel>> GetTopSixteenCarsInUsersCountry(int id);
 
-        IEnumerable<SaleViewModel> GetUserDashboardSalesByUserId(string userId);
+        Task<IEnumerable<SaleViewModel>> GetUserDashboardSalesByUserId(string userId);
 
-        SaleViewModel GetSaleInfo(int saleId);
+        Task<SaleViewModel> GetSaleInfo(int saleId);
 
-        SaleViewModel GetSingleSaleInfo(int saleId);
+        Task<SaleViewModel> GetSingleSaleInfo(int saleId);
 
-        int GetSalesCountByCountryId(int countryId);
+        Task<int> GetSalesCountByCountryId(int countryId);
 
         Task IncreaseOpensSaleCounter(int id);
 
         Task<AddSaleViewModel> GetViewModelForCreateSale(int countryId);
 
-        SalesListViewModel GetSalesListViewModelByCountryId(int id, int itemsPerPage, int countryId);
+        Task<SalesListViewModel> GetSalesListViewModelByCountryId(int id, int itemsPerPage, int countryId);
 
         Task<IEnumerable<SaleViewModel>> GetSalesListViewModelByUserId(string id);
     }

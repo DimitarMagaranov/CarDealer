@@ -44,7 +44,11 @@
             var sales = await applicationDbContext.ToListAsync();
 
             var viewModel = new List<SaleViewModel>();
-            sales.ForEach(x => viewModel.Add(this.salesService.GetSingleSaleInfo(x.Id)));
+
+            foreach (var sale in sales)
+            {
+                viewModel.Add(await this.salesService.GetSingleSaleInfo(sale.Id));
+            }
 
             return this.View(viewModel);
         }

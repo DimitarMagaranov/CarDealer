@@ -78,9 +78,9 @@
             return this.RedirectToAction(nameof(this.IndexCars), new { countryId });
         }
 
-        public IActionResult IndexCars(int countryId)
+        public async Task<IActionResult> IndexCars(int countryId)
         {
-            var viewModel = this.salesService.GetTopSixteenCarsInUsersCountry(countryId);
+            var viewModel = await this.salesService.GetTopSixteenCarsInUsersCountry(countryId);
             return this.View(viewModel);
         }
 

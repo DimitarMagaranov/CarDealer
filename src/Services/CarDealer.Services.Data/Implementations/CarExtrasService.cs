@@ -6,6 +6,7 @@
 
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models.CarModels;
+    using Microsoft.EntityFrameworkCore;
 
     public class CarExtrasService : ICarExtrasService
     {
@@ -20,10 +21,10 @@
             this.extrasService = extrasService;
         }
 
-        public IEnumerable<string> GetExtrasByCarId(int carId)
+        public async Task<IEnumerable<string>> GetExtrasByCarId(int carId)
         {
-            var extraIds = this.carExtrasRepository.AllAsNoTracking().Where(x => x.CarId == carId).Select(x => x.ExtraId).ToList();
-            var extrasDb = this.extrasService.GetAllExtras();
+            var extraIds = await this.carExtrasRepository.AllAsNoTracking().Where(x => x.CarId == carId).Select(x => x.ExtraId).ToListAsync();
+            var extrasDb = await this.extrasService.GetAllExtras();
             var carExtras = new List<string>();
             if (extraIds.Count > 0)
             {

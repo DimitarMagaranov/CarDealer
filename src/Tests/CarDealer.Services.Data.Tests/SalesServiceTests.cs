@@ -53,7 +53,7 @@
         {
             var service = await this.GetSalesService();
 
-            var result = service.GetAllByCountryId(1, 1, 1);
+            var result = await service.GetAllByCountryId(1, 1, 1);
             var resultCount = result.Count();
 
             Assert.NotNull(result);
@@ -66,7 +66,7 @@
         {
             var service = await this.GetSalesService();
 
-            var result = service.GetSaleInfo(1);
+            var result = await service.GetSaleInfo(1);
 
             Assert.NotNull(result);
             Assert.Equal(1, result.Id);
@@ -77,7 +77,7 @@
         {
             var service = await this.GetSalesService();
 
-            var result = service.GetUserDashboardSalesByUserId("1");
+            var result = await service.GetUserDashboardSalesByUserId("1");
             var resultCount = result.Count();
 
             Assert.NotNull(result);
@@ -91,7 +91,7 @@
 
             var service = await this.GetSalesService();
 
-            var result = service.GetAllBySearchForm(searchListModel);
+            var result = await service .GetAllBySearchForm(searchListModel);
             var resultCount = result.Count();
 
             Assert.Equal(1, resultCount);
@@ -114,7 +114,7 @@
         {
             var service = await this.GetSalesService();
 
-            var result = service.GetSalesCountByCountryId(1);
+            var result = await service.GetSalesCountByCountryId(1);
 
             Assert.Equal(1, result);
         }
@@ -138,7 +138,7 @@
 
             await service.DeleteAsync(1);
 
-            Assert.Null(service.GetSaleInfo(1));
+            Assert.Null(await service.GetSaleInfo(1));
         }
 
         [Fact]
@@ -148,9 +148,11 @@
 
             await service.IncreaseOpensSaleCounter(1);
 
-            var count = service.GetSingleSaleInfo(1).OpensSaleCounter;
+            var sale = await service.GetSingleSaleInfo(1);
 
-            Assert.Equal(3, count);
+            var opensSaleCount = sale.OpensSaleCounter;
+
+            Assert.Equal(3, opensSaleCount);
         }
 
         [Fact]
@@ -158,7 +160,7 @@
         {
             var service = await this.GetSalesService();
 
-            var result = service.GetTopSixteenCarsInUsersCountry(1);
+            var result = await service .GetTopSixteenCarsInUsersCountry(1);
 
             Assert.True(result.Count() <= 16);
             Assert.True(result.Count() >= 1);
@@ -179,7 +181,7 @@
         {
             var service = await this.GetSalesService();
 
-            var result = service.GetSalesListViewModelByCountryId(1, 1, 1);
+            var result = await service .GetSalesListViewModelByCountryId(1, 1, 1);
             var resultCount = result.Sales.Count();
 
             Assert.NotNull(result);

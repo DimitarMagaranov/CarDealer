@@ -18,7 +18,7 @@ namespace CarDealer.Services.Data.Tests
         {
             var service = await this.GetImagesService();
 
-            var result = service.GetAllImagesBySaleId(1);
+            var result = await service.GetAllImagesBySaleId(1);
 
             var imagesCount = result.Count();
 
@@ -31,7 +31,7 @@ namespace CarDealer.Services.Data.Tests
         {
             var service = await this.GetImagesService();
 
-            var result = service.GetImageViewModelById("1");
+            var result = await service.GetImageViewModelById("1");
 
             Assert.Equal("https://res.cloudinary.com/dlxqza3bo/image/upload/v1620225901/mloed3ykpjwuavrivfbv.png", result.ImageUrl);
         }

@@ -23,10 +23,10 @@
             this.salesRepository = salesRepository;
         }
 
-        public string GetCityNameBySaleId(int id)
+        public async Task<string> GetCityNameBySaleId(int id)
         {
-            var sale = this.salesRepository.AllAsNoTracking().FirstOrDefault(x => x.Id == id);
-            var city = this.citiesRepository.AllAsNoTracking().FirstOrDefault(x => x.Id == sale.CityId);
+            var sale = await this.salesRepository.AllAsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            var city = await this.citiesRepository.AllAsNoTracking().FirstOrDefaultAsync(x => x.Id == sale.CityId);
 
             return city.Name;
         }

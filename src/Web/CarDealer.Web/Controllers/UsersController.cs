@@ -27,7 +27,7 @@
         public async Task<IActionResult> UserInfo()
         {
             var user = await this.userManager.GetUserAsync(this.User);
-            var userViewModel = this.usersService.GetUserById(user.Id);
+            var userViewModel = await this.usersService.GetUserById(user.Id);
 
             return this.View(userViewModel);
         }
@@ -38,7 +38,7 @@
             var user = await this.userManager.GetUserAsync(this.User);
             await this.usersService.UpdateUserInfo(user.Id, input);
 
-            var viewModel = this.usersService.GetUserById(user.Id);
+            var viewModel = await this.usersService.GetUserById(user.Id);
 
             return this.View(viewModel);
         }

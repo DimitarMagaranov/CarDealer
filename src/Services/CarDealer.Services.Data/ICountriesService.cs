@@ -6,7 +6,5 @@
     public interface ICountriesService
     {
         Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairsAsync();
-
-        int GetCountryIdByName(string countryName);
     }
 }

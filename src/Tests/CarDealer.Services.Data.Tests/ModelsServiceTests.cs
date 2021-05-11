@@ -17,7 +17,7 @@
         {
             var service = await this.GetModelsService();
 
-            var result = service.GetById(1);
+            var result = await service.GetById(1);
 
             Assert.NotNull(result);
             Assert.Equal("Model", result.Name);
@@ -28,7 +28,7 @@
         {
             var service = await this.GetModelsService();
 
-            var result = service.GetModelNameByCarId(1);
+            var result = await service.GetModelNameByCarId(1);
 
             Assert.Equal("Model", result);
         }

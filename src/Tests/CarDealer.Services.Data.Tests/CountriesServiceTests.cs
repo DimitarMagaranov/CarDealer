@@ -22,16 +22,6 @@
             Assert.Equal(2, result.Count());
         }
 
-        [Fact]
-        private async Task CheckIfGetCountryIdByNameWorksCorrectly()
-        {
-            var service = await this.GetCountriesService();
-
-            var result = service.GetCountryIdByName("Country");
-
-            Assert.Equal(1, result);
-        }
-
         private async Task<ICountriesService> GetCountriesService()
         {
             var dbContext = await this.GetUseInMemoryDbContext();

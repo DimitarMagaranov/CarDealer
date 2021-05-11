@@ -7,7 +7,7 @@
 
     public interface IUsersService
     {
-        UserViewModel GetUserById(string id);
+        Task<UserViewModel> GetUserById(string id);
 
         Task<UserViewModel> UpdateUserInfo(string userId, UserInputModel input);
     }

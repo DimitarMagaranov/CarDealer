@@ -2,10 +2,13 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models.CarModels;
     using CarDealer.Web.ViewModels.Cars.CarExtras;
+
+    using Microsoft.EntityFrameworkCore;
 
     public class ExtrasService : IExtrasService
     {
@@ -16,14 +19,14 @@
             this.extrasRepository = extrasRepository;
         }
 
-        public IEnumerable<ExtraViewModel> GetAllExtras()
+        public async Task<IEnumerable<ExtraViewModel>> GetAllExtras()
         {
-            return this.extrasRepository.AllAsNoTracking()
+            return await this.extrasRepository.AllAsNoTracking()
                 .Select(x => new ExtraViewModel()
                 {
                     Name = x.Name,
                     Id = x.Id,
-                }).ToList();
+                }).ToListAsync();
         }
     }
 }

@@ -8,6 +8,7 @@
     using CarDealer.Data.Models.CarModels;
     using CarDealer.Web.ViewModels.InputModels.Cars.CarMakes;
     using CarDealer.Web.ViewModels.InputModels.Cars.CarModels;
+
     using Microsoft.EntityFrameworkCore;
 
     public class MakesService : IMakesService

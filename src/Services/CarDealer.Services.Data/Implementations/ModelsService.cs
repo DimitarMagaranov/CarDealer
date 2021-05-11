@@ -1,11 +1,13 @@
 ﻿namespace CarDealer.Services.Data.Implementations
 {
-    using System.Linq;
+    using System.Threading.Tasks;
 
     using CarDealer.Data.Common.Repositories;
     using CarDealer.Data.Models;
     using CarDealer.Data.Models.CarModels;
     using CarDealer.Web.ViewModels.InputModels.Cars.CarModels;
+
+    using Microsoft.EntityFrameworkCore;
 
     public class ModelsService : IModelsService
     {
@@ -20,17 +22,17 @@
             this.carsRepository = carsRepository;
         }
 
-        public ModelViewModel GetById(int id)
+        public async Task<ModelViewModel> GetById(int id)
         {
-            var model = this.modelsRepository.AllAsNoTracking().First(x => x.Id == id);
+            var model = await this.modelsRepository.AllAsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
 
             return new ModelViewModel { Id = model.Id, Name = model.Name };
         }
 
-        public string GetModelNameByCarId(int id)
+        public async Task<string> GetModelNameByCarId(int id)
         {
-            var car = this.carsRepository.AllAsNoTracking().FirstOrDefault(x => x.Id == id);
-            var model = this.modelsRepository.AllAsNoTracking().FirstOrDefault(x => x.Id == car.ModelId);
+            var car = await this.carsRepository.AllAsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            var model = await this.modelsRepository.AllAsNoTracking().FirstOrDefaultAsync(x => x.Id == car.ModelId);
 
             return model.Name;
         }

@@ -18,7 +18,7 @@
         {
             var service = await this.GetCitiesService();
 
-            var result = service.GetCityNameBySaleId(1);
+            var result = await service.GetCityNameBySaleId(1);
             Assert.Equal("City", result);
         }
 

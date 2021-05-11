@@ -9,6 +9,8 @@
     using CarDealer.Web.ViewModels.InputModels.Users;
     using CarDealer.Web.ViewModels.Users;
 
+    using Microsoft.EntityFrameworkCore;
+
     public class UsersService : IUsersService
     {
         private readonly IDeletableEntityRepository<ApplicationUser> usersRepository;
@@ -19,9 +21,9 @@
             this.usersRepository = usersRepository;
         }
 
-        public UserViewModel GetUserById(string id)
+        public async Task<UserViewModel> GetUserById(string id)
         {
-            return this.usersRepository.All().Where(x => x.Id == id).To<UserViewModel>().FirstOrDefault();
+            return await this.usersRepository.All().Where(x => x.Id == id).To<UserViewModel>().FirstOrDefaultAsync();
         }
 
         public async Task<UserViewModel> UpdateUserInfo(string userId, UserInputModel input)
@@ -36,7 +38,7 @@
 
             await this.usersRepository.SaveChangesAsync();
 
-            return this.GetUserById(userId);
+            return await this.GetUserById(userId);
         }
     }
 }

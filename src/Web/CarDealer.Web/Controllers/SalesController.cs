@@ -176,7 +176,7 @@
 
             const int ItemsPerPage = 12;
 
-            var viewModel = this.salesService.GetSalesListViewModelByCountryId(id, ItemsPerPage, countryId);
+            var viewModel = await this.salesService.GetSalesListViewModelByCountryId(id, ItemsPerPage, countryId);
 
             return this.View(viewModel);
         }
@@ -188,9 +188,9 @@
             return this.View(viewModel);
         }
 
-        public IActionResult SaleInfo(int id)
+        public async Task<IActionResult> SaleInfo(int id)
         {
-            var viewModel = this.salesService.GetSingleSaleInfo(id);
+            var viewModel = await this.salesService.GetSingleSaleInfo(id);
 
             return this.View(viewModel);
         }

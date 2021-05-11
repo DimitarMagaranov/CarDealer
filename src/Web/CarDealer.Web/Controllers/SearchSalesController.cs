@@ -84,11 +84,11 @@
         }
 
         [HttpGet]
-        public IActionResult List(SearchListInputModel input)
+        public async Task<IActionResult> List(SearchListInputModel input)
         {
             var salesListViewModel = new SalesListViewModel();
 
-            salesListViewModel.Sales = this.salesService.GetAllBySearchForm(input);
+            salesListViewModel.Sales = await this.salesService.GetAllBySearchForm(input);
 
             return this.View(salesListViewModel);
         }

@@ -9,6 +9,6 @@
     {
         Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsKeyValuePairsAsync(int countryId);
 
-        string GetCityNameBySaleId(int id);
+        Task<string> GetCityNameBySaleId(int id);
     }
 }

@@ -28,7 +28,7 @@
         public async Task<IActionResult> Index()
         {
             var user = await this.userManager.GetUserAsync(this.User);
-            var userSales = this.salesService.GetUserDashboardSalesByUserId(user.Id);
+            var userSales = await this.salesService.GetUserDashboardSalesByUserId(user.Id);
 
             var viewModel = new DashboardViewModel();
             viewModel.UserFirstName = user.FirstName;

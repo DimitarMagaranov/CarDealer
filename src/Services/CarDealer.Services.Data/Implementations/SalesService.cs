@@ -116,35 +116,42 @@
             return editSaleViewModel;
         }
 
-        public IEnumerable<SaleViewModel> GetAllByCountryId(int page, int itemsPerPage, int countryId)
+        public async Task<IEnumerable<SaleViewModel>> GetAllByCountryId(int page, int itemsPerPage, int countryId)
         {
             var data = new List<SaleViewModel>();
 
-            var sales = this.salesRepository.AllAsNoTracking()
+            var salesDb = await this.salesRepository.AllAsNoTracking()
                 .Where(x => x.CountryId == countryId)
                 .OrderByDescending(x => x.Id)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
-                .ToList();
-            
-            sales.ForEach(x => data.Add(this.GetSaleInfo(x.Id)));
+                .ToListAsync();
+
+            foreach (var sale in salesDb)
+            {
+                data.Add(await this.GetSaleInfo(sale.Id));
+            }
 
             return data;
         }
 
-        public IEnumerable<SaleViewModel> GetUserDashboardSalesByUserId(string userId)
+        public async Task<IEnumerable<SaleViewModel>> GetUserDashboardSalesByUserId(string userId)
         {
             var data = new List<SaleViewModel>();
 
-            this.salesRepository.AllAsNoTracking()
+            var salesDb = await this.salesRepository.AllAsNoTracking()
                 .Where(x => x.UserId == userId)
-                .ToList()
-                .ForEach(x => data.Add(this.GetSaleInfo(x.Id)));
+                .ToListAsync();
+
+            foreach (var sale in salesDb)
+            {
+                data.Add(await this.GetSaleInfo(sale.Id));
+            }
 
             return data;
         }
 
-        public IEnumerable<SaleViewModel> GetAllBySearchForm(SearchListInputModel input)
+        public async Task<IEnumerable<SaleViewModel>> GetAllBySearchForm(SearchListInputModel input)
         {
             var sales = this.salesRepository.All()
                 .Where(x => x.CountryId == input.CountryId && x.Images.FirstOrDefault() != null)
@@ -250,22 +257,22 @@
 
             foreach (var sale in sales)
             {
-                salesToShow.Add(this.GetSaleInfo(sale.Id));
+                salesToShow.Add(await this.GetSaleInfo(sale.Id));
             }
 
             return salesToShow;
         }
 
-        public SaleViewModel GetSingleSaleInfo(int saleId)
+        public async Task<SaleViewModel> GetSingleSaleInfo(int saleId)
         {
             this.IncreaseOpensSaleCounter(saleId).GetAwaiter().GetResult();
 
-            return this.GetSaleInfo(saleId);
+            return await this.GetSaleInfo(saleId);
         }
 
-        public SaleViewModel GetSaleInfo(int saleId)
+        public async Task<SaleViewModel> GetSaleInfo(int saleId)
         {
-            var images = this.imagesService.GetAllImagesBySaleId(saleId);
+            var images = await this.imagesService.GetAllImagesBySaleId(saleId);
 
             var originaImagesUrlList = new List<string>();
             var resizedImagesUrlList = new List<string>();
@@ -286,18 +293,20 @@
                 return null;
             }
 
-            saleInfo.CityName = this.citiesService.GetCityNameBySaleId(saleId);
+            saleInfo.CityName = await this.citiesService.GetCityNameBySaleId(saleId);
             saleInfo.OriginalImageUrls = originaImagesUrlList.ToArray();
             saleInfo.ResizedImageUrls = resizedImagesUrlList.ToArray();
-            saleInfo.Car.ModelName = this.modelsService.GetModelNameByCarId(saleInfo.CarId);
-            saleInfo.Car.Extras = this.carExtrasService.GetExtrasByCarId(saleInfo.CarId);
+            saleInfo.Car.ModelName = await this.modelsService.GetModelNameByCarId(saleInfo.CarId);
+            saleInfo.Car.Extras = await this.carExtrasService.GetExtrasByCarId(saleInfo.CarId);
 
             return saleInfo;
         }
 
-        public int GetSalesCountByCountryId(int countryId)
+        public async Task<int> GetSalesCountByCountryId(int countryId)
         {
-            return this.salesRepository.AllAsNoTracking().Where(x => x.CountryId == countryId).Count();
+            var salesDb = await this.salesRepository.AllAsNoTracking().Where(x => x.CountryId == countryId).ToListAsync();
+
+            return salesDb.Count();
         }
 
         public async Task<SaleViewModel> UpdateSaleAsync(int id, EditSaleInputModel input)
@@ -317,7 +326,7 @@
             await this.salesRepository.SaveChangesAsync();
             await this.carsService.UpdateCarAsync(sale.Car.Id, input.Car);
 
-            return this.GetSingleSaleInfo(id);
+            return await this.GetSingleSaleInfo(id);
         }
 
         public async Task DeleteAsync(int id)
@@ -340,16 +349,20 @@
             await this.salesRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<SaleViewModel> GetTopSixteenCarsInUsersCountry(int id)
+        public async Task<IEnumerable<SaleViewModel>> GetTopSixteenCarsInUsersCountry(int id)
         {
             var data = new List<SaleViewModel>();
 
-            this.salesRepository.All()
+            var salesDb = await this.salesRepository.All()
                 .Where(x => x.CountryId == id)
                 .OrderByDescending(x => x.CreatedOn)
                 .Take(16)
-                .ToList()
-                .ForEach(x => data.Add(this.GetSaleInfo(x.Id)));
+                .ToListAsync();
+
+            foreach (var sale in salesDb)
+            {
+                data.Add(await this.GetSaleInfo(sale.Id));
+            }
 
             return data;
         }
@@ -367,7 +380,7 @@
             return viewModel;
         }
 
-        public SalesListViewModel GetSalesListViewModelByCountryId(int id, int itemsPerPage, int countryId)
+        public async Task<SalesListViewModel> GetSalesListViewModelByCountryId(int id, int itemsPerPage, int countryId)
         {
             var salesListViewModel = new SalesListViewModel();
 
@@ -375,8 +388,8 @@
 
             salesListViewModel.ItemsPerPage = itemsPerPage;
 
-            salesListViewModel.Sales = this.GetAllByCountryId(id, itemsPerPage, countryId);
-            salesListViewModel.SalesCount = this.GetSalesCountByCountryId(countryId);
+            salesListViewModel.Sales = await this.GetAllByCountryId(id, itemsPerPage, countryId);
+            salesListViewModel.SalesCount = await this.GetSalesCountByCountryId(countryId);
 
             return salesListViewModel;
         }
@@ -385,7 +398,12 @@
         {
             var salesListViewModel = new List<SaleViewModel>();
 
-            await this.salesRepository.All().Where(x => x.UserId == id).ForEachAsync(x => salesListViewModel.Add(this.GetSaleInfo(x.Id)));
+            var salesDb = await this.salesRepository.All().Where(x => x.UserId == id).ToListAsync();
+
+            foreach (var sale in salesDb)
+            {
+                salesListViewModel.Add(await this.GetSaleInfo(sale.Id));
+            }
 
             return salesListViewModel;
         }

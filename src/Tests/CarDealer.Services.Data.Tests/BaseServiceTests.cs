@@ -36,7 +36,7 @@
         {
             await dbContext.Sales.AddAsync(this.GetSaleDbModel());
             await dbContext.Cars.AddAsync(this.GetCarDbModel());
-            await dbContext.Users.AddAsync(this.GetUserDbModel());
+            await dbContext.Users.AddRangeAsync(this.GetUsersDbModels());
             await dbContext.Images.AddAsync(this.GetImageDbModel());
             await dbContext.Countries.AddAsync(this.GetCountryDbModel());
             await dbContext.Cities.AddAsync(this.GetCityDbModel());
@@ -155,28 +155,30 @@
             };
         }
 
-        private ApplicationUser GetUserDbModel()
+        private List<ApplicationUser> GetUsersDbModels()
         {
-            return new ApplicationUser
+            return new List<ApplicationUser>
             {
-                Id = "1",
-                UserName = "UserName",
-                NormalizedUserName = "USERNAME",
-                FirstName = "FirstName",
-                LastName = "LastName",
-                Age = 20,
-                CountryId = 1,
-                CreatedOn = DateTime.Now,
-                Email = "email@abv.bg",
-                NormalizedEmail = "EMAIL@ABV.BG",
-                EmailConfirmed = true,
-                IsDeleted = false,
-                PhoneNumber = "123",
-                PhoneNumberConfirmed = true,
-                ProfileImageUrl = "ProfimeImageUrl",
-                TwoFactorEnabled = false,
-                LockoutEnabled = true,
-                AccessFailedCount = 0,
+                new ApplicationUser
+                {
+                    Id = "1",
+                    UserName = "UserName",
+                    NormalizedUserName = "USERNAME",
+                    FirstName = "FirstName",
+                    LastName = "LastName",
+                    PhoneNumber = "1234567890",
+                    Email = "email@gmail.com",
+                },
+                new ApplicationUser
+                {
+                    Id = "2",
+                    UserName = "UserName2",
+                    NormalizedUserName = "USERNAME2",
+                    FirstName = "FirstName2",
+                    LastName = "LastName2",
+                    PhoneNumber = "1234567890",
+                    Email = "email2@gmail.com",
+                },
             };
         }
 

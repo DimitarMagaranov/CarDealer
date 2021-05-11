@@ -26,10 +26,10 @@
                 "Extra2",
             };
 
-            var result = carExtrasService.GetExtrasByCarId(1).ToList();
+            var result = await carExtrasService.GetExtrasByCarId(1);
 
-            Assert.Equal(expectedExtras[0], result[0]);
-            Assert.Equal(expectedExtras[1], result[1]);
+            Assert.Equal(expectedExtras[0], result.ToList()[0]);
+            Assert.Equal(expectedExtras[1], result.ToList()[1]);
         }
 
         [Fact]
