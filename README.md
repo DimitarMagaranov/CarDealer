@@ -4,7 +4,7 @@
 
 ------------
 **Access to the application:**
-**[Car Dealer at AZURE](https://cardealerapplication.azurewebsites.net)**
+**[Car Dealer at AZURE](https://cardealer.azurewebsites.net/)**
 
 ------------
 
